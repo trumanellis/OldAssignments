@@ -1,0 +1,127 @@
+\documentclass[letterpaper,10pt]{article}
+
+\setlength{\parindent}{0in}
+\setlength{\parskip}{2ex}
+
+%opening
+\title{TTCS Assignment 2}
+\author{Truman Ellis}
+
+\begin{document}
+
+\maketitle
+
+\section*{Exercise 1}
+The entries in /usr/share/dict/words are formatted one dictionary word per line
+in the order A-Z, a-z, and special characters.
+
+\section*{Exercise 2}
+\subsection*{Part a}
+\begin{verbatim}
+for LETTER in {a..z}; do echo -n $LETTER:; grep -i "^$LETTER" words
+| wc -l; done
+
+a:5902
+b:6095
+c:9507
+d:5811
+e:3813
+f:4075
+g:3452
+h:3856
+i:3613
+j:1259
+k:1247
+l:3437
+m:5952
+n:2015
+o:2240
+p:7539
+q:464
+r:5285
+s:11072
+t:5002
+u:1899
+v:1584
+w:2711
+x:56
+y:380
+z:287
+\end{verbatim}
+
+\subsection*{Part b}
+\verb=grep -i "s$" words | wc -l=
+
+46104 words end in \verb=s=
+
+\verb=grep -i "'s$" words | wc -l=
+
+24431 words end in \verb='s=
+
+\subsection*{Part c}
+\verb=grep -i "foo[^tdl]" words | wc -l=
+
+7 words contain \emph{foo}, but not \emph{food, fool,} or \emph{foot}.
+
+\subsection*{Part d}
+Find the top 7 longest words in \verb=words=.
+
+\verb=cat words | awk '{print length, $0}' | sort -nr | head -7=
+\begin{verbatim}
+23 electroencephalograph's
+22 electroencephalographs
+22 electroencephalogram's
+22 counterrevolutionary's
+22 counterrevolutionaries
+22 Andrianampoinimerina's
+21 electroencephalograph
+\end{verbatim}
+
+\section*{Exercise 3}
+\begin{description}
+\item[/h1 and /h2] Home directory, for all code developement, reports, and
+personal data. Network filesystem, acked up daily.
+\item[/org] Appears to be where specific applications go that are used by
+various groups and centers. Network filesystem, backed up daily.
+\item[/opt] Provides applications / compilers. Read only.
+\item[/work] For generating shared data files. Network filesystem, not backed
+up.
+\item[/workspace] For generating data files on the local machine, much faster.
+Local filesystem, not backed up.
+\end{description}
+
+\section*{Exercise 4}
+It took 0.093 seconds to write 10MB and 0.556 seconds to write
+100MB to \verb=/workspace=, while it takes 0.914 seconds to write 10MB and 9.094
+seconds to write 100MB to \verb=/h2/truman=. It is faster to write to
+\verb=/workspace= because it is a local disk, writing to my home directory has
+to go over the network.
+
+\section*{Exercise 5}
+\subsection*{Part a}
+\begin{verbatim}
+du -hs
+
+find . -type f | wc -l
+
+find . -type f | grep '.c$' | wc -l
+\end{verbatim}
+
+The linux-2.6.24.1 directory is 304MB with 23062 files, of which 9748 are
+``.c'' files.
+
+\subsection*{Part b}
+\begin{verbatim}
+find . -type d | wc -l
+
+
+\end{verbatim}
+
+
+\subsection*{Part c}
+
+\subsection*{Part d}
+
+\subsection*{Part e}
+
+\end{document}

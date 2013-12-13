@@ -1,0 +1,218 @@
+\documentclass[letterpaper,10pt]{article}
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage{cancel}
+
+\setlength{\parindent}{0in}
+\setlength{\parskip}{.4ex}
+
+\DeclareMathOperator*{\tgrad}{grad}
+\DeclareMathOperator*{\tGrad}{Grad}
+\DeclareMathOperator*{\tdiv}{div}
+\DeclareMathOperator*{\tDiv}{Div}
+\DeclareMathOperator*{\tcurl}{curl}
+\DeclareMathOperator*{\Cof}{Cof}
+\DeclareMathOperator*{\tr}{tr}
+
+\providecommand{\abs}[1]{\lvert#1\rvert}
+\providecommand{\norm}[1]{\lVert#1\rVert}
+
+\def\mathbi#1{\textbf{\em #1}}
+\def\d{\mathrm{d}}
+
+
+%opening
+\title{CAM 389C Exercise Set I.6}
+\author{Truman Ellis}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{Problem 1}
+Consider the small deformations and heating of a thermo-elastic solid
+constructed of a material characterized by the following constitutive equations:
+\begin{align*}
+&\text{Free energy: }
+\rho_0\psi_0=\frac{1}{2}\lambda(\tr\mathbi{e})^2+\mu\mathbi{e}:\mathbi{e}
++c(\tr\mathbi{e})\theta+\frac{c_0}{2}\theta^2\,,\\
+&\text{Heat Flux: }\,\,\,\,
+\mathbf{q}_0=k\nabla\theta\,,
+\end{align*}
+where
+\begin{align*}
+\mathbi{e}=&\frac{1}{2}(\nabla\mathbi{u}+\nabla\mathbi{u}^T)=\text{the
+``infinitesimal'' strain tensor } (\approx\mathbf{E})\,,\\
+\mathbi{u}=&\text{ the dispacement field}\,,\\
+\theta=&\text{ the temperature field}\,,\\
+\lambda,\mu,c,c_0,k=&\text{ material constants.}
+\end{align*}
+A body $\mathbb{B}$ is constructed of such a material and is subjected to body
+forces $\mathbf{f}_0$ and to surface contact forces $\mathbi{g}$ on a portion
+$\Gamma_g$ of its boundary $\Gamma_g\subset\partial\Omega_0$. On the remainder
+of its boundary, $\Gamma_u=\partial\Omega_0\setminus\Gamma_g$, the
+displacements $\mathbi{u}$ are prescribed as zero ($\mathbi{u}=\mathbf{0}$ on
+$\Gamma_u$). The mass density of the body is $\rho_0$, and, when in its
+reference configuration at time $t=0$,
+$\mathbi{u}(\mathbi{x},0)=\mathbi{u}_0(\mathbi{x})$,
+$\partial\mathbi{u}(\mathbi{x},0)/\partial t=\mathbi{v}_0(\mathbi{x})$, 
+$\mathbi{x}\in\Omega_0$, where $\mathbi{u}_0$ and $\mathbi{v}_0$ are given
+functions. A portion $\Gamma_q$ of the boundary is heated, resulting in a
+prescribed heat flux $h=\mathbf{q}\cdot\mathbf{n}$, and the complementary
+boundary, $\Gamma_\theta=\partial\Omega_0\setminus\Gamma_q$ is subjected to a
+prescribed temperature
+$\theta(\mathbi{x},t)=\tau(\mathbi{x},t),\,\mathbi{x}\in\Gamma_\theta$.
+
+Develop a mathematical model of this physical phenomena (a set of partial
+differential equations, boundary and initial conditions): the dynamic,
+thermomechanical behavior of a thermoelastic solid.
+
+\subsubsection*{Solution}
+From the given formula for the Helmholtz free energy, we can see that
+\[
+\psi_0=\Psi(\mathbi{e},\theta)\,.
+\]
+According to the Coleman-Noll Method, we can rewrite our constraint on the
+second law of thermodynamics as
+\[
+-\rho_0\dot{\psi_0}-\rho_0\eta_0\dot\theta+\mathbf{S}:\dot{\mathbf{E}}-\frac{1}{
+\theta}\mathbf{q}_0\cdot\nabla\theta\geq0\,.
+\]
+Since we are dealing with small deformations, we can assume from here on that
+$\mathbf{E}\approx\mathbi{e}$, and the second law constraint becomes
+\[
+-\rho_0\dot{\psi_0}-\rho_0\eta_0\dot\theta+\mathbf{S}:\dot{\mathbi{e}}-\frac{1}{
+\theta}\mathbf{q}_0\cdot\nabla\theta\geq0\,.
+\]
+When we substitute
+\[
+\dot\psi_0=\frac{\partial\Psi}{\partial\mathbi{e}}:\dot{\mathbi{e}}+
+\frac{\partial\Psi}{\partial\theta}:\dot{\theta}
+\]
+into the constraint, we get
+\[
+\left(\mathbf{S}-\rho_0\frac{\partial\Psi}{\partial\mathbi{e}}\right):\dot{
+\mathbi{e}}
+-\rho_0\left(\frac{\partial\Psi}{\partial\theta}+\eta_0\right)\dot\theta
+-\frac{1}{\theta}\mathbf{q}_0\cdot\nabla\theta\geq0\,.
+\]
+It is sufficient to satisfy this condition that the coefficients of the rates
+be zero. Thus
+\[
+\mathbf{S}=\rho_0\frac{\partial\Psi}{\partial\mathbi{e}}\,,
+\text{ an }\quad\eta_0=-\frac{ \partial\Psi}{\partial\theta}\,.
+\]
+
+Now,
+\begin{align*}
+\rho_0\frac{\partial\Psi}{\partial\mathbi{e}}&=\frac{\partial}{\partial\mathbi{e
+} } \left(
+\frac{1}{2}\lambda(\tr\mathbi{e})^2+\mu\mathbi{e}:\mathbi{e}
++c(\tr\mathbi{e})\theta+\frac{c_0}{2}\theta^2 \right)\\
+&=\frac{1}{2}\lambda\frac{\d}{\d\mathbi{e}}(\tr\mathbi{e})^2
++\mu\frac{\d}{\d\mathbi{e}}\tr(\mathbi{e}^T\mathbi{e})
++c\theta\frac{\d}{\d\mathbi{e}}(\tr\mathbi{e})
+\end{align*}
+% Since trace is a linear operator, $\frac{\d}{\d x}\tr f=\tr\frac{\d}{\d x} f$,
+%and
+Since $\mathbi{e}$ is square and symmetric,
+$\mathbi{e}^T\mathbi{e}=\mathbi{e}^2$.
+Therefore,
+\begin{align*}
+\rho_0\frac{\partial\Psi}{\partial\mathbi{e}}
+&=\lambda(\tr\mathbi{e})\frac{\d}{\d\mathbi{e}}\tr(\mathbi{e})
++\mu\frac{\d}{\d\mathbi{e}}\tr(\mathbi{e}^2)
++c\theta\frac{\d}{\d\mathbi{e}}\tr(\mathbi{e})\\
+&=\left(\lambda(\tr\mathbi{e})
++2\mu\tr(\mathbi{e})
++c\theta\right)\mathbf{I}\,.
+\end{align*}
+Next,
+\begin{align*}
+\rho_0\frac{\partial\Psi}{\partial\theta}&=\frac{\partial}{\partial\theta}\left(
+\frac{1}{2}\lambda(\tr\mathbi{e})^2+\mu\mathbi{e}:\mathbi{e}
++c(\tr\mathbi{e})\theta+\frac{c_0}{2}\theta^2 \right)\\
+&=c\tr\mathbi{e}+c_0\theta\,.
+\end{align*}
+Therefore, we can automatically satisfy the second law if we use
+\[
+\mathbf{S}=\left(\lambda(\tr\mathbi{e})
++2\mu\tr(\mathbi{e})
++c\theta\right)\mathbf{I}\,,
+\]
+and
+\[
+\eta_0=-\frac{1}{\rho_0}\left(c\tr\mathbi{e}+c_0\theta\right)\,.
+\]
+Please note that $\mathbf{F}=\mathbf{I}+\nabla\mathbi{u}$.
+
+Therfore, our system of partial differential equations describing this
+thermoelastic solid are
+\begin{description}
+\item[Conservation of Mass]
+\begin{align*}
+\rho_0&=\rho\det\mathbf{F}\\
+&=\rho\det(\mathbf{I}+\nabla\mathbi{u})\\
+&=\mathrm{const}
+\end{align*}
+\item[Conservation of Linear Momentum]
+\begin{align*}
+\rho_0\ddot{\mathbi{u}}&=\tDiv{\mathbf{FS}}+\mathbf{f}_0\\
+&=\tDiv((\mathbf{I}+\nabla\mathbi{u})\mathbf{S})+\mathbf{f}_0\\
+&=\tDiv(\mathbf{S}+\nabla\mathbi{u}\,\mathbf{S})+\mathbf{f}_0
+\end{align*}
+\item[Conservation of Angular Momentum]
+\[
+\mathbf{S}=\mathbf{S}^T
+\]
+\item[Conservation of Energy]
+\begin{align*}
+\mathbf{S}:\dot{\mathbi{e}}-\tDiv{\mathbf{q}_0}+r_0&=\rho_0\dot{e_0}\\
+\mathbf{S}:\dot{\mathbi{e}}-\tDiv{\tGrad{k\theta}}+r_0
+&=\rho_0(\dot\psi+\theta\dot\eta+\eta\dot\theta)
+\end{align*}
+\item[Second Law of Thermodynamics]
+\[
+\rho_0\dot{\eta_0}+\tDiv{\frac{k\tGrad{\theta}}{\theta}}-\frac{r_0}{\theta}\geq0
+\]
+This should be satisfied automatically by our choice of $\mathbf{S}$ and
+$\eta_0$.
+\end{description}
+Where
+\[
+\mathbf{S}=\left(\lambda(\tr\mathbi{e})
++2\mu\tr(\mathbi{e})
++c\theta\right)\mathbf{I}\,,
+\]
+\[
+\eta_0=-\frac{1}{\rho_0}\left(c\tr\mathbi{e}+c_0\theta\right)\,,
+\]
+and
+\[
+\rho_0\dot\psi_0=\left(\lambda(\tr\mathbi{e})
++2\mu\tr(\mathbi{e})
++c\theta\right)\mathbf{I}:\dot{\mathbi{e}}
++\left(c\tr\mathbi{e}+c_0\theta\right)\dot\theta\,.
+\]
+
+The kinematic boundary conditions are
+\begin{align*}
+\rho_0\ddot{\mathbi{u}}=\mathbi{g}\quad&\text{on }\Gamma_g\\
+\mathbi{u}=0\quad&\text{on }\Gamma_u\,,
+\end{align*}
+while the thermodynamic boundary conditions are
+\begin{center}
+% use packages: array
+\begin{tabular}{lll}
+$\rho_0\dot{e}=h$ & on & $\Gamma_q$ \\ 
+$\theta=\tau(\mathbi{x},t)$ & on & $\Gamma_\theta$.
+\end{tabular}
+\end{center}
+The initial kinematic conditions are
+\begin{align*}
+\mathbi{u}(\mathbi{x},0)=\mathbi{u}_0(\mathbi{x})\\
+\frac{\partial\mathbi{u}(\mathbi{x},0)}{\partial t}=\mathbi{v}_0(\mathbi{x})\,.
+\end{align*}
+Additionally, the initial temperature and entropy must be chosen so
+that they satisfy the governing equations. 
+\end{document}
+

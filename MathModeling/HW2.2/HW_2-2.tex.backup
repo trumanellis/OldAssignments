@@ -1,0 +1,455 @@
+\documentclass[letterpaper,10pt]{article}
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage{cancel}
+\usepackage{graphicx}
+
+\setlength{\parindent}{0in}
+\setlength{\parskip}{.4ex}
+
+\DeclareMathOperator*{\tgrad}{grad}
+\DeclareMathOperator*{\tGrad}{Grad}
+\DeclareMathOperator*{\tdiv}{div}
+\DeclareMathOperator*{\tDiv}{Div}
+\DeclareMathOperator*{\tcurl}{curl}
+\DeclareMathOperator*{\Cof}{Cof}
+\DeclareMathOperator*{\tr}{tr}
+
+\providecommand{\abs}[1]{\lvert#1\rvert}
+\providecommand{\norm}[1]{\lVert#1\rVert}
+
+\def\mathbi#1{\textbf{\em #1}}
+\def\expect#1{\langle #1\rangle}
+\def\d{\mathrm{d}}
+\def\e{\mathrm{e}}
+
+
+%opening
+\title{CAM 389C Exercise Set II.2}
+\author{Truman Ellis}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{Problem i}
+Reproduce the proof of
+\[
+\expect{p}=m\frac{\d\expect{x}}{\d t}=\int_{-\infty}^\infty\Psi^*p\Psi\,\d x\,.
+\]
+
+We can evaluate
+\begin{align*}
+\frac{\d\expect{x}}{\d t}&=\frac{\d}{\d t}\int_\mathbb{R}x(\Psi^*\Psi)\,\d x\\
+&=\int_\mathbb{R}x\frac{\partial}{\partial t}(\Psi^*\Psi)\,\d x\\
+&=\frac{i\hbar}{2m}\int_\mathbb{R}x\frac{\partial}{\partial
+x}\left(\Psi^*\frac{\partial\Psi}{\partial x}-\frac{\partial\Psi^*}{\partial
+x}\Psi\right)\,\d x\\
+&=\left.\frac{i\hbar}{2m}x\left(\cancel{\Psi^*}\frac{\partial\Psi}{\partial x}
+-\frac{\partial\Psi^*}{\partial x}\cancel{\Psi}\right)\right|_{-\infty}^\infty
+-\frac{i\hbar}{2m}\int_\mathbb{R}\left(\Psi^*\frac{\partial\Psi}{\partial
+x}-\frac{\partial\Psi^*}{\partial
+x}\Psi\right)\,\d x\\
+&=-\frac{i\hbar}{2m}\int_\mathbb{R}\Psi^*\frac{\partial\Psi}{\partial x}\,\d x
++\frac{i\hbar}{2m}
+\underbrace{\int_\mathbb{R}\frac{\partial\Psi^*}{\partial x}\Psi\,\d x}
+_{\left.\cancel{\Psi\Psi^*}\right|_{-\infty}^\infty
+-\int_\mathbb{R}\Psi^*\frac{\partial\Psi}{\partial x}\,\d x}\\
+&=-\frac{i\hbar}{m}\int_\mathbb{R}\Psi^*\frac{\partial\Psi}{\partial x}\,\d x\\
+&=\frac{1}{m}\int_\mathbb{R}\Psi^*
+\left(\frac{\hbar}{i}\frac{\partial}{\partial x}\right)\Psi\,\d x\\
+&=\frac{1}{m}\int_\mathbb{R}\Psi^*p\Psi\,\d x\\
+&=\frac{\expect{p}}{m}\,.
+\end{align*}
+Therefore
+\[
+\expect{p}=m\frac{\d\expect{x}}{\d t}=\int_{-\infty}^\infty\Psi^*p\Psi\,\d x\,.
+\]
+
+\subsection*{Problem ii}
+Reproduce the proof of
+\[
+\frac{\d\expect{p}}{\d t}=\expect{F}.
+\]
+
+Taking the time derivative of $\expect{p}$,
+\begin{align*}
+\frac{\d\expect{p}}{\d t}&=\frac{\d}{\d t}\int_\mathbb{R}(\Psi^*p\Psi)\,\d x\\
+&=\int_\mathbb{R}\underbrace{\frac{\partial\Psi^*}{\partial t}}_
+{\displaystyle
+-\frac{i\hbar}{2m}\frac{\partial^2\Psi^*}{\partial x^2}-\frac{i}{\hbar}V\Psi^*}
+p\Psi\,\d x
++\int_\mathbb{R}\Psi^*p\underbrace{\frac{\partial\Psi}{\partial t}}_
+{\displaystyle
+\frac{i\hbar}{2m}\frac{\partial^2\Psi}{\partial x^2}+\frac{i}{\hbar}V\Psi}
+\,\d x\\
+&=-\frac{1}{i\hbar}\int_\mathbb{R}
+\left(-\frac{\hbar^2}{2m}\frac{\partial^2\Psi^*}{\partial
+x^2}-V\Psi^*\right)p\Psi+\Psi^*p
+\left(\frac{\hbar^2}{2m}\frac{\partial^2\Psi}{\partial x^2}+V\Psi
+\right)\,\d x\\
+&=-\frac{1}{i\hbar}\int_\mathbb{R}
+(H-2V)\Psi^*p\Psi-\Psi^*p(H-2V)\Psi\,\d x\\
+&=-\frac{1}{i\hbar}\int_\mathbb{R}
+\Psi^*(H-\cancel{2V})p\Psi-\Psi^*p(H-\cancel{2V})\Psi\,\d x
+& H \text{ is Hermitian} \\
+&=-\frac{1}{i\hbar}\int_\mathbb{R}
+\Psi^*Hp\Psi-\Psi^*pH\Psi\,\d x\\
+&=-\frac{1}{i\hbar}\int_\mathbb{R} \Psi^*\underbrace{(\underbrace{Hp}_
+{-\frac{\hbar^2}{2m}\frac{\partial^3}{\partial x^3}
++V\frac{\hbar}{i}\frac{\partial}{\partial x}}
+-\underbrace{pH}_
+{-\frac{\hbar^2}{2m}\frac{\partial^3}{\partial x^3}
++\frac{\hbar}{i}\frac{\partial}{\partial x}V}
+)}_
+{\displaystyle V\frac{\hbar}{i}\frac{\partial}{\partial x}
+-\frac{\hbar}{i}\frac{\partial}{\partial x}V}
+\Psi\,\d x\\
+&=\int_\mathbb{R}\Psi^*(\cancel{
+V\frac{\partial\Psi}{\partial x}}
+-\underbrace{\frac{\partial}{\partial x}(V\Psi)}_
+{\displaystyle \cancel{V\frac{\partial\Psi}{\partial x}}
++\frac{\partial V}{\partial x}\Psi}
+)\,\d x \\
+&=\int_\mathbb{R}\Psi^*\left(-\frac{\partial V}{\partial x}\right)\Psi\,\d x\\
+&=\left\langle -\frac{\partial V}{\partial x}\right\rangle\,.
+\end{align*}
+
+
+
+\subsection*{Problem 1}
+The proof of
+\[
+\sigma_Q^2\sigma_M^2\geq\left(\frac{1}{2i}\langle\left[Q,M\right]
+\rangle\right)^2
+\]
+follows from several algebraic steps and the Cauchy-Schwarz inequality. Let
+\[
+u=(\tilde Q-\expect{Q})\Psi\quad\text{and}\quad v=(\tilde M-\expect{M})\Psi\,.
+\]
+\textbf{a)}
+
+\begin{align*}
+\sigma_Q^2&=\expect{Q^2}-\expect{Q}^2\\
+&=\underbrace{\expect{\Psi,\tilde Q(\tilde Q\Psi)}}_{\text{Expected value of
+}Q^2}-\underbrace{\expect{\Psi,\expect{Q}^2\Psi}}_
+{\expect{Q}^2\underbrace{\int_{\mathbb{R}}\Psi^*\Psi\,\d x}_1}\\
+&=\underbrace{\expect{\tilde Q\Psi,\tilde Q\Psi}}_{Q\text{ is Hermitian}}
+-\expect{\expect{Q}\Psi,\expect{Q}\Psi}\\
+&=\int_\mathbb{R}(\tilde Q\Psi)^*\tilde Q\Psi
+-\expect{Q}\Psi^*\expect{Q}\Psi\,\d x\\
+&=\int_\mathbb{R}(\tilde Q\Psi)^*\tilde Q\Psi
+-2\expect{Q}\underbrace{\Psi^*\expect{Q}\Psi}_{\tilde Q}
++\expect{Q}\Psi^*\expect{Q}\Psi\,\d x\\
+&=\expect{(\tilde Q-\expect{Q})\Psi,(\tilde Q-\expect{Q})\Psi}\\
+&=\expect{u,u}\\
+&=\norm{u}^2\,,
+\end{align*}
+and similarly $\sigma_M^2=\norm{v}^2$. Thus, by Cauchy-Schwarz,
+\[
+\sigma_Q^2\sigma_M^2=\norm{u}^2\norm{v}^2\geq\abs{\expect{u,v}}^2\,.
+\]
+\textbf{b)} Show that
+\[
+\expect{u,v}=\expect{QM}-\expect{Q}\expect{M}\,.
+\]
+Note that
+\begin{align*}
+\expect{u,v}&=\expect{(\tilde Q-\expect{Q})\Psi,(\tilde M-\expect{M})\Psi}\\
+&=\underbrace{\expect{\tilde Q\Psi,\tilde M\Psi}}_{\text{Hermitian}}
+-\expect{M}\underbrace{\expect{\tilde Q\Psi,\Psi}}_{\expect{Q}}
+-\expect{Q}\underbrace{\expect{\Psi,\tilde M\Psi}}_{\expect{M}}
++\expect{Q}\expect{M}\underbrace{\expect{\Psi,\Psi}}_1\\
+&=\expect{\Psi,\tilde Q\tilde M\Psi}
+-\expect{M}\expect{Q}-\cancel{\expect{Q}\expect{M}}
++\cancel{\expect{Q}\expect{M}}\\
+&=\expect{QM}-\expect{Q}\expect{M}\,.
+\end{align*}
+\textbf{c)} The number $\expect{u,v}$ is complex. From the fact that any
+complex number $z$ satisfies
+\[
+\abs{z}^2\geq\left(\frac{1}{2i}(z-z^*)\right)^2\,,
+\]
+where $z^*$ is the complex conjugate of $z$, show that
+\[
+\sigma_Q^2\sigma_M^2\geq\left(\frac{1}{2i}(\expect{u,v}-\expect{v,u})\right)^2\,
+.
+\]
+From the properties of complex inner products, we know that
+\[
+\expect{u,v}=\overline{\expect{v,u}}\,.
+\]
+Therefore,
+\[
+\abs{\expect{u,v}}^2\geq\left(\frac{1}{2i}(\expect{u,v}-\expect{v,u})\right)^2\,
+.
+\]
+And from Cauchy-Schwarz we know that
+\[
+\sigma_Q^2\sigma_M^2\geq
+\abs{\expect{u,v}}^2\geq
+\left(\frac{1}{2i}(\expect{u,v}-\expect{v,u})\right)^2\,.
+\]
+Therefore,
+\[
+\sigma_Q^2\sigma_M^2\geq
+\left(\frac{1}{2i}(\expect{u,v}-\expect{v,u})\right)^2\,.
+\]
+\textbf{d)} Now we can show that
+\begin{align*}
+\sigma_Q^2\sigma_M^2&\geq
+\left(\frac{1}{2i}(\expect{u,v}-\expect{v,u})\right)^2\\
+&=\left(\frac{1}{2i}\left((\expect{QM}-\expect{Q}\expect{M})
+-(\expect{MQ}-\expect{M}\expect{Q})\right)\right)^2\\
+&=\left(\frac{1}{2i}(\expect{QM}-\cancel{\expect{Q}\expect{M}}
+-\expect{MQ}+\cancel{\expect{M}\expect{Q}})\right)^2\\
+&=\left(\frac{1}{2i}\expect{[Q,M]}\right)^2\,,
+\end{align*}
+where
+\[
+[Q,M]=\tilde Q\tilde M-\tilde M\tilde Q\,.
+\]
+This finishes the proof.
+
+\subsection*{Problem 2}
+A classical textbook example of the time-independent Schrodinger equation for a
+single particle moving along the $x$-axis is the problem of the infinite square
+well for which the potential $V$ is of the form
+\[
+V(x)=
+\begin{cases}
+0\,,      & \text{if }0\leq x\leq a\,,\\
+\infty\,, & \text{otherwise}\,.
+\end{cases}
+\]
+The particle is confined to this ``well'' so $\psi(x)=0$ if $x < 0\text{ and
+}x>a$ while $V(x)\equiv 0$ inside the well.
+
+\textbf{a)} Show that Schrodinger's equation reduces to
+\[
+\frac{\d^2\psi}{\d x^2}+k^2\psi=0\,,\quad\psi(0)=\psi(a)=0\,,
+\]
+with $k^2=2mE/\hbar^2$.
+
+The time-independent Schrodinger's equation is
+\[
+-\frac{\hbar^2}{2m}\frac{\d^2\psi}{\d x^2}+V\psi=E\psi\,.
+\]
+With infinite potential outside the box, the particle is regulated to $0\leq x
+\leq a$. So, within these bounds, with zero potential the time-independent
+equation becomes
+\[
+-\frac{\hbar^2}{2m}\frac{\d^2\psi}{\d x^2}=E\psi\,.
+\]
+Moving everything to one side and dividing by $\hbar^2/2m$,
+\[
+\frac{\d^2\psi}{\d x^2} + \frac{2mE}{\hbar^2}\psi=0\,.
+\]
+Let $k^2=2mE/\hbar^2$, then
+\[
+\frac{\d^2\psi}{\d x^2} + k^2\psi=0\,.
+\]
+\textbf{b)} Show that the possible values of the energy are
+\[
+E_n=\frac{n^2\pi^2\hbar^2}{2ma^2}\,,\quad n=1,2,\dots
+\]
+We know that solutions to this type of ordinary differential equation take the
+form
+\[
+\psi(x)=A\cos(kx)+B\sin(kx)\,.
+\]
+
+Our boundary conditions dictate that $\psi=0$ outside the box, and $\psi$ must
+be continuous, therefore
+\[
+\psi(0)=A=0\,,
+\]
+and
+\[
+\psi(a)=B\sin(ka)=0\,.
+\]
+The solution is trivial if $B=0$, then we have a non-trivial solution when
+\[
+ka=\frac{\sqrt{2mE}}{\hbar}a=n\pi\,,\quad n=1,2,\dots\,.
+\]
+Therefore, we have a series of solutions for increasing $n$,
+\[
+E_n=\frac{n^2\pi^2\hbar^2}{2ma^2}\,,\quad n=1,2,\dots\,.
+\]
+\textbf{c)} Show that the wave function is a superposition of solutions,
+\[
+\psi_n(x)=\sqrt{\frac{2}{a}}\sin\left(\frac{n\pi x}{a}\right)\,,\quad
+0\leq x\leq a\,,
+\]
+which are orthonormal in $L^2(0,a)$.
+
+First of all, substituting $E$ into $k$, please note that
+\[
+k=\frac{n\pi}{a}\,.
+\]
+We wish that $\psi_n(x)$ are orthonormal, then
+\[
+\expect{\psi_n(x),\psi_m(x)}=\delta_{mn}\,.
+\]
+But,
+\[
+\expect{B\sin(\frac{n\pi}{a}x),B\sin(\frac{m\pi}{a}x)}=
+\begin{cases}
+B^2\frac{a}{2}\,,      & n=m\,,\\
+0\,, & n\neq m\,.
+\end{cases}
+\]
+In order to normalize this, we need $B=\sqrt{2/a}$.
+Therefore,
+\[
+\psi_n(x)=\sqrt{\frac{2}{a}}\sin\left(\frac{n\pi x}{a}\right)\,.
+\]
+If any one $\psi_n(x)$ is a solution, then the superposition of solutions is
+also a solution. Thus the wave function can be written as a sum of
+$\psi_n(x)\,,\quad n=1,2,\dots$.
+
+\textbf{d)} Given that the functions $\psi_n$ form a complete orthonormal basis
+for $L^2(0,a)$, develop a Fourier series representation of the function
+$f(x)=x$ as an infinite sum of these functions.
+
+If any one $\psi_n(x)$ satisfies the time-independent Schrodinger equation, then
+the infinite sum of these will also satisfy it. In general we can write
+\[
+f(x)=\sum_{n=1}^\infty b_n\sqrt{\frac{2}{a}}\sin\left(\frac{n\pi x}{a}\right)
+\,,\quad 0\leq x\leq a\,,
+\]
+where
+\[
+b_n=\expect{\psi_n,x}\,.
+\]
+which is in fact a Fourier sine series representation for $f(x)=x$.
+
+\textbf{e)} Let
+\[
+Q(x,p)\Psi=\frac{\d^2\Psi(x)}{\d x^2}\,,\quad 0\leq x\leq a\,.
+\]
+Is $Q$ observable?
+
+We can substitute for $Q$ in the reduced Schrodinger equation,
+\[
+Q\psi=-\frac{n^2\pi^2}{a^2}\psi\,.
+\]
+Therefore $Q$ has a discrete spectrum of eigenvalues
+$\{-\frac{n^2\pi^2}{a^2}\}$. It is only left to prove that $Q$ is Hermitian.
+Integrating by parts twice
+\begin{align*}
+\expect{\psi,Q\psi}&=\int_\mathbb{R}\psi^*\frac{\d^2\psi}{\d x^2}\,\d x\\
+&=\left.\cancel{\psi^*}\frac{\d\psi}{\d x}\right|_0^a
+-\int_\mathbb{R}\frac{\d\psi}{\d x}\frac{\d\psi^*}{\d x}\,\d x\\
+&=-\left.\frac{\d\psi^*}{\d x}\cancel{\psi}\right|_0^a
++\int_\mathbb{R}\psi\frac{\d^2\psi^*}{\d x^2}\,\d x\\
+&=\expect{Q\psi,\psi}\,.
+\end{align*}
+Therefore $Q$ is Hermitian and has a discrete spectrum of eigenvalues, so $Q$
+must be observable.
+
+\subsection*{Problem 3}
+Consider a quantum system consisting of a single particle in a straight line
+with position $x$ and momentum $p$. Define the following operators:
+\begin{align*}
+A\phi&=x\psi & (A&=x)\,,\\
+B\phi&=\partial\phi/\partial x & (B&=\partial/\partial x)\,.
+\end{align*}
+Do $A$ and $B$ commute?
+
+The commutator of $A$ and $B$ applied to $\phi$ is
+\begin{align*}
+[A,B]\phi&=x\frac{\partial}{\partial x}\phi-\frac{\partial}{\partial x}x\phi\\
+&=x\frac{\partial}{\partial x}\phi-x\frac{\partial}{\partial x}-\phi\\
+&=-\phi\neq 0\,.
+\end{align*}
+Therefore $A$ and $B$ do not commute.
+
+\subsection*{Problem 4}
+Let
+\[
+Q=-\frac{\hbar^2}{2m}\frac{\partial}{\partial x^2}\quad\text{and}\quad
+M=-i\hbar\frac{\partial}{\partial x}\,.
+\]
+\textbf{a)} Show that these operators commute.
+
+The commutator of $Q$ and $M$ applied to $\phi$ is
+\begin{align*}
+[Q,M]\phi&=-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}
+\left(-i\hbar\frac{\partial}{\partial x}\right)\phi
+-\left(-i\hbar\frac{\partial}{\partial x}\right)
+\left(-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}\right)\phi\\
+&=\frac{i\hbar^3}{2m}\frac{\partial^3}{\partial x^3}\phi
+-\frac{i\hbar^3}{2m}\frac{\partial^3}{\partial x^3}\phi=0
+\end{align*}
+\textbf{b)} Show that $\e^{ikx}$ is a simultaneous eigenfunction of these
+operators and, indeed, $p^2/2m=E$.
+
+To show that $e^{ikx}$ is a simultaneous eigenfunction of $Q$ and $M$, we need
+\[
+Q\e^{ikx}=\lambda_Q\e^{ikx}\,,
+\]
+and
+\[
+M\e^{ikx}=\lambda_M\e^{ikx}\,.
+\]
+Then,
+\[
+Q\e^{ikx}=-\frac{\hbar^2}{2m}\frac{\partial}{\partial
+x^2}\e^{ikx}=\frac{\hbar^2k}{2m}\e^{ikx}\,.
+\]
+Similarly for $M$,
+\[
+M\e^{ikx}=-i\hbar\frac{\partial}{\partial
+x}\e^{ikx}=\frac{\hbar^2k}{2m}\e^{ikx}\,.
+\]
+Therefore $\e^{ikx}$ is a simultaneous eigenfunction for $Q$ and $M$.
+
+If we assume the absence of a potential, the Hamiltonian becomes
+$H=-\frac{\hbar^2}{2m}\frac{\d^2}{\d x^2}$, and the Schrodinger equation reads
+\[
+H\Psi=E\Psi\,.
+\]
+Then
+\[
+\frac{p^2}{2m}=-\frac{\hbar^2}{2m}\frac{\d^2}{\d x^2}=H=E\,.
+\]
+
+\end{document}
+
+% First we notice that
+% \[
+% \Psi(x,t)=\e^{iEt/\hbar}\psi(x)\,,
+% \]
+% and
+% \[
+% \Psi^*\Psi=\bar{\e^{iEt/\hbar}}\psi(x)\e^{iEt/\hbar}\psi(x)
+% =\e^{-iEt/\hbar+-iEt/\hbar}\psi(x)^2=\psi(x)^2\,.
+% \]
+% Also note that
+% \[
+% Q\Psi=\frac{\d^2}{\d x^2}\Psi=\e^{iEt/\hbar}\frac{\d^2}{\d x^2}\psi\,,
+% \]
+% where
+% \[
+% \frac{\d^2}{\d x^2}\psi=\sum_{n=1}^\infty -b_n\sqrt{\frac{2}{a}}
+% \left(\frac{n^2\pi^2}{a^2}\right)\sin\left(\frac{n\pi x}{a}\right)
+% =-\sum_{n=1}^\infty\left(\frac{n^2\pi^2}{a^2}\right)\psi_n\,.
+% \]
+% So
+% \begin{align*}
+% \expect{Q}&=\int_\mathbb{R}\Psi^*Q\Psi\,\d x\\
+% &=\int_\mathbb{R}\psi\frac{\d^2}{\d x^2}\psi\,\d x \\
+% &=\int_\mathbb{R}\left(\sum_{n=1}^\infty \psi_n\right)
+% \left(\sum_{n=1}^\infty-\left(\frac{n^2\pi^2}{a^2}\right)\psi_n\right)\,\d x\\
+% &=-\sum_{n=1}^\infty\left(\frac{n^2\pi^2}{a^2}\right)
+% & \text{by orthonormality of }\psi_n\,.
+% \end{align*}
+% In a similar manner, we can calculate
+% \begin{align*}
+% \expect{Q^2}&=\int_\mathbb{R}\Psi^*Q^2\Psi\,\d x\\
+% &=\int_\mathbb{R}\psi\frac{\d^4}{\d x^4}\psi\,\d x \\
+% &=\int_\mathbb{R}\left(\sum_{n=1}^\infty \psi_n\right)
+% \left(\sum_{n=1}^\infty\left(\frac{n^4\pi^4}{a^4}\right)\psi_n\right)\,\d x\\
+% &=\sum_{n=1}^\infty\left(\frac{n^4\pi^4}{a^4}\right)
+% & \text{by orthonormality of }\psi_n\,.
+% \end{align*}

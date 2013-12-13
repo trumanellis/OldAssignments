@@ -1,0 +1,229 @@
+\documentclass[letterpaper]{article}
+\usepackage[top=.5in, bottom=.5in, left=.5in, right=.5in]{geometry}
+\usepackage[fleqn]{amsmath}
+\usepackage{amsfonts,amssymb,amsthm}
+\usepackage{multicol}
+\usepackage{amsthm}
+\usepackage{algorithmic}
+
+\setlength{\parindent}{0in}
+\setlength{\parskip}{0ex}
+
+\providecommand{\abs}[1]{\left\lvert#1\right\rvert}
+\providecommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\def\d{\mathrm{d}}
+
+\pagestyle{empty}
+\begin{document}
+\begin{multicols}{2}
+\footnotesize
+Consistency + Stability = Convergence
+\[
+y''=\frac{\partial f}{\partial t}+\nabla_yf\cdot f
+\]
+\[
+(a+ib)(c+id)=(ac-bd)+i(ad+bc)
+\]
+Euler
+
+Euler's method is convergent if $f\in C^0$ and Lipshitz in $y$
+\[
+\norm{e_{n+1}}\le(1+h\lambda)\norm{e_n}+Ch^2
+\]
+\begin{align*}
+\norm{e_n}&\le\frac{C}{\lambda}h\left[(1+h\lambda)^n-1\right]\\
+&\le\frac{C}{\lambda}(e^{T\lambda}-1)h
+\end{align*}
+Trapezoid
+\[
+\norm{e_{n+1}}\le\left(\frac{1+\frac{1}{2}h\lambda}{1-\frac{1}{2}h\lambda}\right)\norm{e_n}+\left(\frac{C}{1-\frac{1}{2}h\lambda}\right)h^3
+\]
+\[
+\norm{e_n}\leq\frac{C}{\lambda}\left[\left(\frac{1+\frac{1}{2}h\lambda}{1-\frac{1}{2}h\lambda}\right)^n-1\right]h^2
+\]
+Lagrange
+\[
+p_m(t)=\prod_{l=1,l\neq m}^{s-1}\frac{t-t_{n+l}}{t_{n+m}-t_{n+l}}
+\]
+s-step Adam's-Bashforth
+\[
+y_{n+s}=y_{n+s-1}+h\sum_{m=0}^{s-1}b_mf(t_{n+m},y_{n+m})
+\]
+\[
+b_m=h^{-1}\int_0^hp_m(t_{n+s-1}+\tau)\d\tau\,,\quad m=0,1,\dots,s-1
+\]
+General s-step
+\[
+\sum_{m=0}^sa_my_{n+m}=h\sum_{m=0}^sb_mf(t_{n+m},y_{n+m})
+\]
+\begin{align*}
+\rho(w)&=\sum_{m=0}^sa_mw^m\\
+\sigma(w)&=\sum_{m=0}^sb_mw^m
+\end{align*}
+Order p iff
+\[
+\rho(\xi+1)-\sigma(\xi+1)\ln(\xi+1)=c(\xi)^{p+1}+\mathcal{O}(\xi^{p+2})
+\]
+Root Condition: all zeros reside in closed complex unit disc and all zeros of
+unit modulus are simple.
+\[
+\norm{f(x)-p(x)}_{L^\infty}\le\frac{(b-a)^s}{s!}\norm{f^{(s)}}_{L^\infty}
+\]
+BDF
+\[
+\sigma(w)=\beta w^s
+\]
+\[
+\beta=\left(\sum_{m=1}^s\frac{1}{m}\right)^{-1}
+\]
+\[
+\rho(w)=\beta\sum_{m=1}^s\frac{1}{m}w^{s-m}(w-1)^m
+\]
+Runge-Kutta
+\[
+\xi_j=y_n+h\sum_{i=1}^\nu a_{j,i}f(t_n+c_ih,\xi_i)
+\]
+\[
+y_{n+1}=y_n+h\sum_{j=1}^\nu b_jf(t_n+c_jh,\xi_j)
+\]
+\[
+\begin{array}{c|c}
+\mathbf{c} & A\\
+\hline
+& \mathbf{b}^T
+\end{array}
+\]
+\[
+LTE=\frac{y(t_{n+1})-y(t_n)}{h}-\Phi(t_n,y(t_n),h)
+\]
+Collocation
+\[
+\int_0^1\tau^j\prod_{l=1}^\nu(\tau-c_l)=0\,,\quad j=0,1,\dots,m-1
+\]
+for some $m\in\{0,1,\dots,\nu\}$. Then the collocation method is of order
+$\nu+m$.
+\[
+q(t)=\prod_{j=1}^\nu(t-c_j)\,,\quad q_l(t)=\frac{q(t)}{t-c_l}
+\]
+\[
+a_{j,i}=\int_0^{c_j}\frac{q_i(\tau)}{q_i(c_i)}\d\tau\,,\quad    
+b_j=\int_0^1\frac{q_j(\tau)}{q_j(c_j)}\d\tau
+\]
+Let $c_1,c_2,\dots,c_\nu$ be the zeros of the polynomials that are orthogonal
+with respect to the weight function $\omega(t)\equiv 1\,,0\le t\le1$. Then the
+underlying collocation method is of order $2\nu$.
+
+A numerical method is stable if small change in the initial conditions or data,
+produce a correspondingly small change in the subsequent approximations.
+
+Stability of Runge-Kutta Methods
+\[
+r(z)=1+z\mathbf{b}^T(I-zA)^{-1}\mathbf{1}
+\]
+\[
+(I-zA)^{-1}=\frac{\mathrm{adj}(I-zA)}{\det(I-zA)}
+\]
+Adjugate is transpose of cofactor matrix
+
+$\abs{r(z)}<1$ for all $z\in\mathbb{C}^-$ iff all the poles of $r$ have positive
+real parts and $\abs{r(it)}\le 1$ for all $t\in\mathbb{R}$.
+
+Multistep methods
+\[
+\eta(z,w)=\sum_{m=0}^s(a_m-b_mz)w^m
+\]
+The multistep method is A-stable iff $b_s>0$ and
+\[
+\abs{w_1(it)},\,\abs{w_2(it)},\dots,\abs{w_{q(it)}(it)}\le 1\,,\quad
+t\in\mathbb{R}
+\]
+where $w_1,\,w_2,\dots,w_{q(z)}$ are the zeros of $\eta(z,\cdot)$.
+
+Linearizing a non-linear equation
+\[
+y'=\underbrace{f(t,y)}_{b}+\underbrace{\nabla f(t,y)}_{A}(y-\bar y)
++\mathcal{O}(\abs{y-\bar y}^2)
+\]
+Solution of nonlinear equations
+
+Fixed Point
+\[
+\mathbf{w}=h\mathbf{g}(\mathbf{w})+\boldsymbol\beta
+\]
+Unique solution exists in sufficiently small neighborhood of $\beta$ if
+$\left(\mathbf{I}-h\frac{\partial\mathbf{g}}{\partial\mathbf{w}}\right)$ is
+nonsingular.
+
+\textbf{Banach Fixed Point Theorem}
+If $G:\mathbb{R}^d\rightarrow\mathbb{R}^d$ is a contraction: $\exists
+0\le\lambda<1$ s.t.
+\[
+\norm{G(u)-G(v)}\le\lambda\norm{u-v}\quad\forall u,v\in\mathbb{R}^d
+\]
+The $\exists!$ fixed point $w$ and 
+\[
+\norm{w^i-w}\le\lambda^i\norm{w^0-w}
+\]
+
+If $g$ is Lipshitz with constant $\Lambda$, we need
+$h\le\frac{\lambda}{\Lambda}$
+
+Newton's Method
+\[
+w^{i+1}=w^i-\frac{F(w^i)}{F'(w^i)}
+\]
+\[
+w^{i+1}=w^i-\left(\frac{\partial F(w)}{\partial w}\right)^{-1}F(w^i)
+\]
+Psuedo-Code\\
+\begin{minipage}[t]{\textwidth}
+\begin{algorithmic}
+\STATE $t_n\gets t_0$
+\STATE $\mathbf{y}_n\gets \mathbf{y}_0$
+\FOR{$n = 1$ to Nsteps} 
+    \STATE $\mathbf{w}^i\gets \mathbf{y}_n+h\mathbf{g}(t_n,\mathbf{y}_n)$
+    \FOR{$i = 1$ to maxIter}
+        \STATE $\mathbf{w}^{i+1} = \mathbf{w}^{i}-
+        \left(\mathbf{I}-h\frac{\partial\mathbf{g}}{\partial\mathbf{y}}(t_{n+1},\mathbf{w}^i)\right)^{-1}
+        \left(\mathbf{w}^i-h\mathbf{g}(t_{n+1},\mathbf{w}^i)-\mathbf{y}_n\right)$
+        \IF
+        {$\frac{\norm{\mathbf{w}^{i+1}-\mathbf{w}^i}}{\norm{\mathbf{y}_n}}\le$ tol}
+            \STATE break
+        \ENDIF
+        \STATE $\mathbf{w}^i\gets\mathbf{w}^{i+1}$
+    \ENDFOR
+    \STATE $\mathbf{y}_{n+1}\gets\mathbf{w}^i$
+\ENDFOR
+\end{algorithmic}
+\end{minipage}
+
+\textbf{Cohn-Schur criterion} Both zeros of the quadratic $\alpha w^2+\beta
+w+\gamma$, where $\alpha,\,\beta,\,\gamma\in\mathbb{C},\,\alpha\neq 0$, reside
+in the closed complex unit disc iff
+\[
+\abs{\alpha}\ge\abs{\gamma},\quad\abs{\abs{\alpha}^2-\abs{\gamma}^2}\ge\abs{\alpha\bar\beta-\beta\bar\gamma}
+\text{ and }\alpha=\gamma\neq0\implies\abs{\beta}\le2\abs{\alpha}
+\]
+
+The two stage BDF
+\[
+\mathbf{y}_{n+2}-\frac{4}{3}\mathbf{y}_{n+1}+\frac{1}{3}\mathbf{y}_n=\frac{2}{3}h\mathbf{f}(t_{n+2},\mathbf{y}_{n+2}
+\]
+is A-stable.
+\[
+\eta(z,w)=\left(1-\frac{2}{3}z\right)w^2-\frac{4}{3}w+\frac{1}{3}
+\]
+The first condition is satisfied by $b_2=\frac{2}{3}>0$.
+\[
+\eta(it,w)=\left(1-\frac{2}{3}it\right)w^2-\frac{4}{3}w+\frac{1}{3}
+\]
+\[
+\abs{\alpha}^2-\abs{\gamma}^2=1+\frac{4}{9}t^2-\frac{1}{9}=\frac{4}{9}(2+t^2)>0
+\]
+\[
+\left(\abs{\alpha}^2-\abs{\gamma}^2\right)^2-\abs{\alpha\bar\beta-\beta\bar\gamma}^2=\frac{16}{81}t^4\ge0
+\]
+\end{multicols}
+\end{document}
+

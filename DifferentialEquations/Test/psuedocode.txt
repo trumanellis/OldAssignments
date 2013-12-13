@@ -1,0 +1,6 @@
+t = t0
+yn = y0
+for n = 1:N
+    w^i = yn + h g(tn, yn)
+    for i = 1:maxIter
+        w^i+1 = w^i - (I-h dg/dy(tn+1,w^i))^-1(w^i-h g(tn+1,w^i) - yn)

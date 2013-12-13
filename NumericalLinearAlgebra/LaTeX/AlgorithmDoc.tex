@@ -1,0 +1,39 @@
+\documentclass[12pt]{article}
+
+% ----------------------------------------------------------------
+
+\usepackage{ifthen}
+\usepackage[dotinlabels]{titletoc}
+\usepackage{colortbl}
+\usepackage{array}
+
+\input{flatex}
+
+
+% ----------------------------------------------------------------
+\begin{document}
+
+\input{algorithm2}  % Load commands from file algorithm.tex
+
+\begin{figure}[tbp]
+
+\begin{center}     % center the algorithm on the page 
+ 
+\FlaAlgorithm      % this command typesets the algorithm
+\end{center} 
+ 
+% The following command creates a caption for the figure. 
+ 
+\caption{Algorithm for computing
+$\operation$.} 
+ 
+ 
+% The following command creates a label so that the figure can 
+% be referenced by its number by inserting  
+%  \ref{fig:label} in the \LaTeX source 
+ 
+\label{fig:label} 
+ 
+\end{figure} 
+
+\end{document}

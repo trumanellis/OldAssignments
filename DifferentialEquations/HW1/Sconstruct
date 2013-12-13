@@ -1,0 +1,5 @@
+env = Environment()
+env.Append(LIBS = 'python2.6')
+env.Append(CPPPATH = '/usr/include/python2.6')
+env.Append(CCFLAGS = '-std=gnu++0x')
+env.Program('Euler.cpp')

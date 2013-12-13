@@ -1,0 +1,470 @@
+\documentclass[letterpaper,10pt]{article}
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage{cancel}
+
+\setlength{\parindent}{0in}
+\setlength{\parskip}{.4ex}
+
+%opening
+\title{CAM 389C Homework 3}
+\author{Truman Ellis}
+
+\begin{document}
+
+\maketitle
+
+\section*{Exercise Set I.2}
+\subsection*{Problem 7}
+Let $U$ be a normed space and $f: U\rightarrow \mathbb{R}$ be a function from
+$U$ to $\mathbb{R}$. The space $U'=L(U,\mathbb{R})$ is called the dual of $U$.
+We say that $f$ is differentiable at $\mathbf{u}\in U'$ such that
+\[
+ \lim_{\theta\rightarrow0}\frac{1}{\theta}\left(f(\mathbf{u}
++\theta\mathbf{v})-f(\mathbf{u})\right)=\langle \mathbf{g},\mathbf{v}\rangle\,,
+\]
+$\forall \mathbf{v}\in U$. Here $\langle\cdot,\cdot\rangle$ denotes ``duality
+pairing'', meaning the number
+$\langle\mathbf{g},\mathbf{v}\rangle\in\mathbb{R}$ depends linearly on
+$\mathbf{g}$ and on $\mathbf{v}$. In particular,
+$\mathbf{g}(\mathbf{v})\equiv\langle\,\mathbf{g},\mathbf{v}\rangle$. We write
+\[
+ \mathbf{g}=Df(\mathbf{u})\,,
+\]
+and call $Df(\mathbf{u})$ the derivative of $f$ at $\mathbf{u}$.
+
+Let $\varphi$ be a scalar-valued function defined on the set $\mathcal S$ of
+invertible tensors $\mathbf{A}\in L(U,U)$ (i.e.
+$\varphi:\mathcal{S}\rightarrow\mathbb{R}$) defined by
+\[
+ \varphi(\mathbf{A})=\det A\,.
+\]
+
+Show that, $\forall\mathbf{V}\in L(U,U)\,,$
+\[
+ D\varphi(\mathbf{A}):\mathbf{V}=(\det\mathbf{A})\mathbf{V}^T:\mathbf{A}^{-1}\,.
+\]
+\textbf{Hint:} Note that
+\begin{align*}
+ \det(\mathbf{A}+\theta\mathbf{V})&=\det((\mathbf{I}+\theta\mathbf{V}\mathbf{A}
+^{-1})\mathbf{A})\\
+&=\det\mathbf{A}\det(\mathbf{I}+\theta\mathbf{V}\mathbf{A}^{-1})\,,
+\end{align*}
+and that
+\[
+ \det(\mathbf{I}+\theta\mathbf{B})=1+\theta\,\mathrm{tr}\,\mathbf{B}+\mathit{O}
+(\theta^2)\,.
+\]
+\subsubsection*{Solution}
+By the definition of the derivative,
+\begin{align*}
+ D\varphi(\mathbf{A}):\mathbf{V}
+&=\lim_{\theta\rightarrow 0}
+\frac{\det(\mathbf{A}+\theta\mathbf{V})-\det(\mathbf{A} )}{\theta}\\
+&=\lim_{\theta\rightarrow 0}
+\frac{\det\mathbf{A}\det(\mathbf{I}+\theta\mathbf{V}\mathbf{A}^{-1})
+-\det(\mathbf{A})}{\theta}\\
+&=\lim_{\theta\rightarrow 0}
+\frac{\det\mathbf{A}(1+\theta\,\mathrm{tr}(\mathbf{V}\mathbf{A}^{-1})+\mathit{O}
+(\theta^2)))
+-\det(\mathbf{A})}{\theta}\\
+&=\lim_{\theta\rightarrow 0}
+\frac{\det\mathbf{A}}{\theta}+
+\frac{\theta(\det\mathbf{A})\mathbf{V}^T:\mathbf{A}^{-1}}{\theta}+
+\frac{\mathit{O}(\theta^2)))}{\theta}-\frac{\det\mathbf{A}}{\theta}\\
+&=\lim_{\theta\rightarrow 0}
+\cancel{\frac{\det\mathbf{A}}{\theta}}+
+\frac{\cancel{\theta}(\det\mathbf{A})\mathbf{V}^T:\mathbf{A}^{-1}}{\cancel{
+\theta } } +
+\frac{\mathit{O}(\theta^2)))}{\theta}-\cancel{\frac{\det\mathbf{A}}{\theta}}\\
+&=\lim_{\theta\rightarrow 0}\left(
+(\det\mathbf{A})\mathbf{V}^T:\mathbf{A}^{-1}+
+\cancelto{0}{\frac{\mathit{O}(\theta^2)))}{\theta}}\right)\\
+&=(\det\mathbf{A})\mathbf{V}^T:\mathbf{A}^{-1}
+\end{align*}
+\[
+ \therefore \quad D\varphi(\mathbf{A}):\mathbf{V} =
+(\det\mathbf{A})\mathbf{V}^T:\mathbf{A}^{-1}
+\]
+
+\subsection*{Problem 8}
+Let $\Omega$ be an open set in $\mathbb{R}^3$ and $\varphi$ be a smooth
+function mapping $\Omega$ into $\mathbb{R}$. The vector $\mathbf{g}$ with the
+property
+\[
+ D\varphi(\mathbf{x})\cdot\mathbf{v}=\mathbf{g}(\mathbf{x})\cdot\mathbf{v}
+\qquad \forall\mathbf{v}\in\mathbb{R}^3\,,
+\]
+is the gradient of $\mathbf{v}$ at point $\mathbf{x}\in\Omega$. We use the
+classical notation,
+\[
+ \mathbf{g}(\mathbf{x})=\nabla\varphi(\mathbf{x})\,.
+\]
+Show that
+\begin{align*}
+\nabla(\varphi\mathbf{v})
+&=\varphi\nabla\mathbf{v}+\mathbf{v}\otimes\nabla\varphi\,,\\
+\operatorname{div}(\phi\mathbf{v})
+&=\varphi\operatorname{div}\mathbf{v}+\mathbf{v}\cdot\nabla\varphi\,,\\
+\operatorname{div}(\mathbf{v}\otimes\mathbf{w})
+&=\mathbf{v}\operatorname{div}\mathbf{w}+(\nabla\mathbf{v})\mathbf{w}\,.
+\end{align*}
+
+\subsubsection*{Solution}
+\textbf{Part 1}:\newline
+Let's first look at derivative of the vector field $\mathbf{v}(\mathbf{x})$:
+\[
+D\mathbf{v}(\mathbf{x}):L(\mathbb{R}^3,\mathbb{R}^3)\rightarrow\mathbb{R}
+\]
+\[
+D\mathbf{v}:\mathbb{R}^3\rightarrow L(\mathbb{R}^3,\mathbb{R}
+^3)'
+\]
+for $x\in\mathbb{R}^3$:
+\[
+D\mathbf{v}(\mathbf{x})(\mathbf{e}_i\otimes\mathbf{e}_j)\equiv
+\lim_{\theta\rightarrow
+0}\frac{1}{\theta}(v_i(\mathbf{x}+\theta\mathbf{e}_j)-v_i(\mathbf{x}))
+\]
+\[
+D\mathbf{v}(\mathbf{x})(\mathbf{A})
+\equiv\sum_{kl}A_{kl}D\mathbf{v}(\mathbf{x})(\mathbf{e}_k\otimes\mathbf
+{e}_l)
+\]
+And the derivative of a scalar field:
+\[
+D\varphi(x):\mathbb{R}^3\rightarrow\mathbb{R}
+\]
+\[
+D\varphi:\mathbb{R}^3\rightarrow(\mathbb{R}^3)'
+\]
+\[
+D\varphi(\mathbf{x})(\mathbf{e}_i)
+\equiv\lim_{\theta\rightarrow
+0}\frac{1}{\theta}(\varphi(\mathbf{x}+\theta\mathbf{e}_i)-\varphi(\mathbf{x}))
+\]
+With these preliminaries taken care of, we can derive our first identity.
+\[
+\nabla(\varphi\mathbf{v})=\varphi\nabla\mathbf{v}+\mathbf{v}\otimes\nabla\varphi
+\]
+If this is true, it should hold that
+\[
+\nabla(\varphi\mathbf{v}):\mathbf{A}=(\varphi\nabla\mathbf{v}+\mathbf{v}
+\otimes\nabla\varphi):\mathbf{A} \qquad \forall \mathbf{A}\in
+L(\mathbb{R}^3,\mathbb{R}^3)
+\]
+Starting with the left hand side:
+\begin{align*}
+\nabla(\varphi\mathbf{v}):\mathbf{A}
+&=\nabla(\varphi\mathbf{v})(\mathbf{x})(\mathbf{A})\\
+&=\sum_{ij}A_{ij}\lim_{\theta\rightarrow 0}\frac{1}{\theta}((\varphi
+v_i)(\mathbf{x}+\theta\mathbf{e}_j)-(\varphi v_i)(\mathbf{x}))\\
+&=\sum_{ij}A_{ij}\varphi\frac{\partial v_i}{\partial x_j}
++\sum_{ij}A_{ij}v_i\frac{\partial\varphi}{\partial x_j}\\
+&=\sum_{ij}A_{ij}\varphi\lim_{\theta\rightarrow
+0}\frac{1}{\theta}(v_i(\mathbf{x}+\theta\mathbf{e}_j)-v_i(\mathbf{x}))
++\sum_{ij}A_{ij}\varphi\lim_{\theta\rightarrow
+0}\frac{1}{\theta}(\varphi(\mathbf{x}+\theta\mathbf{e}_j)-\varphi(\mathbf{x}))\\
+&=\varphi(\mathbf{x}D\mathbf{v}(\mathbf{x})\left(\sum_{ij}A_{ij}(\mathbf{e}
+_i\otimes\mathbf{e}_j)\right)
++A:\left(\sum_{ij}v_iD\varphi(\mathbf{x})(\mathbf{e}_j)(\mathbf{e}
+_i\otimes\mathbf{e}_j)\right)\\
+&=\varphi(\mathbf{x})D\mathbf{v}(\mathbf{x})(\mathbf{A})
++\mathbf{A}:\left(\sum_{ij}v_i\nabla\varphi\mathbf{e}_j(\mathbf{e}
+_i\otimes\mathbf{e}_j)\right)\\
+&=\varphi\nabla\mathbf{v}:\mathbf{A}
++\mathbf{A}:\left((\sum_i
+v_i\mathbf{e}_i)\otimes(\sum_j(\nabla\varphi\cdot\mathbf{e}_j)\mathbf{e}
+_j)\right)\\
+&=\left(\varphi\nabla\mathbf{v}+\mathbf{v}\otimes\nabla\varphi\right):\mathbf{A}
+\end{align*}
+Therefore,
+\[
+\nabla(\varphi\mathbf{v})=\varphi\nabla\mathbf{v}+\mathbf{v}\otimes\nabla\varphi
+\]
+
+\textbf{Part 2}:\newline
+We now wish to show that
+\[
+\operatorname{div}(\varphi\mathbf{v})=\varphi\operatorname{div}\mathbf{v}
++\mathbf{v}\cdot\nabla\varphi
+\]
+One definition of the divergence is
+\[
+\operatorname{div}(\mathbf{v})=\operatorname{tr}(\nabla\mathbf{v})
+\]
+With this definition of the divergence, the identity becomes
+\[
+\operatorname{div}(\varphi\mathbf{v})=\operatorname{tr}(\nabla(\varphi\mathbf{v}
+))\,,
+\]
+which is just the trace of the identity that we proved in Part 1.
+Therefore from Identity 1:
+\begin{align*}
+\operatorname{div}(\varphi\mathbf{v})
+&=\operatorname{tr}(\nabla(\varphi\mathbf{v}))\\
+&=\operatorname{tr}(\varphi\nabla\mathbf{v}+\mathbf{v}\otimes\nabla\varphi)\\
+&=\varphi\operatorname{tr}(\nabla\mathbf{v})+\operatorname{tr}\left(\sum_{ij}
+v_i\mathbf{e}_i\otimes\mathbf{e}_j\partial_j\varphi\right)\\
+&=\varphi\operatorname{tr}(\nabla\mathbf{v})+v_i\partial_i\varphi\\
+&=\varphi\operatorname{div}\mathbf{v}+\mathbf{v}\cdot\nabla\varphi
+\end{align*}
+Therefore
+\[
+\operatorname{div}(\varphi\mathbf{v})=\varphi\operatorname{div}\mathbf{v}
++\mathbf{v}\cdot\nabla\varphi
+\]
+
+\textbf{Part 3}:\newline
+Finally, we need to show that
+\[
+\operatorname{div}(\mathbf{v}\otimes\mathbf{w})
+=\mathbf{v}\operatorname{div}\mathbf{w}+(\nabla\mathbf{v})\mathbf{w}\,.
+\]
+If we dot product both sides of the identity with an arbitrary vector
+$\mathbf{u}$, we arrive at
+\[
+\mathbf{u}\cdot\operatorname{div}(\mathbf{v}\otimes\mathbf{w})
+=\mathbf{u}\cdot\left(\mathbf{v}\operatorname{div}\mathbf{w}+(\nabla\mathbf{v}
+)\mathbf{w}\right) \qquad \forall\mathbf{u}\in\mathbb{R}^3
+\]
+Expanding out the left hand side using
+$\mathbf{a}\cdot\operatorname{div}(\mathbf{A})=\operatorname{div}(\mathbf{A}
+^T\mathbf{a})$ and
+$(\mathbf{a}\otimes\mathbf{b})\mathbf{c}=(\mathbf{b}\cdot\mathbf{c})\mathbf{a}$:
+\begin{align*}
+\mathbf{u}\cdot\operatorname{div}(\mathbf{v}\otimes\mathbf{w})
+&=\operatorname{div}((\mathbf{v}\otimes\mathbf{w})^T\mathbf{u})\\
+&=\operatorname{div}(\mathbf{w}\otimes\mathbf{v}\mathbf{u})\\
+&=\operatorname{div}((\mathbf{v}\cdot\mathbf{u})\mathbf{w})\\
+\end{align*}
+If we replace the scalar $\psi=(\mathbf{v}\cdot\mathbf{u})$, we get
+\[
+\operatorname{div}((\mathbf{v}\cdot\mathbf{u})\mathbf{w})=\operatorname{div}
+(\psi\mathbf{w})
+\]
+Now we can use our identity from Part 2.
+\begin{align*}
+\operatorname{div}(\psi\mathbf{w})
+&=\psi\operatorname{div}\mathbf{w}+\mathbf{w}\cdot\nabla\psi
+\end{align*}
+Now, examining the second term on the left hand side:
+\begin{align*}
+\mathbf{w}\cdot\nabla\psi
+&=\mathbf{w}\cdot\nabla(\mathbf{v}\cdot\mathbf{u})\\
+&=w_i\partial_i(v_j u_j)\\
+&=w_i v_j\cancel{\partial_i u_j} + w_i u_j\partial_i v_j\\
+&\mathbf{u}\text{ is a constant vector}\\
+&=u_j(\partial_i v_j)w_i\\
+&=\mathbf{u}\cdot(\nabla\mathbf{v})\mathbf{w}
+\end{align*}
+Putting everything back together:
+\begin{align*}
+\mathbf{u}\cdot\operatorname{div}(\mathbf{v}\otimes\mathbf{w})
+&=(\mathbf{v}\cdot\mathbf{u})\operatorname{div}\mathbf{w}+\mathbf{w}
+\cdot\nabla(\mathbf{v}\cdot\mathbf{u})\\
+&=(\mathbf{v}\cdot\mathbf{u})\operatorname{div}\mathbf{w}+\mathbf{u}
+\cdot(\nabla\mathbf{v})\mathbf{w}\\
+&=\mathbf{u}\cdot\left(\mathbf{v}\operatorname{div}\mathbf{w}
++(\nabla\mathbf{v})\mathbf{w}\right)
+\end{align*}
+Therefore, the identity holds.
+
+\subsection*{Problem 9}
+Let $\varphi$ and $\mathbf{u}$ be $\mathit{C}^2$ scalar and vector fields. Show
+that
+\begin{align*}
+\operatorname{curl} \nabla\varphi &= \mathbf{0}\\
+\operatorname{div}\operatorname{curl}\mathbf{v}&=0
+\end{align*}
+\subsubsection*{Solution}
+\textbf{Part 1}:\newline
+First note that
+\[
+(\nabla\varphi)_j=(\mathbf{e}_i\partial_i\varphi)_j=\partial_j\varphi
+\]
+Now
+\begin{align*}
+\operatorname{curl}\nabla\varphi
+&=\varepsilon_{ijk}(\partial_i(\nabla\varphi)_j)\mathbf{e}_k\\
+&=\varepsilon_{ijk}(\partial_i\partial_j\varphi)\mathbf{e}_k
+\end{align*}
+If we choose any $k=\hat k$, the remaining indices must be unique to produce a
+non-zero $\varepsilon_{ijk}$ term. This only leaves two non-zero terms in the
+sum: $\varepsilon_{ij\hat k}(\partial_i\partial_j\varphi)$ and
+$\varepsilon_{ji\hat k}(\partial_j\partial_i\varphi)$. Since spatial
+derivatives are commutative,
+$\partial_i\partial_j\varphi=\partial_j\partial_i\varphi$, and since
+$\varepsilon_{ji\hat k}$ is an odd permutation of $\varepsilon_{ij\hat k}$, the
+terms cancel. Thus we get for any
+$k$, $\varepsilon_{ijk}(\partial_i\partial_j\varphi)=0$, and
+$\operatorname{curl}\nabla\varphi=\mathbf{0}$.
+
+\textbf{Part 2}:\newline
+First note that
+\[
+(\varepsilon_{ijm}(\partial_i v_j)\mathbf{e}_m)_k
+=\varepsilon_{ijk}(\partial_i v_j)
+\]
+Now
+\begin{align*}
+\operatorname{div}\operatorname{curl}\mathbf{v}
+&=\partial_k(\varepsilon_{ijm}(\partial_i v_j)\mathbf{e}_m)_k\\
+&=\partial_k(\varepsilon_{ijk}(\partial_i v_j)\\
+&=\varepsilon_{ijk}\partial_k\partial_i v_j
+\end{align*}
+By a similar argument from before. Choose any $j=\hat j$, the remaining indices
+must be unique to produce a non-zero $\varepsilon_{ijk}$ term. This only leaves
+two non-zero terms in the sum:
+$\varepsilon_{i\hat jk}(\partial_k\partial_i v_{\hat j})$ and
+$\varepsilon_{k\hat jk}(\partial_i\partial_k v_{\hat j})$. Since spatial
+derivatives are commutative,
+$\partial_k\partial_i v_{\hat j}=\partial_i\partial_k v_{\hat j}$, and since
+$\varepsilon_{k\hat ji}$ is an odd permutation of $\varepsilon_{i\hat jk}$, the
+terms cancel. Thus we get for any
+$j$, $\varepsilon_{ijk}(\partial_k\partial_i v_j)=0$, and
+$\operatorname{div}\operatorname{curl}\mathbf{v}=0$.
+
+\subsection*{Problem 10}
+Let $\Omega$ be an open, connected, smooth domain in $\mathbb{R}^3$ with
+boundary $\partial\Omega$. Let $\mathbf{n}$ be a unit exterior normal to
+$\partial\Omega$. Show that
+\[
+\int_\Omega
+\operatorname{div}\mathbf{A}\,dx=\int_{\partial\Omega}\mathbf{An}\,dA\,.
+\]
+
+\subsubsection*{Solution}
+Note that for any arbitrary vector $\mathbf{u}$,
+\[
+\mathbf{u}\cdot\int_{\partial\Omega}\mathbf{An}\,dA=\int_{\partial\Omega}
+(\mathbf{A}^T\mathbf{u})\cdot\mathbf{n}\,dA
+\qquad\forall\mathbf{u}\in\mathbb{R}^3
+\]
+If we use the divergence theorem:
+\[
+\int_\Omega\operatorname{div}\mathbf{v}\,dx
+=\int_{\partial\Omega}\mathbf{v}\cdot\mathbf{n}\,dA\,,
+\]
+We get
+\begin{align*}
+\mathbf{u}\cdot\int_{\partial\Omega}\mathbf{An}\,dA
+&=\int_{\partial\Omega}
+(\mathbf{A}^T\mathbf{u})\cdot\mathbf{n}\,dA\\
+&=\int_\Omega\operatorname{div}(\mathbf{A}^T\mathbf{u})\,dx
+\end{align*}
+Now using the identity
+\[
+\operatorname{div}(\mathbf{A}^T\mathbf{u})=\mathbf{u}\cdot\operatorname{div}(
+\mathbf{A})
+\]
+\begin{align*}
+\mathbf{u}\cdot\int_{\partial\Omega}\mathbf{An}\,dA
+&=\int_\Omega\mathbf{u}\cdot\operatorname{div}(\mathbf{A})\,dx\\
+&=\mathbf{u}\cdot\int_\Omega\operatorname{div}(\mathbf{A})\,dx
+\end{align*}
+since $\mathbf{u}$ is constant. Therefore, the identity holds.
+
+\subsection*{Problem 11}
+If $(x,y,z)$ is a Cartesian coordinate system with origin at the corner of a
+cube $\Omega_0=(0,1)^3$ and axes along edges of the cube, compute
+\[
+\int_{\partial\Omega_0}\mathbf{v}\cdot\mathbf{n}\,dA_0\,,
+\]
+where $\partial\Omega_0$ is the exterior surface of $\Omega_0$, $\mathbf{n}$ is
+the unit exterior normal vector, and $\mathbf{v}$ is the field,
+$\mathbf{v}=x\mathbf{e}_1+y\mathbf{e}_2+3z\mathbf{e}_3$.
+\subsubsection*{Solution}
+Using the divergence theorem
+\begin{align*}
+\int_{\partial\Omega_0}\mathbf{v}\cdot\mathbf{n}\,dA_0
+&=\int_{\Omega_0}\operatorname{div}\mathbf{v}\,dx\\
+&=\int_{\Omega_0}\frac{\partial x}{\partial x}+\frac{\partial y}{\partial
+y}+\frac{\partial 3z}{\partial z}\,dx\\
+&=1+1+3=5
+\end{align*}
+
+\end{document}
+
+
+\subsection*{Problem 8}
+Let $\Omega$ be an open set in $\mathbb{R}^3$ and $\varphi$ be a smooth
+function mapping $\Omega$ into $\mathbb{R}$. The vector $\mathbf{g}$ with the
+property
+\[
+ D\varphi(\mathbf{x})\cdot\mathbf{v}=\mathbf{g}(\mathbf{x})\cdot\mathbf{v}
+\qquad \forall\mathbf{v}\in\mathbb{R}^3\,,
+\]
+is the gradient of $\mathbf{v}$ at point $\mathbf{x}\in\Omega$. We use the
+classical notation,
+\[
+ \mathbf{g}(\mathbf{x})=\nabla\varphi(\mathbf{x})\,.
+\]
+Show that
+\begin{align*}
+\nabla(\varphi\mathbf{v})
+&=\varphi\nabla\mathbf{v}+\mathbf{v}\otimes\nabla\varphi\,,\\
+\operatorname{div}(\phi\mathbf{v})
+&=\varphi\operatorname{div}\mathbf{v}+\mathbf{v}\cdot\nabla\varphi\,,\\
+\operatorname{div}(\mathbf{v}\otimes\mathbf{w})
+&=\mathbf{v}\operatorname{div}\mathbf{w}+(\nabla\mathbf{v})\mathbf{w}\,.
+\end{align*}
+
+\subsubsection*{Solution}
+\textbf{Part 1}:\newline
+First note that
+\[
+\varphi\nabla\mathbf{v} = \varphi\partial_j u_i\mathbf{e}_i\otimes\mathbf{e}_j
+\]
+and
+\[
+\mathbf{v}\otimes\nabla\varphi
+=v_i\mathbf{e}_i\otimes\partial_j\varphi\mathbf{e}_j
+\]
+Then
+\begin{align*}
+\nabla(\varphi\mathbf{v})
+&=\partial_j\varphi v_i\mathbf{e}_i\otimes\mathbf{e}_j\\
+&=\varphi\partial_j v_i\mathbf{e}_i\otimes\mathbf{e}_j
++v_i\mathbf{e}_i\otimes\partial_j\varphi\mathbf{e}_j\\
+&=\varphi\nabla\mathbf{v}+\mathbf{v}\otimes\nabla\varphi
+\end{align*}
+
+\textbf{Part 2}:\newline
+First note that
+\[
+\varphi\operatorname{div}\mathbf{v}
+=\varphi\partial_i v_i
+\]
+and
+\[
+\mathbf{v}\cdot\nabla\varphi
+=v_i\partial_i\varphi
+\]
+Then
+\begin{align*}
+\operatorname{div}(\varphi\mathbf{v})
+&=\partial_i\varphi v_i\\
+&=\varphi\partial_i v_i+v_i\partial_i\varphi\\
+&=\varphi\operatorname{div}\mathbf{v}+v\otimes
+\end{align*}
+
+\textbf{Part 3}:\newline
+First note that
+\[
+\mathbf{v}\operatorname{div}\mathbf{w}
+=v_i\mathbf{e}_i\partial_j w_j
+\]
+and
+\[
+(\nabla\mathbf{v})w
+=(\partial_k v_i\mathbf{e}_i\otimes\mathbf{e}_k)w_j\mathbf{e}_j
+=w_j\partial_k v_i\mathbf{e}_i\delta_{jk}
+=w_j\partial_j v_i\mathbf{e}_i
+\]
+Then
+\begin{align*}
+\operatorname{div}(\mathbf{v}\otimes\mathbf{w})
+&=\partial_j v_i w_j \mathbf{e}_j\\
+&=v_i\partial_j w_j\mathbf{e}_i+w_j\partial_j v_i\mathbf{e}_i\\
+&=\mathbf{v}\operatorname{div}\mathbf{w}+(\nabla\mathbf{v})w
+\end{align*}

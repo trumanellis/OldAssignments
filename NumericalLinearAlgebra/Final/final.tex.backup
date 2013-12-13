@@ -1,0 +1,508 @@
+\documentclass[letterpaper,10pt]{article}
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage{cancel}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{fullpage}
+\usepackage{algorithmic}
+
+\usepackage{ifthen}
+\usepackage[dotinlabels]{titletoc}
+\usepackage{colortbl}
+\usepackage{array}
+
+\input{flatex}
+
+\setlength{\parindent}{0in}
+\setlength{\parskip}{.4ex}
+
+\renewcommand*\arraystretch{1.2}
+\providecommand{\abs}[1]{\left\lvert#1\right\rvert}
+\providecommand{\norm}[1]{\lVert#1\rVert}
+
+\def\mbf{\mathbf}
+\def\mbb{\mathbb}
+
+
+%opening
+\title{Numerical Analysis: Linear Algebra Final}
+\author{Truman Ellis}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem 1}
+\paragraph*{a)} The following results provide the underpinnings of a proof that
+the algorithm completes and computes the Cholesky factorization.
+\subparagraph*{i} Partition
+  $
+  A \rightarrow
+  \FlaTwoByTwo{A_{TL}}{\star}
+              {A_{BL}}{A_{BR}}
+  $
+and
+  $
+  L \rightarrow
+  \FlaTwoByTwo{L_{TL}}{0}
+              {L_{BL}}{L_{BR}}
+  $
+, where the $\star$ indicates the symmetric part of $A$ that is not stored,
+$A_{00}$ and $L_{00}$ are square and $L$ is lower triangular.
+\subparagraph*{ii} Assume that $A_{00}$ has a Cholesky factorization
+$A_{00}=L_{00}L_{00}^T$.
+\subparagraph*{iii} Argue that $l_{10}^T:=a_{10}^TL_{00}^{-T}$ is well-defined.
+\subsubsection*{Proof}
+With the assumption that $A_{00}$ has a Cholesky factorization, we have $L_00$,
+and since $L_{00}$ is the Cholesky factorization of a symmetric positive
+definite matrix, it is invertible.
+Multiplying both sides by $L_{00}^{-T}$ on the right, we can rewite this as
+\[
+l_{10}^TL_{00}^T=a_{10}^T
+\]
+or
+\[
+L_{00}l_{10}=a_{10}\,.
+\]
+Since $L_{00}$ is lower triangular, we can trivially solve this for $l_{10}$ at
+each iteration. Therefore this operation is well-defined.
+\subparagraph*{iv} Prove that $\alpha_{11}-l{10}^Tl_{10}$ is positive.
+\subsubsection*{Proof}
+First let's expand our expression: $l_{10}^T=a_{10}^TL_{00}^{-T}$. So
+\[
+\alpha_{11}-l_{10}^Tl_{10}=\alpha_{11}-a_{10}^TL_{00}^{-T}L_{00}^{-1}a_{10}
+=\alpha_{11}-a_{10}^TA_{00}^{-1}a_{10}\,.
+\]
+
+To the contrary, assume $\alpha_{11}-a_{10}^TA_{00}^{-1}a_{10} < 0$, then there
+exists a positive constant $C$ such that,
+$\alpha_{11}=a_{10}^TA_{00}^{-1}a_{10}-C$. Then
+we can substitute this equality into $A$ and compute $x^TAx$ with
+\[
+x=\FlaThreeByOneB{x_0}
+                 {\chi_1}
+                 {0}\,.
+\]
+Then we get
+\begin{align*}
+x^TAx&=\FlaOneByThreeR{x_0^T}
+                 {\chi_1}
+                 {0}
+\FlaThreeByThreeBR{A_{00}}{a_{01}}{A_{02}}
+                    {a_{10}^T}{a_{10}^TA_{00}^{-1}a_{10}-C}{a_{12}^T}
+                    {A_{20}}{a_{21}}{A_{22}}
+\FlaThreeByOneB{x_0}
+                 {\chi_1}
+                 {0}\\
+&=x_{0}^TA_{00}x_0+\chi_1a_{10}^Tx_0+x_0^Ta_{10}\chi_1
++\chi_1(a_{10}^TA_{00}^{-1}a_{10}-C)\chi_1\\
+&=x_{0}^TA_{00}x_0+\chi_1a_{10}^T(x_0+A_{00}^{-1}a_{10}\chi_1)
++x_0^Ta_{10}\chi_1-\chi_1C\chi_1\,.
+\end{align*}
+Now let $x_0=-A_{00}^{-1}a_{10}\chi_1$, then
+\begin{align*}
+x^TAx&=\cancel{\chi_1^2a_{10}^TA_{00}^{-T}a_{10}}
+-\cancel{\chi_1^2a_{10}^TA_{00}^{-T}a_{10}}-C\chi_1^2\\
+&=-C\chi_1^2\,.
+\end{align*}
+Since $C>0$ by definition, the result is negative for $\chi_1\neq1$. This is a
+contradiction since $A$ is symmetric positive definite, thus we must have
+$\alpha_11-l_{10}^Tl_{10}$ positive.
+
+\paragraph*{b)}
+Use the above insights to provide and inductive proof of the Cholesky
+factorization theorem.
+\subsubsection*{Proof}
+Proof by induction.
+\paragraph*{Base case:} $n=1$. Clearly the result is true for a $1\times1$
+matrix $A=\alpha_{11}$: Since $A$ is symmetric positive definite, $\alpha_{11}$
+is real and positive and the Cholesky factorization is simply given by
+$\lambda_{11}=\sqrt{\alpha_{11}}$, and is unique if we insist that
+$\lambda_{11}$ be positive.
+
+\paragraph*{Inductive step:} Assume the result is true for symmetric positive
+definite matrix $A\in\mathbb{C}^{n\times n}$. We need to show that it holds for
+$A\in\mathbb{C}^{(n+1)\times(n+1)}$. Let $A\in\mathbb{C}^{(n+1)\times(n+1)}$ be
+symmetric positive definite. Partition $A$ and $L$,
+\[
+  \FlaTwoByTwo{A_{TL}}{\star}
+              {A_{BL}}{A_{BR}}
+  \rightarrow
+  \FlaThreeByThreeBR{A_{00}}{\star}{\star}
+                    {a_{10}^T}{\alpha_{11}}{\star}
+                    {A_{20}}{a_{21}}{A_{22}}
+\]
+\[
+  \FlaTwoByTwo{L_{TL}}{0}
+              {L_{BL}}{L_{BR}}
+  \rightarrow
+  \FlaThreeByThreeBR{L_{00}}{0}{0}
+                    {l_{10}^T}{\lambda_{11}}{0}
+                    {L_{20}}{l_{21}}{L_{22}}\,.
+\]
+Let $l_{10}^T=a_{10}^TL_{00}^{-T}$, which we just showed is well-defined and
+$A_{00}=L_{00}L_{00}^T$ by the inductive hypothesis. Then let
+$\lambda_{11}=\sqrt{\alpha_{11}-l_{10}^Tl_{10}}$, where
+$\alpha_{11}-l_{10}^Tl_{10}$ is positive. Finally,
+$L_{22}=\textsc{Chol}(A_{22})$, whic exists by the inductive hypothesis. Then
+$L$ is the desired Cholesky factor of $A$.
+
+By the principle of mathematical induction, the theorem holds.
+
+\section*{Problem 2}
+Given a matrix $A\in\mbb{R}^{m\times n}$. A \emph{communication avoiding}
+algorithm for the QR factorization follows:
+\begin{itemize}
+\item View matrix A as two submatrices $B\,,C\in\mbb{R}^{\frac{m}{2}\times n}$
+so that $\displaystyle A=\FlaTwoByOneDoubleLine{B}{C}$.
+\item Compute the QR factorizations of $B$ and $C$: $B=Q_BR_B$ and $C=Q_CR_C$.
+\item Compute the QR factorization of
+$\FlaTwoByOneDoubleLine{R_B}{R_C}=Q_{BC}R_{BC}$.
+\end{itemize}
+\paragraph*{a)} Prove that, under mild conditions, the $R_{BC}$ that results
+from the above procedure is exactly the $R$ that would come out of a QR
+factorization of $A$. What are those mild conditions?
+
+\subsubsection*{Proof}
+Expanding according to the process described above,
+\begin{align*}
+A&=\FlaTwoByOneDoubleLine{B}{C}=\FlaTwoByOneDoubleLine{Q_BR_B}{Q_CR_C}\\
+&=\FlaTwoByTwoDoubleLine{Q_B}{0}{0}{Q_C}\FlaTwoByOneDoubleLine{R_B}{R_C}\\
+&=\FlaTwoByTwoDoubleLine{Q_B}{0}{0}{Q_C}Q_{BC}R_{BC}\,,
+\end{align*}
+where $Q_B$ and $Q_C$ are $\frac{m}{2}\times n$, $R_B$, $R_C$, and $R_{BC}$ are
+$n\times n$, and $Q_{BC}$ is $2n\times n$.
+
+The matrix
+$
+\FlaTwoByTwoDoubleLine{Q_B}{0}{0}{Q_C}
+$
+is unitary, since $Q_B$ and $Q_C$ are unitary and
+\begin{align*}
+&\FlaTwoByTwoDoubleLine{Q_B}{0}{0}{Q_C}^H\FlaTwoByTwoDoubleLine{Q_B}{0}{0}{Q_C}
+=\FlaTwoByTwoDoubleLine{Q_B^HQ_B}{0}{0}{Q_C^HQ_C}\\
+&=I=\FlaTwoByTwoDoubleLine{Q_BQ_B^H}{0}{0}{Q_CQ_C^H}
+=\FlaTwoByTwoDoubleLine{Q_B}{0}{0}{Q_C}
+\FlaTwoByTwoDoubleLine{Q_B}{0}{0}{Q_C}^H\,.
+\end{align*}
+Since a unitary matrix represents a length-preserving transformation, the
+product of two unitary matrices is also unitary, and the final $R_{BC}$
+preserves the length information of the original matrix. Provided $A$ has
+linearly independent columns, it has a unique QR factorization and
+\[
+Q=\FlaTwoByTwoDoubleLine{Q_B}{0}{0}{Q_C}Q_{BC}
+\]
+and
+\[
+R=R_{BC}\,,
+\]
+where $A=QR$.
+
+\paragraph*{b)} Propose an algorithm for computing the QR factorization of $
+\FlaTwoByOneDoubleLine{R_B}{R_C}$ via Householder transformations that takes
+advantage of the fact that $R_B$ and $R_C$ are upper triangular.
+
+\input{QRalgorithm}  % Load commands from file algorithm.tex
+\begin{figure}[tbp]
+\begin{center}     % center the algorithm on the page
+\FlaAlgorithm      % this command typesets the algorithm
+\end{center}
+\caption{Algorithm for computing
+$\left[ R \right] := \mbox{QR}( R, U )$.}
+\label{fig:label}
+\end{figure}
+
+\paragraph*{c)} Compute the approximate operation count of your algorithm and
+compare it to the operation count had you used a standard Householder
+transformation based algorithm on $\FlaTwoByOneDoubleLine{R_B}{R_C}$ without
+taking any advantage of the special structure of $R_B$ and $R_C$.
+
+\section*{Problem 3}
+\paragraph*{a)} Prove that $\hat V^{(k)}$ and $\hat A^{(k)}$ from the subspace
+iteration are the same as $V^{(k)}$ and $A^{(k)}$ from the QR algorithm.
+
+\subsubsection*{Proof}
+For reference, let us reprint the two algorithms side by side.
+\begin{figure}[ht]
+\begin{minipage}[t]{0.5\linewidth}
+
+\underline{Subspace iteration}
+\begin{algorithmic}
+\STATE $\hat A^{(0)}:=A$
+\STATE $\hat V^{(0)}:=I$
+\FOR{$k=0$ to convergence}
+\STATE $A\hat V^{(k)}\rightarrow\hat V^{(k+1)}\hat R^{(k+1)}$ (QR factorization)
+\STATE $\hat A^{(k+1)}:=\hat V^{(k+1)T}A\hat V^{(k+1)}$
+\ENDFOR
+\end{algorithmic}
+
+\end{minipage}
+\begin{minipage}[t]{0.5\linewidth}
+
+\underline{QR algorithm}
+\begin{algorithmic}
+\STATE $A^{(0)}:=A$
+\STATE $V^{(0)}:=I$
+\FOR{$k=0$ to convergence}
+\STATE $A^{(k)}\rightarrow Q^{(k+1)}R^{(k+1)}$ (QR factorization)
+\STATE $A^{(k+1)}:=R^{(k+1)}Q^{(k+1)}$
+\STATE $V^{(k+1)}:=V^{(k)}Q^{(k+1)}$
+\ENDFOR
+\end{algorithmic}
+
+\end{minipage}
+\caption{Basic subspace iteration and basic QR algorithm.}
+\end{figure}
+
+\paragraph*{Base case:} $k=0$. Both algorithms start identically with $\hat
+A^{(0)}=A^{(0)}=A$ and $\hat V^{(0)}=V^{(0)}=I$, so both algorithms enter the
+for loop identically. Our first computation in the subspace iteration is to
+compute
+\[
+[\hat V^{(1)},\hat R^{(1)}]=\mathrm{QR}(A\hat V^{(0)})=\mathrm{QR}(A)\,,
+\]
+since $\hat V^{(0)}=I$. The first computation of the QR algorithm is to obtain
+\[
+[\hat Q^{(1)},\hat R^{(1)}]=\mathrm{QR}(A^{(0)})=\mathrm{QR}(A)\,,
+\]
+since $A^{(0)}=A$. So at this point we have $\hat V^{(1)}=Q^{(1)}$ and $\hat
+R^{(1)}=R^{(1)}$. In the next step of the subspace iteration we compute
+\begin{align*}
+\hat A^{(1)}&:=\hat V^{(1)T}A\hat V^{(1)}
+=\cancel{\hat V^{(1)T}\hat V^{(1)}}\hat R^{(1)}\hat V^{(1)}
+=\hat R^{(1)}\hat V^{(1)}\\
+&=R^{(1)}Q^{(1)}=A^{(1)}\,,
+\end{align*}
+since we just factored $A=\hat V^{(1)}\hat R^{(1)}$, $\hat V^{(1)}=Q^{(1)}$,
+and $\hat R^{(1)}=R^{(1)}$, which is exactly the second step of the QR
+algorithm. Finally, the QR algorithm computes
+\[
+V^{(1)}:=V^{(0)}Q^{(1)}=Q^{(1)}\,,
+\]
+since $V^{(0)}=I$, which is exactly the result we got from the subspace
+iteration. So after one iteration, we get the desired result: $\hat
+V^{(1)}=V^{(1)}$ and $\hat A^{(1)}=A^{(1)}$.
+
+\paragraph*{Inductive step:} Assume that $\hat
+V^{(k)}=V^{(k)}$ and $\hat A^{(k)}=A^{(k)}$ holds for some $k$, we need to show
+that it holds for $k+1$. From the inductive hypothesis, we can assume the
+following at step $k+1$:
+\begin{enumerate}
+\item $AV^{(k-1)}=V^{(k)}R^{(k)}$
+\item $A^{(k)}=V^{(k)T}AV^{(k)}$
+\item $A^{(k-1)}=Q^{(k)}R^{(k)}$
+\item $A^{(k)}=R^{(k)}Q^{(k)}$
+\item $V^{(k)}=V^{(k-1)}Q^{(k)}=Q^{(1)}Q^{(2)}\cdots Q^{(k)}$
+\end{enumerate}
+From these assumptions, we can derive some helpful identities. Combining the
+second and last properties yields,
+\begin{equation}\label{eq:base1}
+A^{(k)}=Q^{(k)T}\cdots Q^{(1)T}AQ^{(1)}\cdots Q^{(k)}\,.
+\end{equation}
+Moving on to our $k+1$ step, anywhere we see a $(k)$ term, we can apply our
+assumptions, thus step 1 of the QR algorithm becomes (via Eq. \ref{eq:base1})
+\begin{equation}
+Q^{(k)T}\cdots Q^{(1)T}AQ^{(1)}\cdots Q^{(k)}=Q^{(k+1)}R^{(k+1)}\,.
+\end{equation}
+From assumption 5, step 1 of the subspace iteration becomes
+\begin{equation}\label{eq:sub1}
+AQ^{(1)}\cdots Q^{(k)}=\hat V^{(k+1)}\hat R^{(k+1)}\,.
+\end{equation}
+There is a strong similarity in structure between these two equations, and in
+fact, if we multiply Eq. \ref{sub1} on the left by $V^{(k)T}$, we get
+\begin{equation}
+Q^{(k)T}\cdots Q^{(1)T}AQ^{(1)}\cdots Q^{(k)}=A^{(k)}
+=\hat V^{(k+1)}\hat R^{(k+1)}\,,
+\end{equation}
+which is just the QR factorization of $A^{(k)}$. Assuming $A^{(k)}$ has
+linearly independent columns, the QR factorization is unique and we must have
+\[
+Q^{(k)T}\cdots Q^{(1)T}\hat V^{(k+1)}\hat R^{(k+1)}=Q^{(k+1)}R^{(k+1)}\,.
+\]
+Multiplying both sides on the left by $V^{(k)}$,
+\[
+\hat V^{(k+1)}\hat R^{(k+1)}=Q^{(1)}\cdots Q^{(k+1)}R^{(k+1)}
+=V^{(k+1)}R^{(k+1)}\,.
+\]
+Since the QR factorization is unique, we must have
+\[
+\hat V^{(k+1)}=V^{(k+1)}\,,
+\]
+and
+\[
+\hat R^{(k+1)}=R^{(k+1)}\,.
+\]
+Finally, we need to prove that $\hat A^{(k+1)}=A^{(k+1)}$. Recall that
+$A^{(k)}=Q^{(k+1)}R^{(k+1)}$. Looking at step 2 of the subspace iteration,
+\begin{align*}
+\hat A^{(k+1)}&=Q^{(k+1)T}\cdots Q^{(1)T}AQ^{(1)}\cdots Q^{(k+1)}\\
+&=Q^{(k+1)T}\cdots \cancel{Q^{(1)T}Q^{(1)}}\underbrace{R^{(1)}Q^{(1)}}_
+{A^{(1)}=Q^{(2)}R^{(2)}}
+\cdots
+Q^{(k+1)}\\
+&=Q^{(k+1)T}\cdots \cancel{Q^{(2)T}Q^{(2)}}\underbrace{R^{(2)}Q^{(2)}}_
+{A^{(2)}=Q^{(3)}R^{(3)}}
+\cdots
+Q^{(k+1)}\\
+&\vdots \\
+&=\cancel{Q^{(k+1)T}Q^{(k+1)}}R^{(k+1)}Q^{(k+1)}\\
+&=R^{(k+1)}Q^{(k+1)}=A^{(k+1)}\,.
+\end{align*}
+So by the principle of mathematical induction, $\hat R^{(k)}=R^{(k)}$,
+$\hat V^{(k)}=V^{(k)}$, and $\hat A^{(k)}=A^{(k)}$ for all $k$.
+
+\paragraph*{Extending to shifted QR algorithm} We would follow a very similar
+process to extend the results to a shifted QR algorithm, printed below for
+reference.
+
+\begin{figure}[ht]
+\begin{minipage}[t]{0.5\linewidth}
+
+\underline{Subspace iteration}
+\begin{algorithmic}
+\STATE $\hat A^{(0)}:=A$
+\STATE $\hat V^{(0)}:=I$
+\FOR{$k=0$ to convergence}
+\STATE $\hat\mu_k:=v_{n-1}^{(k)T}A_{n-1}^{(k)}$
+\STATE $(A-\hat\mu_kI)\hat V^{(k)}\rightarrow\hat V^{(k+1)}\hat R^{(k+1)}$ (QR
+factorization)
+\STATE $\hat A^{(k+1)}:=\hat V^{(k+1)T}A\hat V^{(k+1)}$
+\ENDFOR
+\end{algorithmic}
+
+\end{minipage}
+\begin{minipage}[t]{0.5\linewidth}
+
+\underline{QR algorithm}
+\begin{algorithmic}
+\STATE $A^{(0)}:=A$
+\STATE $V^{(0)}:=I$
+\FOR{$k=0$ to convergence}
+\STATE $\mu_k:=\alpha_{n-1,n-1}^{(k)}$
+\STATE $A^{(k)}-\mu_kI\rightarrow Q^{(k+1)}R^{(k+1)}$ (QR factorization)
+\STATE $A^{(k+1)}:=R^{(k+1)}Q^{(k+1)}+\mu_kI$
+\STATE $V^{(k+1)}:=V^{(k)}Q^{(k+1)}$
+\ENDFOR
+\end{algorithmic}
+
+\end{minipage}
+\caption{Basic shifted subspace iteration and basic shifted QR algorithm.}
+\end{figure}
+
+The first step would be to follow the algorithms through for $k=0$ which would
+show that
+\[
+\hat\mu_0=\mu_0=\alpha_{n-1,n-1}^{(0)}\,,
+\]
+\[
+\hat V^{(1)}=V^{(1)}=Q^{(1)}\,,
+\]
+and
+\[
+\hat A^{(1)}=A^{(1)}=R^{(1)}Q^{(1)}+\mu_0I\,.
+\]
+Then we would need to propose the inductive hypothesis and compose a list of
+assumptions as before:
+\begin{enumerate}
+\item $\mu_{k-1}=v_{n-1}^{(k-1)T}A_{n-1}^{(k-1)}$
+\item $(A-\mu_{k-1}I)V^{(k-1)}=V^{(k)}R^{(k)}$
+\item $A^{(k)}=V^{(k)T}AV^{(k)}$
+\item $\mu_{k-1}=\alpha_{n-1,n-1}^{(k-1)}$
+\item $A^{(k-1)}-\mu_{k-1}I=Q^{(k)}R^{(k)}$
+\item $A^{(k)}=R^{(k)}Q^{(k)}+\mu_{k-1}I$
+\item $V^{(k)}=V^{(k-1)}Q^{(k)}=Q^{(1)}Q^{(2)}\cdots Q^{(k)}$
+\end{enumerate}
+
+Again, we could combine terms to get
+\begin{equation}
+A^{(k)}=Q^{(k)T}\cdots Q^{(1)T}AQ^{(1)}\cdots Q^{(k)}\,.
+\end{equation}
+We could substitute this into step 2 of the shifted QR algorithm and compare the
+results with step 2 of the shifted subspace iteration. We could multiply step
+two of the subspace iteration on the left by $V^{(k)T}$ and use the uniqueness
+of QR factorization to argue that
+\[
+\hat V^{(k+1)}=V^{(k+1)}\,,
+\]
+and
+\[
+\hat R^{(k+1)}=R^{(k+1)}\,.
+\]
+This would also allow us to see that $\hat \mu_k=\mu_k=\alpha_{n-1,n-1}^{(k)}$.
+Finally, we could collapse the third step of the shifted subspace iteration to
+the third step of the shifted QR algorithm, proving that
+\[
+\hat A^{(k+1)}=A^{(k+1)}\,.
+\]
+Thus, the theorem would hold by the principle of mathematical
+induction, and we will have proved our point.
+
+\section{Problem 4}
+With $\lambda_{11}=1$, the main source of error in our calculations is from
+\begin{equation}\label{eq:errorsource}
+\chi_1:=\beta_1-l_{10}^Tx_0\,.
+\end{equation}
+According to Theorem 4.1, we wish to push all of the error into the $L$ matrix
+for easy comparison between results. Theorem 3.12 however, does not enumerate
+exactly the correct result to allow us to do this. Equation
+\ref{eq:errorsource} fits the pattern of ``$\mu:=\alpha-(x^Ty)$.'' R1-B puts
+would make it possible to put the error into both $L$ and the $b$ vector, ,
+while R1-F and R2-F could put the error into either $x$ or $b$ depending on how
+they were considered. The remaining results fit the pattern
+``$\nu:=(\alpha-(x^Ty))/\lambda$.''  Of course, in our case, $\lambda=1$, so we
+don't need that final divide. Omitting the division operation, we can modify
+R4-B to fit our purposes, in this case we get
+\[
+\check\nu=\frac{\alpha-(x+\delta x)^Ty}{\lambda+\delta\lambda}\text{, where }
+\abs{\delta\lambda}\leq\gamma_1\abs{\lambda}
+\text{ and }\abs{\delta x}\leq\gamma_n\abs{x}.
+\]
+Note, the division operation is not committed, it is only shown here to show
+the error accumulation in the ``ones'' on the diagonal in lambda. The other
+alternative was to throw all of the error on $x$, the part of $L$ below the
+diagonal, but this method makes for a more direct comparison of results.
+
+With this new error pattern established, we can modify our results to compute a
+new error bound. Clearly the first change we can make is in Fig. 4.1 where we
+can replace $\chi_1:=(\beta_1-l_{10}^Tx_0)\lambda_{11}$ with simply
+$\chi_1:=(\beta_1-l_{10}^Tx_0)$. This correction should be made anywhere this
+result is computed. In step 1 of Section 4.2, our backward error analysis
+becomes
+\[
+(L+\Delta L)\check x=b\text{ with }\abs{\Delta L}\leq\gamma_{n-1}\abs{L}\,,
+\]
+where the $\max(\gamma_2,\gamma_{n-1})$ term was replaced with simply
+$\gamma_{n-1}$. Also, the error postcondition becomes
+\[
+{(L+\Delta L)\check x=b\wedge\abs{\Delta L}\leq\gamma_{n-1}\abs{L}\wedge m(x)=n}
+\,.
+\]
+Similarly, the error invariant becomes,
+\[
+{(L_{TL}+\Delta L_{TL})\check x=b_T\wedge\abs{\Delta
+L_{TL}}\leq\gamma_{n-1}\abs{L_{TL}}\wedge m(x_T)=k}\,.
+\]
+The bottom half of Equation (4.2) becomes
+\[
+\abs{\FlaTwoByTwoSingleLine{\Delta L_{00}}{0}{\delta
+l_{10}^T}{\delta\lambda_{11}}}\leq\gamma_{k}
+\abs{\FlaTwoByTwoSingleLine{L_{00}}{0}{l_{10}^T}{1}}\,.
+\]
+Now, our error variables must satisfy
+\[
+\begin{array}{ll}
+b_0=(L_{00}+\Delta L_{00})\check x_0
+& \wedge\abs{\Delta L_{00}}\leq\gamma_k\abs{L_{00}} \\
+\beta_1=(l_{10}^T+\delta l_{10}^T)\check x_0+(1+\delta\lambda_{11})\check\chi_1
+& \wedge\abs{(\delta l_{10}^T|\delta\lambda_{11})}\leq\gamma_k
+\abs{(l_{10}^T|1)} \\
+\end{array}
+\]
+
+Looking now at Figure 4.2, we need to make the following changes. The error
+postcondition in line 1b should be replaced with the one described above. The
+error invariants in 2a, 2b, 2c, and 2d should be replaced with the one described
+above. Lines 5a, 6, 7, and 8 should be modified to reflect the fact that
+$\lambda_{11}=1$. In lines 6, 7, and 8 replace $\max(\gamma_2,\gamma_{k-1})$
+with $\gamma_{k-1}$ and $\max(\gamma_2,\gamma_{k})$ with $\gamma_{k}$.
+\end{document}

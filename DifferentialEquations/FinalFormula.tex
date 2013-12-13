@@ -1,0 +1,478 @@
+\documentclass[letterpaper]{article}
+\usepackage[top=.5in, bottom=.5in, left=.5in, right=.5in]{geometry}
+\usepackage[fleqn]{amsmath}
+\usepackage{amsfonts,amssymb,amsthm}
+\usepackage{multicol}
+\usepackage{amsthm}
+\usepackage{algorithmic}
+\usepackage{ulem}
+\usepackage{cancel}
+
+\setlength{\parindent}{0in}
+\setlength{\parskip}{0ex}
+% \setlength{\abovedisplayskip}{-2ex}
+% \setlength{\belowdisplayskip}{-2ex}
+\setlength{\jot}{.5ex} 
+% \linespread{0.5}
+
+\providecommand{\abs}[1]{\left\lvert#1\right\rvert}
+\providecommand{\norm}[1]{\left\lVert#1\right\rVert}
+\providecommand{\inner}[1]{\left(#1\right)}
+\providecommand{\ainner}[2]{\left\langle#1\,,#2\right\rangle}
+
+\def\d{\mathrm{d}}
+\def\U{\mathcal{U}}
+
+\pagestyle{empty}
+\begin{document}
+\begin{multicols}{2}
+\scriptsize
+\setlength\abovedisplayskip{1pt plus 1pt minus 1pt}
+\setlength\belowdisplayskip{1pt plus 1pt minus 1pt}
+%%%%%%%%%%%%%%%%% ODEs %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Euler
+\[
+\norm{e_{n+1}}\le(1+h\lambda)\norm{e_n}+Ch^2
+\]
+\begin{align*}
+\norm{e_n}&\le\frac{C}{\lambda}h\left[(1+h\lambda)^n-1\right]\\
+&\le\frac{C}{\lambda}(e^{T\lambda}-1)h
+\end{align*}
+Trapezoid
+\[
+\norm{e_{n+1}}\le\left(\frac{1+\frac{1}{2}h\lambda}{1-\frac{1}{2}h\lambda}\right)\norm{e_n}+\left(\frac{C}{1-\frac{1}{2}h\lambda}\right)h^3
+\]
+\[
+\norm{e_n}\leq\frac{C}{\lambda}\left[\left(\frac{1+\frac{1}{2}h\lambda}{1-\frac{1}{2}h\lambda}\right)^n-1\right]h^2
+\]
+General s-step
+\[
+\sum_{m=0}^sa_my_{n+m}=h\sum_{m=0}^sb_mf(t_{n+m},y_{n+m})
+\]
+\begin{align*}
+\rho(w)&=\sum_{m=0}^sa_mw^m\\
+\sigma(w)&=\sum_{m=0}^sb_mw^m
+\end{align*}
+Order p iff
+\[
+\rho(\xi+1)-\sigma(\xi+1)\ln(\xi+1)=c(\xi)^{p+1}+\mathcal{O}(\xi^{p+2})
+\]
+Root Condition: all zeros reside in closed complex unit disc and all zeros of
+unit modulus are simple.
+\[
+\norm{f(x)-p(x)}_{L^\infty}\le\frac{(b-a)^s}{s!}\norm{f^{(s)}}_{L^\infty}
+\]
+
+Runge-Kutta
+\[
+\xi_j=y_n+h\sum_{i=1}^\nu a_{j,i}f(t_n+c_ih,\xi_i)
+\]
+\[
+y_{n+1}=y_n+h\sum_{j=1}^\nu b_jf(t_n+c_jh,\xi_j)
+\]
+\[
+\begin{array}{c|c}
+\mathbf{c} & A\\
+\hline
+& \mathbf{b}^T
+\end{array}
+\]
+
+Collocation
+\[
+\int_0^1\tau^j\prod_{l=1}^\nu(\tau-c_l)=0\,,\quad j=0,1,\dots,m-1
+\]
+for some $m\in\{0,1,\dots,\nu\}$. Then the collocation method is of order
+$\nu+m$.
+\[
+q(t)=\prod_{j=1}^\nu(t-c_j)\,,\quad q_l(t)=\frac{q(t)}{t-c_l}
+\]
+\[
+a_{j,i}=\int_0^{c_j}\frac{q_i(\tau)}{q_i(c_i)}\d\tau\,,\quad    
+b_j=\int_0^1\frac{q_j(\tau)}{q_j(c_j)}\d\tau
+\]
+Let $c_1,c_2,\dots,c_\nu$ be the zeros of the polynomials that are orthogonal
+with respect to the weight function $\omega(t)\equiv 1\,,0\le t\le1$. Then the
+underlying collocation method is of order $2\nu$.
+
+Stability of Runge-Kutta Methods
+\[
+r(z)=1+z\mathbf{b}^T(I-zA)^{-1}\mathbf{1}
+\]
+\[
+(I-zA)^{-1}=\frac{\mathrm{adj}(I-zA)}{\det(I-zA)}
+\]
+Adjugate is transpose of cofactor matrix
+
+$\abs{r(z)}<1$ for all $z\in\mathbb{C}^-$ iff all the poles of $r$ have positive
+real parts and $\abs{r(it)}\le 1$ for all $t\in\mathbb{R}$.
+
+Multistep methods
+\[
+\eta(z,w)=\sum_{m=0}^s(a_m-b_mz)w^m
+\]
+The multistep method is A-stable iff $b_s>0$ and
+\[
+\abs{w_1(it)},\,\abs{w_2(it)},\dots,\abs{w_{q(it)}(it)}\le 1\,,\quad
+t\in\mathbb{R}
+\]
+where $w_1,\,w_2,\dots,w_{q(z)}$ are the zeros of $\eta(z,\cdot)$.
+
+Linearizing a non-linear equation
+\[
+y'=\underbrace{f(t,y)}_{b}+\underbrace{\nabla f(t,y)}_{A}(y-\bar y)
++\mathcal{O}(\abs{y-\bar y}^2)
+\]
+Solution of nonlinear equations
+
+Fixed Point
+\[
+\mathbf{w}=h\mathbf{g}(\mathbf{w})+\boldsymbol\beta
+\]
+Unique solution exists in sufficiently small neighborhood of $\beta$ if
+$\left(\mathbf{I}-h\frac{\partial\mathbf{g}}{\partial\mathbf{w}}\right)$ is
+nonsingular.
+
+\textbf{Banach Fixed Point Theorem}
+If $G:\mathbb{R}^d\rightarrow\mathbb{R}^d$ is a contraction: $\exists
+0\le\lambda<1$ s.t.
+\[
+\norm{G(u)-G(v)}\le\lambda\norm{u-v}\quad\forall u,v\in\mathbb{R}^d
+\]
+Then $\exists!$ fixed point $w$ and 
+\[
+\norm{w^i-w}\le\lambda^i\norm{w^0-w}
+\]
+
+If $g$ is Lipshitz with constant $\Lambda$, we need
+$h\le\frac{\lambda}{\Lambda}$
+
+Newton's Method
+\[
+w^{i+1}=w^i-\frac{F(w^i)}{F'(w^i)}
+\]
+\[
+w^{i+1}=w^i-\left(\frac{\partial F(w)}{\partial w}\right)^{-1}F(w^i)
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Elliptic Equations %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\uline{Continuous (bounded)}
+\[
+\exists\eta^*>0\text{ s.t. }\abs{a(u,v)}\le\eta^*\norm{u}_H\norm{v}_H\,,\forall
+u,v\in H
+\]
+
+\uline{Coercive}
+\[
+\exists\eta_*>0\text{ s.t. }a(u,u)\ge\eta_*\norm{u}_H^2\,,\forall u\in H
+\]
+
+\uline{Energy Norm}
+If $a(u,v)$ is bilinear, continuous, coercive, and symmetric it defines a norm
+\[
+\norm{u}_E=\sqrt{a(u,u)}
+\]
+\[
+\sqrt{\eta_*}\norm{u}_H\le\norm{u}_E\le\sqrt{\eta^*}\norm{u}_H
+\]
+
+\uline{Lax-Milgram}
+If H is Hilbert,
+$a:H\times H\rightarrow\mathbb{R}$ is bilinear, bounded, coercive
+and $F:H\rightarrow\mathbb{R}$ is linear, bounded, then $\exists! w\in H$ s.t.
+\[
+a(w,v)=F(v)\,,\quad\forall v\in H
+\]
+
+\uline{Poincar\`e Inequality} If $\Omega\subset\mathbb{R}^d$ bounded then
+$\exists\quad C(\Omega)\,,C'(\Omega)>0$ s.t.
+\begin{align*}
+\norm{v}_{L_2}&\le C(\Omega)\norm{\nabla v}_{L_2}\,,\quad\forall v\in
+H_0^1(\Omega)\\
+\norm{v}_{H^1}&\le C'(\Omega)\norm{\nabla v}_{L_2}\,,\quad\forall v\in
+H_0^1(\Omega)
+\end{align*}
+
+\uline{BVP Solvability} Given $\Omega\subset\mathbb{R}^d$ bounded with Lipshitz
+boundary, $\Gamma_D=\Gamma$, $\tilde g_D\in H^1(\Omega)$ and $f\in
+H^{-1}(\Omega)$. Consider the problem of finding $u=\tilde u+\tilde h_d$,
+$\tilde u\in H_0^1(\Omega)$ s.t.
+\[
+\inner{\uuline{a}\nabla u}{\nabla v}+\inner{bu}{\nabla
+v}+\inner{cu}{v}=\ainner{f}{v}\,,\quad \forall v\in H_0^1(\Omega)
+\]
+or 
+\[
+\underbrace{\inner{\uuline{a}\nabla\tilde u}{\nabla v}+\inner{b\tilde u}{\nabla
+v}+\inner{c\tilde u}{v}}_{a(\tilde u,v)}
+=\underbrace{\ainner{f}{v}-a(\tilde g_D,v)}_{F(v)}
+\]
+\begin{enumerate}
+\item If $\uuline{a}\in L_\infty(\Omega)^{d\times d}$, $b\in L_\infty(\Omega)^d$
+and $c\in L_\infty(\Omega)$ then $a(\tilde u, v)$ and $F(v)$ are bounded.
+\item Additionally, if $\uuline{a}$ is symmetric and uniformly positive
+definite, $c\ge0$ and $\norm{b}_\infty<\frac{a_*}{C(\Omega)}$ then $a(\tilde
+u,v)$ is coercive.
+\item Additionally, if $b\equiv 0$, then $a(\tilde u,v)$ is symmetric and there
+is an energy $J(\cdot)$, inner product $a(\cdot,\cdot)$ and norm
+$\norm{\cdot}_E$ associated with the problem
+\end{enumerate}
+By Lax-Milgram: 1. + 2. $\Rightarrow\exists!$ solution $u=\tilde u+\tilde g_D$
+
+1. + 2. + 3. $\Rightarrow\quad\tilde u$ is a strict minimum of $J$
+
+\uline{Proof of 1.}
+\begin{align*}
+\abs{a(\tilde u,v)}&\le\abs{(\uuline{a}\nabla\tilde u,\nabla v)}
++\abs{(b\tilde u,\nabla v)}+\abs{(c\tilde u,v)}\\
+&\le\int_\Omega\abs{\uuline{a}\nabla\tilde u\cdot v}\d\Omega
++\int_\Omega\abs{b\tilde u\cdot \nabla v}\d\Omega
++\int_\Omega\abs{c\tilde u v}\d\Omega\\
+&\le\int_\Omega\abs{\uuline{a}\nabla\tilde u}\abs{\nabla v}\d\Omega
++\int_\Omega\abs{b\tilde u}\abs{\nabla v}\d\Omega
++\int_\Omega\abs{c\tilde u}\abs{v}\d\Omega\\
+&\le||\uuline{a}||_\infty\inner{\abs{\nabla\tilde u}}{\abs{\nabla v}}
++||b||_\infty\inner{\abs{\tilde u}}{\abs{\nabla v}}
++||c||_\infty\inner{\abs{\tilde u}}{\abs{v}}\\
+&\le||\uuline{a}||_\infty\norm{\nabla \tilde u}_{L_2}\norm{\nabla v}_{L_2}
++||b||_\infty\norm{\tilde u}\norm{\nabla v}
++||c||_\infty\norm{\tilde u}\norm{v}\\
+&\le\underbrace{(||\uuline{a}||_\infty+||b||_\infty+||c||_\infty)}_{\eta^*>0}
+\norm{\tilde u}_{H^1}\norm{v}_{H^1}\\
+\end{align*}
+\begin{align*}
+\abs{F(v)}&\le\abs{\langle f,v\rangle}+\abs{a(\tilde g,v)}\\
+&\le C\norm{v}_{H^1}+\eta^*\norm{\tilde g_D}_{H^1}\norm{v}_{H^1}\,,\quad\quad f\in H^{-1}\\
+&\le \hat C\norm{v}_{H^1}
+\end{align*}
+
+\uline{Proof of 2.}
+\begin{align*}
+a(v,v)&\ge(\uuline{a}\nabla v,\nabla v)+(bv,\nabla v)+(cv,v)\\
+&\ge\uuline{a}_*\norm{\nabla v}_{L_2}^2-\abs{(bv,\nabla v)}+(cv,v)\,,
+\text{ Cauchy-Schwarz}\\
+&\ge\uuline{a}_*\norm{\nabla v}_{L_2}^2
+-\norm{b}_\infty\norm{v}_{L_2}\norm{\nabla v}_{L_2}\,,\text{ Poincare}\\
+&\ge\uuline{a}_*\norm{\nabla v}_{L_2}^2
+-\norm{b}_\infty C(\Omega)\norm{\nabla v}_{L_2}\\
+&\ge\left(\frac{\uuline{a}_*}{C(\Omega}
+-\norm{b}_\infty\right) C(\Omega)\norm{\nabla v}_{L_2}\\
+&\ge\left(\frac{\uuline{a}_*}{C(\Omega}
+-\norm{b}_\infty\right)\frac{C(\Omega)}{(C'(\Omega))^2}\norm{v}_{H^1}\\
+&\ge\eta_*\norm{v}_{H^1}^2\,,\quad\forall v\in H_0^1(\Omega)
+\end{align*}
+
+\uline{Stability} Choose $v=u_h-g\in V_h$
+\begin{align*}
+a(u_h,u_h-g)&=f(u_h-g)\\
+a(u_h-g,u_h-g)&=f(u_h-g)-a(g,u_h-g)\\
+a_*\norm{u_h-g}_V^2&\le\norm{f}_V\norm{u_h-g}_V+a^*\norm{g}_V\norm{u_h-g}_V\\
+\norm{u_h-g}_V&\le\frac{\norm{f}_V+a^*\norm{g}_V}{a_*}
+\end{align*}
+
+\uline{Error Estimation} 
+\[
+a(u-u_h,v)=0\,,\quad\forall v\in V_h
+\]
+Take $v\mapsto u-u_h-(u-v)\,,\quad v\in V_h$
+\begin{align*}
+a(u-u_h,u-u_h)&=a(u-u_h,u-v)\,,\quad\forall v\in V_h\\
+a_*\norm{u-u_h}_V^2&\le a^*\norm{u-u_h}_V\norm{u-v}_V\,,\quad\forall v\in V_h\\
+\norm{u-u_h}_V&\le\frac{a^*}{a_*}\norm{u-v}_V\,,\quad\forall v\in V_h\\
+\end{align*}
+
+\uline{Cea's Lemma} 
+\[
+\norm{u-u_h}_V\le\left(\frac{a^*}{a_*}\right)\inf_{v\in V_h}\norm{u-v}_V
+\]
+\uline{Galerkin Orthogonality}
+\[
+a(u-u_h,v)=0\,,\quad\forall v\in V_h
+\]
+\uline{Theorem}
+\[
+\norm{u-u_h}_a=\inf_{v\in V_h}\norm{u-v}_a
+\]
+\uline{Proof}
+\begin{align*}
+\norm{u-u_h}_a^2&=a(u-u_h,u-uh)\\
+&=a(u-u_h,u-v)+\cancel{a(u-u_h,v-u_h)}\\
+&\le\norm{u-u_h}_a\norm{u-v}_a
+\end{align*}
+
+\uline{Ciarlet FEM Definition} Let
+\begin{enumerate}
+\item $E\subseteq\mathbb{R}^d$ domain with piecewise smooth boundary
+\item $\mathcal{P}$ is a finite dimensional vector space of functions on $E$
+(shape functions)
+\item $\mathcal{N}=\{N_1,\dots,N_k\}$ is a basis for $\mathcal{P}'$, a set of
+linear functionals on $\mathcal{P}$ (nodal variables or DOFs)
+\end{enumerate}
+Then $(E,\mathcal{P},\mathcal{N})$ is a finite element
+
+\uline{Definition} Let $\{\phi_1,\dots,\phi_k\}$ be a basis for $\mathcal{P}$
+dual to $\mathcal{N}$, $(N_i(\phi_j)=\delta_{ij})$
+
+\uline{Unisolvence} If $\mathrm{dim}\mathcal{P}=k$ and
+$\{N_1,\dots,N_k\}\subseteq\mathcal{P}'$
+
+$\{N_1,\dots,N_k\}$ is a basis iff
+
+$N_i(v)=0\,,\quad\forall i\,,\text{ then }v=0$
+
+\uline{Peano Kernel Theorem}
+If $L$ is a continuous linear functional on $C^{k+1}(a,b)$ s.t.
+$L(p)=0\,,\forall p\in\mathbb{P}$. Then
+\[
+L(f)=\int_a^b f^{(k+1)}(\xi)K(\xi)\d\xi
+\]
+\[
+K(\xi)=\frac{1}{k!}L\left( (\cdot-\xi)^k_+ \right)
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%% Parabolic Equations %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Stability:
+\begin{align*}
+\inner{\frac{u^n-u^{n-1}}{\Delta t}\,,u^n}+\inner{a\nabla u^n\,,\nabla u^n}
+=\inner{f\,,u^n}
+\end{align*}
+\begin{align*}
+\inner{u^n,u^n}-\inner{u^{n-1},u^{n-1}}&\le2\Delta t\norm{f^n}_0\norm{u^n}_0\\
+&\le\frac{\Delta t}{\epsilon}\norm{f^n}_0^2+\epsilon\norm{u^n}_0^2\Delta t\\
+\end{align*}
+\begin{align*}
+\norm{u^M}_0^2-\norm{u^0}_0^2
+&\le\sum_{n=1}^M\frac{\Delta t}{\epsilon}\norm{f^n}_0^2
++\sum_{n=1}^M\epsilon\norm{u^n}_0^2\Delta t\\
+&\le\sum_{n=1}^M\frac{\Delta t}{\epsilon}\norm{f^n}_0^2
++M\Delta t\epsilon\max_n\norm{u^n}_0^2\\
+\max_n\norm{u^n}_0^2&\le \frac{T}{\epsilon}\max_n\norm{f^n}_0^2+\norm{u^0}_0^2
+\end{align*}
+Convergence: 
+Find $u^n\in V+g^n$ s.t.
+\begin{align*}
+\inner{c\frac{u^n-u^{n-1}}{\Delta t}\,,v}+\inner{a\nabla u^n\,,\nabla v}
+=\inner{f^n\,,v}\\
++\inner{c\inner{\frac{u^n-u^{n-1}}{\Delta t}-u_t^n}\,, v}\,, \quad\forall v\in V
+\end{align*}
+Find $u_h^n\in V_h+g^n$ s.t.
+\begin{align*}
+\inner{c\frac{u_h^n-u_h^{n-1}}{\Delta t}\,,v}+\inner{a\nabla u_h^n\,,\nabla v}
+=\inner{f^n\,,v} \,, \quad\forall v\in V_h
+\end{align*}
+\[
+\inner{c\frac{\zeta^n-\zeta^{n-1}}{\Delta t}\,,v}
++\inner{a\nabla\zeta^n\,,\nabla v}
+=\inner{c\inner{\frac{u^n-u^{n-1}}{\Delta t}-u_t^n}\,,v}
+\]
+$\inner{a\nabla(\tilde u-u)\,,\nabla v}=0\,,\quad\forall v\in V_h$
+\begin{align*}
+&\inner{c\tilde\zeta^n\,,\tilde\zeta^n}-\inner{c\tilde\zeta^{n-1}\,,\tilde\zeta^{n-1}}
++2\Delta t\inner{a\nabla\tilde\zeta^n\,,\nabla\tilde\zeta^n}\\
+&\le 2\Delta t\inner{c\inner{\frac{u^n-u^{n-1}}{\Delta t}-u_t^n}\,,\tilde\zeta^n}
++2\Delta t\inner{c\inner{\tilde u_t^n-u_t^n}\,,\tilde\zeta^n}\\
+&\le c^*\Delta t
+\norm{\frac{\tilde u^n-\tilde u^{n-1}}{\Delta t}-\tilde u_t^n}_0^2
++c^*\Delta t\norm{\tilde u_t^n-u_t^n}_0^2
++2\frac{c^*}{c_*}\Delta t\inner{c\tilde\zeta^n\,,\tilde\zeta^n}\\
+&\le\underbrace{\sum_{k=1}^nc^*\Delta t\left\{
+\norm{\frac{\tilde u^k-\tilde u^{k-1}}{\Delta t}-\tilde u_t^k}_0^2
++\norm{\tilde u_t^k-u_t^k}_0^2\right\}}_{a^n}\\
+&+\underbrace{\sum_{k=1}^{n-1}c^*\Delta t\left\{
+\norm{\frac{\tilde u^k-\tilde u^{k-1}}{\Delta t}-\tilde u_t^k}_0^2
++\norm{\tilde u_t^k-u_t^k}_0^2\right\}}_{a^{n-1}}
++\underbrace{2\frac{c^*}{c_*}}_{b^n}
+\Delta t\underbrace{\inner{c\tilde\zeta^n\,,\tilde\zeta^n}}_{u^n}
+\end{align*}
+
+\begin{align*}
+\norm{\frac{\tilde u^n-\tilde u^{n-1}}{\Delta t}-\tilde u_t^n}^2&=
+\frac{1}{\Delta t}\norm{\int_{t_{n-1}}^{t_n}(\tilde u_t(\tau)-\tilde
+u_t^n)\d\tau}^2\\
+&=\frac{1}{\Delta t}\norm{\int_{t_{n-1}}^{t_n}-\int_\tau^{t_n}\tilde u_{tt}(s)\d
+s\d\tau}^2\\
+&\le\int_{t_{n-1}}^{t_n}\norm{\tilde u_{tt}(\tau)}^2\d\tau(\Delta t)^2
+\end{align*}
+
+\begin{align*}
+u^N&\le a^N\inner{1+\sum_{n=1}^Nb^nC_1\Delta t}\le C_2 a^N\\
+&\le C_2\left(c^*\norm{\tilde u_{tt}}^2_{L^2(L^2)}\Delta t^2+C_3h^4\right)\\
+&\le C\cdot\mathcal{O}(\Delta t^2+h^4)
+\end{align*}
+
+Gronwall: If
+\[
+u'(t)\le a(t)+b(t)u(t)\,,\quad\forall t\ge0
+\]
+where $b(t)\ge0$, then
+\[
+u(t)\le e^{\int_0^tb(\tau)\d\tau}\left\{u(0)+
+\int_0^ta(\tau)e^{\int_0^\tau b(s)\d s}\d\tau\right\}
+\]
+% \uline{Corollary} If
+% \[
+% u(t)\le a(t)+\int_0^tb(\tau)u(\tau)\d\tau
+% \]
+% where $a\,,b\ge0$, then
+% \[
+% u(t)\le a(t)+\int_0^t a(\tau)b(\tau)e^{t-\tau}\d\tau
+% \]
+Discrete Gronwall: If
+\[
+\frac{u^n-u^{n-1}}{\Delta t}\le\frac{a^n-a^{n-1}}{\Delta
+t}+b^nu^n\,,\quad\forall n\ge 1\,,\quad u^0=a^0=0
+\]
+where $a^n\,,b^n\ge0\,,\quad\forall n$, then, for $\Delta t\ge0$ sufficiently
+small,
+\[
+u^N\le a^N+\sum_{n=1}^Na^nb^n\frac{\prod_{j=1}^{n-1}(1-b^j\Delta
+t)}{\prod_{j=1}^N(1-b^j\Delta t)}\Delta t
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%% Hyperbolic Equations %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Fourier Transform
+\[
+\hat w(\theta)=\sum_{j=-\infty}^\infty w_je^{-ij\theta}
+\]
+\[
+w_j=\frac{1}{2\pi}\int_0^{2\pi}\hat w(\theta)e^{ij\theta}\d\theta
+\]
+Particle Velocity: $f(u)/u$\\
+Characteristic Velocity: $f'(u)$\\
+Characteristics: $x(t)$ where $u$ is constant $x'(t)=f'(u(x(t),t))$\\
+$x_\xi(t)=u_0(\xi)t+\xi$\\
+Find CFL such that Lax-Wendroff is stable
+\begin{align*}
+\U_j^{n+1}=\U_j^n-\frac{a\Delta t}{2h}\left(\U_{j+1}^n-\U_{j-1}^n\right)
++\frac{a^2(\Delta t)^2}{2h^2}\left(\U_{j+1}^n-2\U_j^n+\U_{j-1}^n\right)
+\end{align*}
+\begin{align*}
+\hat\U^{n+1}=\hat\U^n\left[1-\lambda i\sin\theta+\lambda^2(\cos\theta-1)\right]
+\end{align*}
+\begin{align*}
+\abs{1-\lambda i\sin\theta+\lambda^2(\cos\theta-1)}^2
+&=(1+\lambda^2(\cos\theta-1))^2+\lambda^2\sin^2\theta\le1
+\end{align*}
+% Box Method: $(1-\lambda)\U_{j-1}^{n+1}+(1+\lambda)\U_j^{n+1}=(1+\lambda)\U_{j-1}^n+(1-\lambda)\U_j^n$
+Rankine-Hugoniot Jump Condition $M>>st$
+\[
+\frac{\d}{\d t}\int_{-M}^Mu(x,t)\d x=(M+st)u_L+(M-st)u_R=f(u_L)-f(u_R)
+\]
+\[
+s=\frac{f(u_L)-f(u_R)}{u_L-u_R}
+\]
+Rarefaction
+\[
+\frac{f(u)-f(u_L)}{u-u_L}\ge s\ge\frac{f(u)-f(u_R)}{u-u_R}
+\]
+Average flux entering $(x_{i+1/2},x_{i+3/2})$: $\frac{1}{\Delta
+t}\int_{t_n}^{t_{n+1}}f(u_{i+1/2})\d x$\\
+Conservative Method
+\[
+\frac{\U_i^{n+1}-\U_i^n}{\Delta
+t}+\frac{1}{h}\left\{F(\U_{i-p}^n,\U_{i-p+1}^n,\dots,\U_{i+q})
+-F(\U_{i-p-1}^n,\U_{i-p}^n,\dots,\U_{i+q-1})\right\}=0
+\]
+\end{multicols}
+\end{document}
+

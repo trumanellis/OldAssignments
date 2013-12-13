@@ -1,0 +1,54 @@
+\documentclass[notes=hide,8pt,xcolor=svgnames]{beamer}
+\usepackage[absolute,overlay]{textpos}
+\usetheme[height=7mm]{Madrid}
+\usecolortheme[named=MidnightBlue]{structure}
+\setbeamertemplate{navigation symbols}{}
+\usefonttheme{structurebold}
+\usepackage{fancybox}
+
+
+% PDF settings
+% \hypersetup{%
+%    pdftitle={Matplotlib},%
+%    pdfauthor={Truman E. Ellis},%
+% }
+
+\setlength{\TPHorizModule}{0.1\textwidth}
+\setlength{\TPVertModule}{0.1\textheight}
+
+
+\title[Matplotlib]{\LARGE Matplotlib}
+\author[Truman Ellis]{{\Large Truman E. Ellis}}
+\institute[ICES]{\footnotesize
+  Institute for Scientific Computing Research\\
+  Lawrence Livermore National Laboratory\\
+  Livermore, CA 94550\\[1ex]
+  \texttt{truman@ices.utexas.edu}
+}
+% \date[August 2010]{August 3, 2010}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Getting Started}
+% \begin{block}{Installation}
+% \begin{verbatim}
+% sudo apt-get install ipython
+% sudo apt-get install python-numpy
+% sudo apt-get install python-matplotlib
+% \end{verbatim}
+% \end{block}
+
+% \begin{block}{Interactive}
+% \begin{verbatim}
+% ipython
+% from pylab import *
+% \end{verbatim}
+% \end{block}
+% \end{frame}
+
+\end{document}

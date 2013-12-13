@@ -1,0 +1,178 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[      4985,        168]
+NotebookOptionsPosition[      4663,        152]
+NotebookOutlinePosition[      5001,        167]
+CellTagsIndexPosition[      4958,        164]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"D", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Integrate", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"H0", "[", "x", "]"}], "+", 
+         RowBox[{"l", " ", 
+          RowBox[{"H1", "[", "x", "]"}]}]}], ")"}], 
+       RowBox[{"Exp", "[", 
+        RowBox[{
+         RowBox[{"-", "b"}], "*", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"H0", "[", "x", "]"}], "+", 
+           RowBox[{"l", " ", 
+            RowBox[{"H1", "[", "x", "]"}]}]}], ")"}]}], "]"}]}], ",", "x"}], 
+     "]"}], "/", 
+    RowBox[{"Integrate", "[", 
+     RowBox[{
+      RowBox[{"Exp", "[", 
+       RowBox[{
+        RowBox[{"-", "b"}], 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"H0", "[", "x", "]"}], "+", 
+          RowBox[{"l", " ", 
+           RowBox[{"H1", "[", "x", "]"}]}]}], ")"}]}], "]"}], ",", "x"}], 
+     "]"}]}], ",", "l"}], "]"}]], "Input",
+ CellChangeTimes->{{3.507396770091617*^9, 3.5073968181697817`*^9}, {
+  3.507396858375455*^9, 3.5073969094991417`*^9}, {3.507396947671063*^9, 
+  3.507396990892783*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox[
+   RowBox[{"b", " ", 
+    RowBox[{"(", 
+     RowBox[{"\[Integral]", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["\[ExponentialE]", 
+         RowBox[{
+          RowBox[{"-", "b"}], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"H0", "[", "x", "]"}], "+", 
+            RowBox[{"l", " ", 
+             RowBox[{"H1", "[", "x", "]"}]}]}], ")"}]}]], " ", 
+        RowBox[{"H1", "[", "x", "]"}]}], 
+       RowBox[{"\[DifferentialD]", "x"}]}]}], ")"}], " ", 
+    RowBox[{"\[Integral]", 
+     RowBox[{
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{
+         RowBox[{"-", "b"}], " ", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"H0", "[", "x", "]"}], "+", 
+           RowBox[{"l", " ", 
+            RowBox[{"H1", "[", "x", "]"}]}]}], ")"}]}]], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"H0", "[", "x", "]"}], "+", 
+         RowBox[{"l", " ", 
+          RowBox[{"H1", "[", "x", "]"}]}]}], ")"}]}], 
+      RowBox[{"\[DifferentialD]", "x"}]}]}]}], 
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{"\[Integral]", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{
+         RowBox[{"-", "b"}], " ", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"H0", "[", "x", "]"}], "+", 
+           RowBox[{"l", " ", 
+            RowBox[{"H1", "[", "x", "]"}]}]}], ")"}]}]], 
+       RowBox[{"\[DifferentialD]", "x"}]}]}], ")"}], "2"]], "+", 
+  FractionBox[
+   RowBox[{"\[Integral]", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["\[ExponentialE]", 
+         RowBox[{
+          RowBox[{"-", "b"}], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"H0", "[", "x", "]"}], "+", 
+            RowBox[{"l", " ", 
+             RowBox[{"H1", "[", "x", "]"}]}]}], ")"}]}]], " ", 
+        RowBox[{"H1", "[", "x", "]"}]}], "-", 
+       RowBox[{"b", " ", 
+        SuperscriptBox["\[ExponentialE]", 
+         RowBox[{
+          RowBox[{"-", "b"}], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"H0", "[", "x", "]"}], "+", 
+            RowBox[{"l", " ", 
+             RowBox[{"H1", "[", "x", "]"}]}]}], ")"}]}]], " ", 
+        RowBox[{"H1", "[", "x", "]"}], " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"H0", "[", "x", "]"}], "+", 
+          RowBox[{"l", " ", 
+           RowBox[{"H1", "[", "x", "]"}]}]}], ")"}]}]}], ")"}], 
+     RowBox[{"\[DifferentialD]", "x"}]}]}], 
+   RowBox[{"\[Integral]", 
+    RowBox[{
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{
+       RowBox[{"-", "b"}], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"H0", "[", "x", "]"}], "+", 
+         RowBox[{"l", " ", 
+          RowBox[{"H1", "[", "x", "]"}]}]}], ")"}]}]], 
+     RowBox[{"\[DifferentialD]", "x"}]}]}]]}]], "Output",
+ CellChangeTimes->{{3.507396790005033*^9, 3.5073968186383467`*^9}, 
+   3.507396909947122*^9, 3.507396991863125*^9}]
+}, Open  ]]
+},
+WindowSize->{640, 750},
+WindowMargins->{{146, Automatic}, {Automatic, 28}},
+FrontEndVersion->"7.0 for Linux x86 (64-bit) (November 11, 2008)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[567, 22, 1096, 34, 55, "Input"],
+Cell[1666, 58, 2981, 91, 118, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

@@ -1,0 +1,486 @@
+\documentclass[letterpaper,10pt]{article}
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage{cancel}
+\usepackage{graphicx}
+\usepackage{multirow}
+
+\setlength{\parindent}{0in}
+\setlength{\parskip}{.4ex}
+
+\DeclareMathOperator*{\tgrad}{grad}
+\DeclareMathOperator*{\tGrad}{Grad}
+\DeclareMathOperator*{\tdiv}{div}
+\DeclareMathOperator*{\tDiv}{Div}
+\DeclareMathOperator*{\tcurl}{curl}
+\DeclareMathOperator*{\Cof}{Cof}
+\DeclareMathOperator*{\tr}{tr}
+
+\providecommand{\abs}[1]{\lvert#1\rvert}
+\providecommand{\norm}[1]{\lVert#1\rVert}
+
+\def\mathbi#1{\textbf{\em #1}}
+\def\expect#1{\left\langle #1\right\rangle}
+\def\d{\mathrm{d}}
+\def\e{\mathrm{e}}
+
+\def\mbf{\mathbf}
+\def\mbb{\mathbb}
+
+% Document Specific Shortcuts
+\renewcommand*\arraystretch{1.5}
+\def\enoo{$\frac{\hbar^2\pi^2}{ma^2}$}
+\def\enot{$2.5\frac{\hbar^2\pi^2}{ma^2}$}
+\def\enoth{$5\frac{\hbar^2\pi^2}{ma^2}$}
+\def\enof{$8.5\frac{\hbar^2\pi^2}{ma^2}$}
+\def\entt{$4\frac{\hbar^2\pi^2}{ma^2}$}
+\def\entth{$6.5\frac{\hbar^2\pi^2}{ma^2}$}
+\def\entf{$10\frac{\hbar^2\pi^2}{ma^2}$}
+\def\enthth{$9\frac{\hbar^2\pi^2}{ma^2}$}
+\def\enthf{$12.5\frac{\hbar^2\pi^2}{ma^2}$}
+\def\enff{$16\frac{\hbar^2\pi^2}{ma^2}$}
+
+\def\R{\mathbf{R}}
+\def\r{\mathbf{r}}
+
+
+%opening
+\title{CAM 389C Exercise Set II.3}
+\author{Truman Ellis}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{Problem II.2.7}
+Which of the following operators are Hermitian?\\[.5ex]
+
+\paragraph*{a)} $\displaystyle \e^{ix}$
+
+\paragraph*{b)} $\displaystyle \frac{\d^2}{\d x^2}$
+
+\paragraph*{c)} $\displaystyle x\frac{\d}{\d x}$
+
+\subsubsection*{Solution}
+\paragraph*{a)} An $Q$ operator is Hermitian if
+\[
+\expect{u,Qv}=\expect{Qu,v}\,.
+\]
+Also, in order to evaluate the inner product, the functions $u$ and $v$ must
+vanish at $\pm\infty$.
+
+\paragraph*{b)}
+Integrating by parts twice,
+\begin{align*}
+\expect{\psi,Q\psi}&=\int_\mathbb{R}\psi^*\frac{\d^2\psi}{\d x^2}\,\d x\\
+&=\left.\cancel{\psi^*}\frac{\d\psi}{\d x}\right|_0^a
+-\int_\mathbb{R}\frac{\d\psi}{\d x}\frac{\d\psi^*}{\d x}\,\d x\\
+&=-\left.\frac{\d\psi^*}{\d x}\cancel{\psi}\right|_0^a
++\int_\mathbb{R}\psi\frac{\d^2\psi^*}{\d x^2}\,\d x\\
+&=\expect{Q\psi,\psi}\,.
+\end{align*}
+
+\paragraph*{c)}
+\begin{align*}
+\expect{u,x\frac{\d}{\d x}v}&=\int_\mbb{R}u^*x\frac{\d v}{\d x}\,\d x &
+\text{integrate by parts}\\
+&=\left.u^*v\right|_{-\infty}^\infty-\int_\mbb{R}\frac{\d u^*}{\d x}x
+\end{align*}
+
+\subsection*{Problem II.2.8}
+Ehrenfest's theorem relates the time derivative of the expected value
+$\expect{Q}$ of an operator $\tilde Q$ to the commutator $[\tilde Q,H]$ of the
+operator with the Hamiltonian of the system, as follows:
+\[
+\frac{\d\expect{Q}}{\d t}=
+\frac{1}{i\hbar}\expect{[\tilde Q,H]}+\expect{\frac{\partial Q}{\partial t}}\,.
+\]
+Derive the following intermediate results:
+
+\paragraph*{a)}
+\[
+\frac{\d\expect{Q}}{\d t}=\int_{\mbb{R}^3}\frac{\partial\Psi^*}{\partial t}
+\tilde Q\Psi\d^3 x+\expect{\frac{\partial Q}{\partial t}}
++\int_{\mbb{R}^3}\Psi^*\tilde Q\frac{\partial \Psi}{\partial t}\d^3 x\,.
+\]
+\subsubsection*{Solution}
+We can just use the product rule as follows
+\begin{align*}
+\frac{\d\expect{Q}}{\d t}&=\frac{\d}{\d t}\int_{\mbb{R}^3}\Psi^*Q\Psi\,\d^3 x\\
+&=\int_{\mbb{R}^3}\frac{\partial\Psi^*}{\partial t}\tilde Q\Psi
++\Psi^*\frac{\partial\tilde Q}{\partial t}\Psi
++\Psi\tilde Q\frac{\partial\Psi}{\partial t}\,\d^3x\\
+&=\int_{\mbb{R}^3}\frac{\partial\Psi^*}{\partial t}\tilde Q\Psi\,\d^3x
++\int_{\mbb{R}^3}\Psi^*\frac{\partial\tilde Q}{\partial t}\Psi\,\d^3x
++\int_{\mbb{R}^3}\Psi\tilde Q\frac{\partial\Psi}{\partial t}\,\d^3x\\
+&=\int_{\mbb{R}^3}\frac{\partial\Psi^*}{\partial t}\tilde Q\Psi\,\d^3x
++\expect{\frac{\partial\tilde Q}{\partial t}}
++\int_{\mbb{R}^3}\Psi\tilde Q\frac{\partial\Psi}{\partial t}\,\d^3x\,.
+\end{align*}
+\paragraph*{b)}
+\[
+\frac{\partial\Psi^*}{\partial t}=-\frac{1}{i\hbar}H\Psi^*\,.
+\]
+\subsubsection*{Solution}
+The next result is somewhat trivial. According to the Schrodinger equation,
+\[
+H\Psi=i\hbar\frac{\partial\Psi}{\partial t}\,.
+\]
+From this we get
+\[
+\frac{1}{i\hbar}H\Psi=\frac{\partial\Psi}{\partial t}\,.
+\]
+
+Taking the complex conjugate of both sides and noting that $H$ is a Hermitian
+operator,
+\[
+-\frac{1}{i\hbar}H\Psi^*=\frac{\partial\Psi^*}{\partial t}\,.
+\]
+\paragraph*{c)} Complete the proof of Ehrenfest's theorem.
+
+Substituting our results from \textbf{b)} into \textbf{a)},
+\begin{align*}
+\frac{\d\expect{Q}}{\d t}&=\frac{1}{i\hbar}\int_{\mbb{R}^3}
+-H\Psi^*\tilde Q\Psi+\Psi^*\tilde QH\Psi\,\d^3x
++\expect{\frac{\partial Q}{\partial t}}\\
+&=\frac{1}{i\hbar}\int_{\mbb{R}^3}
+-\Psi^*\tilde HQ\Psi+\Psi^*\tilde QH\Psi\,\d^3x
++\expect{\frac{\partial Q}{\partial t}}&H\text{ is Hermitian}\\
+&=\frac{1}{i\hbar}\int_{\mbb{R}^3}\Psi^*(\tilde QH-H\tilde Q)\Psi\,\d^3x
++\expect{\frac{\partial Q}{\partial t}}\\
+&=\frac{1}{i\hbar}\int_{\mbb{R}^3}\Psi^*[\tilde Q,H]\Psi\,\d^3x
++\expect{\frac{\partial Q}{\partial t}}\\
+&=\frac{1}{i\hbar}\expect{[\tilde Q,H]}
++\expect{\frac{\partial Q}{\partial t}}\,.
+\end{align*}
+
+\subsection*{Problem II.3.1}
+This exercise is designed to carry through the classical method of separation
+of variables for the solution of partial differential equations. The problem is
+the two-dimensional \emph{particle in a box}. The physical situation is that of
+a single particle in a square box $\overline{\Omega}=[0,a]\times[0,b]$ in the
+$xy$-plane in a quantum system for which the potential $V=V(x,y)$ is
+\[
+V(x,y)=
+\begin{cases}
+0\,,      & \text{for }0\leq x\leq a\,,\,0\leq y\leq b\,,\\
+\infty\,, & \text{otherwise}\,.
+\end{cases}
+\]
+The Hamiltonian is thus
+\[
+H=
+\begin{cases}
+(-\hbar^2/2m)\Delta
+& \text{in the box }\left((x,y)\in\overline{\Omega})\right)\,,\\
++\infty
+&\text{outside the box,}
+\end{cases}
+\]
+where $\Delta$ is teh two-dimensional Laplacian,
+\[
+\Delta=\frac{\partial^2}{\partial x^2}+\frac{\partial^2}{\partial y^y}\,.
+\]
+Thus, the wave function $\Psi=0$ outside $\overline{\Omega}$. Considering the
+time-independent Schrodinger equatio, we wish to find $\psi=\psi(x,y)$
+satisfying
+\begin{align*}
+H\psi&=E\psi & \text{in }&\overline{\Omega}\,,\\
+\psi&=0      & \text{on }&\partial\overline{\Omega}\,.
+\end{align*}
+\paragraph*{a)} Use the standard trick of the method of separation of variables:
+assume $\psi$ is a product of a function $X(x)$ and a function
+$Y(y):\:\psi(x,y)=X(x)Y(y)$, and derive two ordinary differential equations,
+one for $X$ and one for $Y$ under the assumption that $E$ is the sum,
+$E=e_X+e_Y\,,\:e_X=\text{constant, }e_Y=\text{constant}$. Show that the
+solutions are of the form
+\[
+\psi_{nn'}(x,y)=\sqrt{\frac{4}{ab}}\sin\frac{n\pi x}{a}
+\sin{\frac{n'\pi y}{b}}\,.
+\]
+
+\subsubsection*{Solution}
+Let us start by plugging $\psi=X(x)Y(y)$ into our governing equation,
+\begin{align*}
+H(XY)-EXY&=-\frac{\hbar^2}{2m}\Delta X(x)Y(y)\\
+&=-\frac{\hbar^2}{2m}\left(\frac{\d^2 X(x)}{\d x^2}Y(y)
++X(x)\frac{\d^2 Y(y)}{\d y^2}\right)-E(X(x)Y(y))=0\,.
+\end{align*}
+Now divide by $-\frac{\hbar^2}{2m}XY$,
+\begin{align*}
+\frac{1}{X}\frac{\d^2X}{\d x^2}+\frac{1}{Y}\frac{\d^2Y}{\d y^2}
++\frac{2m}{\hbar^2}E=0\,.
+\end{align*}
+
+Therefore,
+\[
+-\frac{1}{X}\frac{\d^2X}{\d x^2}=\frac{1}{Y}\frac{\d^2Y}{\d y^2}
++\frac{2m}{\hbar^2}E\,.
+\]
+Since one side of the equation is strictly a function of $x$ and the other side
+is strictly a function of $y$, they must both be equal to a constant $k$.
+Solving the $X$ equation first:
+\begin{align*}
+\frac{\d^2X}{\d x^2}+kX=0\,.
+\end{align*}
+The zero boundary conditions eliminate the possibility of a polynomial solution
+to this ODE and stipulate that $k$ must be positive, otherwise the solution
+would involve terms of the form $X=A\e^{\sqrt{-k}x}$ which obviously can not be
+zero at the boundaries (neglecting the trivial case of $A=0$). Therefore our
+solution must be of the form
+\[
+X(x)=A\cos(\sqrt{k}x)+B\sin(\sqrt{k}x)\,.
+\]
+Applying the boundary conditions
+\[
+X(0)=A=0\,,
+\]
+and
+\[
+X(a)=B\sin(\sqrt{k}a)=0\,.
+\]
+Thus either $B=0$ (trivial) or $\sqrt{k}a=n\pi$. Taking the non-trivial case,
+$k=\frac{n^2\pi^2}{a^2}$.
+
+Therefore,
+\[
+X(x)=B\sin\left(\frac{n\pi x}{a}\right)\,.
+\]
+Turning to the $Y$ equation,
+\[
+\frac{1}{Y}\frac{\d^2Y}{\d y^2}+\frac{2m}{\hbar^2}E=\frac{n^2\pi^2}{a^2}\,.
+\]
+Rearranging terms,
+\[
+\frac{\d^2Y}{\d y^2}=\left(\frac{n^2\pi^2}{a^2}-\frac{2m}{\hbar^2}E\right)Y
+=lY
+\]
+By similar argument from before, $l$ must be positive and $Y(y)$ must be of
+the form
+\[
+Y(y)=C\cos(\sqrt{l}x)+D\sin(\sqrt{l}x)\,.
+\]
+Applying the boundary conditions,
+\[
+Y(0)=c=0\,,
+\]
+and
+\[
+Y(b)=D\sin(\sqrt{l}x)=0\,.
+\]
+And by similar argument as before,
+\[
+l=\frac{n'^2\pi^2}{b^2}\,.
+\]
+So,
+\[
+Y(y)=D\sin\left(\frac{n'\pi x}{b}\right)\,.
+\]
+But $\psi_{nn'}(x,y)=X(x)Y(y)=BD\sin\left(\frac{n\pi x}{a}\right)
+\sin\left(\frac{n'\pi y}{b}\right)$ must be normalized, so
+\begin{multline*}
+\expect{BD\sin\left(\frac{n\pi x}{a}\right)
+\sin\left(\frac{n'\pi y}{b}\right),BD\sin\left(\frac{p\pi x}{a}\right)
+\sin\left(\frac{p'\pi y}{b}\right)}\\=
+\begin{cases}
+B^2D^2\frac{ab}{4}\,, & n=p\text{ and }n'=p'\,,\\
+0\,, & \text{else}\,.
+\end{cases}
+\end{multline*}
+Therefore, $BD=\sqrt{\frac{4}{ab}}$, and
+\[
+\psi_{nn'}(x,y)=\sqrt{\frac{4}{ab}}\sin\left(\frac{n\pi x}{a}\right)
+\sin\left(\frac{n'\pi y}{b}\right)\,.
+\]
+\paragraph*{b)} Show that the energy levels are given by
+\[
+E=\frac{\hbar^2\pi^2}{2m}\left(\frac{n^2}{a^2}+\frac{{n'}^2}{b^2}\right)\,.
+\]
+\subsubsection*{Solution}
+From before,
+\[
+l=\frac{n'^2\pi^2}{b^2}=\frac{n^2\pi^2}{a^2}-\frac{2m}{\hbar^2}E\,,
+\]
+and isolating $E$,
+\[
+E=\frac{\hbar^2}{2m}\left(\frac{n^2\pi^2}{a^2}-\frac{{n'}^2\pi^2}{b^2}\right)
+=\frac{\hbar^2\pi^2}{2m}\left(\frac{n^2}{a^2}-\frac{{n'}^2}{b^2}\right)\,.
+\]
+\paragraph*{c)} For the case of a square box, $(a=b)$, determine the energy
+levels
+$\displaystyle\mu=\frac{\hbar^2\pi^2}{2ma^2}(n^2+{n'}^2)$ for values of $n$ and
+$n'$ up to 4. What is the lowest energy level of the system?
+\subsubsection*{Solution}
+The calculation is straightforward, just plug in values for $n$ and $n'$ into
+the formula for the energy levels. The table below demonstrates the possible
+energy levels.
+\begin{table*}[h]
+\begin{center}
+\caption{Possible energy levels for square box}
+\begin{tabular}{cc|c|c|c|c|l}
+\cline{3-6}
+& & \multicolumn{4}{|c|}{$n$} \\ \cline{3-6}
+& & 1 & 2 & 3 & 4 \\ \cline{1-6}
+\multicolumn{1}{|c|}{\multirow{4}{*}{$n'$}} &
+\multicolumn{1}{|c|}{1} & \enoo & \enot & \enoth & \enof &     \\ \cline{2-6}
+\multicolumn{1}{|c|}{}                        &
+\multicolumn{1}{|c|}{2} & \enot & \entt & \entth & \entf &     \\ \cline{2-6}
+\multicolumn{1}{|c|}{}                        &
+\multicolumn{1}{|c|}{3} & \enoth & \entth & \enthth & \enthf &  \\ \cline{2-6}
+\multicolumn{1}{|c|}{}                        &
+\multicolumn{1}{|c|}{4} & \enof & \entf & \enthf & \enff &     \\ \cline{1-6}
+\end{tabular}
+\end{center}
+\end{table*}
+Clearly the lowest energy level corresponds to $n=n'=1$,
+$\displaystyle
+\mu_{11}=\frac{\hbar^2\pi^2}{ma^2}\,.
+$
+
+\subsection*{Problem II.3.2}
+This exercise concerns a well-known argument for using the nucleus of the
+hydrogen atom as the origin of the coordinate system as opposed to the center
+of mass. The situation is this: the quantum system of two particles, particle 1
+of mass $M$ (corresponding, e.g., to the nucleus) and particle 2 of mass $m$
+(e.g. the electron), with origin at a point $O$. The particles are located at
+positions $\mbf{r}_1$ and $\mbf{r}_2$, respectively. The center of mass is
+located at $\mbf{R}=(\mbf{r}_1M+\mbf{r}_2)/(M+m)$ and the vector connecting 1
+to 2 is $\mbf{r}=\mbf{r}_1-\mbf{r}_2$. The goal is to rederive Schrodinger's
+equations with a change of variables from $(\mbf{r}_1,\mbf{r}_2)$ to
+$(\mbf{R},\mbf{r})$.
+
+\paragraph*{a)} Show that
+\[
+\mbf{r}_1=\mbf{R}+\frac{m^*}{M}\mbf{r}\quad\text{ and }\quad
+\mbf{r}_2=\mbf{R}-\frac{m^*}{M}\mbf{r}\,,
+\]
+where $m^*=Mm/(M+m)$.
+\subsubsection*{Solution}
+Substituting $\r_2=\r_1-\r$ into $\R=\frac{\r_1M+\r_2m}{M+m}$,
+\[
+\R=\frac{\r_1M+(\r_1-\r)m}{M+m}=\frac{(M+m)\r_1-m\r}{M+m}\,.
+\]
+Then
+\begin{align*}
+\r_1&=\frac{(M+m)\R+m\r}{M+m}=\R+\frac{m}{M+m}\r=\R+\frac{Mm}{M(M+m)}\r\\
+&=\R+\frac{m^*}{m}\r\,.
+\end{align*}
+From the fact that $\r_2=\r_1-\r$,
+\begin{align*}
+\r_2&=\R+\frac{m}{M+m}\r-\frac{M+m}{M+m}\r
+=\R+\left(\frac{m-M-m}{M+m}\right)\r\\&=\R-\frac{mM}{m(M+m)}\r\\
+&=\R-\frac{m^*}{m}\r\,.
+\end{align*}
+\paragraph*{b)}Using the change of variables, show that
+\[
+\nabla_{\r_1}=\frac{m^*}{m}\nabla_\R+\nabla_\r \quad\text{ and }\quad
+\nabla_{\r_2}=\frac{m^*}{M}\nabla_\R-\nabla_\r\,.
+\]
+\subsubsection*{Solution}
+First note that
+\[
+\begin{array}{rl}
+\frac{\partial \R}{\partial \r_1}=\frac{M}{M+m}=\frac{m^*}{m}\quad
+& \frac{\partial \R}{\partial \r_2}=\frac{m}{M+m}=\frac{m^*}{M}\\
+\frac{\partial \r}{\partial \r_1}=1 \quad& \frac{\partial \r}{\partial \r_2}=-1
+\,.
+\end{array}
+\]
+Then,
+\[
+\frac{\partial}{\partial\r_1}=
+\frac{\partial}{\partial\R}\frac{\partial\R}{\partial\r_1}
++\frac{\partial}{\partial\r}\frac{\partial\r}{\partial\r_1}
+=\frac{m^*}{m}\frac{\partial}{\partial\R}+\frac{\partial}{\partial\r}\,.
+\]
+Similarly
+\[
+\frac{\partial}{\partial\r_2}=
+\frac{\partial}{\partial\R}\frac{\partial\R}{\partial\r_2}
++\frac{\partial}{\partial\r}\frac{\partial\r}{\partial\r_2}
+=\frac{m^*}{M}\frac{\partial}{\partial\R}-\frac{\partial}{\partial\r}\,.
+\]
+But $\nabla_{\r_1}=\mbf{e}_i\frac{\partial}{\partial\r_{1i}}$, and similarly
+for $\r_2$, $\r$, and $\R$. Therefore,
+\[
+\nabla_{\r_1}=\frac{m^*}{m}\nabla_\R+\nabla_\r
+\]
+and
+\[
+\nabla_{\r_2}=\frac{m^*}{M}\nabla_\R-\nabla_\r\,.
+\]
+\paragraph*{c)} Show that, in these new variables, the time-independent
+Schrodinger equation is:
+\[
+\left(-\frac{\hbar^2}{2(M+m)}\Delta_\R-\frac{\hbar^2}{2m^*}\Delta_\r
++V(\r)\right)\psi=E\psi\,.
+\]
+\subsubsection*{Solution}
+We first need to derive the Laplacian operator in our changed coordinates. So,
+\begin{align*}
+\Delta_{\r_1}&=\frac{\partial}{\partial\r_1}\cdot\frac{\partial}{\partial\r_1}
+=\left(\frac{m^*}{m}\right)^2\Delta_\R+2\left(\frac{m^*}{m}\right)\Delta_{\r\R}
++\Delta_\r
+\end{align*}
+and
+\begin{align*}
+\Delta_{\r_2}&=\frac{\partial}{\partial\r_2}\cdot\frac{\partial}{\partial\r_2}
+=\left(\frac{m^*}{M}\right)^2\Delta_\R-2\left(\frac{m^*}{M}\right)\Delta_{\r\R}
++\Delta_\r
+\end{align*}
+We can write the time independent Schrodinger's equation as
+\[
+\left(-\frac{\hbar^2}{2M}\Delta_{\r_1}-\frac{\hbar^2}{2m}\Delta_{\r_2}
++V(\r)\right)\psi=E\psi\,.
+\]
+Substituting our expressions for $\Delta_{\r_1}$ and $\Delta_{\r_2}$,
+\begin{align*}
+&\left(-\frac{\hbar^2}{2M}\left(
+\left(\frac{m^*}{m}\right)^2\Delta_\R
++2\cancel{\left(\frac{m^*}{m}\right)\Delta_{\r\R}}
++\Delta_\r\right)\right.\\
+&\left.-\frac{\hbar^2}{2m}\left(
+\left(\frac{m^*}{M}\right)^2\Delta_\R
+-2\cancel{\left(\frac{m^*}{M}\right)\Delta_{\r\R}}
++\Delta_\r\right)
++V(\r)\right)\psi\\
+&=\left(-\frac{\hbar^2{m^*}^2}{2Mm}\left(\frac{1}{m}+\frac{1}{M}\right)\Delta_\R
+-\frac{\hbar^2}{2}\left(\frac{1}{m}+\frac{1}{M}\right)\Delta_\r
++V(\r)\right)\psi\\
+&=\left(-\frac{\hbar^2{m^*}^{\cancel{2}}}{2Mm}
+\cancel{\left(\frac{M+m}{Mm}\right)}
+\Delta_\R-\frac{\hbar^2}{2}\left(\frac{M+m}{mM}\right)\Delta_\r
++V(\r)\right)\psi\\
+&=\left(-\frac{\hbar^2}{2(M+m)}\Delta_\R-\frac{\hbar^2}{2m^*}\Delta_\r
++V(\r)\right)\psi=E\psi\,.
+\end{align*}
+\paragraph*{d)} Now if $M\gg m$ so that $M+m\approx M$ and $1/m\gg 1/(M+m)$,
+write down the resulting approximate Schrodinger equation involving only $\r$.
+\subsubsection*{Solution}
+\begin{align*}
+&\left(-\frac{\hbar^2}{2(M+m)}\Delta_\R-\frac{\hbar^2(M+m)}{2Mm}\Delta_\r
++V(\r)\right)\psi\\
+&\approx \left(-\frac{\hbar^2}{2(M+m)}\Delta_\R
+-\frac{\hbar^2\cancel{M}}{2\cancel{M}m}\Delta_\r
++V(\r)\right)\psi\\
+&=\left(-\underbrace{\frac{\hbar^2}{2(M+m)}}_
+{\displaystyle\ll \frac{\hbar^2}{2m}}
+\Delta_\R
+-\frac{\hbar^2}{2m}\Delta_\r
++V(\r)\right)\psi\\
+&\approx\left(-\frac{\hbar^2}{2m}\Delta_\r
++V(\r)\right)\psi=E\psi\,.
+\end{align*}
+
+\paragraph*{e)} Suppose now that the wave function is
+separable:$\psi(\r,\R)=\psi(\r)\chi(\R)$. Show that $\chi$ satisfies the
+one-particle Schrodinger equation with mass $M+m$, with potential $V_\R=0$, and
+energy $E_\R$, while $\psi$ satisfies the one-particle Schrodinger equation
+with mass $m^*$ and potential $V(\r)$, and energy $E_\r$, with the total energy
+$E=E_\R+E_\r$.
+\subsubsection*{Solution}
+Substituting our separated wave function into the Schrodinger equation,
+\[
+-\frac{hbar^2}{2(M+m)}\psi(\r)\Delta_\R\chi(\R)
+\]
+
+\end{document}

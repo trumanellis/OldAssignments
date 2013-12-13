@@ -1,0 +1,37 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+F	backEuler.C	/^void F(const vec& y, vec& Fy) {$/;"	f
+backEuler	backEuler.C	/^state backEuler(vec& y, void (*f)(double, const vec&, vec&),$/;"	f
+dF	backEuler.C	/^void dF(const vec& y, mat& dFy) {$/;"	f
+dTestFcn1	backEuler.C	/^void dTestFcn1(double t, const vec& y, mat& df) {$/;"	f
+dTestFcn1	stability.C	/^void dTestFcn1(double t, const vec& y, mat& df) {$/;"	f
+dTestFcn2	stability.C	/^void dTestFcn2(double t, const vec& y, mat& df) {$/;"	f
+dTestFcn3	stability.C	/^void dTestFcn3(double t, const vec& y, mat& df) {$/;"	f
+df	newton.C	/^void df(const double (&x)[2], double (&dfx)[2][2]) {$/;"	f
+dfcn	backEuler.C	/^static void (*dfcn)(double, const vec&, mat&);$/;"	v	file:
+euler	backEuler.C	/^void euler(vec& y, void (*f)(double,const vec&, vec&),$/;"	f
+f	newton.C	/^void f(const double (&x)[2], double (&fx)[2]) {$/;"	f
+fcn	backEuler.C	/^static void (*fcn)(double, const vec&, vec&);$/;"	v	file:
+h	backEuler.C	/^static double h;$/;"	v	file:
+invert	newton.C	/^inline static void invert(mat& a) {$/;"	f	file:
+main	backEuler.C	/^int main() {$/;"	f
+main	newton.C	/^void main () {$/;"	f
+main	stability.C	/^int main() {$/;"	f
+max	backEuler.C	41;"	d	file:
+max	stability.C	11;"	d	file:
+newton	newton.C	/^state newton(vec& x, void f(const vec&,vec&), void df(const vec&,mat&),$/;"	f
+normSq	newton.C	/^inline static double normSq(const vec& x) {$/;"	f	file:
+t	backEuler.C	/^static double t;$/;"	v	file:
+testFcn1	backEuler.C	/^void testFcn1(double t, const vec& y, vec& f) {$/;"	f
+testFcn1	stability.C	/^void testFcn1(double t, const vec& y, vec& f) {$/;"	f
+testFcn2	stability.C	/^void testFcn2(double t, const vec& y, vec& f) {$/;"	f
+testFcn3	stability.C	/^void testFcn3(double t, const vec& y, vec& f) {$/;"	f
+testY1	backEuler.C	/^void testY1(double t, const vec& yInit, vec& y) {$/;"	f
+testY1	stability.C	/^void testY1(double t, const vec& yInit, vec& y) {$/;"	f
+testY2	stability.C	/^void testY2(double t, const vec& yInit, vec& y) {$/;"	f
+testY3	stability.C	/^void testY3(double t, const vec& yInit, vec& y) {$/;"	f
+yOld	backEuler.C	/^static vec yOld;$/;"	v	file:

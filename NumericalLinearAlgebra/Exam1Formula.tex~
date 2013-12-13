@@ -1,0 +1,95 @@
+\documentclass[letterpaper,10pt]{article}
+\usepackage[top=.5in, bottom=.5in, left=.5in, right=.5in]{geometry}
+\usepackage[fleqn]{amsmath}
+\usepackage{amsfonts,amssymb,amsthm}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{multicol}
+
+\setlength{\parindent}{0in}
+\setlength{\parskip}{0ex}
+
+\providecommand{\abs}[1]{\lvert#1\rvert}
+\providecommand{\norm}[1]{\lVert#1\rVert}
+
+\newenvironment{al}{\begin{align*}}{\end{align*}}
+
+
+\begin{document}
+\begin{multicols}{3}
+\subsection*{Unitary Matrix}
+\begin{equation*}
+U^H=U^{-1}
+\end{equation*}
+\begin{equation*}
+\norm{Ux}_2=\norm{x}_2
+\end{equation*}
+\subsection*{Norms}
+\begin{equation*}
+\norm{A}_2=\max_{x\neq0}\frac{\norm{Ax}_2}{\norm{x}_2}=\sigma_1
+\end{equation*}
+\begin{equation*}
+\norm{A}_1=\text{max absolute column sum}
+\end{equation*}
+\begin{equation*}
+\norm{A}_\infty=\text{max absolute row sum}
+\end{equation*}
+\begin{equation*}
+\norm{A}_F=\sqrt{\sum_{i=1}^m\sum_{j=1}^n a_{ij}^2}
+=\sqrt{\sum_{i=1}^{\min\{m,n\}}\sigma_i}
+\end{equation*}
+\subsection*{SVD}
+\begin{equation*}
+A=U\Sigma V^H
+\end{equation*}
+\begin{itemize}
+\item The columns of $V$ are the eigenvectors of $M^H M$.
+\item The columns of $U$ are the eigenvectors of $MM^H$.
+\end{itemize}
+\begin{equation*}
+A=U_L\Sigma_{TL} V_L^H
+\end{equation*}
+\begin{equation*}
+A^{+}=V\Sigma^{+} U^H
+\end{equation*}
+\begin{equation*}
+\mathcal{C}(A)=\mathcal{C}(U_L)
+\end{equation*}
+\begin{equation*}
+\mathcal{N}(A)=\mathcal{C}(V_R)
+\end{equation*}
+\begin{equation*}
+\mathcal{C}(A^H)=\mathcal{C}(V_L)
+\end{equation*}
+\begin{equation*}
+\mathcal{N}(A^H)=\mathcal{C}(U_R)
+\end{equation*}
+\subsection*{Pseudo Inverse}
+\begin{equation*}
+A^{+}=(A^H A)^{-1}A^H
+\end{equation*}
+\subsection*{Projectors}
+\begin{equation*}
+\text{range}(I-P)=\text{null}(P)
+\end{equation*}
+\begin{equation*}
+\text{null}(I-P)=\text{range}(P)
+\end{equation*}
+A projector $P$ is orthogonal iff $P=P^H$
+
+The othogonal projector onto $\text{range}(A)$ can be expressed by
+\begin{equation*}
+P=A(A^HA)^{-1}A^H
+\end{equation*}
+\subsection*{Householder QR}
+\begin{equation*}
+H=I-2\frac{uu^H}{u^Hu}
+\end{equation*}
+\end{multicols}
+
+\end{document}
+Revisit:
+SVD Exercises
+QR Factorization Exercises
+Modified Gram-Schmidt
+Relation of GS to QR

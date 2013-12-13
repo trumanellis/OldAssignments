@@ -1,0 +1,84 @@
+\documentclass[letterpaper,10pt]{article}
+
+\setlength{\parindent}{0in}
+\setlength{\parskip}{2ex}
+
+%opening
+\title{TTCS Assignment 1}
+\author{Truman Ellis}
+
+\begin{document}
+
+\maketitle
+
+\section*{Exercise 1}
+\verb=getent passwd | cut -f 7 -d: | sort | uniq=
+
+\verb=getent passwd= queries the ICES authentication server and returns a colon
+separated list of information about all users.
+
+\verb=cut -f 7 -d:=
+receives the list as input, \verb=f -7= cuts out the 7th entry, and \verb=-d:=
+speciefies that fields are delimited by colons. This command outputs a list of
+the preferred shell for each user.
+
+\verb=sort= takes this list of shells and sorts them alphabetically.
+
+\verb=uniq= eliminates redundant entries
+
+Thus we get a list of all of the different preferred shells in use by users in
+ICES.
+
+\section*{Exercise 2}
+\verb=getent passwd | cut -f7 -d: | grep bash | wc -l=
+
+480 ICES users use \verb=bash=
+
+\verb=getent passwd | cut -f7 -d: | grep tcsh | wc -l=
+
+32 ICES users use \verb=tcsh=
+
+\verb=getent passwd | cut -f7 -d: | sort | uniq -c | sort -gr=
+\begin{verbatim}
+    480 /bin/bash
+     68 /bin/false
+     30 /bin/tcsh
+     26 /sbin/nologin
+     21 /bin/csh
+     18 /bin/sh
+     16 /usr/sbin/nologin
+     12 /usr/local/bin/newuser
+      4 /bin/zsh
+      2 /usr/bin/tcsh
+      1 /etc/nologin
+      1 /bin/sync
+      1 /bin/ksh
+      1 /bin/dash
+      1
+\end{verbatim}
+Assuming that \verb=false= and \verb=nologin= are not shells, 21 ICES users use
+\verb=csh=
+
+\section*{Exercise 3}
+\begin{verbatim}getent passwd | cut -f1,5 -d: | awk ' {gsub(":", " ", $0); if (
+length($1) > x) {x = length($1);user=$0}}END {print x,user}'
+\end{verbatim}
+``Avahi autoip daemon,,,'' has the longest username, ``avahi-autoipd'', at 13
+characters.
+
+\begin{verbatim}
+getent passwd | cut -f1 -d: | awk ' {if ( length == 10) {print $0}}' | wc -l
+\end{verbatim}
+or
+\begin{verbatim}
+getent passwd | cut -f1 -d: | awk ' {if ( length == 10) {x=x+1}}END{print x}'
+\end{verbatim}
+There are 10 users with username length of 10 characters.
+
+\section*{Exercise 4}
+What is the shortest first plus last name of an ICES user.
+
+\end{document}
+
+getent passwd | cut -f1,5 -d: | awk ' {gsub(":", " ", $0); if ( length($1) > x)
+{x = length($1);user=$2" "$3" "$4}}END {print x,user}'

@@ -1,0 +1,194 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[      5754,        185]
+NotebookOptionsPosition[      5106,        157]
+NotebookOutlinePosition[      5444,        172]
+CellTagsIndexPosition[      5401,        169]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"\[Del]", 
+      SubscriptBox["\[Phi]", "i"]}], ",", 
+     RowBox[{"\[Del]", 
+      SubscriptBox["\[Phi]", "i"]}]}], ")"}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"Integrate", "[", 
+   RowBox[{
+    RowBox[{"1", "/", 
+     RowBox[{"h", "^", "2"}]}], ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "0", ",", 
+      RowBox[{"2", "h"}]}], "}"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.509884905379971*^9, 3.509884925447583*^9}, {
+   3.509884964896016*^9, 3.509884979846311*^9}, {3.5098851032381773`*^9, 
+   3.509885132804153*^9}, {3.5098851717597027`*^9, 3.5098852056760902`*^9}, {
+   3.5098852363082*^9, 3.509885317276908*^9}, {3.509885381050304*^9, 
+   3.509885385840777*^9}, {3.509885425883195*^9, 3.5098854474757557`*^9}, {
+   3.509885489068934*^9, 3.509885546518127*^9}, 3.5098856409839973`*^9}],
+
+Cell[BoxData[
+ FractionBox["2", "h"]], "Output",
+ CellChangeTimes->{3.5098856486937943`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"\[Del]", 
+      SubscriptBox["\[Phi]", "i"]}], ",", 
+     RowBox[{"\[Del]", 
+      SubscriptBox["\[Phi]", 
+       RowBox[{"i", "-", "1"}]]}]}], ")"}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Integrate", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"-", "1"}], "/", 
+      RowBox[{"h", "^", "2"}]}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0", ",", "h"}], "}"}]}], "]"}], 
+   "\[IndentingNewLine]"}]}]], "Input",
+ CellChangeTimes->{{3.509884905379971*^9, 3.509884925447583*^9}, {
+  3.509884964896016*^9, 3.509884979846311*^9}, {3.5098851032381773`*^9, 
+  3.509885132804153*^9}, {3.5098851717597027`*^9, 3.5098852056760902`*^9}, {
+  3.5098852363082*^9, 3.509885317276908*^9}, {3.509885381050304*^9, 
+  3.509885385840777*^9}, {3.509885425883195*^9, 3.5098854474757557`*^9}, {
+  3.509885489068934*^9, 3.509885546518127*^9}, {3.5098856409839973`*^9, 
+  3.5098856446861963`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"-", 
+  FractionBox["1", "h"]}]], "Output",
+ CellChangeTimes->{3.509885649950816*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"(", 
+    RowBox[{
+     SubscriptBox["\[Phi]", "i"], ",", 
+     SubscriptBox["\[Phi]", "i"]}], ")"}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Integrate", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"x", "/", "h"}], ")"}], "^", "2"}], "+", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"1", "-", 
+         RowBox[{"x", "/", "h"}]}], ")"}], "^", "2"}]}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0", ",", "h"}], "}"}]}], "]"}], 
+   "\[IndentingNewLine]"}]}]], "Input",
+ CellChangeTimes->{{3.509884905379971*^9, 3.509884925447583*^9}, {
+  3.509884964896016*^9, 3.509884979846311*^9}, {3.5098851032381773`*^9, 
+  3.509885132804153*^9}, {3.5098851717597027`*^9, 3.5098852056760902`*^9}, {
+  3.5098852363082*^9, 3.509885317276908*^9}, {3.509885381050304*^9, 
+  3.509885385840777*^9}, {3.509885425883195*^9, 3.5098854474757557`*^9}, {
+  3.509885489068934*^9, 3.509885546518127*^9}, {3.5098856409839973`*^9, 
+  3.509885657461624*^9}}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{"2", " ", "h"}], "3"]], "Output",
+ CellChangeTimes->{3.509885660189625*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"(", 
+    RowBox[{
+     SubscriptBox["\[Phi]", "i"], ",", 
+     SubscriptBox["\[Phi]", 
+      RowBox[{"i", "-", "1"}]]}], ")"}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"Integrate", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"x", "/", "h"}], 
+     RowBox[{"(", 
+      RowBox[{"1", "-", 
+       RowBox[{"x", "/", "h"}]}], ")"}]}], ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "0", ",", "h"}], "}"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.509884905379971*^9, 3.509884925447583*^9}, {
+  3.509884964896016*^9, 3.509884979846311*^9}, {3.5098851032381773`*^9, 
+  3.509885132804153*^9}, {3.5098851717597027`*^9, 3.5098852056760902`*^9}, {
+  3.5098852363082*^9, 3.509885317276908*^9}, {3.509885381050304*^9, 
+  3.509885385840777*^9}, {3.509885425883195*^9, 3.5098854474757557`*^9}, {
+  3.509885489068934*^9, 3.509885546518127*^9}, {3.5098856409839973`*^9, 
+  3.509885657461624*^9}}],
+
+Cell[BoxData[
+ FractionBox["h", "6"]], "Output",
+ CellChangeTimes->{3.509884926629303*^9, 3.5098853863582983`*^9, 
+  3.509885453982572*^9, 3.509885548098455*^9, 3.509885661581015*^9}]
+}, Open  ]]
+},
+WindowSize->{640, 750},
+WindowMargins->{{146, Automatic}, {Automatic, 28}},
+FrontEndVersion->"7.0 for Linux x86 (64-bit) (November 11, 2008)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[567, 22, 900, 22, 55, "Input"],
+Cell[1470, 46, 92, 2, 47, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1599, 53, 998, 26, 77, "Input"],
+Cell[2600, 81, 108, 3, 47, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2745, 89, 1060, 27, 77, "Input"],
+Cell[3808, 118, 113, 3, 48, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3958, 126, 946, 23, 55, "Input"],
+Cell[4907, 151, 183, 3, 48, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

@@ -1,0 +1,297 @@
+\documentclass[letterpaper,10pt]{article}
+\usepackage[top=.5in, bottom=.5in, left=.5in, right=.5in]{geometry}
+\usepackage[fleqn]{amsmath}
+\usepackage{amsfonts,amssymb,amsthm}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{multicol}
+
+\setlength{\parindent}{0in}
+\setlength{\parskip}{0ex}
+
+\makeatletter
+\newcommand{\rmnum}[1]{\romannumeral #1}
+\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+
+\DeclareMathOperator*{\tgrad}{grad}
+\DeclareMathOperator*{\tGrad}{Grad}
+\DeclareMathOperator*{\tdiv}{div}
+\DeclareMathOperator*{\tDiv}{Div}
+\DeclareMathOperator*{\tcurl}{curl}
+\DeclareMathOperator*{\Cof}{Cof}
+\DeclareMathOperator*{\tr}{tr}
+
+\providecommand{\abs}[1]{\lvert#1\rvert}
+\providecommand{\norm}[1]{\lVert#1\rVert}
+
+\def\mathbi#1{\textbf{\em #1}}
+\def\d{\mathrm{d}}
+\def\half{\frac{1}{2}\,}
+\def\bphi{\boldsymbol\varphi}
+\def\x{\mathbi{x}}
+\def\X{\mathbf{X}}
+\def\u{\mathbi{u}}
+\def\v{\mathbi{v}}
+\def\n{\mathbi{n}}
+\def\F{\mathbf{F}}
+\def\E{\mathbf{E}}
+\def\I{\mathbf{I}}
+\newenvironment{al}{\begin{align*}}{\end{align*}}
+
+
+\begin{document}
+\begin{multicols}{3}
+\begin{align*}
+\delta_{ii}&=3\,,\\
+\delta_{ij}\delta_{jk}&=\delta_{ik}\,,\\
+\epsilon_{ijk}\epsilon_{imn}&=\delta_{jm}\delta_{kn}-\delta_{jn}\delta_{km}\,,\\
+\epsilon_{ijk}\epsilon_{ijm}&=2\delta_{km}\,,\\
+\epsilon_{ijk}\epsilon_{ijk}&=6\,.
+\end{align*}
+Cross Product
+\begin{equation*}
+\mathbf{a}\times\mathbf{b}=\epsilon_{ijk}a_i b_j\mathbf{e}_k
+\end{equation*}
+Gradient of a Scalar Field
+\begin{equation*}
+\nabla\phi=\mathbf{e}_i\partial_i\phi
+\end{equation*}
+Divergence of a Vector Field
+\begin{equation*}
+ \tdiv\mathbf{v}=\partial_i v_i
+\end{equation*}
+Curl of a Vector Field
+\begin{equation*}
+\tcurl\mathbf{v}=\epsilon_{ijk}\partial_i v_j\mathbf{e}_k
+\end{equation*}
+Gradient of a Vector Field
+\begin{equation*}
+\tgrad\mathbf{v}=\partial_j v_i\mathbf{e}_i\otimes\mathbf{e}_j
+\end{equation*}
+Divergence of a Tensor Field
+\begin{equation*}
+\tdiv\mathbf{A}=\partial_j A_{ij}\mathbf{e}_i
+\end{equation*}
+\begin{equation*}
+\mathbi{u}=\bphi(\X)-\X
+\end{equation*}
+\begin{equation*}
+\F(\X)=\nabla\bphi(\X)=\I+\nabla\u(\X)
+\end{equation*}
+\begin{equation*}
+\Cof\F=\det\F\F^{-T}
+\end{equation*}
+\begin{equation*}
+\mathbf{C}=\F^T\F
+\end{equation*}
+\begin{align*}
+\E&=\half(\mathbf{C}-\I)\\
+&=\half(\nabla\u+\nabla\u^T+\nabla\u^T\nabla\u)
+\end{align*}
+\begin{equation*}
+e_1=\sqrt{1+2E_{11}}-1
+\end{equation*}
+\begin{equation*}
+\sin{\gamma_{12}}=\frac{2E_{12}}{\sqrt{1+2E_{11}}\sqrt{1+2E_{22}}}
+\end{equation*}
+\begin{equation*}
+\frac{\d\psi(\x,t)}{\d t}=\frac{\partial\psi(\x,t)}{\partial t}
++\v(\x,t)\cdot\frac{\partial\psi(\x,t)}{\partial\x}
+\end{equation*}
+\begin{equation*}
+\mathbf{L}(\x,t)=\tgrad{\v(\x,t)}
+\end{equation*}
+\begin{equation*}
+\dot\F=\mathbf{L}_m\F
+\end{equation*}
+\begin{equation*}
+\mathbf{L}=\mathbf{D}+\mathbf{W}
+\end{equation*}
+\begin{equation*}
+\mathbf{D}=\half(\mathbf{L}+\mathbf{L}^T)\\
+\end{equation*}
+\begin{equation*}
+\mathbf{W}=\half(\mathbf{L}-\mathbf{L}^T)
+\end{equation*}
+\begin{equation*}
+\mathbf{W}\v=\half\boldsymbol\omega\times\v
+\end{equation*}
+\begin{equation*}
+\dot{\det\F}=\det\F\tdiv\v
+\end{equation*}
+\parbox{\textwidth}{
+Piola Transform
+\begin{equation*}
+\mathbf{T}_0(\X)=\mathbf{T}(\x)\,\Cof\F(\X)
+\end{equation*}
+\begin{equation*}
+\tDiv\mathbf{T}_0=\det\F\tdiv\mathbf{T}
+\end{equation*}
+\begin{equation*}
+\mathbf{T}_0\n_0\,dA_0=\mathbf{T}\n\,dA
+\end{equation*}
+\begin{equation*}
+dA=\det\F\norm{\F^{-T}\n_0}dA_0
+\end{equation*}
+\begin{equation*}
+\n=\frac{\Cof\F\n_0}{\norm{\Cof\F\n_0}}
+\end{equation*}
+}
+\begin{equation*}
+\F=\mathbf{RU}=\mathbf{VR}
+\end{equation*}
+\begin{equation*}
+\mathbf{C}=\mathbf{U}^2
+\end{equation*}
+\begin{equation*}
+\mathbf{B}=\mathbf{V}^2
+\end{equation*}
+\begin{equation*}
+(\mathbf{C}-\lambda\I)\mathbi{m}=\mathbf{0}
+\end{equation*}
+\begin{multline*}
+\det(\mathbf{C}-\lambda\I)=-\lambda^3+\Rmnum{1}(\mathbf{C})\lambda^2\\
+-\Rmnum{2}(\mathbf{C})\lambda+\Rmnum{3}(\mathbf{C})
+\end{multline*}
+\begin{align*}
+&\Rmnum{1}(\mathbf{C})&=&\tr\mathbf{C}\\
+&&=&\lambda_1+\lambda_2+\lambda_3\\
+&\Rmnum{2}(\mathbf{C})&=&\tr\Cof\mathbf{C}\\
+&&=&\lambda_1\lambda_2+\lambda_1\lambda_3+\lambda_2\lambda_3\\
+&\Rmnum{3}(\mathbf{C})&=&\det\mathbf{C}\\
+&&=&\lambda_1\lambda_2\lambda_3
+\end{align*}
+\begin{equation*}
+\frac{\d}{\d t}\int_{\omega} \Psi\,dx
+=\int_\omega\frac{\partial\Psi}{\partial t}\,dx
++\int_{\partial\omega}\Psi\v\cdot\n\,dA
+\end{equation*}
+\begin{equation*}
+I(\mathcal{B},t)=\int_{\Omega_t}\rho\v\,dx
+\end{equation*}
+\begin{equation*}
+H(\mathcal{B},t)=\int_{\Omega_t}\x\times\rho\v\,dx
+\end{equation*}
+\begin{equation*}
+\frac{\d I(\mathcal{B},t)}{\d t}=\mathcal{F}(\mathcal{B},t)
+\end{equation*}
+Cauchy Stress:
+\begin{equation*}
+\mathbf{T}=\frac{\mathbf{PF^T}}{\det\F}=\frac{\F\mathbf{S}\F^T}{\det\F}
+\end{equation*}
+First Piola-Kirchhoff Stress:
+\begin{equation*}
+\mathbf{P}=(\det\F)\mathbf{T}\F^{-T}=\mathbf{T}\Cof\F=\F\mathbf{S}
+\end{equation*}
+Second Piola-Kirchhoff Stress:
+\begin{equation*}
+\mathbf{S}=(\det\F)\F^{-1}\mathbf{T}\F^{-T}=\F^{-1}\mathbf{P}
+\end{equation*}
+\begin{align*}
+\mathcal{P}&=\int_{\Omega_t}\mathbf{f}\cdot\v\,dx+\int_{\partial\Omega_t}
+\boldsymbol\sigma(\n)\cdot\v\,dA\\
+&=\frac{\d \kappa}{\d
+t}+\int_{\Omega_t}\mathbf{T}:\mathbf{D}\,dx
+\end{align*}
+\begin{equation*}
+\mathbf{D}=\half(\tgrad\v+\tgrad\v^T)
+\end{equation*}
+\begin{multline*}
+\int_{\Omega_0}\mathbf{f}_0\cdot\dot{\u}\,dX
++\int_{\partial\Omega_0}\mathbf{P}\n_0\cdot\dot{\u}\,dA_0\\
+=\int_0\mathbf{P}:\dot{\F}\,dX+\frac{\d}{\d
+t}\half\int_{\Omega_0}\rho_0\dot{\u}\cdot\dot{\u}\,dX
+\end{multline*}
+\begin{multline*}
+\int_{\Omega_0}\mathbf{f}_0\cdot\dot{\u}\,dX
++\int_{\partial\Omega_0}\mathbf{FS}\n_0\cdot\dot{\u}\,dA_0\\
+=\int_0\mathbf{S}:\dot{\E}\,dX
++\frac{\d}{\d t}\half\int_{\Omega_0}\rho_0\dot{\u}\cdot\dot{\u}\,dX
+\end{multline*}
+\begin{align*}
+Q&=\int_{\partial\Omega_t}-\mathbf{q}\cdot\n\,dA+\int_{\Omega_t}r\,dx\\
+&=\int_{\partial\Omega_0}-\mathbf{q}_0\cdot\n_0\,dA_0+\int_{\Omega_0}r_0\,dX
+\end{align*}
+\begin{equation*}
+\frac{\d}{\d t}(\kappa+U)=\mathcal{P}+Q
+\end{equation*}
+Principle of Determinism
+
+Principle of Material Frame Indifference
+
+Principle of Physical Consistency
+
+Principle of Material Symmetry
+
+Principle of Local Action
+
+Dimensional consistency
+
+Existence, well-posedness
+
+Equipresence
+\begin{equation*}
+\psi=e-\theta\eta
+\end{equation*}
+\begin{equation*}
+\rho\frac{\d\psi}{\d t}-\rho\eta\frac{\d\theta}{\d t}+\mathbf{T}:\mathbf{D}
+-\frac{\mathbf{q}}{\theta}\cdot\tgrad\theta\geq0
+\end{equation*}
+\begin{equation*}
+\rho_0\dot{\psi_0}-\rho_0\eta_0\dot{\theta}+\mathbf{S}:\dot{\mathbf{E}}
+-\frac{\mathbf{q}_0}{\theta}\cdot\nabla\theta\geq0
+\end{equation*}
+\begin{equation*}
+\mathbf{S}=\rho_0\frac{\partial\Psi}{\partial\mathbf{E}}
+\end{equation*}
+\begin{equation*}
+\eta_0=-\frac{\partial\Psi}{\partial\theta}
+\end{equation*}
+\end{multicols}
+
+\renewcommand{\arraystretch}{2.5}
+\begin{tabular}{|>{\centering}p{0.3\textwidth}|>{\centering}p{0.3\textwidth}|}
+\hline
+Lagrangian  & Eulerian
+\tabularnewline
+\hline
+ \multicolumn{2}{|c|}{Conservation of Mass}
+\tabularnewline
+\hline
+ $\rho_0=\rho\det\F$ & $\dfrac{\partial\rho}{\partial t}+\tdiv(\rho\v)=0$
+\tabularnewline
+\hline
+ \multicolumn{2}{|c|}{Conservation of Linear Momentum}
+\tabularnewline
+\hline
+ $\rho_0\ddot{\u}=\tDiv\F\mathbf{S}+\mathbf{f}_0$ &
+$\rho\dfrac{\partial\v}{\partial t}
++\rho\v\cdot\tgrad\v=\tdiv\mathbf{T}+\mathbf{f}$
+\tabularnewline
+\hline
+ \multicolumn{2}{|c|}{Conservation of Angular Momentum}
+\tabularnewline
+\hline
+ $\mathbf{S}=\mathbf{S}^T$ & $\mathbf{T}=\mathbf{T}^T$
+\tabularnewline
+\hline
+ \multicolumn{2}{|c|}{Conservation of Energy}
+\tabularnewline
+\hline
+ $\rho_0\dot{e}_0=\mathbf{S}:\dot{\E}-\tDiv\mathbf{q}_0+r_0$ &
+$\rho\dfrac{\d e}{\d t}=\mathbf{T}:\mathbf{D}-\tdiv\mathbf{q}+r$
+\tabularnewline
+\hline
+ \multicolumn{2}{|c|}{Second Law of Thermodynamics}
+\tabularnewline
+\hline
+$\rho_0\dot{\eta}_0+\tDiv{\dfrac{\mathbf{q}_0}{\theta}}
+-\dfrac{r_0}{\theta}\geq 0$ &
+$\rho\dfrac{\partial\eta}{\partial t}+\rho\v\cdot\tgrad\eta
++\tdiv\dfrac{\mathbf{q}}{\theta}-\dfrac{r}{\theta}\geq 0$
+\tabularnewline
+\hline
+\end{tabular}
+\end{document}
+

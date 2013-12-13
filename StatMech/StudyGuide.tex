@@ -1,0 +1,613 @@
+\documentclass[letterpaper]{article}
+\usepackage[top=.5in, bottom=.5in, left=.5in, right=.5in]{geometry}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{multicol}
+\usepackage{cancel}
+\usepackage{SmallPar}
+
+\setlength{\parindent}{0in}
+\setlength{\parskip}{0ex}
+\setlength{\jot}{.5ex} 
+
+\providecommand{\abs}[1]{\left\lvert#1\right\rvert}
+\providecommand{\norm}[1]{\left\lVert#1\right\rVert}
+\providecommand{\inner}[1]{\left(#1\right)}
+\providecommand{\ainner}[1]{\left\langle#1\right\rangle}
+
+\def\d{\mathrm{d}}
+
+\pagestyle{empty}
+\begin{document}
+\begin{multicols}{2}
+\footnotesize
+\paragraph{Relations}
+\[
+\Delta U=\Delta Q-\Delta W
+\]
+\[
+dU=TdS-pdV+\mu dN
+\]
+\[
+F=U-TS
+\]
+\[
+P=-\left(\frac{\partial F}{\partial V}\right)_{T,N}
+\]
+\[
+S=-\left(\frac{\partial F}{\partial T}\right)_{V,N}
+\]
+Microcanonical
+\[
+\Omega(E)=\int_{x,p}\delta(E-H(x,p))\frac{\d x\d p}{h}
+\]
+$P_E$ is constant since each state has same probability
+\[
+S=\log(\Omega(E)\Delta E)=-\log(P_E)+\log(\Delta E)=-\sum P_E\log(P_E)
+\]
+Canonical
+\[
+T(E)=\frac{\Omega(E)}{\frac{\d\Omega}{\d E}}=\left(\frac{\d S}{\d
+E}\right)^{-1}
+\]
+\[
+Q=\sum_ne^{-\beta E_n}
+\]
+\[
+\ainner{E}=-\frac{\partial}{\partial\beta}\log(Q)
+\]
+\[
+p_n=\frac{e^{-\beta E_n}}{Q}\Rightarrow
+E_n=-\frac{1}{\beta}\log(p_n)-\frac{1}{\beta}\log(Q)
+\]
+\begin{align*}
+\d\ainner{E}&=\sum_n\d p_n E_n\\
+&=\sum_n\d p_n\left[-\frac{1}{\beta}\log(p_n)-\frac{1}{\beta}\log(Q)\right]\\
+&=-\frac{1}{\beta}\sum_n\d p_n\log(p_n)
+-\frac{1}{\beta}\log(Q)\d\left(\sum_n p_n\right)\\
+&=-\frac{1}{\beta}\sum_n\d p_n\log(p_n)\\
+&=-\frac{1}{\beta}\d\left[\sum_n p_n\log(p_n)\right]\\
+\Rightarrow&S=-\sum_n p_n\log(p_n)
+\end{align*}
+\[
+F=E-TS=-T\log(Q)
+\]
+
+\problem{Derivation of Grand Canonical}
+\[
+\log[P(E_T,N_T)]\propto\log[\Omega(E-E_T,N-N_T)]
+\]
+\begin{align*}
+&\log[\Omega(E-E_T,N-N_T)]\approx\log\left[\Omega(E,N)
+-\frac{\d\Omega}{\d E}E_t-\frac{\d\Omega}{\d N}N_T\right]\\
+&=\log\left[\Omega(E,N)\left(1-\frac{1}{\Omega(E,N)}\frac{\d\Omega}{\d E}E_T
+-\frac{1}{\Omega(E,N)}\frac{\d\Omega}{\d N}N_T\right)\right]\\
+&=\log[\Omega(E,N)]+\log\left(1-\frac{1}{\Omega(E,N)}\frac{\d\Omega}{\d E}E_T
+-\frac{1}{\Omega(E,N)}\frac{\d\Omega}{\d N}N_T\right)\\
+&=\log[\Omega(E,N)]+\log(1-\beta E_T-\mu N_T)
+\end{align*}
+\[
+\ainner{N}=-\frac{\partial}{\partial\gamma}\log(Q)
+\]
+
+\problem{Particle in a Box}
+\[
+\phi_n=\sqrt{\frac{2}{L}}\sin\left(\frac{n\pi x}{L}\right)
+\]
+\[
+E_n=\frac{n^2\pi^2\hbar^2}{2mL^2}
+\]
+
+\problem{Harmonic Oscillator}
+\[
+E_n=\hbar\sqrt{\frac{k}{m}}\left(n+\frac{1}{2}\right)
+=\hbar\omega\left(n+\frac{1}{2}\right)
+\]
+\[
+x(t)=\cos(\omega t+\phi)
+\]
+
+\problem{Poisson Equation}
+\[
+\nabla^2\phi=-\frac{4\pi\rho}{\epsilon}
+\]
+
+\problem{Ideal Gas Law}
+Show that if the canonical partition function $Q$ takes the form $Q=f(T)V^N$,
+the ideal gas law can be obtained.
+\solution{Solution}
+\begin{align*}
+F&= -kT\log Q=-kT\log(f(T)V^N)\\
+P&=-\frac{\partial F}{\partial V}=kT\frac{f(T)NV^{N-1}}{f(T)V^N}=\frac{kTN}{V}
+\end{align*}
+
+\problem{Heat Capacity}
+Show that the heat capacity
+\[
+C=\frac{\partial\ainner{E}}{\partial T}
+\]
+is given in the canonical ensemble by
+\[
+C=\frac{\ainner{E^2}-\ainner{E}^2}{kT^2}
+\]
+\solution{Solution}
+\[
+\frac{\partial\ainner{E}}{\partial T}=\frac{\partial\beta}{\partial T}
+\frac{\partial\ainner{E}}{\partial\beta}
+\]
+\[
+\frac{\partial}{\partial T}\left(\frac{1}{kT}\right)
+=-\frac{1}{kT^2}
+\]
+\begin{align*}
+\frac{\partial\ainner{E}}{\partial\beta}&=\frac{\partial}{\partial\beta}\left(
+\frac{\sum_nE_ne^{-\beta E_n}}{\sum_ne^{-\beta E_n}}\right)\\
+&=\frac{\sum_n-E_n^2e^{-\beta E_n}}{\sum_ne^{-\beta E_n}}
++\left(\frac{\sum_nE_ne^{-\beta E_n}}{\sum_ne^{-\beta E_n}}\right)^2\\
+&=-\ainner{E^2}+\ainner{E}^2
+\end{align*}
+\begin{align*}
+C_v&=-\frac{1}{kT^2}(-\ainner{E^2}+\ainner{E}^2)\\
+&=\frac{1}{kT^2}(\ainner{E^2}-\ainner{E}^2)
+\end{align*}
+
+\problem{Enthalpy}
+The constant pressure ensemble is defined by the enthalpy $H=E+PV$, where $H$ is
+the enthalpy, $E$ is the energy, $P$ is the pressure (which is a parameter like
+the temperature in the canonical ensemble), and $V$ is the volume, which is a
+variable (not constant). The weight of a configuration is given by $e^{-\beta
+E-\beta PV}$. Find an expression for the fluctuations of the enthalpy in terms
+of the derivative of the average enthalpy with respect to the temperature.
+\solution{Solution}
+Partition Function:
+\[
+Q=\sum_je^{-\beta E_j-\beta PV_j}=\sum_je^{-\beta H_j}
+\]
+Average enthalpy:
+\[
+\ainner{H}=\frac{\sum_j H_j e^{-\beta H_j}}{\sum_j e^{-\beta H_j}}
+=\frac{-\frac{\partial}{\partial\beta}(Q)}{Q}
+=-\frac{\partial}{\partial\beta}(\log Q)
+\]
+\[
+\frac{\partial Q}{\partial\beta}=\sum_j-H_je^{-\beta H_j}
+\]
+\[
+\frac{\partial^2 Q}{\partial\beta^2}=\sum_j H_j^2 e^{-\beta H_j}
+\]
+\[
+\ainner{H^2}=\frac{\frac{\partial^2 Q}{\partial\beta^2}}{Q}
+\]
+\begin{align*}
+\frac{\partial\ainner{H}}{\partial\beta}
+&=-\frac{\partial}{\partial\beta}
+\left(\frac{\frac{\partial Q}{\partial\beta}}{Q}\right)
+=-\frac{Q\frac{\partial^2Q}{\partial\beta^2}-\left(\frac{\partial
+Q}{\partial\beta}\right)^2}{Q^2}\\
+&=\left(\frac{\frac{\partial
+Q}{\partial\beta}}{Q}\right)^2-\frac{\frac{\partial^2Q}{\partial\beta^2}}{Q}
+=\ainner{H}^2-\ainner{H^2}
+\end{align*}
+Now $\beta=\frac{1}{kT}$, so $T=\frac{1}{k\beta}$
+\[
+\frac{\partial T}{\partial\beta}=-\frac{1}{k\beta^2}=-\frac{(kT)^2}{k}=-kT^2
+\]
+\[
+\sigma^2_H=\ainner{H^2}-\ainner{H}^2=-\frac{\partial\ainner{H}}{\partial\beta}
+=-\frac{\partial T}{\partial\beta}\frac{\partial\ainner{H}}{\partial T}
+=kT^2\frac{\partial\ainner{H}}{\partial T}
+\]
+
+\problem{Master Equation} Given a kinetic model for the probability at state n:
+\[
+\frac{\d p_n}{\d t}=\sum_m k(p_m-p_n)
+\]
+show that the change in entropy $S=-\sum_n p_n\log(p_n)$ as a function of time
+is always nonnegative, $\frac{\d S}{\d t}\ge0$.
+\solution{Solution}
+\begin{align*}
+\frac{\d S}{\d t}&=-\sum_n\left[\frac{\d p_n}{\d t}+\frac{\d p_n}{\d
+t}\log(p_n)\right]\\
+&=-\frac{\d}{\d t}\sum_n p_n
+-\sum_n\frac{\d p_n}{\d t}\log(p_n)\\
+&=-\sum_n\frac{\d p_n}{\d t}\log(p_n)\\
+&=-\sum_n\log(p_n)\sum_mk(p_m-p_n)\\
+&=-\sum_m\log(p_m)\sum_nk(p_n-p_m)\\
+&=-\frac{1}{2}k\sum_{m,n}[\log(p_n)(p_m-p_n)+\log(p_m)(p_n-p_m)]\\
+&=-\frac{1}{2}k\sum_{m,n}[(\log(p_n)-\log(p_m))(p_m-p_n)]\\
+&=\frac{1}{2}k\sum_{m,n}[(\log(p_m)-\log(p_n))(p_m-p_n)]\\
+\end{align*}
+
+\problem{Liouville Theorem} 
+The probability density of phase space in classical mechanics is $\rho(x,p,t)$.
+Write down the complete derivative of the density with respect to time. Use the
+Hamilton equations. Integrate overa  phase space volume element $\Delta x\Delta
+p$ and use the conservation of probability and Gauss therorem to prove the
+Liouville theorem.
+\solution{Solution}
+\begin{align*}
+\dot x&=\frac{\partial H}{\partial p}\\
+\dot p&=-\frac{\partial H}{\partial x}
+\end{align*}
+\begin{align*}
+\frac{\d\rho(x,p,t)}{\d t}&=\frac{\partial\rho}{\partial
+t}+\frac{\partial\rho}{\partial x}\frac{\partial x}{\partial t}
++\frac{\partial\rho}{\partial p}\frac{\partial p}{\partial t}\\
+&=\frac{\partial\rho}{\partial t}
++\frac{\partial\rho}{\partial x}\frac{\partial H}{\partial p}
+-\frac{\partial\rho}{\partial p}\frac{\partial H}{\partial x}\\
+\end{align*}
+\[
+P=\int_{\Delta x\Delta p}\rho\d x\d p
+\]
+\begin{align*}
+\frac{\partial P}{\partial t}
+&=\int_{\Delta x\Delta p}\frac{\partial\rho}{\partial t}\d x\d p\\
+&=-\int_S\rho(x,p,t)(\dot x\,,\dot p)\cdot\left(\begin{array}{c}
+\d A_x \\ \d A_p \end{array}\right)
+\intertext{By Gauss Theorem}
+&=-\int_{\Delta x\Delta p}\frac{\partial\rho}{\partial x}\dot x
++\frac{\partial\rho}{\partial p}\dot p
++\rho\left(\cancel{\frac{\partial^2H}{\partial x\partial p}
+-\frac{\partial^2H}{\partial p\partial x}}\right)\d x\d p\\
+&=\int_{\Delta x\Delta p}\frac{\partial\rho}{\partial p}
+\frac{\partial H}{\partial x}-\frac{\partial\rho}{\partial x}
+\frac{\partial H}{\partial p}
+\end{align*}
+\[
+\frac{\partial\rho}{\partial t}=\frac{\partial\rho}{\partial p}
+\frac{\partial H}{\partial x}-\frac{\partial\rho}{\partial x}
+\frac{\partial H}{\partial p}
+\]
+Substituting this into the original equation, everything cancels, and we get
+\[
+\frac{\d\rho}{\d t}=0
+\]
+
+\problem{Lagrange Multipliers}
+The weight of a particular arrangement from an ensemble is given by
+\[
+W=\frac{L!}{\prod_jn_j!}
+\]
+where L is the number of subsystems and $n_j$ is the number of times a system
+with energy $E_j$ is observed in the arrangement. Find the most probable
+arrangement under the constraints that the total number of systems and total
+energy are fixed. Determine the probability to sample energy $E_j$.
+\solution{Solution}
+\[
+L=\sum_in_i
+\]
+\[
+E=\sum_in_iE_i
+\]
+We will use Lagrange multipliers and Sterlings approx: $\log(x!)=x\log x-x$
+Maximize $\log W$:
+\begin{align*}
+\log W-\alpha L-\beta E&=\log\left(\frac{L!}{\prod_jn_j!}\right)
+-\alpha\sum_in_i-\beta\sum_in_iE_i\\
+&=\log(L!)-\sum_i\log(n_i!)-\alpha\sum_in_i-\beta\sum_in_iE_i\\
+&=\left(\sum_in_i\right)\log\left(\sum_in_i\right)-\sum_in_i\\
+&-\sum_i\left(n_i\log n_i-n_i+\alpha n_i+\beta n_iE_i\right)
+\end{align*}
+\[
+\frac{\partial}{\partial n_i}(\log W-\alpha L-\beta E)
+=-\log n_i-\alpha-\beta E_i=0
+\]
+\[
+n_i=e^{-\alpha-\beta E_i}
+\]
+\[
+P_{E_j}=\frac{e^{-\alpha-\beta E_j}}{\sum_ne^{-\alpha-\beta E_n}}
+=\frac{e^{-\beta E_j}}{\sum_ne^{-\beta E_n}}
+\]
+\[
+\Omega(E)\propto E^N
+\]
+\[
+P(E)\propto\Omega(E)e^{-\beta E}\propto E^Ne^{-\beta E}
+\]
+\begin{align*}
+\frac{\d}{\d E}\log P(E)&=\frac{\d}{\d E}\left[\log(E^N)-\beta E\right]\\
+&=\frac{NE^{N-1}}{E^N}-\beta=0
+\end{align*}
+Most probable energy
+\[
+E^*=\frac{N}{\beta}
+\]
+
+\problem{Equilibrium} Use the Liouvill equation to show that if the phase space
+probability density in classical mechanics is a function of the Hamiltonian
+only, then the system must be in equilibrium.
+\solution{Solution} Liouville Equation:
+\[
+\frac{\partial\rho}{\partial t}=\frac{\partial\rho}{\partial x}
+\frac{\partial H}{\partial p}-\frac{\partial\rho}{\partial p}
+\frac{\partial H}{\partial x}
+\]
+\begin{align*}
+\frac{\partial\rho}{\partial x}&=\frac{\partial\rho}{\partial H}
+\frac{\partial H}{\partial x}\\
+\frac{\partial\rho}{\partial p}&=\frac{\partial\rho}{\partial H}
+\frac{\partial H}{\partial p}\\
+\end{align*}
+\begin{align*}
+\frac{\partial\rho}{\partial t}&=\frac{\partial\rho}{\partial H}
+\frac{\partial H}{\partial x}\frac{\partial H}{\partial p}
+-\frac{\partial\rho}{\partial H}
+\frac{\partial H}{\partial p}\frac{\partial H}{\partial x}\\
+&=\frac{\partial\rho}{\partial H}\left(
+\frac{\partial H}{\partial x}\frac{\partial H}{\partial p}
+-\frac{\partial H}{\partial p}\frac{\partial H}{\partial x}\right)\\
+&=0
+\end{align*}
+
+\problem{Harmonic Oscillator}
+Consider a quantum harmomic oscillator with Hamiltonian
+\[
+H=-\frac{\hbar^2}{2m}\frac{\d^2}{\d x^2}+\frac{1}{2}m\omega^2x^2
+\]
+Write down the energy levels and derive the partition function in the canonical
+ensemble.
+\solution{Solution}
+\[
+E_n=\hbar\omega\left(n+\frac{1}{2}\right)
+\]
+\begin{align*}
+Q&=\sum_ne^{-\beta\hbar\omega\left(n+\frac{1}{2}\right)}\\
+&=e^{-\frac{\beta\hbar\omega}{2}}\sum_ne^{-\beta\hbar\omega n}\\
+&=\frac{e^{-\frac{\beta\hbar\omega}{2}}}
+{1-e^{-\beta\hbar\omega}}
+\end{align*}
+As $\beta\rightarrow0$
+\[
+Q\rightarrow\frac{1-\beta\hbar\omega/2}{1-1+\beta\hbar\omega}
+=\frac{1}{\beta\hbar\omega}-\frac{1}{2}\rightarrow\frac{2\pi}{\beta h\omega}
+\]
+Classical:
+\begin{align*}
+\int e^{-\beta H}\d x\d p&=\int e^{-\frac{\beta p^2}{2m}}\d p
+\int e^{-\frac{\beta m\omega^2x^2}{2}}\d x\\
+&=\sqrt{\frac{2m\pi}{\beta}}\sqrt{\frac{2\pi}{\beta m\omega^2}}\\
+&=\frac{2\pi}{\beta\omega}
+\end{align*}
+
+\problem{Ergodic Hypothesis} Consider the classical harmonic oscillator with energy 
+\[
+E=\frac{1}{2}m\dot x^2+\frac{1}{2}\underbrace{k}_{m\omega^2}x^2
+\]
+Compute the average of the kinetic energy over time and over the microcanonical
+ensemble. Show that both averages are the same.
+\solution{Solution}
+Temporal average:
+\begin{align*}
+x(t)&=A\cos(\omega t+\phi)\\
+v(t)&=-\omega A\sin(\omega t+\phi)
+\end{align*}
+\[
+E=\frac{1}{2}m\omega^2A^2
+\]
+\[
+K=E\sin^2(\omega t+\phi)
+\]
+\begin{align*}
+\ainner{K}_t&=\frac{1}{t}\int_{t_0}^{t_0+t}E\sin^2(\omega\tau+\phi)\d\tau\\
+&=\frac{E}{\omega t}\left[-\frac{1}{4}\sin(2\omega\tau+2\phi)
++\frac{\omega\tau+\phi}{2}\right]_{\omega t_0}^{\omega t_0+\omega t}\\
+&=\frac{E}{\omega t}\left[-\frac{1}{4}\sin(2\omega t+\Delta)
++\frac{1}{4}\sin(\Delta)+\frac{\omega t}{2}\right]\\
+&=\frac{E}{2}-\frac{E}{4\omega t}\left[\sin(2\omega t+\Delta)-\sin(\Delta)\right]
+\end{align*}
+\[
+\lim_{t\rightarrow\infty}\ainner{K}_t=\frac{E}{2}
+\]
+Phase space average:
+\[
+\ainner{K}_S=\frac{\int\frac{1}{2}mv^2
+\delta\left(E-\frac{1}{2}mv^2-\frac{1}{2}kx^2\right)\d x\d v}
+{\int\delta\left(E-\frac{1}{2}mv^2-\frac{1}{2}kx^2\right)\d x\d v}
+\]
+Let $Z_1=\sqrt{\frac{m}{2}}v$, $Z_2=\sqrt{\frac{k}{2}}x$.
+\[
+\int\delta\left(E-\frac{1}{2}mv^2-\frac{1}{2}kx^2\right)\d x\d v
+=\frac{2}{\sqrt{mk}}\int\delta\left(E-Z_1^2-Z_2^2\right)\d Z_1\d Z_2
+\]
+Let $R^2=Z_1^2+Z_2^2$ and $\cos(\theta)=Z_1/R$.
+\begin{align*}
+\frac{2}{\sqrt{mk}}\int\delta\left(E-Z_1^2-Z_2^2\right)\d Z_1\d Z_2
+&=\frac{2}{\sqrt{mk}}\int\delta\left(E-R^2\right)\d\theta R\d R\\
+&=\frac{2\pi}{\sqrt{mk}}\int\delta(E-R^2)\d R^2\\
+&=\frac{2\pi}{\sqrt{mk}}
+\end{align*}
+\begin{align*}
+\int\frac{1}{2}mv^2 \delta\left(E-\frac{1}{2}mv^2-\frac{1}{2}kx^2\right)\d x\d v
+&=\frac{1}{\sqrt{mk}}\int R^2\cos^2\theta\delta(E-R^2)\d\theta\d R^2\\
+&=\frac{E\pi}{\sqrt{mk}}
+\end{align*}
+\[
+\ainner{K}_S=\frac{E}{2}
+\]
+
+\problem{Imperfect Gas}
+\[
+Z=\int e^{-\beta U(r_1,r_2,\dots,r_N)}\prod_i\d r_i
+\]
+\[
+U=\frac{1}{2}\sum_{i\neq j}u_{ij}(r_{ij})
+\]
+\[
+f_{ij}=1-e^{-\beta u_{ij}}
+\]
+\begin{align*}
+Z&\approx\int e^{-\beta\sum_{j,k}u_{jk}(r_{jk})}\prod_i\d r_i\\
+&=\int\prod e^{-\beta u_{jk}(r_{jk})}\prod_i\d r_i\\
+&=\int\prod(1-f_{jk}(r_{jk}))\prod_i\d r_i\\
+&\approx\int\left(1-\frac{1}{2}\sum_{i\neq j}f_{ij}\right)\prod_i\d r_i\\
+&=V^N-\frac{V^{N-2}}{2}\sum_{i\neq j}\int f_{ij}(r_{ij})\d r_i\d r_j\\
+&=V^N\left(1-\frac{N(N-1)}{2V}\int\left(1-e^{-\beta u(r_{12})}\right)\d
+r_{12}\right)
+\end{align*}
+\begin{align*}
+p&=-\frac{\partial F}{\partial V}=\beta^{-1}\frac{\partial}{\partial V}\log(Q)
+=\beta^{-1}\frac{\partial}{\partial V}\log(Z)\\
+&=\beta^{-1}\frac{\partial}{\partial V}\left[
+V^N\left(1-\frac{N(N-1)}{2V}\int4\pi r^2\left(1-e^{-\beta u(r)}\right)\d
+r\right)\right]\\
+&\approx\beta^{-1}\left[NV^{-1}-\frac{\partial}{\partial V}\frac{N^2}{V}
+\int2\pi r^2\left(1-e^{-\beta u(r)}\right)\d r\right]\\
+&=\beta^{-1}\frac{N}{V}+\beta^{-1}\frac{N^2}{V^2}
+\int2\pi r^2\left(1-e^{-\beta u(r)}\right)\d r\\
+&=kT\rho+kT\rho^2 B_2(T)
+\end{align*}
+
+\problem{Liquids}
+\[
+p=kT\frac{\partial}{\partial V}\log(Z)=kT\frac{\frac{\partial Z}{\partial V}}{Z}
+\]
+\[
+r_k=V\bar r_k
+\]
+\[
+Z=\int^V\cdots\int^Ve^{-\beta U}\prod_i\d r_i
+=V^N\int^1\cdots\int^1e^{-\beta U}\prod_i\d\bar r_i
+\]
+\[
+\frac{\partial Z}{\partial V}=NV^{N-1}\int^1e^{-\beta U}\prod_i\d\bar r_i
+-\beta V^N\int^1\frac{\partial U}{\partial V}e^{-\beta U}\prod_i\d\bar r_i
+\]
+\[
+\frac{\partial U}{\partial V}=\sum_{i>j}\frac{\partial u(r_{ij})}{\partial V}
+=\sum_{i>j}\frac{\partial u(r_{ij})}{\partial r_{ij}}\frac{\partial
+r_{ij}}{\partial V}
+\]
+\begin{align*}
+r_{ij}&=\sqrt{(x_i-x_j)^2+(y_i-y_j)^2+(z_i-z_j)^2}=V^{1/3}\bar r_{ij}
+\end{align*}
+\[
+\frac{\partial r_{ij}}{\partial V}
+=\frac{\partial}{\partial V}V^{1/3}\bar r_{ij}
+=\frac{\bar r_{ij}}{3V^{2/3}}
+=\frac{r_{ij}}{3V}
+\]
+\begin{align*}
+\frac{\partial}{\partial V}\log(Z)&=\frac{N}{V}-\frac{N(N-1)}{6VkT}
+\int_V r_{12}\frac{\d u}{\d r_{12}}e^{-\beta\sum_{i\neq j}u_{ij}}
+\d r_1\dots\d r_N\\
+&=\frac{N}{V}-\frac{N(N-1)}{6VkTZ}\int_Vr_{12}\frac{\d u}{\d r_{12}}
+\left[\int_Ve^{-\beta U}\d r_3\dots\d r_N\right]\d r_1\d r_2
+\end{align*}
+
+\problem{Particle in a Box}
+\begin{align*}
+Q&=\sum_{n_x,n_y,n_z}e^{-\beta\frac{\hbar^2\pi^2}{2MV^{2/3}}(n_x^2+n_y^2+n_z^2)}\\
+&\approx\int_0^\infty e^{-\beta\frac{\hbar^2\pi^2}{2MV^{2/3}}(n_x^2+n_y^2+n_z^2)}
+\d n_x\d n_y\d n_z\\
+&=\frac{1}{8}\left(\frac{2MV^{2/3}}{\beta\hbar^2\pi}\right)^{3/2}
+=\left(\frac{M}{2\beta\hbar^2\pi}\right)^{3/2}V
+\end{align*}
+N indistinguishable particles:
+\[
+Q=\frac{1}{N!}\left(\frac{M}{2\beta\hbar^2\pi}\right)^{3N/2}V^N
+\]
+
+\problem{Reaction}
+\[
+K=\frac{P_{Na_2}}{P_{Na}^2}=\frac{V}{kT}\frac{N_{Na_2}}{N_{Na}^2}
+\]
+\[
+dN=dN_{Na_2}=-1/2dN_{Na}
+\]
+\[
+dF=-\mu_{Na}dN_{Na}-\mu_{Na_2}dN_{Na_2}=(2\mu_{Na}-\mu_{Na_2})dN=0
+\]
+$2\mu_{Na}=\mu_{Na_2}$
+\begin{align*}
+\mu_{Na}&=-kT\frac{\partial}{\partial
+N_{Na}}\log\left[\frac{Q_{Na}^{N_{Na}}Q_{Na_2}^{N_{Na_2}}}{N_{Na}!N_{Na_2}!}
+\right]\\
+&\approx-kT\frac{\partial}{\partial N_{Na}}[N_{Na}\log(Q_{Na})]
++kT\frac{\partial}{\partial N_{Na}}[N_{Na}\log(N_{Na})-N_{Na}]\\
+&=-kT\log(Q_{Na})+kT\log(N_{Na})\\
+&=kT\log\left(\frac{N_{Na}}{Q_{Na}}\right)
+\end{align*}
+\[
+\frac{Q_{Na_2}}{Q_{Na}^2}=\frac{N_{Na_2}}{N_{Na}^2}
+\]
+
+\problem{Poisson-Boltzman Equation}
+\begin{align*}
+\nabla^2\phi(r)&=-\frac{4\pi}{\epsilon}\sum_sc_sq_se^{-\beta q_s\phi(r)}\\
+&\approx-\frac{4\pi}{\epsilon}\sum_sc_sq_s[1-\beta q_s\phi(r)]\\
+&=\frac{4\pi\beta}{\epsilon}\sum_sc_sq_s^2\phi(r)=\kappa^2\phi(r)
+\end{align*}
+\[
+\frac{1}{r^2}\frac{\d}{\d r}\left(r^2\frac{\d\phi}{\d r}\right)=\kappa^2\phi(r)
+\]
+\[
+\phi(r)=A\frac{e^{-\kappa r}}{r}+\cancel{B\frac{e^{\kappa r}}{r}}
+\]
+\[
+\phi(r)=\frac{q}{\epsilon r(1+\kappa a)}e^{-\kappa(r-a)}
+\]
+\[
+Q=\int_a^\infty\rho(r)4\pi r^2\d r
+=-\frac{\epsilon}{4\pi}\int_a^\infty(\nabla^2\phi)4\pi r^2\d r
+\]
+Probability to find ion within $r+\d r$ is
+\[
+\rho(r)4\pi r^2\d r=\frac{q\kappa^2r}{1+\kappa a}e^{-\kappa(r-a)}\d r
+\]
+
+\problem{Boltzmann Equation}
+\[
+\frac{\partial f_i}{\partial t}+v_i\frac{\partial f_i}{\partial
+r}+\frac{F_i}{m_i}\frac{\partial f_i}{\partial v_i}
+=\sum_j\int[f_i'f_j'-f_if_j]g_{ij}2\pi b\d b\d v_i
+\]
+\[
+H(t)=\int f(r,v,t)\log[f(r,v,t)]\d r\d v
+\]
+\begin{align*}
+\frac{\d H}{\d t}&=\int\frac{\partial f}{\partial t}\log(f)\d r\d v
++\cancel{\int\frac{\partial f}{\partial t}\d r\d v}\\
+&=\cancel{-\int\log(f)v\frac{\partial f}{\partial r}\d r\d v
+-\int\log(f)\frac{F}{m}\frac{\partial f}{\partial v}\d r\d v}\\
+&+\int\log(f)[f'f_1'-ff_1]g2\pi b\d b\d v\d r\\
+&=\int\log(f)[f'f_1'-ff_1]g2\pi b\d b\d v\d r\\
+&=\int\log(f_1)[f'f_1'-ff_1]g2\pi b\d b\d v\d r\\
+&=-\int\log(f')[f'f_1'-ff_1]g2\pi b\d b\d v\d r\\
+&=-\int\log(f_1')[f'f_1'-ff_1]g2\pi b\d b\d v\d r\\
+&=\frac{1}{4}\int\log\left(\frac{ff_1}{f'f_1'}\right)[f'f_1'-ff_1]2\pi b\d b\d
+r\d v
+\end{align*}
+Work out Verlet Algorithm on paper
+
+\problem{Umbrella Sampling}
+\begin{align*}
+P(q_0)&=\frac{\ainner{\delta(q(X)-q_0)e^{\beta
+V(q)}}_{U+V}}{\ainner{e^{\beta V(q)}}_{U+V}}\\
+&=\frac{e^{\beta V(q_0)}\ainner{\delta(q(X)-q_0)}_{U+V}}{\ainner{e^{\beta
+V(q)}}_{U+V}}
+\end{align*}
+
+\begin{description}
+\item[Prokaryotic cell] Primitive cell without a nucleus
+\item[Cytoplasm] Internal cell fluid - no compartments
+\item[Cell wall] Rigid layer surrounding some cells. Prevents over expansion due
+to osmotic pressure
+\item[Cell membrane] Collection of phospholipids that form a bilayer and define
+the boundary between inside and outside of all cells
+\item[Capsule] External layer on prokaryotic cells. Made of sugar, extra
+protection
+\item[Ribosome] Compartment in which protein synthesis takes place from
+information provided by RNA
+\item[Golgi apparatus] Organelle that packages biomolecules for delivery.
+\item[Golgi vesicles] Vesicles that transport enzymes and other material through
+ER to Golgi body
+\item[Smooth ER] Synthesizes lipids and steroids
+\item[Rough ER] Synthesizes proteins
+\item[Nucleus] Where genetic material is stored
+\item[Mitochondrion] Organelle that generates ATP
+\item[Lysosome] Organelle that breaks up waste materails
+\end{description}
+\end{multicols}
+\end{document}
+

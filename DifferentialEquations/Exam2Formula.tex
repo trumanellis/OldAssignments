@@ -1,0 +1,338 @@
+\documentclass[letterpaper]{article}
+\usepackage[top=.5in, bottom=.5in, left=.5in, right=.5in]{geometry}
+\usepackage[fleqn]{amsmath}
+\usepackage{amsfonts,amssymb,amsthm}
+\usepackage{multicol}
+\usepackage{amsthm}
+\usepackage{algorithmic}
+\usepackage{ulem}
+\usepackage{cancel}
+% \usepackage{cases}
+
+\setlength{\parindent}{0in}
+\setlength{\parskip}{0ex}
+
+\providecommand{\abs}[1]{\left\lvert#1\right\rvert}
+\providecommand{\norm}[1]{\left\lVert#1\right\rVert}
+\providecommand{\inner}[2]{\left(#1\,,#2\right)}
+\providecommand{\ainner}[2]{\left\langle#1\,,#2\right\rangle}
+
+\def\d{\mathrm{d}}
+
+\pagestyle{empty}
+\begin{document}
+\footnotesize
+\begin{align*}
+\left(\uuline{A}u\right)_{k(i,j)}&=\frac{1}{h^2}\left\{4u_{k(i,j)}
+-\underbrace{u_{k(i+1,j)}}_{i<m}
+-\underbrace{u_{k(i-1,j)}}_{i>1}
+-\underbrace{u_{k(i,j+1)}}_{j<m}
+-\underbrace{u_{k(i,j-1)}}_{j>1}\right\}
+=f_{k(i,j)}+\frac{1}{h^2}\left\{\underbrace{g_{k(m+1,j}}_{i=m}
++\underbrace{g_{k(0,j)}}_{i=0}
++\underbrace{g_{k(i,m+1)}}_{j=m+1}
++\underbrace{g_{k(i,0)}}_{j=0}\right\}
+\end{align*}
+\begin{multicols}{2}
+\footnotesize
+\[
+A_{k(i,j),k(i',j')}=\begin{cases} 
+\frac{4}{h^2} &\mbox{if } k = k' \\
+-\frac{1}{h^2} & \mbox{if } (i=i'\pm1\,, j=j')\text{ or }
+(i=i'\,,j=j'\pm1)
+\end{cases}
+\]
+\[
+\lambda^{\alpha,\beta}=\frac{4}{h^2}\left\{\sin^2\left(\frac{\alpha\pi}{2(m+1)}\right)
++\sin^2\left(\frac{\beta\pi}{2(m+1)}\right)\right\}
+\]
+\[
+\mathbf{v}_{k(i,j)}^{\alpha,\beta}=\sin\left(\frac{\alpha\pi i}{m+1}\right)
+\sin\left(\frac{\beta\pi j}{m+1}\right)\,,\quad 1\le\alpha\,,\beta\le m
+\]
+\[
+\lambda_{\alpha,\beta}=(\alpha^2+\beta^2)\pi^2
+\]
+\[
+\mathbf{v}_{\alpha,\beta}(x,y)=\sin(\alpha\pi x)\sin(\beta\pi y)
+\]
+
+\uline{Theorem} If $u\in C^4(\bar \Omega)$ then $\exists C>0$ (independent of
+$h$) such that, for $h$ sufficiently small,
+\[
+\norm{u_{i,j}-u(x_i,y_j)}\le \norm{\uuline{A}^{-1}}\norm{\delta_h}=C_uh^2
+\]
+
+\uline{Problem Statement}
+Given $\Omega\subset\mathbb{R}^d$,
+$\uuline{a}:\bar\Omega\rightarrow\mathbb{R}^{d\times d}$,
+$b:\bar\Omega\rightarrow\mathbb{R}^d$, and $\{c,f,\tilde g_d,\tilde
+g_N\}:\bar\Omega\rightarrow\mathbb{R}$
+
+Find $u:\bar\Omega\rightarrow\mathbb{R}$ s.t.
+\begin{align*}
+-\nabla\cdot(\uuline{a}\nabla u+bu)+cu&=f\,,\quad \Omega\\
+u&=g_d\,,\quad\Gamma_D\\
+-(a\nabla u+bu)\cdot\nu&=g_N\,,\quad\Gamma_N
+\end{align*}
+
+\uline{Galerkin Method} 
+Find $u_h\in V_h+g$ s.t.
+\[
+a(u_h,v)=f(v)\,,\quad\forall v\in V_h
+\]
+
+\uline{Ritz Method} $J(v)=\frac{1}{2}a(v,v)-f(v)$ Find $u_h\in V_h+g$ s.t.
+\[
+J(u_h-g)<J(v)\,,\quad\forall v\in V_h\,,\quad v\neq u_h-g
+\]
+
+\uline{Continuous (bounded)}
+\[
+\exists\eta^*>0\text{ s.t. }\abs{a(u,v)}\le\eta^*\norm{u}_H\norm{v}_H\,,\forall
+u,v\in H
+\]
+
+\uline{Coercive}
+\[
+\exists\eta_*>0\text{ s.t. }a(u,u)\ge\eta_*\norm{u}_H^2\,,\forall u\in H
+\]
+
+\uline{Energy Norm}
+If $a(u,v)$ is bilinear, continuous, coercive, and symmetric it defines a norm
+\[
+\norm{u}_E=\sqrt{a(u,u)}
+\]
+\[
+\sqrt{\eta_*}\norm{u}_H\le\norm{u}_E\le\sqrt{\eta^*}\norm{u}_H
+\]
+
+\uline{Lax-Milgram}
+If H is Hilbert,
+$a:H\times H\rightarrow\mathbb{R}$ is bilinear, bounded, coercive
+and $F:H\rightarrow\mathbb{R}$ is linear, bounded, then $\exists! w\in H$ s.t.
+\[
+a(w,v)=F(v)\,,\quad\forall v\in H
+\]
+
+\uline{Poincar\`e Inequality} If $\Omega\subset\mathbb{R}^d$ bounded then
+$\exists\quad C(\Omega)\,,C'(\Omega)>0$ s.t.
+\begin{align*}
+\norm{v}_{L_2}&\le C(\Omega)\norm{\nabla v}_{L_2}\,,\quad\forall v\in
+H_0^1(\Omega)\\
+\norm{v}_{H^1}&\le C'(\Omega)\norm{\nabla v}_{L_2}\,,\quad\forall v\in
+H_0^1(\Omega)
+\end{align*}
+
+\uline{BVP Solvability} Given $\Omega\subset\mathbb{R}^d$ bounded with Lipshitz
+boundary, $\Gamma_D=\Gamma$, $\tilde g_D\in H^1(\Omega)$ and $f\in
+H^{-1}(\Omega)$. Consider the problem of finding $u=\tilde u+\tilde h_d$,
+$\tilde u\in H_0^1(\Omega)$ s.t.
+\[
+\inner{\uuline{a}\nabla u}{\nabla v}+\inner{bu}{\nabla
+v}+\inner{cu}{v}=\ainner{f}{v}\,,\quad \forall v\in H_0^1(\Omega)
+\]
+or 
+\[
+\underbrace{\inner{\uuline{a}\nabla\tilde u}{\nabla v}+\inner{b\tilde u}{\nabla
+v}+\inner{c\tilde u}{v}}_{a(\tilde u,v)}
+=\underbrace{\ainner{f}{v}-a(\tilde g_D,v)}_{F(v)}
+\]
+\begin{enumerate}
+\item If $\uuline{a}\in L_\infty(\Omega)^{d\times d}$, $b\in L_\infty(\Omega)^d$
+and $c\in L_\infty(\Omega)$ then $a(\tilde u, v)$ and $F(v)$ are bounded.
+\item Additionally, if $\uuline{a}$ is symmetric and uniformly positive
+definite, $c\ge0$ and $\norm{b}_\infty<\frac{a_*}{C(\Omega)}$ then $a(\tilde
+u,v)$ is coercive.
+\item Additionally, if $b\equiv 0$, then $a(\tilde u,v)$ is symmetric and there
+is an energy $J(\cdot)$, inner product $a(\cdot,\cdot)$ and norm
+$\norm{\cdot}_E$ associated with the problem
+\end{enumerate}
+By Lax-Milgram: 1. + 2. $\Rightarrow\exists!$ solution $u=\tilde u+\tilde g_D$
+
+1. + 2. + 3. $\Rightarrow\quad\tilde u$ is a strict minimum of $J$
+
+\uline{Proof of 1.}
+\begin{align*}
+\abs{a(\tilde u,v)}&\le\abs{(\uuline{a}\nabla\tilde u,\nabla v)}
++\abs{(b\tilde u,\nabla v)}+\abs{(c\tilde u,v)}\\
+&\le\int_\Omega\abs{\uuline{a}\nabla\tilde u\cdot v}\d\Omega
++\int_\Omega\abs{b\tilde u\cdot \nabla v}\d\Omega
++\int_\Omega\abs{c\tilde u v}\d\Omega\\
+&\le\int_\Omega\abs{\uuline{a}\nabla\tilde u}\abs{\nabla v}\d\Omega
++\int_\Omega\abs{b\tilde u}\abs{\nabla v}\d\Omega
++\int_\Omega\abs{c\tilde u}\abs{v}\d\Omega\\
+&\le||\uuline{a}||_\infty\inner{\abs{\nabla\tilde u}}{\abs{\nabla v}}
++||b||_\infty\inner{\abs{\tilde u}}{\abs{\nabla v}}
++||c||_\infty\inner{\abs{\tilde u}}{\abs{v}}\\
+&\le||\uuline{a}||_\infty\norm{\nabla \tilde u}_{L_2}\norm{\nabla v}_{L_2}
++||b||_\infty\norm{\tilde u}\norm{\nabla v}
++||c||_\infty\norm{\tilde u}\norm{v}\\
+&\le\underbrace{(||\uuline{a}||_\infty+||b||_\infty+||c||_\infty)}_{\eta^*>0}
+\norm{\tilde u}_{H^1}\norm{v}_{H^1}\\
+\end{align*}
+\begin{align*}
+\abs{F(v)}&\le\abs{\langle f,v\rangle}+\abs{a(\tilde g,v)}\\
+&\le C\norm{v}_{H^1}+\eta^*\norm{\tilde g_D}_{H^1}\norm{v}_{H^1}\,,\quad\quad f\in H^{-1}\\
+&\le \hat C\norm{v}_{H^1}
+\end{align*}
+
+\uline{Proof of 2.}
+\begin{align*}
+a(v,v)&\ge(\uuline{a}\nabla v,\nabla v)+(bv,\nabla v)+(cv,v)\\
+&\ge\uuline{a}_*\norm{\nabla v}_{L_2}^2-\abs{(bv,\nabla v)}+(cv,v)\,,
+\text{ Cauchy-Schwarz}\\
+&\ge\uuline{a}_*\norm{\nabla v}_{L_2}^2
+-\norm{b}_\infty\norm{v}_{L_2}\norm{\nabla v}_{L_2}\,,\text{ Poincare}\\
+&\ge\uuline{a}_*\norm{\nabla v}_{L_2}^2
+-\norm{b}_\infty C(\Omega)\norm{\nabla v}_{L_2}\\
+&\ge\left(\frac{\uuline{a}_*}{C(\Omega}
+-\norm{b}_\infty\right) C(\Omega)\norm{\nabla v}_{L_2}\\
+&\ge\left(\frac{\uuline{a}_*}{C(\Omega}
+-\norm{b}_\infty\right)\frac{C(\Omega)}{(C'(\Omega))^2}\norm{v}_{H^1}\\
+&\ge\eta_*\norm{v}_{H^1}^2\,,\quad\forall v\in H_0^1(\Omega)
+\end{align*}
+
+\uline{Stability} Choose $v=u_h-g\in V_h$
+\begin{align*}
+a(u_h,u_h-g)&=f(u_h-g)\\
+a(u_h-g,u_h-g)&=f(u_h-g)-a(g,u_h-g)\\
+a_*\norm{u_h-g}_V^2&\le\norm{f}_V\norm{u_h-g}_V+a^*\norm{g}_V\norm{u_h-g}_V\\
+\norm{u_h-g}_V&\le\frac{\norm{f}_V+a^*\norm{g}_V}{a_*}
+\end{align*}
+
+\uline{Error Estimation} 
+\[
+a(u-u_h,v)=0\,,\quad\forall v\in V_h
+\]
+Take $v\mapsto u-u_h-(u-v)\,,\quad v\in V_h$
+\begin{align*}
+a(u-u_h,u-u_h)&=a(u-u_h,u-v)\,,\quad\forall v\in V_h\\
+a_*\norm{u-u_h}_V^2&\le a^*\norm{u-u_h}_V\norm{u-v}_V\,,\quad\forall v\in V_h\\
+\norm{u-u_h}_V&\le\frac{a^*}{a_*}\norm{u-v}_V\,,\quad\forall v\in V_h\\
+\end{align*}
+
+\uline{Cea's Lemma} 
+\[
+\norm{u-u_h}_V\le\left(\frac{a^*}{a_*}\right)\inf_{v\in V_h}\norm{u-v}_V
+\]
+\uline{Galerkin Orthogonality}
+\[
+a(u-u_h,v)=0\,,\quad\forall v\in V_h
+\]
+\uline{Theorem}
+\[
+\norm{u-u_h}_a=\inf_{v\in V_h}\norm{u-v}_a
+\]
+\uline{Proof}
+\begin{align*}
+\norm{u-u_h}_a^2&=a(u-u_h,u-uh)\\
+&=a(u-u_h,u-v)+\cancel{a(u-u_h,v-u_h)}\\
+&\le\norm{u-u_h}_a\norm{u-v}_a
+\end{align*}
+
+\uline{Ciarlet FEM Definition} Let
+\begin{enumerate}
+\item $E\subseteq\mathbb{R}^d$ domain with piecewise smooth boundary
+\item $\mathcal{P}$ is a finite dimensional vector space of functions on $E$
+(shape functions)
+\item $\mathcal{N}=\{N_1,\dots,N_k\}$ is a basis for $\mathcal{P}'$, a set of
+linear functionals on $\mathcal{P}$ (nodal variables or DOFs)
+\end{enumerate}
+Then $(E,\mathcal{P},\mathcal{N})$ is a finite element
+
+\uline{Definition} Let $\{\phi_1,\dots,\phi_k\}$ be a basis for $\mathcal{P}$
+dual to $\mathcal{N}$, $(N_i(\phi_j)=\delta_{ij})$
+
+\uline{Unisolvence} If $\mathrm{dim}\mathcal{P}=k$ and
+$\{N_1,\dots,N_k\}\subseteq\mathcal{P}'$
+
+$\{N_1,\dots,N_k\}$ is a basis iff
+
+$N_i(v)=0\,,\quad\forall i\,,\text{ then }v=0$
+
+\uline{Peano Kernel Theorem}
+If $L$ is a continuous linear functional on $C^{k+1}(a,b)$ s.t.
+$L(p)=0\,,\forall p\in\mathbb{P}$. Then
+\[
+L(f)=\int_a^b f^{(k+1)}(\xi)K(\xi)\d\xi
+\]
+\[
+K(\xi)=\frac{1}{k!}L\left( (\cdot-\xi)^k_+ \right)
+\]
+
+\uline{Sobolev Spaces}
+\[
+W^{m,r(\Omega)}=\left\{f:D^\alpha f\in L^r(\Omega)\,,\forall\alpha\le m\right\}
+\]
+
+\uline{Norm and Semi-norm}
+\[
+\norm{f}_{m,r,\Omega}=\left(\sum_{\abs{\alpha}\le m}\norm{D^\alpha
+f}_{0,r,\Omega}^r\right)^{\frac{1}{r}}
+\]
+\[
+\abs{f}_{m,r,\Omega}=\left(\sum_{\abs{\alpha}=m}\norm{D^\alpha
+f}_{0,r,\Omega}^r\right)^{\frac{1}{r}}
+\]
+
+\uline{Theorem} If E is connected with Lipshitz boundary, then $\exists$
+constant $C=C(E)$ s.t. $\forall v\in W^{k+1,r}(E)$
+\[
+\inf_{p\in\mathbb{P}_k(E)}\norm{v-p}_{k+1,r,E}\le C(E)\abs{v}_{k+1,r,E}
+\]
+
+\uline{Theorem} $F:\hat E\rightarrow E$ affine, $F(\hat x)=\uuline{A}\hat
+x+\uline{b}$
+\begin{align*}
+\hat v(\hat x)&=v(F(\hat x))\in W^{m,r}(\hat E)\\
+v(x)&=\hat v(F^{-1}(x))
+\end{align*}
+$\exists C=C(m,d)$ s.t. $\forall v\in W^{m,r}(E)$
+\begin{align*}
+\abs{\hat v}_{m,r,\hat E}&\le
+C\norm{\uuline{A}}^m\abs{\det\uuline{A}}^{-\frac{1}{r}}\abs{v}_{m,r,E}\\
+\abs{v}_{m,r,E}&\le
+C\norm{\uuline{A}^{-1}}^m\abs{\det\uuline{A}}^{\frac{1}{r}}\abs{\hat
+v}_{m,r,\hat E}
+\end{align*}
+
+\uline{Theorem}
+\[
+\inf_{\hat p\in\mathbb{P}+k}\norm{\hat v-\hat p}_{k+1,r,\hat E}\le C(\hat
+E)\abs{\hat v}_{k+1,r,E}
+\]
+
+\uline{Theorem}
+\begin{align*}
+\norm{A}&\le\frac{h}{\hat\rho}\\
+\norm{A^{-1}}&\le\frac{\hat h}{\rho}\\
+\det A&=\frac{\abs{E}}{|\hat E|}
+\end{align*}
+
+\uline{Corollary}
+$\forall v\in W^{k+1,p}(E)$, $m\le k+1$
+\[
+\inf_{p\in \mathbb{P}_k}\abs{v-p}_{m,r,E}\le C(\hat E)\frac{h^{k+1}}{\rho^m}
+\abs{v}_{k+1,r,E}
+\]
+\uline{Proof}
+\begin{align*}
+\inf_{p\in\mathbb{P}_k}\abs{v-p}_{m,r,E}&\le
+\left(\inf_{\hat p\in\mathbb{P}_k}(\hat v-\hat p)_{m,r,\hat E}\right)
+\norm{A^{-1}}^m\abs{\det A}^{\frac{1}{r}}\\
+&\le C(\hat E)\norm{A^{-1}}^m\abs{\det A}^{\frac{1}{r}}
+\abs{\hat v}_{k+1,r,\hat E}\\
+&\le C(\hat E)\norm{A^{-1}}^m\norm{A}^{k+1}\abs{\hat v}_{k+1,r,E}\\
+&\le C(\hat E)\frac{\hat h^m h^{k+1}}{\rho^m\hat\rho^{k+1}}\abs{\hat v}_{k+1,r,E}\\
+\end{align*}
+
+\uline{Corollary}
+If the mesh is quasi-regular ($\rho\ge\alpha h$ for some $\alpha>0$) then
+\[
+\inf_{p\in\mathbb{P}_k}(E)\abs{v-p}_{m,r,E}\le C(\hat E,\alpha)h^{k+1-m}
+\abs{v}_{k+1,r,E}
+\]
+\end{multicols}
+\end{document}
+

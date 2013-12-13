@@ -1,0 +1,513 @@
+\documentclass[letterpaper,11pt,intlimits,sumlimits]{amsart}
+
+% Packages
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{ifthen}
+\usepackage{lastpage}
+\usepackage{latexsym}
+\usepackage{setspace}
+\usepackage{txfonts}
+\usepackage{xspace}
+
+% Expanded Margins
+\setlength{\textheight}{8.65in}
+\setlength{\textwidth}{6.5in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\topmargin}{.200in}
+
+% Line Spacing
+\singlespacing
+%\onehalfspacing
+%\doublespacing
+
+% Set appropriate header/footer information on each page
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \renewcommand{\headheight}{20pt}
+    \renewcommand{\headrulewidth}{1pt}
+    \renewcommand{\footrulewidth}{0pt}
+    \lhead{
+        CAM 386M Exam 3 Review
+    }
+    \rhead{
+        Page \thepage{} of \pageref{LastPage}
+    }
+}
+\pagestyle{plain}
+
+% Paragraph spacing
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1.25ex plus 0.5ex minus 0.5ex}
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+
+\newcommand{\norm}[1]{\left|\left|{#1}\right|\right|}
+\newcommand{\normone}[1]{\norm{#1}_{1}}
+\newcommand{\normtwo}[1]{\norm{#1}_{2}}
+\newcommand{\norminfty}[1]{\norm{#1}_{\infty}}
+\newcommand{\normF}[1]{\norm{#1}_{\textrm{F}}}
+\newcommand{\abs}[1]{\left|{#1}\right|}
+\newcommand{\del}[1]{\delta\!{#1}}
+\newcommand{\T}{\textrm{T}}
+\newcommand{\dualpair}[3][]{{\langle{}{#2},{#3}\rangle{}}_{#1}\xspace{}}
+\newcommand{\innerprod}[3][]{{\left({#2},{#3}\right)}_{#1}\xspace{}}
+\newcommand{\dist}[2]{\textrm{d}\left( {#1}, {#2} \right)}
+\newcommand{\ballo}[2]{B\left( {#1}, {#2} \right)}
+\newcommand{\ballc}[2]{\bar{B}\left( {#1}, {#2} \right)}
+\newcommand{\closure}[1]{\overline{#1}}
+\newcommand{\interior}[1]{\,\textrm{int}\,{#1}\,}
+\newcommand{\naturals}{\mathbb{N}}
+\newcommand{\powerset}[1]{\mathcal{P}\left({#1}\right)}
+\newcommand{\Borel}[1]{\mathcal{B}\left({#1}\right)}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\keyphrase}[1]{\textbf{#1}}
+\newcommand{\almosteverywhere}{\,\textrm{a.e.}\,}
+\DeclareMathOperator{\LD}{LD}
+\DeclareMathOperator{\LI}{LI}
+\DeclareMathOperator{\linear}{linear}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\open}{open}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\closed}{closed}
+\DeclareMathOperator{\compact}{compact}
+\DeclareMathOperator{\continuous}{continuous}
+\DeclareMathOperator{\measurable}{measurable}
+\DeclareMathOperator{\sign}{sign}
+
+\begin{document}
+
+\section*{Properties of a $\sigma$-algebra (Prop. 3.1.1)}
+
+Given $X$, $S\subset\powerset{X}$ is a
+\keyphrase{$\boldsymbol{\sigma}$-algebra} iff
+\begin{align*}
+    &S \neq \emptyset \tag{i} \\
+    &A \in S \implies A' = X - A \in S \tag{ii} \\
+    &A_{1}, A_{2},\ldots \in S \implies
+    \bigcup_{i=1}^{\infty} A_{i} \in S \tag{iii}
+\end{align*}
+
+The $\sigma$-algebra definition implies all of
+\begin{align*}
+    &A_{1}, \ldots,A_{n} \in S \implies
+        \bigcup_{i=1}^{n} A_{i} \in S
+    \tag{3.1.1 i} \\
+    &\emptyset, X \in S
+    \tag{3.1.1 ii} \\
+    &A_{1}, A_{2},\ldots \in S \implies
+        \bigcap_{i=1}^{\infty} A_{i} \in S
+    \tag{3.1.1 iii} \\
+    &A_{1},\ldots,A_{n} \in S \implies
+        \bigcap_{i=1}^{n} A_{i} \in S
+    \tag{3.1.1 iv} \\
+    &A,B \in S \implies A-B \in S
+    \tag{3.1.1 v}
+\end{align*}
+
+If $K\subset\powerset{X}$ then \keyphrase{K generates S}
+\[
+    S\!\left( K \right) \coloneqq
+    \bigcap \left\{ S, \sigma-\text{algebra} : K\subset{}S \right\}
+\]
+using that
+\[
+    S_{\iota} \in \powerset{X}, \iota \in I
+    \text{ are $\sigma$-algebras}
+    \implies
+    \bigcap_{\iota\in{}I} S_{\iota}
+    \text{is a $\sigma$-algebra}
+\]
+
+If $f:X \to Y$ and $S\subset\powerset{X}$ is a $\sigma$-algebra
+then
+    $R \coloneqq \left\{
+        E\in\powerset{Y} : f^{-1}\left( E \right) \in S
+    \right\}$
+is a $\sigma$-algebra in Y.
+
+If $f:X \to Y$ is bijective
+and $S\subset\powerset{X}$ is a $\sigma$-algebra
+then both
+\begin{align*}
+    &f\left( S \right) \coloneqq \left\{ f(A) : A \in S \right\}
+    \text{ is a $\sigma$-algebra in $Y$ }
+    \tag{a} \\
+    &S\!\left( K \right) = S\subset\powerset{X}
+        \implies S\!\left( f\left(K\right) \right)
+        = f\left(S\right)\in\powerset{Y}
+    \tag{b}
+\end{align*}
+
+\section*{Properties of Borel sets (Prop. 3.1.4, 3.1.5 combined)}
+
+$\boldsymbol{\Borel{\reals^{n}}} \coloneqq
+S\!\left( \text{open sets in $\reals^{n}$} \right)$
+
+(3.1.4) 
+If $f:\reals^{n}\to\reals^{m}$ is continuous and $B\in\Borel{\reals^{m}}$
+then $f^{-1}\left( B \right)\in\Borel{\reals^{n}}$.
+Additionally, if $f$ is a bijection with a continuous $f^{-1}$ then
+$f\left( \Borel{\reals^{n}} \right) = \Borel{\reals^{n}}$.
+
+(3.1.5) $E\in\Borel{\reals^{n}} \wedge F\in\Borel{\reals^{m}}
+\implies E\times{}F \in \Borel{\reals^{n}\times\reals^{m}}$
+
+\section*{Properties of an (abstract) measure (Prop. 3.1.6)}
+
+Function $\mu:S\to\left[ 0,\infty \right] \in \bar{\reals}$ is a
+\keyphrase{measure} iff
+\begin{align*}
+    &\mu \neq \infty
+    \tag{i} \\
+    &\mu\left( \bigcup_{i=1}^{\infty} E_{i} \right)
+    = \sum_{i=1}^{\infty} \mu\left( E_{i} \right)
+    \coloneqq \lim_{n\to\infty}\sum_{i=1}^{n} \mu\left( E_{i} \right)
+    & &\text{$E_{i}$ pairwise disjoint}
+    \tag{ii}
+\end{align*}
+
+The measure definition implies all of
+\begin{align*}
+    & \mu\left( \emptyset \right) = 0
+    \tag{3.1.6 i} \\
+    &\mu\left( \bigcup_{i=1}^{n} E_{i} \right)
+    = \sum_{i=1}^{n} \mu\left( E_{i} \right)
+    & &\text{$E_{i}$ pairwise disjoint}
+    \tag{3.1.6 ii} \\
+    &E\subset{}F \implies \mu\left( E \right)\leq\mu\left( F \right)
+    \tag{3.1.6 iii} \\
+    &\mu\left( \bigcup_{i=1}^{\infty} E_{i} \right)
+    \leq \sum_{i=1}^{\infty} \mu\left( E_{i} \right)
+    & &\text{$E_{i}\in{}S, i=1,2,\ldots$}
+    \tag{3.1.6 iv} \\
+    &\ldots \subset E_{i} \subset E_{i+1} \subset \ldots \implies
+    \mu\left( \bigcup_{i=1}^{\infty} \right)
+    = \lim_{n\to\infty} \mu\left( E_{n} \right)
+    \tag{3.1.6 v} \\
+    &\ldots \supset E_{i} \supset E_{i+1} \subset \ldots \implies
+    \mu\left( \bigcap_{i=1}^{\infty} \right)
+    = \lim_{n\to\infty} \mu\left( E_{n} \right)
+    \tag{3.1.6 vi}
+\end{align*}
+
+\section*{Construction of the Lebesgue measure}
+
+For a ``mesh size'' $k\in\naturals$, $\reals^{n}$ can be partitioned by a set
+of half-open, half-closed ``cubes'', i.e.
+\[
+\mathcal{S}^{k}\left(\reals^{n}\right) \coloneqq \left\{
+    \left[\frac{\nu_{i}}{2^{k}},\frac{\nu_{i+1}}{2^{k}}\right)
+    \times \cdots \times
+    \left[\frac{\nu_{i}}{2^{k}},\frac{\nu_{i+1}}{2^{k}}\right)
+    : \nu\in\mathbf{Z}^{n}
+\right\}.
+\]
+Any open set $G$ can be similarly partitioned
+\mbox{$\mathcal{S}^{k}\left( G \right) \coloneqq \left\{
+\sigma\in\mathcal{S}^{k}\left( \reals^{n} \right):\closure{\sigma}\subset{}G
+\right\}$}.
+Define
+\mbox{$S^{k}\left( G \right) \coloneqq
+\bigcup\limits_{\sigma\in\mathcal{S}^{k}\left( G \right)}\sigma$}, which is
+monotone in $k$ (i.e. \mbox{
+$S^{k}\left( G \right)\subset{}S^{k+1}\left( G \right)$}) and allows
+recovery of the original set (i.e.
+\mbox{$G = \cup_{k=0}^{\infty} S^{k}\left( G \right)$}). Define the
+\keyphrase{prototype for the Lebesgue measure}.
+\[
+m(G) \coloneqq
+\lim_{k\to\infty} \frac{1}{2^{kn}} \cdot \#\mathcal{S}^{k}\left( G \right).
+\]
+
+From the prototype Lebesgue measure definition follows all of
+\begin{align*}
+    G\subset{}H \open &\implies m(G) \leq m(H)
+    \tag{i} \\
+    G,H \open,G\cap{}H = \emptyset &\implies m(G\cap{}H) = m(G)+m(H)
+    \tag{ii} \\
+    G\subset\reals^{n}, H\subset\reals^{m} \open &\implies
+    m(G\times{}H) = m(G)\cdot{}m(H)
+    \tag{iii} \\
+    m\left( (a,b) \right) &= b - a
+    \tag{iv} \\
+    m\left( (a_{1},b_{1}) \times\cdots\times (a_{n},b_{n}) \right)
+    &= \prod_{i=1}^{n} (b_{i} - a_{i})
+    \tag{v}
+\end{align*}
+
+\[
+    G\subset\reals^{n} \open \implies m(G) = \sup \left\{
+        m(H), H \open, \closure{H} \compact \subset G
+    \right\}
+\]
+
+Subadditivity and $\sigma$-subadditivity of the measure for open sets:
+\begin{align*}
+    m\left( G_{1}\cup{}G_{2} \right) &\leq m(G_{1}) + m(G_{2})
+    \tag{i} \\
+    m\left(\bigcup_{i=1}^{n} G_{i}\right)
+    &\leq
+    \sum_{i=1}^{n}m\left(G_{i}\right)
+    \tag{ii} \\
+    m\left(\bigcup_{i=1}^{\infty}G_{i}\right)
+    &\leq
+    \sum_{i=1}^{\infty}m\left(G_{i}\right)
+    \tag{iii}
+\end{align*}
+
+\[
+    G \open \implies
+    \inf_{F} \left\{ m\left( G-F) : F \closed \subset G \right) \right\} = 0
+\]
+\[
+    F_{1}, F_{2} \closed, F_{1}\cap{}F_{2}=\emptyset
+    \implies
+    \exists G_{1}\open\supset{}F_{1},
+    \exists G_{2}\open\supset{}F_{2},
+    G_{1}\cap{}G_{2}=\emptyset
+\]
+
+\section*{Characterization of Lebesgue measurable sets (Prop. 3.2.3, Thm 3.2.1)}
+
+Obtain the \keyphrase{Lebesgue measure} by extending the prototype measure:
+\[
+    m^{*}\left( E \right) \coloneqq \inf \left\{
+        m\left( G \right): G \open \supset E
+        \right\} \; \forall E \in \reals^{n}
+\]
+from which it follows that
+\begin{align*}
+    E \open &\implies m^{*}\left( E \right) = m\left( E \right)
+    \tag{i} \\
+    E \subset F &\implies m^{*}\left( E \right)\leq{}m^{*}\left( F \right)
+    \tag{ii} \\
+    m^{*}\left( \bigcup_{i=1}^{\infty} E_{i} \right)
+    &\leq
+    \sum_{i=1}^{\infty} m^{*} \left( E_{i} \right)
+    \tag{iii}
+\end{align*}
+
+The following three families of sets coincide with each other
+\begin{align*}
+    &\left\{E\subset\reals^{n}:
+    \inf_{G \open\supset{}E\phantom{\supset{}F\closed}}
+    \;m^{*}\left( G-E \right) = 0
+    \right\}
+    \tag{3.2.3 a} \\
+    &\left\{E\subset\reals^{n}:
+    \inf_{G\open\supset{}E\supset{}F\closed}
+    \;m^{\phantom{*}}\left( G-F \right) = 0
+    \right\}
+    \tag{3.2.3 b} \\
+    &\left\{E\subset\reals^{n}:
+    \inf_{\phantom{G\open\supset}E\supset{}F\closed}
+    \;m^{*}\left( E-F \right) = 0
+    \right\}
+    \tag{3.2.3 c}
+\end{align*}
+and are exactly the \keyphrase{Lebesgue measurable sets},
+$\boldsymbol{\mathcal{L}\left( \reals^{n} \right)}$.  The following hold:
+\begin{align*}
+    \mathcal{L} \text{ is a $\sigma$-algebra, }
+    \Borel{\reals^{n}}\subset\mathcal{L}\left( \reals^{n} \right).
+    \tag{3.2.1 i} \\
+    m \coloneqq \left.m^{*}\right|_{\mathcal{L}} \text{ is a measure. }
+    \tag{3.2.1 ii} \\
+    Z\subset\reals^{n}, m^{*}\left( Z \right) = 0
+    \implies Z \in \mathcal{L}\left( \reals^{n} \right)
+    \tag{Corollary}
+\end{align*}
+
+Lebesgue measurable sets, $\mathcal{L}\left( \reals^{n} \right)$
+can also be characterized as
+\begin{align*}
+    &\left\{ H - Z
+        : \text{$H$ is $G_{\delta}$-type },
+        m^{*}\left( Z \right) = 0
+    \right\}
+    & &\text{where $H=\bigcap_{i=1}^{\infty} G_{i}$ for $G_{i}\open$}
+    \tag{a} \\
+    &\left\{ J \cup Z
+        : \text{$J$ is $F_{\sigma}$-type },
+        m^{*}\left( Z \right) = 0
+    \right\}
+    & &\text{where $J=\bigcup_{i=1}^{\infty} F_{i}$ for $F_{i}\closed$}
+    \tag{b} \\
+    &S\left(
+        \Borel{\reals^{N}}
+        \cup
+        \left\{ Z :  m^{*}\left( Z \right) = 0 \right\}
+    \right)
+    & &\text{generation of a $\sigma$-algebra}
+    \tag{c}
+\end{align*}
+
+\[
+    F\subset\reals^{m}, Z\subset\reals^{n}, m^{*}_{n}\left( Z \right) = 0
+    \implies m^{*}_{m+n} \left( F\times{}Z \right) = 0
+\]
+\[
+    E_{1}\in\mathcal{L}\left( \reals^{n} \right),
+    E_{2}\in\mathcal{L}\left( \reals^{m} \right)
+    \implies
+    E_{1}\times{}E_{2}\in\mathcal{L}\left( \reals^{n+m} \right)
+\]
+\[
+    m_{n+m}\left( E_{1}\times{}E_{2} \right) =
+    m_{n}\left( E_{1} \right)\cdot m_{m}\left( E_{2} \right)
+\]
+
+\section*{Properties of measurable (Borel) functions (Prop. 3.4.1)}
+
+$f:\reals^{n}\supset{}E\to\closure{\reals}$ is \keyphrase{measurable}
+iff both
+\begin{align*}
+    &\text{$E$ is measurable} \tag{a} \\
+    &\boldsymbol{\left\{ y < f(x) \right\}} \coloneqq
+    \left\{ (x,y)\in\reals^{n}\times\reals:x\in{}E, y < f(x) \right\}
+    \text{ is measurable. } \tag{b}
+\end{align*}
+from which it follows that
+\begin{align*}
+    E\subset\dom{}f \measurable{}, f \measurable
+    &\implies \left.f\right|_{E} \measurable
+    \tag{3.4.1 i} \\
+    f_{i}:E_{i}\to\closure{\reals}\;\measurable,E_{i}\text{ pairwise disjoint}
+    &\implies \bigcup_{i=1}^{\infty} f_{i} 
+    : \bigcup_{i=1}^{E_{i}} \to \closure{\reals} \measurable
+    \tag{3.4.1 ii} \\
+    f \measurable, \lambda\in\reals
+    &\implies \lambda{}f \measurable
+    \tag{3.4.1 iii} \\
+    f_{i}:E\to\closure{\reals}\,\measurable &\implies 
+    \sup_{i} f_{i},\, \inf_{i} f_{i},\, \limsup_{i} f_{i},\, \liminf_{i} f_{i}
+    \;\measurable
+    \tag{3.4.1 iv}
+\end{align*}
+Similar properties hold for Borel sets.
+
+\[
+    \dom f = E \open, f \continuous
+    \implies f \textrm{ Borel } \implies f \measurable
+\]
+\[
+    g:\reals^{n}\to\reals^{n} \text{ an affine isomorphism },
+    f \measurable \iff f\circ{}g \measurable
+\]
+
+Property $P\left( x \right)$ is satisfied \keyphrase{almost everywhere}
+($\almosteverywhere$) in $\reals^{n}$ iff 
+$m\left(\left\{ x\in\reals^{n} : \neg{}P\left( x \right) \right\}\right) = 0$.
+\[
+    f_{1} = f_{2} \,\almosteverywhere \text{on } E\subset\reals^{n}
+    \implies \left( f_{1} \measurable \iff f_{2} \measurable \right)
+\]
+
+\section*{Properties of Lebesgue integral (Prop. 3.5.1)}
+
+For $f \measurable, f\geq{}0,$ the 
+\keyphrase{Lebesgue integral} is defined as
+\[
+    \int f \, dm \coloneqq m_{n+1}\left(S\left(f\right)\right) = 
+    m_{n+1}\left(\left\{ 
+        (x,y)\in\reals^{n}\times\reals : x\in\dom f, 0 < y < f(x)
+    \right\}\right)
+\]
+Every nonnegative
+measurable function is Lebesgue integrable.
+For $f \measurable$ with arbitrary sign, define
+\begin{align*}
+    f^{+}(x) &\coloneqq \left\{ 
+        \max\left( f(x), 0 \right) : x\in\dom{}f, f(x)\geq{}0 
+    \right\}
+    \\
+    f^{-}(x) &\coloneqq \left\{ 
+        \max\left( -f(x), 0 \right) : x\in\dom{}f, f(x)<0 
+    \right\}
+\end{align*}
+which allows definition of the integral as
+\[
+    \int f \, dm = \int f^{+} \, dm - \int f^{-} \, dm
+\]
+provided that $\int f \, dm \neq \infty - \infty$.  
+
+For measurable, nonnegative functions the following properties hold
+\begin{align*}
+    m(E) = 0 &\implies \int_{E} \varphi \, dm = 0
+    \tag{3.5.1 i} \\
+    \varphi:E\to\closure{\reals}, E_{i}\subset{}E \text{ pairwise disjoint }
+    &\implies 
+    \int_{\bigcup{}E_{i}}\varphi\,dm 
+    = \sum_{1}^{\infty} \int_{E_{i}} \varphi \, dm
+    \tag{3.5.1 ii} \\
+    \varphi,\psi:E\to\closure{\reals}, \varphi=\psi \almosteverywhere \in E
+    &\implies
+    \int_{E}\varphi\,dm = \int_{E}\psi\,dm
+    \tag{3.5.1 iii} \\
+    c\geq{}0, E \measurable 
+    &\implies
+    \int_{E}c\,dm = c\,m(E)
+    \tag{3.5.1 iv} \\
+    \varphi,\psi:E\to\closure{\reals}, \varphi\leq\psi \almosteverywhere \in E
+    &\implies
+    \int_{E}\varphi\,dm \leq \int_{E}\psi\,dm
+    \tag{3.5.1 v} \\
+    \lambda\geq{}0
+    &\implies
+    \int\left( \lambda \varphi \right) \, dm = \lambda \int \varphi \, dm
+    \tag{3.5.1 vi}
+\end{align*}
+
+
+\section*{Fatou's Lemma}
+
+\section*{Lebesgue Dominated Convergence Theorem (for non-negative functions, Thm. 3.5.2)}
+
+\section*{H\"older and Minkowski inequalities}
+
+\keyphrase{H\"older Inequality}: 
+If $\Omega\subset\reals^{n}\,\measurable,
+f,g:\Omega\to\closure{\reals}\,\measurable$ with
+$\int_{\Omega}\abs{f}^{p}\,dm, \int_{\Omega}\abs{g}^{q}\,dm< \infty$ where
+$p,q>1 : \frac{1}{p}+\frac{1}{q}=1$ then $\int_{\Omega}fg\,dm < \infty$ and
+\[
+    \abs{\int_{\Omega}fg\,dm}
+    \leq 
+    \left( \int_{\Omega} \abs{f}^{p}\,dm \right)^{\frac{1}{p}}
+    \left( \int_{\Omega} \abs{g}^{q}\,dm \right)^{\frac{1}{q}}.
+\]
+
+For $1\leq{}p<\infty$ define $\boldsymbol{\norm{f}_{p} 
+\coloneqq \left( \int_{\Omega} \abs{f}^{p}\,dm \right)^{\frac{1}{p}}}$
+
+\keyphrase{Minkowski Inequality}:
+If $\Omega\subset\reals^{n}\,\measurable$ and
+$f,g:\Omega\to\closure{\reals}\,\measurable$ with 
+$\norm{f}_{p}, \norm{g}_{p}< \infty$ where $p>1$ then
+$\norm{f+g}_{p} < \infty$ and
+\[
+    \norm{f+g}_{p} \leq \norm{f}_{p}+\norm{g}_{p}.
+\]
+
+\section*{Properties of open sets, properties of closed sets, properties of the operations of interior and closure (all in context of general topological spaces)}
+
+\section*{Characterization of open and closed sets in a topological subspace}
+
+\section*{Characterization of (globally) continuous functions (Prop. 4.3.2)}
+
+\section*{Properties of compact sets}
+
+\section*{The Heine-Borel Theorem}
+
+\section*{The Weierstrass Theorem}
+
+\section*{Properties of sequentially compact sets (Prop. 4.4.5)}
+
+\end{document}

@@ -1,0 +1,727 @@
+\documentclass[letterpaper,11pt]{amsart}
+
+% Packages
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{ifthen}
+\usepackage{lastpage}
+\usepackage{latexsym}
+\usepackage{setspace}
+\usepackage{txfonts}
+\usepackage{xspace}
+
+% Expanded Margins
+\setlength{\textheight}{8.55in}
+\setlength{\textwidth}{6.5in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\topmargin}{.125in}
+
+% Line Spacing
+\singlespacing
+%\onehalfspacing
+%\doublespacing
+
+% Set appropriate header/footer information on each page
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \renewcommand{\headheight}{20pt}
+    \renewcommand{\headrulewidth}{1pt}
+    \renewcommand{\footrulewidth}{0pt}
+    \lhead{
+        CAM 386M Exam 2 Review
+    }
+    \rhead{
+        Page \thepage{} of \pageref{LastPage}
+    }
+}
+\pagestyle{plain}
+
+% Paragraph spacing
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1.25ex plus 0.5ex minus 0.5ex}
+
+\newtheorem{lemma}{Lemma}
+
+\newcommand{\norm}[1]{\left|\left|{#1}\right|\right|}
+\newcommand{\normone}[1]{\norm{#1}_{1}}
+\newcommand{\normtwo}[1]{\norm{#1}_{2}}
+\newcommand{\norminfty}[1]{\norm{#1}_{\infty}}
+\newcommand{\normF}[1]{\norm{#1}_{\textrm{F}}}
+\newcommand{\abs}[1]{\left|{#1}\right|}
+\newcommand{\del}[1]{\delta\!{#1}}
+\newcommand{\T}{\textrm{T}}
+\newcommand{\dualpair}[3][]{{\langle{}{#2},{#3}\rangle{}}_{#1}\xspace{}}
+\newcommand{\innerprod}[3][]{{\left({#2},{#3}\right)}_{#1}\xspace{}}
+\newcommand{\dist}[2]{\textrm{d}\left( {#1}, {#2} \right)}
+\newcommand{\ballo}[2]{B\left( {#1}, {#2} \right)}
+\newcommand{\ballc}[2]{\bar{B}\left( {#1}, {#2} \right)}
+\newcommand{\closure}[1]{\overline{#1}}
+\newcommand{\interior}[1]{\,\textrm{int}\,{#1}\,}
+\newcommand{\naturals}{\mathbb{N}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\keyphrase}[1]{\textbf{#1}}
+\DeclareMathOperator{\LD}{LD}
+\DeclareMathOperator{\LI}{LI}
+\DeclareMathOperator{\linear}{linear}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\open}{open}
+\DeclareMathOperator{\closed}{closed}
+\DeclareMathOperator{\sign}{sign}
+
+\begin{document}
+
+For $f:X\to{}Y$,
+$\boldsymbol{\sup f \coloneqq \sup_{X} \mathcal{R}(f)}$ and
+$\boldsymbol{\inf f \coloneqq \inf_{X} \mathcal{R}(f)}$.
+
+$\left\{ X,+ \right\}$ is an \keyphrase{Abelian group} iff
+\begin{align*}
+    &x+(y+z)=(x+y)+z
+    & &\text{associative} \\
+    &x+y = y+x
+    & &\text{commutative} \\
+    &\exists 0 \in X : x+0 = 0+x = x
+    & &\text{identity} \\
+    &\forall x \; \exists -x \in X : x+(-x)=(-x)+x=0
+    & &\text{inverse} \\
+\end{align*}
+
+$\left\{ \mathbb{F},+,\times \right\}$
+is a \keyphrase{commutative field} iff $\left\{ \mathbb{F}, + \right\}$ 
+is Abelian and
+\begin{align*}
+    & x (y z)=(x y) z
+    & &\text{associative} \\
+    & x y = y x
+    & &\text{commutative} \\
+    & a (b+c) = (a b) + (a c)
+    & &\text{left distributive} \\
+    & (a+b) c = (a c) + (b c)
+    & &\text{right distributive} \\
+    & \exists 1 \in \mathbb{F} : x 1=1 x=x
+    & &\text{identity} \\
+    & \forall x \; \exists x^{-1} \in \mathbb{F} :
+        x x^{-1}= x^{-1} x=1
+    & &\text{inverse} \\
+\end{align*}
+
+In an \keyphrase{order complete} ordering every nonempty subset
+with an upper bound ($x : a\leq{}x \; \forall a \in A$)
+also has a least upper bound ($\sup$), and vice versa for
+lower bounds ($x : x\leq{}a \; \forall a \in A$)
+and greatest lower bounds ($\inf$).
+
+Properties of the \keyphrase{real numbers}
+$\left\{ \reals{}, \cdot, +, \leq \right\}$:
+\begin{enumerate}[(i)]
+    \item $\left\{ \reals{}, \cdot, + \right\}$ is a commutative field.
+    \item $\leq$ is a total ordering on $\reals{}$ which is order complete.
+    \item $x\leq{}y \implies x+z\leq{}y+z \; \forall z$
+    \item $0\leq{}x \wedge 0 \leq{}y \implies 0\leq{}xy$
+\end{enumerate}
+
+The \keyphrase{extended real numbers} are
+$\bar{\reals{}}\coloneqq\reals{}\cup{}\left\{-\infty,+\infty \right\}$.
+
+\keyphrase{Balls} and the \keyphrase{Euclidean metric}:
+\begin{align*}
+    \dist{x}{y}
+    &\coloneqq \sqrt{\sum \left( x_{i} - y_{i} \right)^{2}} \\
+    \ballo{\mathbf{x}}{r} &\coloneqq
+    \left\{\mathbf{y}\in\reals^{n}:\dist{\mathbf{x}}{\mathbf{y}}<r\right\} \\
+    \ballc{\mathbf{x}}{r} &\coloneqq
+    \left\{\mathbf{y}\in\reals^{n}:\dist{\mathbf{x}}{\mathbf{y}}\leq{}r\right\} \\
+\end{align*}
+
+The set $A$ is \keyphrase{bounded} iff $\exists x,r : A\subset{}\ballo{x}{r}$.
+
+$A\in{}\reals{}^{n}$ is a \keyphrase{neighborhood} of $x$ iff
+$\exists \varepsilon > 0: \ballo{x}{\varepsilon}\subset{}A$.
+
+$x$ is an \keyphrase{interior point} of $A$, denoted 
+$\boldsymbol{x\in\interior{A}}$ iff one of
+\begin{enumerate}[(a)]
+    \item $\exists N$, a neighborhood of $x : N\subset{}A$
+    \item $\exists \varepsilon > 0: \ballo{x}{\varepsilon}\subset{}A$
+    \item $A$ is a neighborhood of $x$.
+\end{enumerate}
+
+The set $A$ is \keyphrase{open} iff $A = \interior{A}$.
+Set interiors and openness have the following properties:
+\begin{align*}
+    &\interior{\left(\interior{A}\right)} = \interior{A}
+    & &\text{idempotence} \\
+    &\interior{\left( A \cup B \right)}\supset \interior{A} \cup \interior{B}
+    & &\text{union is a superset of unions} \\
+    &\interior{\left( A \cap B \right)} = \interior{A} \cap \interior{B}
+    & &\text{intersection} \\
+    &A\subset{}B \implies \interior{A}\subset \interior{B}
+    & &\text{subset relation} \\
+    &\forall \iota \in I \; 
+        A_{i} \open \implies \bigcup\limits_{\iota\in{}I} A_{i} \open
+    & &\text{denumerable union of opens is open} \\
+    &A_{1}, \dots, A_{n} \open \implies A_{1}\cap{}\dots\cap{}A_{n} \open
+    & &\text{finite intersection of opens is open} \\
+    &\emptyset, \reals{}^{n} \open
+    & &\text{odd examples} 
+\end{align*}
+
+$x$ is an \keyphrase{accumulation point} of the set $A$,
+sometimes denoted $x \in \hat{A}$, iff one of
+\begin{enumerate}[(a)]
+    \item $\forall N \; N\cap{}A-\left\{ x \right\}\neq\emptyset$
+    \item $\forall \ballo{x}{\varepsilon} \;
+        \ballo{x}{\varepsilon}\cap{}A-\left\{ x \right\}\neq\emptyset$
+\end{enumerate}
+
+The \keyphrase{closure} of a set $A$ is $\closure{A} = \hat{A} \cup A$.
+
+A set is \keyphrase{closed} iff $A = \closure{A}$.
+Set closures have the following properties:
+\begin{align*}
+    &\closure{\left.\closure{A}\right.} = \closure{A}
+    & &\text{idempotence} \\
+    &\closure{\left( A \cup B \right)} = \closure{A} \cup \closure{B}
+    & &\text{union} \\
+    &\closure{\left( A \cap B \right)} \subset
+        \closure{A} \cap \closure{B}
+    & &\text{intersection is a subset of intersections} \\
+    &A\subset{}B \implies \closure{A} \subset \closure{B}
+    & &\text{subset relation} \\
+    &\forall \iota \in I \;
+        A_{i} \closed \implies \bigcap\limits_{\iota\in{}I} A_{i} \closed
+    & &\text{denumerable intersection of closeds is closed} \\
+    &A_{1}, \dots, A_{n} \closed
+        \implies A_{1}\cup{}\dots\cup{}A_{n} \closed
+    & &\text{finite union of closeds is closed} \\
+    &\emptyset, \reals{}^{n} \closed
+    & &\text{odd examples} 
+\end{align*}
+
+$x$ is a \keyphrase{cluster point} of the set $A$ iff one of
+\begin{enumerate}[(a)]
+    \item $x \in \closure{A}$
+    \item $\forall N \; N\cap{}A\neq\emptyset$
+    \item $\forall \ballo{x}{\varepsilon} \;
+        \ballo{x}{\varepsilon}\cap{}A\neq\emptyset$
+\end{enumerate}
+
+\keyphrase{Interior/closure complements}:
+$\interior{A} = \left(\closure{\left(A'\right)}\right)'$
+
+\keyphrase{Open closed duality}: $A \open \iff A' \closed$
+
+\keyphrase{Bolzano-Weierstrass theorem for sets}: $A \subset \reals{}$ infinite
+and bounded $\implies \exists x \in \reals{}$, an accumulation point.
+
+A \keyphrase{sequence}, denoted $x_{n}$, is a function $\naturals{}\to\reals{}$.
+
+A sequence $x_{n}$ \keyphrase{converges} to $x\in\reals$, 
+denoted $\mathbf{x}_{n}\to{}\mathbf{x}$ iff
+$\forall\varepsilon>0\,\exists{}N:n\geq{}N
+\implies\dist{\mathbf{x}_{n}}{\mathbf{x}}<\varepsilon$.
+\begin{enumerate}[(i)]
+    \item $x_{n}\to{}+\infty\in\bar{\reals} \coloneqq
+        \forall{}c\;\exists{}N:n\geq{}N\implies{}x_{n}>{}c$
+    \item $x_{n}\to{}-\infty\in\bar{\reals} \coloneqq
+        \forall{}c\;\exists{}N:n\geq{}N\implies{}x_{n}<{}c$
+\end{enumerate}
+
+$x$ is an \keyphrase{accumulation point} of $A$, iff
+$\exists{}x_{n}\in{}A:x_{n}\to{x}$.
+
+$A\subset\reals^{n}$ is \keyphrase{sequentially closed} iff
+$x_{n}\in{}A, x_{n}\to{}x \implies x\in{}A$.
+
+$A$ is sequentially closed iff it is closed.
+
+$t:\naturals{}\to\reals{}$ is a \keyphrase{subsequence} of
+$s:\naturals{}\to\reals{}$
+iff $\exists r:\naturals{}\to\naturals{}$ injective and $t = sr$.
+
+$x$ is a \keyphrase{cluster point} of the sequence $x_{n}$ iff
+$\exists x_{n_{k}}$, a subsequence, such that $x_{n_{k}}\to{}x$.
+
+$a_{n}\in\reals{}$ is a \keyphrase{bounded sequence} iff
+$\exists \ballo{x}{r}: \left\{ a_{n} \right\}\subset\ballo{x}{r}$.
+\begin{enumerate}[(i)]
+    \item $a_{n}$ is \keyphrase{bounded above} if
+        $\exists b\in\reals:a_{n}\leq{}b\;\forall{}n$.
+    \item $a_{n}$ is \keyphrase{bounded below} if
+        $\exists b\in\reals:a_{n}\geq{}b\;\forall{}n$.
+\end{enumerate}
+
+Every monotone, bounded sequence converges.
+\begin{enumerate}[(i)]
+    \item $a_{n}$ is \keyphrase{monotone increasing} if $a_{n+1}\geq{}a_{n}$.
+    \item $a_{n}$ is \keyphrase{monotone decreasing} if $a_{n+1}\leq{}a_{n}$.
+\end{enumerate}
+
+\keyphrase{Squeeze convergence}: Given $x_{n}, y_{n}, z_{n} \in \reals$
+where $x_{n} \leq y_{n} \leq z_{n}\;\forall{}n$.
+$x_{n} \to c \wedge z_{n} \to c \implies y_{n} \to c$.
+
+\keyphrase{Bolzano-Weierstrass theorem for sequences}:
+Every bounded sequence in $\reals{}$ has a convergent subsequence.
+
+Let $a_{n}\in\reals$ bounded and $\hat{A}$ be the cluster points of $a_{n}$.
+$\hat{A}$ is not empty by Bolzano-Weierstrass.  Define:
+\begin{enumerate}[(i)]
+    \item $\boldsymbol{\lim\limits_{n\to\infty}\sup a_{n}\coloneqq\sup\hat{A}}$
+    \item $\boldsymbol{\lim\limits_{n\to\infty}\inf a_{n}\coloneqq\inf\hat{A}}$
+    \item Either value may be $\pm \infty$ if using $\bar{\reals}$.  Every
+        set is bounded in $\bar{\reals}$.
+\end{enumerate}
+
+Characterization of the \keyphrase{limit inferior} and
+\keyphrase{limit superior} for a sequence $a_{n}$
+and its accumulation points $\hat{A}$:
+\begin{align*}
+    \lim_{N\to\infty} \inf_{n\geq{}N} \left\{ a_{n} \right\} 
+    &\coloneqq \inf \hat{A}
+    = \min \hat{A}
+    = \sup_{N} \inf_{n\geq{}N} \left\{ a_{n} \right\}
+    \\
+    \lim_{N\to\infty} \sup_{n\geq{}N} \left\{ a_{n} \right\}
+    &\coloneqq \sup \hat{A}
+    = \max \hat{A}
+    = \inf_{N} \sup_{n\geq{}N} \left\{ a_{n} \right\}
+    \\
+\end{align*}
+\begin{enumerate}[(i)]
+    \item $a_{n}\leq{}b_{n}\;\forall n \implies\liminf a_{n}\leq{}\liminf b_{n}$
+    \item $a_{n}\leq{}b_{n}\;\forall n \implies\limsup a_{n}\leq{}\limsup b_{n}$
+    \item $\liminf \left\{a_{n}\right\} + \liminf \left\{b_{n}\right\} 
+        \leq \liminf \left\{ a_{n}+b_{n} \right\}$
+    \item $\liminf \left\{ a_{n}+b_{n} \right\}
+        \leq \liminf \left\{a_{n}\right\} + \liminf \left\{b_{n}\right\}$
+\end{enumerate}
+
+$f$ has a \keyphrase{function limit} $a$ at $x_{0}$,
+denoted $\lim\limits_{x\to{}x_{0}} f(x) = a$, iff
+$\forall{}\varepsilon>0\;\exists{}\delta>0
+:\dist{x}{x_{0}} < \delta \implies \dist{f(x)}{a} < \varepsilon$.
+
+$f:\reals^{n}\supset{}A\to\reals^{m}$ is \keyphrase{continuous}
+at point $x_{0}\in{}A$ iff one of
+\begin{enumerate}[(a)]
+    \item $f(\mathbf{x}_{0})$ exists and
+        $\lim\limits_{\mathbf{x}\to\mathbf{x}_{0}} f(\mathbf{x}) 
+            = f(\mathbf{x}_{0})$.
+    \item $\forall{}\varepsilon>0\;\exists\delta>0:
+        \dist{\mathbf{x}_{0}}{\mathbf{x}} < \delta
+        \implies \dist{f(\mathbf{x}_{0})}{f(\mathbf{x})} < \varepsilon$
+    \item $\forall{}N$ of $f(\mathbf{x}_{0})$ $\exists{}M$
+        of $\mathbf{x}:f(M)\subset{}N$
+\end{enumerate}
+
+$f:\reals^{n}\supset{}A\to\reals^{m}$ is \keyphrase{sequentially continuous}
+at $\mathbf{x}_{0}\in{}A$ iff $\forall \mathbf{x}_{n}\in{}A\;
+\mathbf{x}_{n}\to{}\mathbf{x}_{0}
+\implies f(\mathbf{x}_{n})\to{}f(\mathbf{x}_{0})$.
+
+$f:\reals^{n}\supset{}A\to\reals^{m}$ is continuous
+at $x_{0}$ iff it is sequentially continuous at $x_{0}$.
+
+$f:A\to\reals^{m}$ is \keyphrase{globally continuous} if one of
+\begin{enumerate}[(a)]
+    \item $f$ is continuous at every point in $A$
+    \item $\forall G\subset\reals^{M} \open,
+        f^{-1}(G) \,\open\in\reals^{n}$.
+    \item $\forall H\subset\reals^{M} \closed, 
+        f^{-1}(H) \,\closed\in\reals^{n}$.
+\end{enumerate}
+
+Set $A\in\reals^{n}$ is \keyphrase{compact} iff it is bounded and closed.
+
+Set $A\in\reals^{n}$ is \keyphrase{sequentially compact} iff
+$\forall a_{n}\in{A} \; \exists a_{n_{k}} : a_{n_{k}}\to{}x_{0}\in{}A$.
+
+
+Set $A\in\reals^{n}$ is sequentially compact iff it is compact.
+
+\keyphrase{Weierstrass Theorem}:
+If $f:\reals^{n}\supset{}K\to{}\reals$ continuous and $K$ compact, then
+\[
+    \exists \mathbf{x}_{\min}, \mathbf{x}_{\max} \in{ K} : 
+    f\left( \mathbf{x}_{\min} \right) = \inf_{K} f
+    \wedge f\left( \mathbf{x}_{\max} \right) = \sup_{K} f
+\]
+
+$\left\{X, +, \mathbb{F}, +, \times, \ast \right\}$ is a
+\keyphrase{vector space} iff
+$\left\{X,+\right\}$ is Abelian,
+$\left\{ \mathbb{F}, +, \times \right\}$ is a field, and
+$\ast:\mathbb{F}\times{}X\to{}X$ satisfies
+\begin{align*}
+    & \alpha (\beta x) = (\alpha \beta) x
+    & &\text{associative}\\
+    & \alpha (x+y) = \alpha x+\alpha y
+    & &\text{left distributive}\\
+    & (\alpha+\beta) x = \alpha x+\beta x
+    & &\text{right distributive}\\
+    & 1 x = x
+    & &\text{identity}\\
+    & 0 x = 0
+    & &\text{\emph{implied}}\\
+    & -1 x = -x
+    & &\text{\emph{implied}}\\
+\end{align*}
+
+$V^{E}$ is a \keyphrase{function vector space} given
+\begin{align*}
+    \left( f+g \right)(x) &\coloneqq f(x)+g(x) \\
+    \left( \alpha f \right)(x) &\coloneqq \alpha f(x) \\
+\end{align*}
+
+$C^{k}(\Omega) \coloneqq$ \keyphrase{space of all continuous functions}
+on $\Omega$ with $k^{\textrm{th}}$ order derivatives.
+
+$C^{\omega}(\Omega) \coloneqq$ \keyphrase{space of all analytic functions}.
+
+$f\in{}C^{k}(\bar{\Omega})$ iff
+$\bar{\Omega}\in\Omega_{1}$, $f_{1}\in{}C^{k}(\Omega_{1})$,
+$f_{1}\Big|_{\Omega} = f$.
+
+$W\subset{}V$, a \keyphrase{subspace} iff
+\begin{align*}
+    &u,v\in{}W\implies{}u+v\in{}W
+    & &\text{closed wrt vector sum} \\
+    &u\in{}W \implies \alpha{}u\in{}W
+    & &\text{close wrt scalar product} \\
+    & 0\in{W}
+    & &\text{\emph{implied}} \\
+\end{align*}
+
+If $X,Y$ are subspaces of $V$ then
+\begin{align*}
+    &X\cup{Y}
+    & &\text{is not generally a subspace} \\
+    &X\cap{Y} \neq \emptyset
+    & &\text{since $0\in{}X,Y$} \\
+    &X\cap{Y}
+    & &\text{is a subspace} \\
+    &X+Y \coloneqq \left\{ x+y, x\in{X}, y\in{}Y \right\}
+    & &\text{is an \keyphrase{algebraic sum}, a subspace.} \\
+    &X\oplus{}Y
+    & &\text{is a \keyphrase{direct sum}, a subspace, if $X\cap{Y}=\{0\}$} \\
+\end{align*}
+
+If $V=X\oplus{}Y$ then $Y$ is a \keyphrase{complement} of $X$.
+
+$V=X\oplus{}Y \iff \forall v \; \exists ! x, y : v=x+y$
+
+If $M$ is a subspace of $V$, $X\subset{V}$ then
+$x+M\coloneqq \left\{ x+m, y\in{M}, x\in{}V \right\}$ is an
+\keyphrase{affine subspace}.
+
+Any subspace $M$ of $V$ generates an equivalence relation $R_{M}$ and
+corresponding \keyphrase{quotient vector space} $V/M$
+\begin{align*}
+    x\,R_{M}\,y &\coloneqq x-y \in M \\
+    \left[ x \right] &= \left\{ v \in V : v-x \in M \right\}  \\
+        &= x + M \\
+    \left[ x \right] + \left[ y \right] &\coloneqq \left[ x+y \right] \\
+    \alpha \left[ x \right] &\coloneqq \left[ \alpha x \right] \\
+\end{align*}
+
+$\sum_{i=1}^{k} \alpha_{i} \mathbf{x}_{i}$ is a
+\keyphrase{linear combination}.
+
+If
+$\exists \alpha_{i} : \mathbf{x} = \sum_{i=1}^{k} \alpha_{i} \mathbf{x}_{i}$
+then $x$ is \keyphrase{linearly dependent} (\keyphrase{LD}) on $\mathbf{x}_{i}$.
+Otherwise $\mathbf{x}$ is \keyphrase{linearly independent} (\keyphrase{LI}).
+\begin{enumerate}[(i)]
+    \item $\left\{ \mathbf{x}_{i} \right\} \LI$ iff none of the
+        $\mathbf{x}_{i}$ is LD on the remaining elements.
+    \item $\left\{ \mathbf{x}_{i} \right\} \LI$ iff
+        $\sum \alpha_{i} \mathbf{x}_{i} = 0 \implies \alpha_{i}=0$.
+    \item $\left\{ \mathbf{x}_{i} \right\} \LI \implies \mathbf{x}_{i}\neq{}0$
+    \item $B\subset\LI \implies B \LI$.
+    \item Infinite $P \LI$ iff every finite subset of $P$ is LI.
+\end{enumerate}
+
+$\left\{ \mathbf{x}_{i} \right\}\subset{}V$
+\keyphrase{spans} $V$ iff $\forall{}\mathbf{v}\in{}V\;
+\exists{}\alpha_{i}:\mathbf{v}=\alpha_{i}\mathbf{x}_{i}$.
+
+If $X\subset{}V$, $X \LI$, and X is maximal wrt set inclusion then
+$X$ is a \keyphrase{Hamel basis}.  Basis are not unique.
+\begin{enumerate}[(i)]
+    \item $X$ is a basis of $V$ iff $\forall{}\mathbf{v}\in{V}\;
+        \exists!\alpha_{i}:\mathbf{v}=\sum \alpha_{i} \mathbf{x}_{i}$.
+    \item $X$ is a basis of $V$ iff $X\LI$ and $X$ spans $V$.
+    \item Every $\LI A\subset{}V$ can be extended to a basis.
+    \item Every nontrivial $V$ possesses a basis.
+    \item If $B$ a basis of $V$, $P\subset{}V \LI$ then $\#P\leq\#B$.
+    \item $B_{1}, B_{2}$ basis of $V$ implies $\#B_{1}=\#B_{2}$.
+\end{enumerate}
+
+The \keyphrase{dimension} of $V$ is the cardinality of any basis $B$:
+$\dim V \coloneqq \#B$.
+
+\keyphrase{Construction of a complement}: $X\subset{V}$, a subspace.
+$\left\{ \mathbf{e}_{1},\dots,\mathbf{e}_{k} \right\}$ a basis for $X$.
+$\left\{ \mathbf{e}_{k+1},\dots,\mathbf{e}_{m} \right\}$ basis extended to $V$.
+$Y \coloneqq $ linear combinations of $\mathbf{e}_{k+1}\dots\mathbf{e}_{m}$.
+Then $V=X\oplus{}V\wedge{}X\cap{Y}=\left\{ 0 \right\}$.
+
+$T:X\to{}Y$ is a \keyphrase{linear transform} iff
+\begin{align*}
+    T(x+y) &= T(x) + T(y) & &\text{additive} \\
+    T(\alpha{}x) &= \alpha T(x) & &\text{homogeneous} \\
+    T(0) &= 0 & &\text{\emph{implied}} \\
+\end{align*}
+
+For a linear transform $T:V\to{}W$
+\begin{enumerate}[(i)]
+    \item $\boldsymbol{\mathcal{N}(T)} \coloneqq
+        \mathrm{ker}\;T\coloneqq\left\{\mathbf{v}\in{}V:T\mathbf{v}=0\right\}$
+    \item $\mathcal{N}(T)$ and $\mathcal{R}(T)$ are subspaces of
+        $V$ and $W$ respectively.
+    \item $T$ monomorphism (injective)
+        iff $\mathcal{N}\left(T\right)=\left\{0\right\}$
+    \item $T$ epimorphism (surjective)
+        iff $\mathcal{R}\left(T\right)=W$
+    \item $\boldsymbol{\rank T} \coloneqq \dim \mathcal{R}(T)$
+    \item $\boldsymbol{\nullity T} \coloneqq \dim \mathcal{N}(T)$
+\end{enumerate}
+\keyphrase{Rank and Nullity Theorem}:
+If $\dim V < \infty$ then $\dim V = \nullity T + \rank T$.
+\begin{enumerate}[(i)]
+    \item $T$ is nonsingular (injective) iff $\mathcal{N}(T)=\left\{0\right\}$
+    \item $T$ is a monomorphism (injective) iff $\rank T = \dim V$.
+    \item $T$ is an epimorphism (surjective) iff $\rank T = \dim W$.
+    \item $T$ is an isomorphism (bijective) iff $\dim V = \dim W = \rank T$.
+\end{enumerate}
+
+$X$ and $Y$ are \keyphrase{isomorphic vector spaces} iff
+$\exists \iota : X \to Y$, a bijection.
+\begin{enumerate}[(i)]
+    \item Finite dimensional spaces are iso to $\reals{}^{\dim V}$,
+          called the $\keyphrase{model space}$.
+    \item For $V=X\oplus{}Y$, $X$'s complement and quotient space are
+            iso given
+            $\iota : Y \ni y \to \left[ y \right] = y+X \in V/X$.
+    \item $X^\Omega \times Y^\Omega$ is iso to
+        $\left( X \times Y \right)^{\Omega}$.
+\end{enumerate}
+
+Inverses of isomorphic linear transforms are linear.
+
+$P:V \to V$ is a \keyphrase{projection} iff
+\begin{enumerate}[(i)]
+    \item $P^2 = P P = P$
+    \item $\exists{} X,Y : V = X \oplus Y, Tv=x$ where $v=x+y$
+\end{enumerate}
+
+If $X$ is a subspace of $V$ then $\exists{}P : X=\mathcal{R}(P)$.
+
+Given linear $T:V \to W$ and $M$, a subspace of $\mathcal{N}(T)$, then
+$\bar{T}:V/M \to W$ where $\bar{T}(\left[ v \right]) \coloneqq T(v)$.
+If $M=\mathcal{N}(T)$ then $\bar{T}$ is monomorphic.
+
+$\boldsymbol{L(X,Y)}\coloneqq{}\left\{f:\;f:X\to{}Y,\linear\right\}$
+is a linear subspace of $Y^{X}$.
+
+$\left\{X, +, \mathbb{F}, +, \times, \ast, \circ \right\}$ is a
+\keyphrase{linear algebra} iff
+$\left\{X, +, \mathbb{F}, +, \times, \ast, \right\}$ is a vector
+space, and
+$\circ:V\times{}V\to{}V$ satisfies
+\begin{align*}
+    & (x \circ y) \circ z = x \circ (y \circ z)
+    & &\text{associative}\\
+    & (\alpha x) \circ y = \alpha (x \circ y) = x \circ (\alpha y)
+    & &\text{commutative wrt scalars} \\
+    & z \circ (x+y) = z \circ x + z \circ y
+    & &\text{left distributive}\\
+    & (x+y) \circ z = x \circ z + y \circ z
+    & &\text{right distributive}\\
+\end{align*}
+
+Composition of linear transforms is linear.
+
+$\boldsymbol{L(X)} \coloneqq L(X,X)$ is a linear algebra.
+
+Given a bijection $\iota:X \to Y$ where $X$ is a vector space and $Y$ is
+an arbitrary set, $\iota$ \keyphrase{induces} or \keyphrase{transfers} a
+vector space structure onto $Y$ using
+\begin{align*}
+    y_{1} + y_{2} &\coloneqq \iota\left(
+        \iota^{-1}\left( y_{1} \right) + \iota^{-1}\left( y_{2} \right)
+    \right) \\
+    \alpha y
+    &\coloneqq \iota\left( \alpha \iota^{-1}\left( y \right) \right) \\
+\end{align*}
+
+
+If
+$\mathbf{v}=\sum v_{i} \mathbf{e}_{i}$,
+$\mathbf{w}=\sum w_{i} \mathbf{g}_{i}$,
+and
+$T : V \ni{} \mathbf{v}= \to{} \mathbf{w} \in{}W$ then
+\[
+    T\mathbf{v}
+    = T\left( \sum v_{j} \mathbf{e}_{j} \right)
+    = \sum v_{j} T \mathbf{e}_{j}
+    = \sum v_{j} \sum T_{ij} \mathbf{g}_{i}
+\]
+Matrix-scalar multiplication, matrix addition, and matrix multiplication
+representations follow.
+
+\keyphrase{Matrix rank} is the rank of the corresponding linear transformation.
+Matrix rank is equivalent to the number of LI column vectors.
+
+Elements of $L(V,\mathbb{F})$, e.g. $f:V\to{}\mathbb{F}$
+are called \keyphrase{linear functionals}.
+
+$V^{*} \coloneqq L(V,\mathbb{F})$ is the \keyphrase{algebraic dual} of $L(V,V)$.
+
+Given $V$, a space, $\dim V < \infty,
+\left\{ \mathbf{e}_{i} \right\}$, a basis then $\forall f \in V^{*}$
+\[
+f(v)
+= f\left( \sum v_{i} \mathbf{e}_{i} \right)
+= \sum v_{i} f\left( \mathbf{e}_{i} \right)
+= \sum v_{i} l_{i}
+\textrm{ where } l_{i} \coloneqq f\left( \mathbf{e}_{i} \right)
+\]
+
+Given a finite basis $\left\{ \mathbf{e}_{i} \right\} \in V$,
+$\left\{ \mathbf{e}_{j}^{*} \right\}$ forms
+the \keyphrase{dual basis} in $V^{*}$
+where $\mathbf{e}_{j}^{*}\left( \mathbf{e}_{i} \right)\coloneqq{}\delta_{ij}$.
+Corollary $\boldsymbol{\dim V = \dim V^{*}}$.
+
+$l:V\times{}W\to{}\mathbb{F}$ is \keyphrase{bilinear} iff $l$ is linear
+wrt each argument.  For some basis, $l(v,w) = \sum \sum l_{ij} v_{i} w_{j}$.
+
+$\boldsymbol{M(X,Y)}$ denotes the space of bilinear functionals.
+
+A \keyphrase{duality pairing} $\dualpair{v^{*}}{v}$
+is a definite bilinear functional:
+$V^{*}\times{}V \ni (v^{*},v)
+\to{}
+\boldsymbol{\dualpair{v^{*}}{v} \coloneqq v^{*}(v)} \in \reals{}$
+\begin{enumerate}[(i)]
+    \item $\dualpair{v^{*}}{v} = 0 \; \forall v \implies v^{*} = 0$
+    \item $\dualpair{v^{*}}{v} = 0 \; \forall v^{*} \implies v = 0$
+\end{enumerate}
+
+$U^{\bot}\coloneqq{}
+\left\{v^{*}\in{}V:\dualpair{v^{*}}{v}=0 \; \forall{}v\in{}U\right\}$
+is called the \keyphrase{orthogonal complement} of $U$.
+
+If $V=U\oplus{}W$ and $\dim{}V=n<\infty$ then
+\begin{enumerate}[(i)]
+    \item $\dim U^{\bot} = \dim V - \dim U$
+    \item $V^{*}=U^{*}\oplus{}W^{*}$
+\end{enumerate}
+
+Any vector space can be identified with a subspace of its bidual.
+
+If $\dim V < \infty$ then \keyphrase{$V$ and $V^{**}$ are isomorphic} by the map
+\[
+    \iota:V\ni{}v \to \left\{
+    V^{*}\ni{}v^{*} \to \dualpair{v^{*}}{v} \in \reals{}
+    \right\} \in V^{**}
+\]
+
+$T^{\T}:W^{*}\to{}V$ is the \keyphrase{transpose} of $T:V\to{}W$:
+\begin{align*}
+    T^{\T}\left( w^{*} \right) &\coloneqq w^{*}T \\
+    \dualpair{T^{\T}w^{*}}{v} &= \dualpair{w^{*}}{Tv} \\
+\end{align*}
+Transpose properties:
+\begin{enumerate}[(i)]
+    \item $A$ linear $\implies$ $A^{\T}$ linear
+    \item $\left( S T \right)^{\T} = T^{\T}S^{\T}$
+    \item $\textrm{id}_{V}^{\T} = \textrm{id}_{V*}$
+    \item $\left( T^{\T} \right)^{-1} = \left( T^{-1} \right)^{\T}$
+    \item $\rank T = \rank T^{\T}$
+\end{enumerate}
+
+$\left\{ X, \textrm{d} \right\}$ is a \keyphrase{metric space}
+given a \keyphrase{metric} $d:X\times{}X\to{}\left[ 0,\infty\right)$ obeying
+\begin{align*}
+    &\dist{x}{y} = 0 \implies x=y & &\text{positive definite} \\
+    &\dist{x}{y} = \dist{y}{x} & &\text{symmetric} \\
+    &\dist{x}{z} \leq \dist{x}{y} + \dist{y}{z} & &\text{triangle inequality} \\
+\end{align*}
+
+$\left\{ V, \norm{\cdot} \right\}$ is a 
+\keyphrase{normed vector space} given a \keyphrase{norm} 
+$\norm{\cdot}:V\ni{}v\to{}\norm{v}\in\left[ 0,\infty\right)$ obeying
+\begin{align*}
+    &\norm{v} = 0 \implies v=0 & &\text{positive definite} \\
+    &\norm{\alpha v} = \abs{\alpha}\norm{v} & &\text{homogenaity} \\
+    &\norm{u+v} \leq \norm{u} + \norm{v} & &\text{triangle inequality} \\
+\end{align*}
+
+Every normed vector space is a metric space given the \keyphrase{induced metric}
+$\dist{x}{y} \coloneqq \norm{x-y}$.
+
+$\left\{ V, \innerprod{\cdot}{\cdot} \right\}$ is an
+\keyphrase{inner product space} given an
+\keyphrase{inner product} 
+$\innerprod[V]{\cdot}{\cdot}:V\times{}V\ni(u,v)\to\innerprod[V]{u}{v}\in\reals$
+obeying
+\begin{align*}
+    &\innerprod{\alpha_{1}u_{1}+\alpha_{2}u_{2}}{v}
+    = \alpha_{1}\innerprod{u_{1}}{v} + \alpha_{2}\innerprod{u_{2}}{v}
+    & &\text{linear in the first argument} \\
+    &\innerprod{u}{v} = \overline{\innerprod{v}{u}}
+    & &\text{Hermitian $\implies$ antilinear in second argument} \\
+    &\innerprod{v}{v} \geq 0 \wedge \innerprod{v}{v}=0 \implies v=0
+    & &\text{positive definite} \\
+\end{align*}
+
+Every inner product space is a normed vector space given the 
+\keyphrase{induced Euclidean norm} $\norm{v} \coloneqq \sqrt{\innerprod{v}{v}}$.
+
+\keyphrase{Cauchy Inequality}:
+$\abs{\innerprod{u}{v}}\leq{}\sqrt{\innerprod{u}{u}}\sqrt{\innerprod{v}{v}}$
+
+The \keyphrase{Riesz map} is a linear and injective function.  
+\[
+    R:V\ni{}u\to{}Ru 
+    \coloneqq \left\{ V\ni{v}\to\innerprod[V]{u}{v}\in\reals\right\}\in{}V^{*}
+\]
+
+If $V$ finite, $R$ is a cannonical isomorphism between $V$ and $V^{*}$.
+$V^{*}$ constructs can be ``brought back'' to $V$:
+\begin{enumerate}[(i)]
+    \item Dual basis brought back to a \keyphrase{cobasis}:
+        $\mathbf{e}^{j} \coloneqq R^{-1}\mathbf{e}_{j}^{*}$
+        yielding $\innerprod{\mathbf{e}_{i}}{\mathbf{e}^{j}} = \delta_{ij}$.
+    \item \keyphrase{Orthogonal complement} brought back:
+        $X^{\bot} \coloneqq R^{-1}X^{\bot} = 
+        \left\{ y\in{}V:\innerprod{y}{x}=0 \;\forall{}x\in{}X \right\}$
+    \item Given $A:X\to{}Y$, the 
+        \emph{antilinear} \keyphrase{adjoint transformation} is
+        $A^{*}\coloneqq{}R^{-1}_{X}\circ{}A^{T}\circ{}R_{Y}$
+\end{enumerate}
+
+A basis $\left\{ \mathbf{e}_{i} \right\}$ is \keyphrase{orthonormal} iff
+$\innerprod{\mathbf{e}_{i}}{\mathbf{e}_{j}}=\delta_{ij}$.  An orthonormal
+basis coincides with the cobasis.
+
+For $T\in{}L(V,W)$, the adjoint transformation $T^{*}\in{}L(W,V)$ 
+is unique and satisfies $\innerprod[V]{v}{T^{*}w} = \innerprod[W]{Tv}{w}$.
+
+Adjoint properties:
+\begin{enumerate}[(i)]
+    \item $\left( S T \right)^{*} = T^{*}S^{*}$
+    \item $\textrm{id}_{V}^{*} = \textrm{id}_{V}$
+    \item $\left( T^{*} \right)^{-1} = \left( T^{-1} \right)^{*}$
+    \item $\rank T = \rank T^{*}$
+\end{enumerate}
+
+\end{document}

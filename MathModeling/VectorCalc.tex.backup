@@ -1,0 +1,43 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage{amsmath}
+
+\DeclareMathOperator*{\tgrad}{grad}
+\DeclareMathOperator*{\tdiv}{div}
+\DeclareMathOperator*{\tcurl}{curl}
+
+
+\begin{document}
+\subsection*{Cross Product}
+\[
+\mathbf{a}\times\mathbf{b}=\epsilon_{ijk}a_i b_j\mathbf{e}_k
+\]
+
+\subsection*{Gradient of a Scalar Field}
+\[
+\nabla\phi=\left(\mathbf{e}_i\frac{\partial}{\partial x_i}\right)\phi
+=\mathbf{e}_i\partial_i\phi
+\]
+
+\subsection*{Divergence of a Vector}
+\[
+ \tdiv\mathbf{v}=\nabla\cdot\mathbf{v}=\mathbf{e}_i\partial_i\cdot
+v_j\mathbf{e}_j=\delta_{ij}\partial_i v_j=\partial_i v_i
+\]
+
+\subsection*{Curl of a Vector}
+\[
+\tcurl\mathbf{v}=\nabla\times\mathbf{v}=\mathbf{e}_i\partial_i\times\mathbf{e}
+_j v_j=\epsilon_{ijk}\partial_i v_j\mathbf{e}_k
+\]
+
+\subsection*{Gradient of a Vector}
+\[
+\tgrad\mathbf{v}=\partial_j v_i\mathbf{e}_i\otimes\mathbf{e}_j
+\]
+
+\subsection*{Divergence of a Tensor}
+\[
+\tdiv\mathbf{A}=\nabla\cdot\mathbf{A}=\partial_j A_{ij}\mathbf{e}_j
+\]
+
+\end{document}
