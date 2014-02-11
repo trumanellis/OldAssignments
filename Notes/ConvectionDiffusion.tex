@@ -1,0 +1,300 @@
+%        File: ConvectionDiffusion.tex
+%     Created: Fri Aug 05 02:00 PM 2011 C
+% Last Change: Fri Aug 05 02:00 PM 2011 C
+%
+\documentclass[a4paper]{article}
+\usepackage[fleqn]{amsmath}
+\usepackage{amsfonts,amssymb,amsthm}
+
+\providecommand{\abs}[1]{\left\lvert#1\right\rvert}
+\providecommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\def\d{\,\mathrm{d}}
+\def\dx{\d x}
+\def\ds{\d s}
+\def\btau{\boldsymbol\tau}
+\def\bsigma{\boldsymbol\sigma}
+\def\bbeta{\boldsymbol\beta}
+\def\bn{\mathbf{n}}
+\def\bpsi{\boldsymbol\psi}
+\def\dtau{\boldsymbol{\delta\tau}}
+\def\dv{\delta v}
+
+\def\div{\nabla\cdot}
+
+\begin{document}
+\section*{Strong Form}
+\begin{align*}
+\frac{1}{\epsilon}\bsigma-\nabla u=0 & \quad\text{ in }\Omega\\
+-\nabla\cdot(\bsigma-\bbeta u)=f & \quad\text{ in }\Omega\\
+u=u_0 & \quad\text{ in }\partial\Omega\\
+\end{align*}
+\section*{Weak Form}
+\begin{align*}
+\int_K\frac{1}{\epsilon}\bsigma\cdot\btau+u\nabla\cdot\btau\dx
+-\int_{\partial K}\hat u\btau\cdot n\ds=0 & \quad\forall\btau\\
+\int_K(\bsigma-\bbeta u)\cdot\nabla v\dx
+- \int_{\partial K}\widehat{(\sigma_n-\beta_nu)}\text{sgn}(n)v\ds
+=\int_Kfv\dx & \quad\forall v
+\end{align*}
+\subsection*{Spaces}
+\begin{align*}
+u&\in L^2(K) & \hat u&\in H^1|_{\partial K}\equiv H^{\frac{1}{2}} 
+& v&\in H^1(K)\\
+\bsigma&\in\mathbf{L}^2(K) & \widehat{(\sigma_n-\beta_nu)}&\in H(div,K)|_{\partial K} 
+& \btau&\in H(div,K)
+\end{align*}
+\section*{Local Solve}
+\subsection*{Everything together}
+\begin{align*}
+&\int_K\left\{\div\btau\div\dtau+\btau\dtau
++\nabla v\nabla\dv+v\dv\right\}w(x)\dx\\
+&\quad=\int_K\frac{1}{\epsilon}\bsigma\cdot\dtau+u\div\dtau
++\bsigma\cdot\nabla\dv-u\bbeta\cdot\nabla\dv\dx\\
+&\quad\quad
+-\int_{\partial K}\hat u\dtau\cdot\bn+\widehat{(\sigma_n
+-\beta_nu)}\text{sgn}(n)\dv\ds
+\end{align*}
+\begin{align*}
+K_{vv}=
+&\int_K\left\{
+\nabla\dv\nabla\dv+\dv\dv\right\}w(x)\dx\\
+\end{align*}
+\begin{align*}
+K_{v\tau}=0
+% &\int_K\left\{\div\dtau\div\dtau+\dtau\dtau
+% \right\}w(x)\dx\\
+\end{align*}
+\begin{align*}
+K_{\tau v}=0
+% \int_K\left\{\nabla\dv\nabla\dv+\dv\dv\right\}w(x)\dx\\
+\end{align*}
+\begin{align*}
+K_{\tau\tau}&=
+\int_K\left\{\div\dtau\div\dtau+\dtau\dtau
+\right\}w(x)\dx\\
+&=\int_K\left\{
+\end{align*}
+\subsection*{$u$ DOFs}
+\begin{align*}
+&\int_K\left\{\div\btau\div\dtau+\btau\dtau
++\nabla v\nabla\dv+v\dv\right\}w(x)\dx\\
+&\quad=\int_Ku\div\dtau
+-u\bbeta\cdot\nabla\dv\dx\\
+\end{align*}
+\begin{align*}
+F_v=
+\int_K-u\bbeta\cdot\nabla\dv\dx
+\end{align*}
+\begin{align*}
+F_\tau=
+\int_Ku\div\dtau
+\dx\\
+\end{align*}
+\subsection*{$\bsigma$ DOFs}
+\begin{align*}
+&\int_K\left\{\div\btau\div\dtau+\btau\dtau
++\nabla v\nabla\dv+v\dv\right\}w(x)\dx\\
+&\quad=\int_K\frac{1}{\epsilon}\bsigma\cdot\dtau
++\bsigma\cdot\nabla\dv\dx\\
+\end{align*}
+\begin{align*}
+F_v=
+\int_K\bsigma\cdot\nabla\dv\dx\\
+\end{align*}
+\begin{align*}
+F_\tau=
+\int_K\frac{1}{\epsilon}\bsigma\cdot\dtau
+\dx\\
+\end{align*}
+\subsection*{$\hat u$ DOFs}
+\begin{align*}
+&\int_K\left\{\div\btau\div\dtau+\btau\dtau
++\nabla v\nabla\dv+v\dv\right\}w(x)\dx\\
+&\quad=\int_{\partial K}\hat u\dtau\cdot\bn\ds
+\end{align*}
+\begin{align*}
+F_v=0
+\end{align*}
+\begin{align*}
+F_\tau=
+\int_{\partial K}\hat u\dtau\cdot\bn
+\ds
+\end{align*}
+\subsection*{$\widehat{(\sigma_n-\beta_nu)}$ DOFs}
+\begin{align*}
+&\int_K\left\{\div\btau\div\dtau+\btau\dtau
++\nabla v\nabla\dv+v\dv\right\}w(x)\dx\\
+&\quad=\int_{\partial K}\widehat{(\sigma_n-\beta_nu)}\text{sgn}(n)\dv\ds
+\end{align*}
+\begin{align*}
+F_v=
+\int_{\partial K}\widehat{(\sigma_n-\beta_nu)}\text{sgn}(n)\dv\ds
+\end{align*}
+\begin{align*}
+F_\tau=
+0
+\end{align*}
+\section*{Element Assembly}
+\subsection*{Full Residual}
+\begin{align*}
+\int_K
+(\bsigma-\bbeta u)\cdot\nabla v
++\frac{1}{\epsilon}\bsigma\cdot\btau+u\nabla\cdot\btau
+-fv\dx
+-\int_{\partial K}
+\widehat{(\sigma_n-\beta_nu)}\text{sgn}(n)v
++\hat u\btau\cdot n\ds=0
+\end{align*}
+\subsection*{Residual Components}
+\begin{align*}
+F_u&=\int_K
+(\bsigma-\bbeta u)\cdot\nabla v_u
++\frac{1}{\epsilon}\bsigma\cdot\btau_u+u\nabla\cdot\btau_u
+-fv_u\dx\\
+&\quad-\int_{\partial K}
+\widehat{(\sigma_n-\beta_nu)}\text{sgn}(n)v_u
++\hat u\btau_u\cdot n\ds
+\end{align*}
+
+\begin{align*}
+F_{\bsigma}&=\int_K
+(\bsigma-\bbeta u)\cdot\nabla v_{\bsigma}
++\frac{1}{\epsilon}\bsigma\cdot\btau_{\bsigma}+u\nabla\cdot\btau_{\bsigma}
+-fv_{\bsigma}\dx\\
+&\quad-\int_{\partial K}
+\widehat{(\sigma_n-\beta_nu)}\text{sgn}(n)v_{\bsigma}
++\hat u\btau_{\bsigma}\cdot n\ds
+\end{align*}
+
+\begin{align*}
+F_{\hat u}&=\int_K
+(\bsigma-\bbeta u)\cdot\nabla v_{\hat u}
++\frac{1}{\epsilon}\bsigma\cdot\btau_{\hat u}+u\nabla\cdot\btau_{\hat u}
+-fv_{\hat u}\dx\\
+&\quad-\int_{\partial K}
+\widehat{(\sigma_n-\beta_nu)}\text{sgn}(n)v_{\hat u}
++\hat u\btau_{\hat u}\cdot n\ds
+\end{align*}
+
+\begin{align*}
+F_{\widehat{(\sigma_n-\beta_nu)}}&=\int_K
+(\bsigma-\bbeta u)\cdot\nabla v_{\widehat{(\sigma_n-\beta_nu)}}
++\frac{1}{\epsilon}\bsigma\cdot\btau_{\widehat{(\sigma_n-\beta_nu)}}+u\nabla\cdot\btau_{\widehat{(\sigma_n-\beta_nu)}}
+-fv_{\widehat{(\sigma_n-\beta_nu)}}\dx\\
+&\quad-\int_{\partial K}
+\widehat{(\sigma_n-\beta_nu)}\text{sgn}(n)v_{\widehat{(\sigma_n-\beta_nu)}}
++\hat u\btau_{\widehat{(\sigma_n-\beta_nu)}}\cdot n\ds
+\end{align*}
+
+\subsection*{Jacobian Components}
+Now let
+\[
+u=\sum_iu_i\phi_i
+\,,\quad\quad
+\bsigma=\sum_i\bsigma_i\bpsi_i
+\,,\quad\quad
+\hat u=\sum_i\hat u_i\hat\phi_i
+\,,\quad\quad
+\widehat{(\sigma_n-\beta_nu)}=\sum_i\widehat{(\sigma_n-\beta_nu)}_i\hat\psi_i
+\]
+
+\begin{align*}
+K_{uu}&=\int_K
+-\bbeta\phi\cdot\nabla v_u
++\phi\nabla\cdot\btau_u \dx
+\end{align*}
+
+\begin{align*}
+K_{u\bsigma}&=\int_K
+\bpsi\cdot\nabla v_u
++\frac{1}{\epsilon}\bpsi\cdot\btau_u\dx
+\end{align*}
+
+\begin{align*}
+K_{u\hat u}&=-\int_{\partial K}
+\hat\phi\btau_u\cdot n\ds
+\end{align*}
+
+\begin{align*}
+K_{u\widehat{(\sigma_n-\beta_nu)}}&=-\int_{\partial K}
+\hat\psi\text{sgn}(n)v_u \ds
+\end{align*}
+\bigskip
+
+
+
+\begin{align*}
+K_{\bsigma u}&=\int_K
+-\bbeta\phi\cdot\nabla v_{\bsigma}
++\phi\nabla\cdot\btau_{\bsigma} \dx
+\end{align*}
+
+\begin{align*}
+K_{\bsigma\bsigma}&=\int_K
+\bpsi\cdot\nabla v_{\bsigma}
++\frac{1}{\epsilon}\bpsi\cdot\btau_{\bsigma}\dx
+\end{align*}
+
+\begin{align*}
+K_{\bsigma\hat u}&=-\int_{\partial K}
+\hat\phi\btau_{\bsigma}\cdot n\ds
+\end{align*}
+
+\begin{align*}
+K_{\bsigma\widehat{(\sigma_n-\beta_nu)}}&=-\int_{\partial K}
+\hat\psi\text{sgn}(n)v_{\bsigma} \ds
+\end{align*}
+\bigskip
+
+
+
+\begin{align*}
+K_{\hat uu}&=\int_K
+-\bbeta\phi\cdot\nabla v_{\hat u}
++\phi\nabla\cdot\btau_{\hat u} \dx
+\end{align*}
+
+\begin{align*}
+K_{\hat u\bsigma}&=\int_K
+\bpsi\cdot\nabla v_{\hat u}
++\frac{1}{\epsilon}\bpsi\cdot\btau_{\hat u}\dx
+\end{align*}
+
+\begin{align*}
+K_{\hat u\hat u}&=-\int_{\partial K}
+\hat\phi\btau_{\hat u}\cdot n\ds
+\end{align*}
+
+\begin{align*}
+K_{\hat u\widehat{(\sigma_n-\beta_nu)}}&=-\int_{\partial K}
+\hat\psi\text{sgn}(n)v_{\hat u} \ds
+\end{align*}
+\bigskip
+
+
+
+\begin{align*}
+K_{\widehat{(\sigma_n-\beta_nu)}u}&=\int_K
+-\bbeta\phi\cdot\nabla v_{\widehat{(\sigma_n-\beta_nu)}}
++\phi\nabla\cdot\btau_{\widehat{(\sigma_n-\beta_nu)}} \dx
+\end{align*}
+
+\begin{align*}
+K_{\widehat{(\sigma_n-\beta_nu)}\bsigma}&=\int_K
+\bpsi\cdot\nabla v_{\widehat{(\sigma_n-\beta_nu)}}
++\frac{1}{\epsilon}\bpsi\cdot\btau_{\widehat{(\sigma_n-\beta_nu)}}\dx
+\end{align*}
+
+\begin{align*}
+K_{\widehat{(\sigma_n-\beta_nu)}\hat u}&=-\int_{\partial K}
+\hat\phi\btau_{\widehat{(\sigma_n-\beta_nu)}}\cdot n\ds
+\end{align*}
+
+\begin{align*}
+K_{\widehat{(\sigma_n-\beta_nu)}\widehat{(\sigma_n-\beta_nu)}}&=-\int_{\partial K}
+\hat\psi\text{sgn}(n)v_{\widehat{(\sigma_n-\beta_nu)}} \ds
+\end{align*}
+\end{document}
+
+

@@ -1,0 +1,92 @@
+%        File: LibMeshNotes.tex
+%     Created: Fri Aug 05 02:00 PM 2011 C
+% Last Change: Fri Aug 05 02:00 PM 2011 C
+%
+\documentclass[a4paper]{article}
+\usepackage[fleqn]{amsmath}
+\usepackage{amsfonts,amssymb,amsthm}
+
+\providecommand{\abs}[1]{\left\lvert#1\right\rvert}
+\providecommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\def\d{\,\mathrm{d}}
+\def\dx{\d x}
+\def\ds{\d s}
+\def\btau{\boldsymbol\tau}
+\def\bsigma{\boldsymbol\sigma}
+\def\bbeta{\boldsymbol\beta}
+\def\bpsi{\boldsymbol\psi}
+\def\bn{\mathbf{n}}
+\def\dtau{\boldsymbol{\delta\tau}}
+\def\dv{\delta v}
+
+\def\div{\nabla\cdot}
+
+\begin{document}
+\section*{Strong Form}
+\begin{align*}
+\frac{1}{\epsilon}\bsigma-\nabla u=0 & \quad\text{ in }\Omega\\
+-\nabla\cdot(\bsigma-\bbeta u)=f & \quad\text{ in }\Omega\\
+u=u_0 & \quad\text{ in }\partial\Omega\\
+\end{align*}
+\section*{Weak Form (Residual Form)}
+\subsection*{CG}
+\begin{align*}
+F_u&=\int_\Omega(\bsigma-\bbeta u)\cdot\nabla v-fv\dx
+- \int_{\partial\Omega }(\sigma_n-\beta_nu)v\ds
+&=0 & \quad\forall v\\
+F_\sigma&=\int_\Omega\frac{1}{\epsilon}\bsigma\cdot\btau+u\nabla\cdot\btau\dx
+-\int_{\partial \Omega}u\btau\cdot n\ds&=0 & \quad\forall\btau\\
+\end{align*}
+Now let
+\[
+u=\sum_iu_i\phi_i\,,\quad\quad
+\bsigma=\sum_i\bsigma_i\bpsi_i
+\]
+To calculate jacobians, differentiate with respect to $u_i$ and $\bsigma_i$
+\begin{align*}
+K_{uu}=\int_\Omega-\bbeta\phi\cdot\nabla v\dx-\int_{\partial\Omega}-\beta_n\phi v\ds
+\end{align*}
+\begin{align*}
+K_{u\sigma}=\int_\Omega\bpsi\cdot\nabla v\dx-\int_{\partial\Omega}\psi_nv\ds
+\end{align*}
+\begin{align*}
+K_{\sigma
+u}=\int_\Omega\phi\nabla\cdot\btau\dx-\int_{\partial\Omega}\phi\btau\cdot\bn\ds
+\end{align*}
+\begin{align*}
+K_{\sigma\sigma}=\int_\Omega\frac{1}{\epsilon}\bpsi\cdot\tau\dx
+\end{align*}
+\subsection*{DPG}
+\begin{align*}
+F_u&=\int_K(\bsigma-\bbeta u)\cdot\nabla v-fv\dx
+- \int_{\partial K}\widehat{(\sigma_n-\beta_nu)}\text{sgn}(n)v\ds
+&=0 & \quad\forall v\\
+F_\sigma&=\int_K\frac{1}{\epsilon}\bsigma\cdot\btau+u\nabla\cdot\btau\dx
+-\int_{\partial K}\hat u\btau\cdot n\ds&=0 & \quad\forall\btau\\
+\end{align*}
+% I'm not sure how to calculated the jacobians for DPG. If I follow the same
+% strategy, I get $K_{uu}\,,K_{u\sigma}\,,K_{u\hat
+% u}\,,K_{u\widehat{(\sigma_n-\beta_nu)}}\,,K_{\sigma
+% u}\,,K_{\sigma\sigma}\,,K_{\sigma\hat
+% u}\,,K_{\sigma\widehat{(\sigma_n-\beta_nu)}}$, but no
+% $K_{\hat u\dots}\,,\text{ or }K_{\widehat{(\sigma_n-\beta_nu)}\dots}$ terms.
+% Furthermore, I know that the jacobian should be symmetric and positive-definite,
+% something that this approach is not producing. So how do I derive the
+% residuals/jacobians for DPG?
+% Let
+% \[
+% \hat u=\sum_i\hat
+% u_i\Phi_i\,,\quad\quad\widehat{(\sigma_n-\beta_nu)}=\sum_i\widehat{(\sigma_n-\beta_nu)}_i\Psi_i
+% \]
+% \begin{align*}
+% K_{uu}&=\left[\int_K-\bbeta\phi\cdot\nabla v\dx\,,\quad0\right]\\
+% K_{u\sigma}&=\left[\int_K\bpsi\cdot\nabla v\dx\,,\quad-\int_{\partial
+% K}\Psi\text{sgn}(n)v\ds\right]\\
+% K_{\sigma u}&=\left[\phi\nabla\cdot\dx\,,\quad-\int_{\partial
+% K}\Phi\btau\cdot\bn\ds\right]\\
+% K_{\sigma\sigma}&=\left[\int_K\frac{1}{\epsilon}\bpsi\cdot\btau\dx\,,\quad0\right]
+% \end{align*}
+\end{document}
+
+
