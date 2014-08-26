@@ -1,0 +1,6 @@
+Notes:
+The fact that each
+finite element of a Lagrangian mesh always contains the
+same material particles represents a significant advantage
+from the computational viewpoint, especially in problems
+involving materials with history-dependent behavior - Donae -> Bonet and Wood (1997)

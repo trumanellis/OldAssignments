@@ -1,0 +1,295 @@
+%% Mesh Assembly
+
+% Number of position dofs per zone
+switch func2str(VBasis)
+	case 'Q1Basis'
+		ndofpZ=4;
+	case 'Q2Basis'
+		ndofpZ=9;
+	case 'Q3Basis'
+		ndofpZ=16;
+	case 'Q1bBasis'
+		ndofpZ=5;
+end
+
+% Number of thermo dofs per zone
+switch func2str(PBasis)
+    case 'Q0Basis'
+        npdof=1;
+    case {'P1Basis', 'P1qBasis'}
+        npdof=3;
+    case {'Q1Basis', 'Q1dBasis'}
+        npdof=4;
+    case {'Q2Basis', 'Q2dBasis'}
+        npdof=9;
+    case {'Q3Basis', 'Q3dBasis', 'Q0r4Basis'}
+        npdof=16;
+    case 'P0rBasis'
+        npdof=2;
+end
+GradVBasis=str2func(['Grad',func2str(VBasis)]);
+Jacobian=str2func(['Jacobian',func2str(VBasis)]);
+
+switch func2str(PBasis)
+    case 'Q0Basis'
+        pdofpts=[.5;.5];
+    case 'Q1dBasis'
+        pdofpts=GaussLegendreWeights2d(2)';
+    case 'Q2dBasis'
+        pdofpts=GaussLegendreWeights2d(3)';
+    case 'Q3dBasis'
+        pdofpts=GaussLegendreWeights2d(4)';
+end
+
+%Compute the mesh connectivity
+topo=ComputeMeshTopology(NZx,NZy);
+
+%Compute the mesh nodes
+refnodes=ComputeReferenceMeshNodes(NZx,NZy,[xmin,xmax],[ymin,ymax]);
+
+%Define number of Nodes and Zones
+NN=size(refnodes,2);
+NZ=NZx*NZy;
+
+% Compute nodal and zonal strides
+NSTRIDE=NZx+1;
+ZSTRIDE=NZx;
+
+if exist('CoggeshallTransform')
+    % Apply transformation to polar mesh
+    rs=linspace(xmin,xmax,NZx+1);
+    thetas=linspace(ymin,ymax,NZy+1);
+    for j = 1:NZy+1
+        for i = 1:NZx+1
+            refnodes(:,i+(j-1)*(NZx+1))=[rs(i)*cos(thetas(j));rs(i)*sin(thetas(j))];
+        end
+    end
+end
+
+% Construct the Quadmap
+Quadmap=zeros(ndofpZ,NZ);
+switch func2str(VBasis)
+    case 'Q1Basis'
+        Quadmap=topo;
+        allnodes=refnodes;
+    case 'Q2Basis'
+        % Construct the edge DOF mapping
+        edgelist=ComputeEdgeList(topo);
+        NE=size(edgelist,2);
+        mapping=ComputeElementEdgeMapping(topo,edgelist);
+        
+        for i=1:NZ
+            % Start with the nodes
+            Quadmap(1:4,i)=topo(:,i);
+            % Add the edges
+            Quadmap(5:8,i)=NN+mapping(:,i);
+            % Add the centers
+            Quadmap(9,i)=NN+NE+i;
+        end
+        
+        % Compute the center dof locations
+        refcennodes=zeros(2,NZ);
+        for i=1:NZ
+            refcennodes(:,i)=ComputeCentroid(refnodes(:,topo(:,i)));
+        end
+
+        % Compute locations of edge nodes
+        refedgenodes=(refnodes(:,edgelist(1,:))+refnodes(:,edgelist(2,:)))/2;
+        allnodes=[refnodes,refedgenodes,refcennodes];
+    case 'Q1bBasis'
+        for i=1:NZ
+            % Start with the nodes
+            Quadmap(1:4,i)=topo(:,i);
+            % Add the centers
+            Quadmap(5,i)=NN+i;
+        end
+        
+        % Compute the center dof locations
+        refcennodes=zeros(2,NZ);
+        for i=1:NZ
+            refcennodes(:,i)=ComputeCentroid(refnodes(:,topo(:,i)));
+        end
+        allnodes=[refnodes,refcennodes];
+end
+
+% Construct Pressure Map
+PressureMap=reshape(1:npdof*NZ',npdof,NZ)';
+
+% Compute number of dofs in Domain
+switch func2str(VBasis)
+    case 'Q1Basis'
+        ndofpD=NN;
+    case 'Q2Basis'
+        ndofpD=NN+NE+NZ;
+    case 'Q1bBasis'
+        ndofpD=NN+NZ;
+end
+
+% Construct the boundary edge sets
+[bdof nbnodes]=ComputeBoundaryDOFQuad(Quadmap,VBasis,ZSTRIDE);
+
+% Find lineouts before transformation
+if exist('lineoutAxis','var')
+    [h1,X2pts,Nvals]=PlotFEMContourf(allnodes,zeros(1,ndofpD),Quadmap,Quadmap,vref,VBasis,VBasis,'Linestyle','none');
+%     [h3,X1pts,Zvals]=PlotFEMContourf(allnodes,zeros(1,npdof*NZ),Quadmap,PressureMap',pref,VBasis,PBasis,'Linestyle','none');
+    [h3,X1pts,Zvals]=PlotFEMCenterContourf(allnodes,zeros(1,npdof*NZ),Quadmap,PressureMap',pref,VBasis,PBasis,'Linestyle','none');
+    lon=find(X2pts(lineoutAxis(1),:)==lineoutAxis(2));
+%     loz=find(X1pts(lineoutAxis(1),:)==lineoutAxis(2));
+    loz=find(X1pts(lineoutAxis(1),:)==.5*ymax/NZy);
+end
+
+% =============================== PERTURBED MESH ===========================
+
+if jitter > 0
+    %Compute the interior nodes
+%     interiornodes=setxor(1:ndofpD,unique(bdof));
+    interiornodes=setxor(1:ndofpD,unique([bdof;((NN+1):ndofpD)']));
+    
+    dx=[(xmax-xmin)/NZx;(ymax-ymin)/NZy];
+%     if strcmp(VBasis,'Q2Basis')
+%         dx=dx/2;
+%     end
+    if ~exist('randarray','var')
+        rand('twister',1);
+        randarray=rand(2,length(interiornodes));
+    end
+    for i=1:length(interiornodes)
+        allnodes(:,interiornodes(i))=allnodes(:,interiornodes(i))+2*jitter*dx.*(0.5-randarray(2,i));
+    end
+    refnodes=allnodes(:,1:NN);
+end
+
+if exist('SaltzmanPerturb') && SaltzmanPerturb > 0
+    for j=1:NZy+1
+        for i=1:NZx+1
+            index=i+(j-1)*(NZx+1);
+            allnodes(1,index)=(i-1)*(xmax-xmin)/NZx+(NZy+1-j)*sin(pi*(i-1)/NZx)*(ymax-ymin)/NZy/10/ymax;
+        end
+    end
+    if strcmp(func2str(VBasis),'Q2Basis')
+        for N=1:NZ
+            allnodes(:,Quadmap(5,N))=mean(allnodes(:,Quadmap([1 2],N)),2);
+            allnodes(:,Quadmap(6,N))=mean(allnodes(:,Quadmap([2 3],N)),2);
+            allnodes(:,Quadmap(7,N))=mean(allnodes(:,Quadmap([3 4],N)),2);
+            allnodes(:,Quadmap(8,N))=mean(allnodes(:,Quadmap([4 1],N)),2);
+            allnodes(:,Quadmap(9,N))=mean(allnodes(:,Quadmap(1:4,N)),2);
+        end
+    elseif strcmp(func2str(VBasis),'Q1bBasis')
+        for N=1:NZ
+            allnodes(:,Quadmap(5,N))=mean(allnodes(:,Quadmap(1:4,N)),2);
+        end
+    end
+end
+
+if exist('RotateMesh') %&& abs(RotateMesh) > 0 
+    RotMat=[cos(RotateMesh) sin(RotateMesh); -sin(RotateMesh) cos(RotateMesh)];
+    invRotMat=inv(RotMat);
+    allnodes=RotMat*allnodes;
+    refnodes=allnodes(:,1:NN);
+end
+
+if exist('RefineLevel') && RefineLevel > 0
+    for rr=1:RefineLevel
+        %Compute the mesh connectivity
+        refinedTopo=ComputeMeshTopology(2*NZx,2*NZy);
+        refinedNodes=zeros(2,(2*NZx+1)*(2*NZy+1));
+        for ny=1:NZy
+            for nx=1:NZx
+                refinedNodes(:,refinedTopo(1,2*nx-1+(ny-1)*4*NZx))=allnodes(:,topo(1,nx+(ny-1)*NZx));
+                refinedNodes(:,refinedTopo(2,2*nx-0+(ny-1)*4*NZx))=allnodes(:,topo(2,nx+(ny-1)*NZx));
+                refinedNodes(:,refinedTopo(4,2*nx-1+2*NZx+(ny-1)*4*NZx))=allnodes(:,topo(4,nx+(ny-1)*NZx));
+                refinedNodes(:,refinedTopo(3,2*nx-0+2*NZx+(ny-1)*4*NZx))=allnodes(:,topo(3,nx+(ny-1)*NZx));
+                % Center Nodes
+                refinedNodes(:,refinedTopo(3,2*nx-1+(ny-1)*4*NZx))=mean([...
+                    refinedNodes(:,refinedTopo(1,2*nx-1+(ny-1)*4*NZx)),...
+                    refinedNodes(:,refinedTopo(2,2*nx-0+(ny-1)*4*NZx)),...
+                    refinedNodes(:,refinedTopo(4,2*nx-1+2*NZx+(ny-1)*4*NZx)),...
+                    refinedNodes(:,refinedTopo(3,2*nx-0+2*NZx+(ny-1)*4*NZx))],2);
+                % Bottom Nodes
+                refinedNodes(:,refinedTopo(2,2*nx-1+(ny-1)*4*NZx))=mean([...
+                    refinedNodes(:,refinedTopo(1,2*nx-1+(ny-1)*4*NZx)),...
+                    refinedNodes(:,refinedTopo(2,2*nx-0+(ny-1)*4*NZx))],2);
+                % Left Nodes
+                refinedNodes(:,refinedTopo(4,2*nx-1+(ny-1)*4*NZx))=mean([...
+                    refinedNodes(:,refinedTopo(1,2*nx-1+(ny-1)*4*NZx)),...
+                    refinedNodes(:,refinedTopo(4,2*nx-1+2*NZx+(ny-1)*4*NZx))],2);
+                % Right Nodes
+                refinedNodes(:,refinedTopo(3,2*nx-0+(ny-1)*4*NZx))=mean([...
+                    refinedNodes(:,refinedTopo(2,2*nx-0+(ny-1)*4*NZx)),...
+                    refinedNodes(:,refinedTopo(3,2*nx-0+2*NZx+(ny-1)*4*NZx))],2);
+                % Top Nodes
+                refinedNodes(:,refinedTopo(4,2*nx-0+2*NZx+(ny-1)*4*NZx))=mean([...
+                    refinedNodes(:,refinedTopo(4,2*nx-1+2*NZx+(ny-1)*4*NZx)),...
+                    refinedNodes(:,refinedTopo(3,2*nx-0+2*NZx+(ny-1)*4*NZx))],2);
+            end
+        end
+        allnodes=refinedNodes;
+        topo=refinedTopo;
+        NZx=2*NZx;
+        NZy=2*NZy;
+    end
+    refnodes=refinedNodes;
+    NZ=NZx*NZy;
+    NN=size(refinedNodes,2);
+	PressureMap=reshape(1:npdof*NZ',npdof,NZ)';
+    % Compute nodal and zonal strides
+    NSTRIDE=NZx+1;
+    ZSTRIDE=NZx;
+end
+if (jitter > 0 && RotateMesh > 0) || (exist('RefineLevel','var') && RefineLevel > 0)
+    % Construct the Quadmap
+    Quadmap=zeros(ndofpZ,NZ);
+    switch func2str(VBasis)
+        case 'Q1Basis'
+            Quadmap=topo;
+            allnodes=refnodes;
+        case 'Q2Basis'
+            % Construct the edge DOF mapping
+            edgelist=ComputeEdgeList(topo);
+            NE=size(edgelist,2);
+            mapping=ComputeElementEdgeMapping(topo,edgelist);
+
+            for i=1:NZ
+                % Start with the nodes
+                Quadmap(1:4,i)=topo(:,i);
+                % Add the edges
+                Quadmap(5:8,i)=NN+mapping(:,i);
+                % Add the centers
+                Quadmap(9,i)=NN+NE+i;
+            end
+
+            % Compute the center dof locations
+            refcennodes=zeros(2,NZ);
+            for i=1:NZ
+                refcennodes(:,i)=ComputeCentroid(refnodes(:,topo(:,i)));
+            end
+
+            % Compute locations of edge nodes
+            refedgenodes=(refnodes(:,edgelist(1,:))+refnodes(:,edgelist(2,:)))/2;
+            allnodes=[refnodes,refedgenodes,refcennodes];
+        case 'Q1bBasis'
+            for i=1:NZ
+                % Start with the nodes
+                Quadmap(1:4,i)=topo(:,i);
+                % Add the centers
+                Quadmap(5,i)=NN+i;
+            end
+
+            % Compute the center dof locations
+            refcennodes=zeros(2,NZ);
+            for i=1:NZ
+                refcennodes(:,i)=ComputeCentroid(refnodes(:,topo(:,i)));
+            end
+            allnodes=[refnodes,refcennodes];
+    end
+    [bdof nbnodes]=ComputeBoundaryDOFQuad(Quadmap,VBasis,ZSTRIDE);
+    % Compute number of dofs in Domain
+    switch func2str(VBasis)
+        case 'Q1Basis'
+            ndofpD=NN;
+        case 'Q2Basis'
+            ndofpD=NN+NE+NZ;
+        case 'Q1bBasis'
+            ndofpD=NN+NZ;
+    end
+end

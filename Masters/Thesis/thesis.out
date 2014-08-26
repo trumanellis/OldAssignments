@@ -1,0 +1,97 @@
+\BOOKMARK [0][]{chapter*.2}{List of Tables}{}
+\BOOKMARK [0][]{chapter*.3}{List of Figures}{}
+\BOOKMARK [0][]{chapter*.4}{Nomenclature}{}
+\BOOKMARK [0][]{chapter.1}{Introduction}{}
+\BOOKMARK [0][]{chapter.2}{Theoretical Discussion}{}
+\BOOKMARK [1][]{section.2.1}{Euler Equations in a Lagrangian Frame}{chapter.2}
+\BOOKMARK [1][]{section.2.2}{A Brief Summary of the Finite Element Method}{chapter.2}
+\BOOKMARK [2][]{subsection.2.2.1}{The Weak Statement of the Problem}{section.2.2}
+\BOOKMARK [2][]{subsection.2.2.2}{Basis Functions}{section.2.2}
+\BOOKMARK [1][]{section.2.3}{Mesh}{chapter.2}
+\BOOKMARK [2][]{subsection.2.3.1}{Domain Decomposition}{section.2.3}
+\BOOKMARK [2][]{subsection.2.3.2}{Mesh Motion}{section.2.3}
+\BOOKMARK [2][]{subsection.2.3.3}{Jacobian of Transformation}{section.2.3}
+\BOOKMARK [1][]{section.2.4}{Semi-Discrete FEM Approximation}{chapter.2}
+\BOOKMARK [2][]{subsection.2.4.1}{Momentum Conservation}{section.2.4}
+\BOOKMARK [2][]{subsection.2.4.2}{Computing FEM Matrices}{section.2.4}
+\BOOKMARK [2][]{subsection.2.4.3}{Mass Conservation}{section.2.4}
+\BOOKMARK [2][]{subsection.2.4.4}{Energy Conservation}{section.2.4}
+\BOOKMARK [2][]{subsection.2.4.5}{Equation of State}{section.2.4}
+\BOOKMARK [1][]{section.2.5}{Fully-Discrete FEM Approximation}{chapter.2}
+\BOOKMARK [2][]{subsection.2.5.1}{Momentum Conservation}{section.2.5}
+\BOOKMARK [2][]{subsection.2.5.2}{Mass Conservation}{section.2.5}
+\BOOKMARK [2][]{subsection.2.5.3}{Energy Conservation}{section.2.5}
+\BOOKMARK [2][]{subsection.2.5.4}{Equation of State}{section.2.5}
+\BOOKMARK [1][]{section.2.6}{Tensor Artificial Viscosity}{chapter.2}
+\BOOKMARK [1][]{section.2.7}{Hourglass Filter}{chapter.2}
+\BOOKMARK [1][]{section.2.8}{Fully-Discrete Scheme}{chapter.2}
+\BOOKMARK [0][]{chapter.3}{Implementation Details}{}
+\BOOKMARK [1][]{section.3.1}{The Drivers}{chapter.3}
+\BOOKMARK [1][]{section.3.2}{Mesh Assembly and Variable Preallocation}{chapter.3}
+\BOOKMARK [1][]{section.3.3}{Initializing the Flow Field}{chapter.3}
+\BOOKMARK [1][]{section.3.4}{Solving the Momentum Equation}{chapter.3}
+\BOOKMARK [1][]{section.3.5}{Mesh Movement and Thermodynamic Update}{chapter.3}
+\BOOKMARK [1][]{section.3.6}{Plotting}{chapter.3}
+\BOOKMARK [0][]{chapter.4}{Some Elements Considered}{}
+\BOOKMARK [1][]{section.4.1}{Some Guidelines}{chapter.4}
+\BOOKMARK [1][]{section.4.2}{Convergence Tests}{chapter.4}
+\BOOKMARK [2][]{subsection.4.2.1}{The grad\(p\) Test}{section.4.2}
+\BOOKMARK [2][]{subsection.4.2.2}{The div\(grad\(V\)\) Test}{section.4.2}
+\BOOKMARK [1][]{section.4.3}{The Acoustic Wave Test}{chapter.4}
+\BOOKMARK [1][]{section.4.4}{The Q1-Q0 Element}{chapter.4}
+\BOOKMARK [2][]{subsection.4.4.1}{Assets}{section.4.4}
+\BOOKMARK [2][]{subsection.4.4.2}{Liabilities}{section.4.4}
+\BOOKMARK [2][]{subsection.4.4.3}{Convergence}{section.4.4}
+\BOOKMARK [2][]{subsection.4.4.4}{Spurious Modes}{section.4.4}
+\BOOKMARK [1][]{section.4.5}{The Q1-P0r Element}{chapter.4}
+\BOOKMARK [2][]{subsection.4.5.1}{Assets}{section.4.5}
+\BOOKMARK [2][]{subsection.4.5.2}{Liabilities}{section.4.5}
+\BOOKMARK [2][]{subsection.4.5.3}{Convergence}{section.4.5}
+\BOOKMARK [2][]{subsection.4.5.4}{Spurious Modes}{section.4.5}
+\BOOKMARK [1][]{section.4.6}{The Q1-P1 Element}{chapter.4}
+\BOOKMARK [1][]{section.4.7}{The Q1-Q1 Element}{chapter.4}
+\BOOKMARK [2][]{subsection.4.7.1}{Assets}{section.4.7}
+\BOOKMARK [2][]{subsection.4.7.2}{Liabilities}{section.4.7}
+\BOOKMARK [2][]{subsection.4.7.3}{Convergence}{section.4.7}
+\BOOKMARK [2][]{subsection.4.7.4}{Spurious Modes}{section.4.7}
+\BOOKMARK [1][]{section.4.8}{The Q1-Q2 Element}{chapter.4}
+\BOOKMARK [1][]{section.4.9}{The Q2-Q0 Element}{chapter.4}
+\BOOKMARK [2][]{subsection.4.9.1}{Assets}{section.4.9}
+\BOOKMARK [2][]{subsection.4.9.2}{Liabilities}{section.4.9}
+\BOOKMARK [2][]{subsection.4.9.3}{Convergence}{section.4.9}
+\BOOKMARK [1][]{section.4.10}{The Q2-P1 Element}{chapter.4}
+\BOOKMARK [2][]{subsection.4.10.1}{Assets}{section.4.10}
+\BOOKMARK [2][]{subsection.4.10.2}{Liabilities}{section.4.10}
+\BOOKMARK [2][]{subsection.4.10.3}{Convergence}{section.4.10}
+\BOOKMARK [2][]{subsection.4.10.4}{Spurious Modes}{section.4.10}
+\BOOKMARK [1][]{section.4.11}{The Q2-Q1 Element}{chapter.4}
+\BOOKMARK [2][]{subsection.4.11.1}{Assets}{section.4.11}
+\BOOKMARK [2][]{subsection.4.11.2}{Liabilities}{section.4.11}
+\BOOKMARK [2][]{subsection.4.11.3}{Convergence}{section.4.11}
+\BOOKMARK [2][]{subsection.4.11.4}{Spurious Modes}{section.4.11}
+\BOOKMARK [1][]{section.4.12}{The Q2-Q2 Element}{chapter.4}
+\BOOKMARK [2][]{subsection.4.12.1}{Assets}{section.4.12}
+\BOOKMARK [2][]{subsection.4.12.2}{Liabilities}{section.4.12}
+\BOOKMARK [2][]{subsection.4.12.3}{Convergence}{section.4.12}
+\BOOKMARK [2][]{subsection.4.12.4}{Spurious Modes}{section.4.12}
+\BOOKMARK [1][]{section.4.13}{Conclusions}{chapter.4}
+\BOOKMARK [0][]{chapter.5}{Numerical Results}{}
+\BOOKMARK [1][]{section.5.1}{The Sod Shock Tube}{chapter.5}
+\BOOKMARK [1][]{section.5.2}{The Noh Implosion}{chapter.5}
+\BOOKMARK [2][]{subsection.5.2.1}{Low Order Q1-Q0}{section.5.2}
+\BOOKMARK [2][]{subsection.5.2.2}{Low Order Q1-Q1}{section.5.2}
+\BOOKMARK [2][]{subsection.5.2.3}{High Order Q2-Q1}{section.5.2}
+\BOOKMARK [2][]{subsection.5.2.4}{High Order Q2-Q2}{section.5.2}
+\BOOKMARK [1][]{section.5.3}{The Saltzman Piston}{chapter.5}
+\BOOKMARK [2][]{subsection.5.3.1}{Low Order Q1-Q0}{section.5.3}
+\BOOKMARK [2][]{subsection.5.3.2}{Low Order Q1-Q1}{section.5.3}
+\BOOKMARK [2][]{subsection.5.3.3}{High Order Q2-Q1}{section.5.3}
+\BOOKMARK [2][]{subsection.5.3.4}{High Order Q2-Q2}{section.5.3}
+\BOOKMARK [1][]{section.5.4}{The Sedov Blast Wave}{chapter.5}
+\BOOKMARK [2][]{subsection.5.4.1}{Low Order Q1-Q0}{section.5.4}
+\BOOKMARK [2][]{subsection.5.4.2}{Low Order Q1-Q1}{section.5.4}
+\BOOKMARK [2][]{subsection.5.4.3}{High Order Q2-Q1}{section.5.4}
+\BOOKMARK [2][]{subsection.5.4.4}{High Order Q2-Q2}{section.5.4}
+\BOOKMARK [1][]{section.5.5}{Computational Efficiency}{chapter.5}
+\BOOKMARK [0][]{chapter.6}{Conclusion}{}
+\BOOKMARK [0][]{chapter*.21}{Bibliography}{}

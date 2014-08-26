@@ -1,0 +1,3 @@
+#!/bin/bash
+matlab7.4 -nodesktop -nosplash -nojvm -r run_prob" '$1'"
+exit

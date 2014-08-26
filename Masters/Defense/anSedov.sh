@@ -1,0 +1,1 @@
+animate -resize 1000 -pause 3 SedovAnimation.gif

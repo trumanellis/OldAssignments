@@ -1,0 +1,51 @@
+This is BibTeX, Version 0.99c (Web2C 7.5.6)
+The top-level auxiliary file: thesis.aux
+The style file: abbrv.bst
+Illegal, another \bibstyle command---line 621 of file thesis.aux
+ : \bibstyle
+ :          {plain}
+I'm skipping whatever remains of this command
+Database file #1: References.bib
+Warning--empty year in BergerAftosmis05
+You've used 39 entries,
+            2118 wiz_defined-function locations,
+            865 strings with 11636 characters,
+and the built_in function-call counts, 11563 in all, are:
+= -- 1135
+> -- 513
+< -- 4
++ -- 213
+- -- 164
+* -- 772
+:= -- 2013
+add.period$ -- 122
+call.type$ -- 39
+change.case$ -- 197
+chr.to.int$ -- 0
+cite$ -- 40
+duplicate$ -- 431
+empty$ -- 935
+format.name$ -- 164
+if$ -- 2378
+int.to.chr$ -- 0
+int.to.str$ -- 39
+missing$ -- 38
+newline$ -- 200
+num.names$ -- 78
+pop$ -- 179
+preamble$ -- 1
+purify$ -- 160
+quote$ -- 0
+skip$ -- 269
+stack$ -- 0
+substring$ -- 711
+swap$ -- 41
+text.length$ -- 4
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 146
+warning$ -- 1
+while$ -- 107
+width$ -- 41
+write$ -- 428
+(There was 1 error message)

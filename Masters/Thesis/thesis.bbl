@@ -1,0 +1,232 @@
+\begin{thebibliography}{10}
+
+\bibitem{AircraftCFD}
+R.~Agarwal.
+\newblock Computational fluid dynamics of whole-body aircraft.
+\newblock {\em Annual Review of Fluid Mechanics}, 31:125--169, 1999.
+
+\bibitem{Barlow07}
+A.~Barlow.
+\newblock A compatible finite element multi-material {ALE} hydrodynamics
+  algorithm.
+\newblock {\em Internat. J. Numer. Methods Fluids}, 56:953--964, 2007.
+
+\bibitem{BergerAftosmis05}
+M.~Berger and M.~Aftosmis.
+\newblock Analysis of slope limiters on irregular grids.
+\newblock Technical Report 2005-0490, American Institute of Aeronautics and
+  Astronautics.
+
+\bibitem{Burton1994}
+D.~E. Burton.
+\newblock Consistent finite-volume discretization of hydrodynamic conservation
+  laws for unstructured grids.
+\newblock In {\em Eighth Nuclear Explosives Code Developers' Conference}, 1994.
+
+\bibitem{CampbellShashkov01}
+J.~C. Campbell and M.~J. Shashkov.
+\newblock A tensor artificial viscosity using a mimetic finite difference
+  algorithm.
+\newblock {\em J. Comput. Phys.}, 172:739--765, 2001.
+
+\bibitem{CaramanaBurtonShashkov98}
+E.~J. Caramana, D.~E. Burton, M.~J. Shashkov, and P.~P. Whalen.
+\newblock The construction of compatible hydrodynamics algorithms utilizing
+  conservation of total energy.
+\newblock {\em J. Comput. Phys.}, 146:227--262, 1998.
+
+\bibitem{CaramanaShashkov98}
+E.~J. Caramana and M.~J. Shashkov.
+\newblock Elimination of artificial grid distortion and hourglass-type motions
+  by means of {L}agrangian subzonal masses and pressures.
+\newblock {\em J. Comput. Phys.}, 142(2):521--561, 1998.
+
+\bibitem{CookCabot2004}
+A.~W. Cook and W.~H. Cabot.
+\newblock A high-wavenumber viscosity for high-resolution numerical methods.
+\newblock {\em Journal of Computational Physics}, 195:594 -- 601, 2004.
+
+\bibitem{CookCabot2005}
+A.~W. Cook and W.~H. Cabot.
+\newblock Hyperviscosity for shock-turbulence interactions.
+\newblock {\em Journal of Computational Physics}, 203:379 -- 385, 2005.
+
+\bibitem{CourantFriedrichsLewy28}
+R.~Courant, K.~O. Friedrichs, and H.~Lewy.
+\newblock Uber die partiellen differenzengleichungen der mathematisches physik.
+\newblock {\em Math. Ann.}, 100:32--74, 1928.
+
+\bibitem{DuctCFD}
+M.~Dalenbring and J.~Smith.
+\newblock Simulation of s-duct dynamics using fluid-structure coupled cfd.
+\newblock In {\em 24th Applied Aerodynamics Conference}, 2006.
+
+\bibitem{SugarCFD}
+T.~Dixon, A.~Mann, P.~Hobson, S.~Plaza, F.~andPennisiI, and R.~Steindl.
+\newblock Application of cfd in the sugar industry.
+\newblock In {\em Third International Conference on CFD in the Minerals and
+  Process Industries}, 2003.
+
+\bibitem{DobrevEllisKolevRieben2010}
+V.~A. Dobrev, T.~E. Ellis, T.~V. Kolev, and R.~Rieben.
+\newblock Curvilinear finite elements for lagrangian hydrodynamics.
+\newblock article in review, 2010.
+
+\bibitem{FluidStructureCFD}
+J.~Donea, S.~Giuliani, and J.~Halleux.
+\newblock An arbitrary lagrangian-eulerian finite element method for transient
+  dynamic fluid-structure interactions.
+\newblock {\em Computer Methods in Applied Mechanics and Engineering},
+  33(1-3):689 -- 723, 1982.
+
+\bibitem{DonaeALE}
+J.~Donea, A.~Huerta, J.-P. Ponthot, and A.~Rodriguez-Ferran.
+\newblock Arbitrary lagrangian–eulerian methods.
+\newblock In {\em Encyclopedia of Computational Mechanics}. John Wiley \& Sons,
+  Ltd., 2004.
+
+\bibitem{Douglas1985}
+J.~Douglas and F.~Milner.
+\newblock Interior and superconvergence estimates for mixed methods for second
+  order elliptic equations.
+\newblock {\em RAIRO Modél. Math. Anal. Numér.}, 19:297–328, 1985.
+
+\bibitem{Gibbs1898}
+J.~W. Gibbs.
+\newblock Fourier series.
+\newblock {\em Nature}, 59(200), 1898.
+
+\bibitem{AstroCFD}
+N.~Gnedin.
+\newblock Softened lagrangian hydrodynamics for cosmology.
+\newblock {\em Astrophysical Journal Supplement Series}, 97(2):231--257, 1995.
+
+\bibitem{Gryra1992}
+V.~Gyrya and K.~Lipnikov.
+\newblock Vorticity errors in multidimensional lagrangian codes.
+\newblock {\em J. Comp. Phys.}, 99:115–134, 1992.
+
+\bibitem{FreeSurfaceCFD}
+C.~W. Hirt, J.~L. Cook, and T.~D. Butler.
+\newblock A lagrangian method for calculating the dynamics of an incompressible
+  fluid with free surface.
+\newblock {\em Von Karman Inst. for Fluid Dyn. Numerical Methods in Fluid
+  Dyn.}, 15:18--34, 1972.
+
+\bibitem{Hughes1987}
+T.~Hughes.
+\newblock {\em The Finite Element Method: Linear Static and Dynamic Finite
+  Element Analysis}.
+\newblock Dover Publications, 1987.
+
+\bibitem{ElectronicsCFD}
+R.~Kandasamy and S.~Subramanyam.
+\newblock Application of computational fluid dynamics simulation tools for
+  thermal characterization of electronic packages.
+\newblock {\em International Journal for Numerical Methods in Heat \& Fluid
+  Flow}, 15(1):61--72, 2005.
+
+\bibitem{Lipnikov2010}
+K.Lipnikov and M.Shashkov.
+\newblock A mimetic tensor artiﬁcial viscosity for lagrangian hydrocodes on
+  arbitrary polygonal meshes.
+\newblock Technical Report LA-UR-10-00006, Los Alamos National Laboratory,,
+  2010.
+
+\bibitem{KolevRieben09}
+T.~V. Kolev and R.~N. Rieben.
+\newblock A tensor artificial viscosity using a finite element approach.
+\newblock {\em J. Comput. Phys.}, 228(22):8336--8366, 2009.
+
+\bibitem{ExplosionCFD}
+H.~U. Mair and H.~Huang.
+\newblock Lagrangian hydrocode modeling of underwater explosive/target
+  interaction.
+\newblock In {\em 61s Shock and Vibration Symposium}, 1990.
+
+\bibitem{FreeSurfaceCFD2}
+M.~A. Martínez, E.~Cueto, I.~Alfaro, M.~Doblaré, and F.~Chinesta.
+\newblock Updated lagrangian free surface flow simulations with natural
+  neighbour galerkin methods.
+\newblock {\em International Journal for Numerical Methods in Engineering},
+  60:2105--2129, 2004.
+
+\bibitem{Noh87}
+W.~F. Noh.
+\newblock Errors for calculations of strong shocks using an artificial
+  viscosity and an artificial heat flux.
+\newblock {\em J. Comput. Phys.}, 72(1):78--120, 1987.
+
+\bibitem{Perry2008}
+R.~Perry.
+\newblock Investigation of the proposed 2009 fiaformula 1 world championship
+  aerodynamic regulation changes using computational fluid dynamics.
+\newblock Master's thesis, California Polytechnic State University, June 2008.
+
+\bibitem{Rider2000}
+W.~J. Rider.
+\newblock Revisiting wall heating.
+\newblock {\em Journal of Computational Physics}, 162:395 -- 410, 2000.
+
+\bibitem{ShipCFD}
+Z.~rong Zhang, H.~Liu, S.~ping Zhu, and F.~Zhao.
+\newblock Application of cfd in ship engineering design practice and ship
+  hydrodynamics.
+\newblock {\em Journal of Hydrodynamics, Ser. B}, 18(3, Supplement 1):315 --
+  322, 2006.
+\newblock Proceedings of the Conference of Global Chinese Scholars on
+  Hydrodynamics.
+
+\bibitem{Saltzman1985}
+J.~Saltzman and P.~Colella.
+\newblock Second order corner coupled upwind transport methods for lagrangian
+  hydrodynamics.
+\newblock Technical Report LA-UR-85-678, Los Alamos National Laboratory, 1985.
+
+\bibitem{Sedov59}
+L.~I. Sedov.
+\newblock {\em Similarity and Dimensional Methods in Mechanics}.
+\newblock CRC Press, tenth edition, 1993.
+
+\bibitem{Sod1978}
+G.~Sod.
+\newblock Survey of several finite difference methods for systems of nonlinear
+  hyperbolic conservation laws.
+\newblock {\em Journal of Computational Physics}, 26, 1978.
+
+\bibitem{StenbergSuri1996}
+R.~Stenberg and M.~Suri.
+\newblock Mixed hp finite element methods for problems in elasticity and stokes
+  flow.
+\newblock {\em Numerische Mathematik}, 72:367--389, 1996.
+
+\bibitem{Tannehill1997}
+J.~C. Tannehill, D.~A. Anderson, and R.~H. Pletcher.
+\newblock {\em Computational Fluid Mechanics and Heat Transfer}.
+\newblock series in computational and physical processes in mechanics and
+  thermal sciences. Taylor \& Francis, 2nd edition, 1997.
+
+\bibitem{Tipton90}
+R.~Tipton.
+\newblock {CALE} {L}agrange step.
+\newblock Technical report, Lawrence Livermore National Laboratory, October
+  1990.
+\newblock Unpublished.
+
+\bibitem{Toro2006}
+E.~F. Toro.
+\newblock {\em Riemann Solvers and Numerical Methods for Fluid Dynamics - A
+  Practical Introduction}.
+\newblock Springer - Verlag, 2006.
+
+\bibitem{VonNeumannRichtmyer50}
+J.~VonNeumann and R.~D. Richtmyer.
+\newblock A method for the numerical calculation of hydrodynamic shocks.
+\newblock {\em J. Appl. Phys.}, 21:232--237, 1950.
+
+\bibitem{HydroCodeBook}
+J.~Zukas.
+\newblock {\em Introduction to Hydrocodes}.
+\newblock Number~49 in Studies in Applied Mechanics. Elsevier, 2004.
+
+\end{thebibliography}

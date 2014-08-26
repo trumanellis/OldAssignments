@@ -1,0 +1,330 @@
+%% ----------------------------------------------------------------
+%% Thesis.tex -- MAIN FILE (the one that you compile with LaTeX)
+%% ---------------------------------------------------------------- 
+
+\documentclass[12pt]{ucthesis}
+% \graphicspath{{Figures/}}  % Location of the graphics files (set up for graphics to be in PDF format)
+
+% Include any extra LaTeX packages required
+\usepackage[square, numbers, comma, sort&compress]{natbib}  % Use the "Natbib" style for the references in the Bibliography
+\usepackage{verbatim}  % Needed for the "comment" environment to make LaTeX comments
+\usepackage{vector}  % Allows "\bvec{}" and "\buvec{}" for "blackboard" style bold vectors in maths
+% \hypersetup{urlcolor=blue, colorlinks=true}  % Colours hyperlinks in blue, but this can be distracting if there are many links.
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage[pdftex,plainpages=false,breaklinks=true,colorlinks=true,urlcolor=blue,citecolor=blue,%
+				    linkcolor=blue,bookmarks=true,bookmarksopen=true,%
+				    bookmarksopenlevel=3,pdfstartview=FitV,
+				    pdfauthor={Truman E. Ellis},
+				    pdftitle={High Order Finite Elements for Lagrangian Computational Fluid Dynamics},
+				    pdfkeywords={thesis, masters, cal poly}
+				    ]{hyperref}
+%Options with pdfstartview are FitV, FitB and FitH
+\pdfcompresslevel=1
+\usepackage{amssymb,amsmath}
+\usepackage[letterpaper]{geometry}
+\usepackage[overload]{textcase}
+\usepackage{fancyhdr}
+\usepackage{setspace}  
+\usepackage{longtable}
+\usepackage[absolute]{textpos}
+\usepackage[tight]{subfigure}
+\usepackage{changepage}
+\setlength{\TPHorizModule}{\paperwidth}\setlength{\TPVertModule}{\paperheight}
+
+
+\bibliographystyle{abbrv}
+
+\setlength{\parindent}{0.25in} \setlength{\parskip}{6pt}
+
+\geometry{verbose,nohead,tmargin=1.25in,bmargin=1in,lmargin=1.5in,rmargin=1.3in}
+
+\setcounter{tocdepth}{2}
+
+
+% Different font in captions (single-spaced, bold) ------------
+\newcommand{\captionfonts}{\small\bf\ssp}
+
+\makeatletter  % Allow the use of @ in command names
+\long\def\@makecaption#1#2{%
+  \vskip\abovecaptionskip
+  \sbox\@tempboxa{{\captionfonts #1: #2}}%
+  \ifdim \wd\@tempboxa >\hsize
+    {\captionfonts #1: #2\par}
+  \else
+    \hbox to\hsize{\hfil\box\@tempboxa\hfil}%
+  \fi
+  \vskip\belowcaptionskip}
+\makeatother   % Cancel the effect of \makeatletter
+
+\def\newblock{\hskip .11em plus .33em minus .07em}
+% ---------------------------------------
+
+% \newcommand\btypeout[1]{\bhrule\typeout{\space #1}\bhrule}
+% % \newcommand\addtotoc[1]{
+% % \refstepcounter{dummy}
+% % \addcontentsline{toc}{chapter}{#1}}
+% \newcommand\listsymbolname{Nomenclature}
+% \usepackage{longtable}
+% \newcommand\listofsymbols[2]{
+% % \btypeout{\listsymbolname}
+% % \addtotoc{\listsymbolname}
+%     \chapter*{\listsymbolname}
+% %       \@mkboth{
+% %           \MakeUppercase\listsymbolname}{\MakeUppercase\listsymbolname}}
+% \begin{longtable}[c]{#1}#2\end{longtable}\par
+%     \cleardoublepage
+% }
+
+%=============================================================================
+%                              Useful Commands
+%=============================================================================
+
+% ===== Rob Rieben's Useful Commands =====
+ 
+\newcommand{\refEq}[1]{(\ref{eq:#1})}
+\newcommand{\refChap}[1]{Chapter~\ref{chap:#1}}
+\newcommand{\refFig}[1]{Figure~\ref{fig:#1}}
+\newcommand{\refSec}[1]{Section~\ref{sec:#1}}
+\newcommand{\refTab}[1]{Table~\ref{tab:#1}}
+\newcommand{\refApp}[1]{Appendix~\ref{app:#1}}
+\newcommand{\newEq}[2]{\begin{equation} \label{eq:#1} #2 \end{equation}}
+
+\newcommand{\el}[2]{$#1$-$#2$}
+\newcommand{\SedovPlot}[5]{
+\clearpage
+\newpage
+\begin{figure}[ht]
+\begin{textblock*}{7in}(.75in,1in)
+\centering
+\subfigure[Velocity magnitude pseudocolor plot (\textit{left}). Velocity magnitude scatter plot compared to exact solution (\textit{right}).]{
+\includegraphics[width=7in,keepaspectratio=true]{./Figures/SedovV_#1_#2x#2_hg#3}
+\label{fig:SedovV_#1_#2x#2_hg#3}
+}
+\subfigure[Density pseudocolor plot (\textit{left}). Density scatter plot compared to exact solution (\textit{right}).]{
+\includegraphics[width=7in,keepaspectratio=true]{./Figures/SedovD_#1_#2x#2_hg#3}
+\label{fig:SedovD_#1_#2x#2_hg#3}
+}
+\caption{Sedov explosion problem on #2$\times$#2 mesh using #4 elements #5 hourglass filtering}
+\label{fig:Sedov_#1_#2x#2_hg#3}
+\end{textblock*}
+\end{figure}
+\clearpage
+\newpage}
+
+\newcommand{\NohPlot}[5]{
+\clearpage
+\newpage
+\begin{figure}[ht]
+\begin{textblock*}{7in}(.75in,1in)
+\centering
+\subfigure[Velocity magnitude pseudocolor plot (\textit{left}). Velocity magnitude scatter plot compared to exact solution (\textit{right}).]{
+\includegraphics[width=7in,keepaspectratio=true]{./Figures/NohV_#1_#2x#2_hg#3}
+\label{fig:NohV_#1_#2x#2_hg#3}
+}
+\subfigure[Density pseudocolor plot (\textit{left}). Density scatter plot compared to exact solution (\textit{right}).]{
+\includegraphics[width=7in,keepaspectratio=true]{./Figures/NohD_#1_#2x#2_hg#3}
+\label{fig:NohD_#1_#2x#2_hg#3}
+}
+\caption{Noh explosion problem on #2$\times$#2 mesh using #4 elements #5 hourglass filtering}
+\label{fig:Noh_#1_#2x#2_hg#3}
+\end{textblock*}
+\end{figure}
+\clearpage
+\newpage}
+
+\newcommand{\SaltzmanPlot}[5]{
+\clearpage
+\newpage
+\begin{figure}[ht]
+\begin{textblock*}{7in}(.75in,1in)
+\centering
+\subfigure[Pseudocolor plot of $x$-velocity (\textit{left}). Scatter plot of $x$-velocity (\textit{right}).]{
+\includegraphics[width=7in,keepaspectratio=true]{./Figures/SaltzmanV_#1_50x10_hg#3}
+\label{fig:SaltzmanV_#1_50x10_hg#3}
+}
+\subfigure[Density pseudocolor plot (\textit{left}). Density scatter plot (\textit{right}).]{
+\includegraphics[width=7in,keepaspectratio=true]{./Figures/SaltzmanD_#1_50x10_hg#3}
+\label{fig:SaltzmanD_#1_50x10_hg#3}
+}
+\caption{Saltzman piston problem on 50$\times$10 mesh using #4 elements #5 hourglass filtering at t=0.925}
+\label{fig:Saltzman_#1_50x10_hg#3}
+\end{textblock*}
+\end{figure}
+\clearpage
+\newpage}
+
+%=============================================================================
+%                        Common Shortcut Definitions
+%=============================================================================
+%== Text mode defines ==
+\def\Elem{$\Sigma$ }
+\def\Pspace{$\mathcal{P}$ }
+\def\Dof{$\mathcal{A}$ }
+\def\FE{$(\Sigma, \mathcal{P}, \mathcal{A})$ }
+\def\Hdiv{$H(Div)$ }
+\def\Hcurl{$H(Curl)$ }
+\def\RefHex{$\hat{\Sigma}$ }
+\def\IntRule{${\mathcal Q}$ }
+%== Math mode defines ==
+\def\Grad{\vec \nabla}
+\def\Curl{\vec \nabla \times}
+\def\Div{\vec \nabla \cdot}
+\def\VecLaplacian{\vec \nabla^2}
+ 
+
+\begin{document}
+
+% Declarations for Front Matter
+
+% Update fields below!
+\title{High Order Finite Elements for Lagrangian Computational Fluid Dynamics}
+\author{Truman E. Ellis}
+\degreemonth{April} \degreeyear{2010} \degree{Master of Science}
+\defensemonth{April} \defenseyear{2010}
+\numberofmembers{5} \chair{Faisal Kolkailah, Ph.D.} \othermemberA{Robert Rieben, Ph.D.} \othermemberB{Tzanio Kolev, Ph.D.} \othermemberC{David Marshall, Ph.D.} \othermemberD{Alberto Jimenez, Ph.D.} \field{Aerospace Engineering} \campus{San Luis Obispo}
+\copyrightyears{seven}
+
+
+
+\maketitle
+
+\begin{frontmatter}
+
+% Custom made for Cal Poly (by Mark Barry, modified by Andrew Tsui).
+\copyrightpage
+
+% Custom made for Cal Poly (by Andrew Tsui).
+\committeemembershippage
+
+\begin{abstract}
+
+A general finite element method is presented to solve the Euler equations in a Lagrangian reference frame. This FEM framework allows for separate arbitrarily high order representation of kinematic and thermodynamic variables. An accompanying hydrodynamics code written in Matlab is presented as a test-bed to experiment with various basis function choices. A wide range of basis function pairs are postulated and a few choices are developed further, including the bi-quadratic \el{Q_2}{\hat Q_1} and \el{Q_2}{\hat Q_2} elements. These are compared with a corresponding pair of low order bi-linear elements, traditional \el{Q_1}{Q_0} and sub-zonal pressure \el{Q_1}{\hat Q_1}. Several test problems are considered including static convergence tests, the acoustic wave hourglass test, the Sod shocktube, the Noh implosion problem, the Saltzman piston, and the Sedov explosion problem. High order methods are found to offer faster convergence properties, the ability to represent curved zones, sharper shock capturing, and reduced shock-mesh interaction. They also allow for the straightforward calculation of thermodynamic gradients (for multi-physics calculations) and second derivatives of velocity (for monotonic slope limiters), and are more computationally efficient. The issue of shock ringing remains unresolved, but the method of hyperviscosity has been identified as a promising means of addressing this. Overall, the curvilinear finite elements presented in this thesis show promise for integration in a full hydrodynamics code and warrant further consideration.
+
+\end{abstract}
+
+\begin{acknowledgements}
+
+  This thesis is the result of many contributors. I would not have made it so far without such patient help and support. I owe much to my parents for teaching me how to work, for the plentiful beans and rice, free laundry service, and most of all for their love and encouragement. To my grandpa who wouldn't have me be distracted from my studies with a part-time job - for his generous financial support and encouragement to pursue an engineering education.
+
+  I also need to thank Dr. Marshall for challenging me to learn scientific programming and computational fluid dynamics in particular and for inspiring me to adapt Linux, a decision that I have never regretted. Thank you Dr. Jimenez for fostering a research environment within your numerical methods class. Your ingenious little projects inspired me to pursue a career in research. 
+
+  I have much gratitude to Dr. Kolkailah for advising me on a subject that is not his specialty. You really helped me out of a bind. To my advisors and mentors at Lawrence Livermore National Laboratory, Dr. Robert Rieben and Dr. Tzanio Kolev - thank you for trusting a first year grad student with a real research project, for explaining everything so patiently and giving me a great start into a lifetime of learning and research.
+
+  Finally, to Lauren, my lovely wifey - thank you for letting me go to class, even if it was very reluctantly. Your love and support are daily an encouragement. 
+
+\end{acknowledgements}
+
+
+\tableofcontents
+
+
+\listoftables
+
+\listoffigures
+
+\lhead{\emph{Nomenclature}}  % Set the left side page header to "Abbreviations"
+\listofsymbols{ll}  % Include a list of Abbreviations (a table of two columns)
+{
+% \textbf{Acronym} & \textbf{W}hat (it) \textbf{S}tands \textbf{F}or \\
+\textbf{ALE} & \textbf{A}rbitrary \textbf{L}agrangian-\textbf{E}ulerian \\
+\textbf{CFD} & \textbf{C}omputational \textbf{F}luid \textbf{D}ynamics \\
+\textbf{DOF} & \textbf{D}egree \textbf{O}f \textbf{F}reedom \\
+\textbf{EOS} & \textbf{E}quation \textbf{O}f \textbf{S}tate \\
+\textbf{FEM} & \textbf{F}inite \textbf{E}lement \textbf{M}ethod \\
+\textbf{PDE} & \textbf{P}artial \textbf{D}ifferential \textbf{E}quation \\
+\textbf{SGH} & \textbf{S}taggered \textbf{G}rid \textbf{H}ydrodynamics \\
+% $e$ &  specific internal energy \\
+% $\mathbf{e}$ & specific internal energy degree of freedom \\
+% $E$ & total energy \\
+% $\mathbf{F}$ & Force \\
+% $IE$ & total internal energy \\
+$\mathbf{D}$ & derivative matrix \\
+$\mathbf{M}$ & mass matrix \\
+$\mathbf{S}$ & stiffness matrix \\
+% $\mathbf{J}$ & Jacobian matrix \\
+% $KE$ & total kinetic energy \\
+% $m$ & mass \\
+% $\hat n$ & outward pointing unit normal vector \\
+% $N_{-}$ & number of - basis functions per element \\
+% $p$ & pressure \\
+% $\mathbf{p}$ & pressure degree of freedom \\
+% $\vec v$ & velocity \\
+% $\mathbf{v}$ & velocity degree of freedom \\
+$\hat P_1=P_{1d}$ &  continuous linear finite element space on quadrilaterals \\
+$Q_0$ &  constant function on quadrilaterals \\
+$Q_1$ &  continuous bi-linear finite element space on quadrilaterals \\
+$\hat Q_1=Q_{1d}$ &  discontinuous bi-linear finite element space on quadrilaterals \\
+$Q_2$ &  continuous bi-quadratic finite element space on quadrilaterals \\
+$\hat Q_2=Q_{2d}$ &  discontinuous bi-quadratic finite element space on quadrilaterals \\
+% $\mathbf{r}$ & density degree of freedom \\
+% $t$ & time \\
+% $\vec w$ & velocity basis function \\
+% $\vec w'$ & test function \\
+% $\vec x$ & position \\
+% $x$ & x-position \\
+% $\hat x$ & reference element x-position \\
+% $y$ & y-position \\
+% $\hat y$ & reference element y-position \\
+% $z$ & zonal \\
+% $\gamma$ & ratio of specific heats \\
+% $\eta$ & spatial basis function \\
+% $\mu$ & artificial viscosity coefficient \\
+% $\rho$ & density \\
+% $\phi$ & thermodynamic basis function \\
+% $\Phi$ & mapping from computational space to physical space \\
+% $\Omega$ & spatial domain \\
+% $\tilde \Omega$ & computational mesh \\
+}
+
+\end{frontmatter}
+
+\pagestyle{plain}
+
+
+
+
+\renewcommand{\baselinestretch}{1.66}
+
+
+% ------------- Main chapters here --------------------
+
+\input{./Chapters/Chapter1} % Introduction
+
+\input{./Chapters/Chapter2} % Theoretical Framework 
+
+\input{./Chapters/Chapter3} % Implementation Details
+
+\input{./Chapters/Chapter4} % Some Elements Considered
+
+\input{./Chapters/Chapter5} % Numerical Results
+
+\input{./Chapters/Chapter6} % Results and Discussion
+
+%\input{./Chapters/Chapter7} % Conclusion
+
+\clearpage
+\bibliography{References}
+\bibliographystyle{plain}
+\addcontentsline{toc}{chapter}{Bibliography}
+
+%% ----------------------------------------------------------------
+% Now begin the Appendices, including them as separate files
+
+\addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
+
+\appendix % Cue to tell LaTeX that the following 'chapters' are Appendices
+
+% \input{./Appendices/AppendixA}	% Appendix Title
+
+%\input{./Appendices/AppendixB} % Appendix Title
+
+%\input{./Appendices/AppendixC} % Appendix Title
+
+\addtocontents{toc}{\vspace{2em}}  % Add a gap in the Contents, for aesthetics
+
+% \bibliographystyle{unsrtnat}  % Use the "unsrtnat" BibTeX style for formatting the Bibliography
+% \bibliography{References}
+
+\end{document}  % The End
+%% ----------------------------------------------------------------

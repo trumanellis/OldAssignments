@@ -1,0 +1,8 @@
+VBasis: Q1Basis
+PBasis: Q0Basis
+NZx:   20, NZy:   20
+dtInit: 0.000100, dtMax: 0.001000 
+FullMassMatrixSolve: 0, MassUpdate: 0 
+QuadOrder: 3, 
+Qfrac: 1.00, hgfrac: 0.00, qquad: 1.0000, qlin: 1.0000, jitter: 0.000000 
+runtime: 383.356589 

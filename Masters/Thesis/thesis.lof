@@ -1,0 +1,142 @@
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Example of a “checkerboard” instability in the pressure field and corresponding “hourglass” instability in velocity field; excited by applying a time dependent perturbation to a single node at the center. Instability exists at highest spatial frequency of the underlying grid irrespective of mesh resolution and is a result of a fundamental instability in the discrete representation of velocity, pressure and the spatial differential operators which relate them.}}{4}{figure.1.1}
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Example of spurious grid distortion encountered when applying standard SGH methods to the Noh problem on an initially orthogonal mesh. There are multiple sources of this grid distortion including hourglass instabilities, inaccuracies in the pressure gradient operator and discretization of the artiﬁcial viscosity term. Each of these errors can amplify each other over time, leading to a rapid tangling of the grid.}}{5}{figure.1.2}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Examples of 2D basis functions on a reference zone: a standard $Q_1$ bi-linear function that interpolates at nodes \textit {(left)}, a $Q_2$ bi-quadratic function defined at the Gauss-Lobatto quadrature points \textit {(center)} and a $Q_2$ bi-quadratic function defined at the Gauss-Legendre quadrature points \textit {(right)}.}}{10}{figure.2.1}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Domain decomposition for a finite element mesh}}{11}{figure.2.2}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces An initial Cartesian mesh is continuously deformed according to the exact solution of the Sedov blast wave.}}{13}{figure.2.3}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces A zone $\Omega _z(t)$ is reconstructed from the evolution of only a few of its points (particles) indicated by black dots. Shown are two specific choices corresponding to the traditional $Q_1$ zone (left) and a high order $Q_2$ zone with curvilinear boundaries (right).}}{14}{figure.2.4}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Example of a $Q_2$ bi-quadratic mapping from a reference zone (\emph {left}) to a Lagrangian zone (\emph {right}) defined by the locations of the 9 Lagrangian particles (black dots). }}{16}{figure.2.5}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Workflow diagram}}{35}{figure.3.1}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Options for kinematic basis functions}}{37}{figure.3.2}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Options for thermodynamic basis functions}}{37}{figure.3.3}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Velocity node numbering}}{39}{figure.3.4}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Initial pressure field}}{47}{figure.4.1}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Series of refined distorted meshes}}{48}{figure.4.2}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Projected velocity vector field}}{50}{figure.4.3}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Traditional $Q_1$-$Q_0$ acoustic wave with hourglass filter}}{51}{figure.4.4}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces The traditional $Q_1-\mathaccentV {hat}05E{Q}_0$ element}}{52}{figure.4.5}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Traditional $Q_1$-$Q_0$ acoustic wave without hourglass filter}}{54}{figure.4.6}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Hourglass/checkerboard modes on a patch of $Q_1$-$Q_0$ elements}}{55}{figure.4.7}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces The $Q_1$-$\mathaccentV {hat}05EP_{0r}$ element}}{56}{figure.4.8}
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Convergence of the $Q_1$-$P_{0r}$ pressure field}}{57}{figure.4.9}
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Convergence of $\mathaccentV {vec}17E\nabla p$ acceleration: $Q_1$-$P_{0r}$ versus $Q_1$-$Q_0$ on a Cartesian mesh}}{57}{figure.4.10}
+\contentsline {figure}{\numberline {4.11}{\ignorespaces $Q_1$-$P_{0r}$ acoustic wave without hourglass filter}}{58}{figure.4.11}
+\contentsline {figure}{\numberline {4.12}{\ignorespaces The $Q_1$-$\mathaccentV {hat}05EP_1$ element}}{58}{figure.4.12}
+\contentsline {figure}{\numberline {4.13}{\ignorespaces The $Q_1$-$\mathaccentV {hat}05EQ_1$ element}}{59}{figure.4.13}
+\contentsline {figure}{\numberline {4.14}{\ignorespaces Average pressure in each cell for $Q_1$-$\mathaccentV {hat}05EQ_1$ element for acoustic wave problem}}{60}{figure.4.14}
+\contentsline {figure}{\numberline {4.15}{\ignorespaces Spurious modes in the x- and y-velocity modes with $Q_1$-$\mathaccentV {hat}05EQ_1$}}{61}{figure.4.15}
+\contentsline {figure}{\numberline {4.16}{\ignorespaces Hourglass-free velocity fields with hourglass-filtered $Q_1$-$Q_0$}}{61}{figure.4.16}
+\contentsline {figure}{\numberline {4.17}{\ignorespaces Convergence of $\mathaccentV {vec}17E\nabla p$ acceleration: $Q_1$-$\mathaccentV {hat}05EQ_1$ versus $Q_1$-$Q_0$ on a Cartesian mesh}}{62}{figure.4.17}
+\contentsline {figure}{\numberline {4.18}{\ignorespaces Convergence of $\mathaccentV {vec}17E\nabla p$ acceleration: $Q_1$-$\mathaccentV {hat}05EQ_1$ versus $Q_1$-$Q_0$ on a distorted mesh}}{63}{figure.4.18}
+\contentsline {figure}{\numberline {4.19}{\ignorespaces $Q_1$-$\mathaccentV {hat}05EQ_1$ acoustic wave without hourglass filter}}{64}{figure.4.19}
+\contentsline {figure}{\numberline {4.20}{\ignorespaces The $Q_1$-$\mathaccentV {hat}05EQ_2$ element}}{64}{figure.4.20}
+\contentsline {figure}{\numberline {4.21}{\ignorespaces The $Q_2$-$Q_0$ element}}{65}{figure.4.21}
+\contentsline {figure}{\numberline {4.22}{\ignorespaces The $Q_2$-$\mathaccentV {hat}05EP_1$ element}}{66}{figure.4.22}
+\contentsline {figure}{\numberline {4.23}{\ignorespaces Convergence of $\mathaccentV {vec}17E\nabla p$ acceleration: $Q_2$-$\mathaccentV {hat}05EP_1$ versus $Q_1$-$Q_0$ on a Cartesian mesh}}{68}{figure.4.23}
+\contentsline {figure}{\numberline {4.24}{\ignorespaces Convergence of $\mathaccentV {vec}17E\nabla p$ acceleration: $Q_2$-$\mathaccentV {hat}05EP_1$ versus $Q_1$-$Q_0$ on a distorted mesh}}{68}{figure.4.24}
+\contentsline {figure}{\numberline {4.25}{\ignorespaces $Q_2$-$\mathaccentV {hat}05EP_1$ acoustic wave without hourglass filter}}{69}{figure.4.25}
+\contentsline {figure}{\numberline {4.26}{\ignorespaces $Q_2$-$\mathaccentV {hat}05EP_1$ acoustic wave with hourglass filter}}{69}{figure.4.26}
+\contentsline {figure}{\numberline {4.27}{\ignorespaces The $Q_2$-$\mathaccentV {hat}05EQ_1$ element}}{70}{figure.4.27}
+\contentsline {figure}{\numberline {4.28}{\ignorespaces Convergence of the $Q_2$-$\mathaccentV {hat}05EQ_1$ pressure field}}{72}{figure.4.28}
+\contentsline {figure}{\numberline {4.29}{\ignorespaces Convergence of $\mathaccentV {vec}17E\nabla p$ acceleration: $Q_2$-$\mathaccentV {hat}05EQ_1$ versus $Q_1$-$Q_0$ on a Cartesian mesh}}{72}{figure.4.29}
+\contentsline {figure}{\numberline {4.30}{\ignorespaces Convergence of $\mathaccentV {vec}17E\nabla p$ acceleration: $Q_2$-$\mathaccentV {hat}05EQ_1$ versus $Q_1$-$Q_0$ on a distorted mesh}}{73}{figure.4.30}
+\contentsline {figure}{\numberline {4.31}{\ignorespaces Convergence of $\mathaccentV {vec}17E\nabla p$ acceleration: $Q_2$-$\mathaccentV {hat}05EQ_1$ versus $Q_1$-$Q_1$ on a distorted mesh}}{74}{figure.4.31}
+\contentsline {figure}{\numberline {4.32}{\ignorespaces Convergence of the $Q_2$-$\mathaccentV {hat}05EQ_1$ velocity projection vs $Q_1$-$Q_0$}}{74}{figure.4.32}
+\contentsline {figure}{\numberline {4.33}{\ignorespaces Convergence of $\mathaccentV {vec}17E\nabla \cdot \mathaccentV {vec}17E\nabla V$ acceleration: $Q_2$-$\mathaccentV {hat}05EQ_1$ versus $Q_1$-$Q_0$ on a Cartesian mesh}}{75}{figure.4.33}
+\contentsline {figure}{\numberline {4.34}{\ignorespaces Convergence of $\mathaccentV {vec}17E\nabla \cdot \mathaccentV {vec}17E\nabla V$ acceleration: $Q_2$-$\mathaccentV {hat}05EQ_1$ versus $Q_1$-$Q_0$ on a distorted mesh}}{75}{figure.4.34}
+\contentsline {figure}{\numberline {4.35}{\ignorespaces $Q_2$-$\mathaccentV {hat}05EQ_1$ acoustic wave without hourglass filter}}{76}{figure.4.35}
+\contentsline {figure}{\numberline {4.36}{\ignorespaces Hourglass/checkerboard modes on a patch of $Q_2$-$\mathaccentV {hat}05EQ_1$ elements}}{77}{figure.4.36}
+\contentsline {figure}{\numberline {4.37}{\ignorespaces $Q_2$-$\mathaccentV {hat}05EQ_1$ acoustic wave with hourglass filter}}{77}{figure.4.37}
+\contentsline {figure}{\numberline {4.38}{\ignorespaces Average pressure in each cell for $Q_2$-$\mathaccentV {hat}05EQ_2$ element for acoustic wave problem}}{79}{figure.4.38}
+\contentsline {figure}{\numberline {4.39}{\ignorespaces Convergence of the $Q_2$-$\mathaccentV {hat}05EQ_2$ pressure field}}{80}{figure.4.39}
+\contentsline {figure}{\numberline {4.40}{\ignorespaces Convergence of $\mathaccentV {vec}17E\nabla p$ acceleration: $Q_2$-$\mathaccentV {hat}05EQ_2$ versus $Q_1$-$Q_1$ on a Cartesian mesh}}{80}{figure.4.40}
+\contentsline {figure}{\numberline {4.41}{\ignorespaces Convergence of $\mathaccentV {vec}17E\nabla p$ acceleration: $Q_2$-$\mathaccentV {hat}05EQ_2$ versus $Q_1$-$Q_1$ on a distorted mesh}}{81}{figure.4.41}
+\contentsline {figure}{\numberline {4.42}{\ignorespaces $Q_2$-$\mathaccentV {hat}05EQ_2$ acoustic wave without hourglass filter}}{82}{figure.4.42}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Problem setup for Sod shock tube problem}}{84}{figure.5.1}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Comparison of $Q_1$-$Q_0$ and $Q_2$-$\mathaccentV {hat}05EQ_1$ elements on Sod shock tube and zoomed in on the shock (\textit {right}). Five plot points are considered per zone.}}{86}{figure.5.2}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Density pseudo-color at time t = 0.6 for the Noh problem on a 40 by 80 initial grid using the monotonic-scalar artiﬁcial viscosity.}}{88}{figure.5.3}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Problem setup for Noh implosion problem}}{89}{figure.5.4}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Noh explosion problem on 20$\times $20 mesh using $Q_1$-$Q_0$ elements without hourglass filtering}}{90}{figure.5.5}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Velocity magnitude pseudocolor plot (\textit {left}). Velocity magnitude scatter plot compared to exact solution (\textit {right}).}}}{90}{figure.5.5}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Density pseudocolor plot (\textit {left}). Density scatter plot compared to exact solution (\textit {right}).}}}{90}{figure.5.5}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Noh explosion problem on 40$\times $40 mesh using $Q_1$-$Q_0$ elements without hourglass filtering}}{91}{figure.5.6}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Velocity magnitude pseudocolor plot (\textit {left}). Velocity magnitude scatter plot compared to exact solution (\textit {right}).}}}{91}{figure.5.6}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Density pseudocolor plot (\textit {left}). Density scatter plot compared to exact solution (\textit {right}).}}}{91}{figure.5.6}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Noh explosion problem on 20$\times $20 mesh using $Q_1$-$\mathaccentV {hat}05EQ_1$ elements without hourglass filtering}}{93}{figure.5.7}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Velocity magnitude pseudocolor plot (\textit {left}). Velocity magnitude scatter plot compared to exact solution (\textit {right}).}}}{93}{figure.5.7}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Density pseudocolor plot (\textit {left}). Density scatter plot compared to exact solution (\textit {right}).}}}{93}{figure.5.7}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Noh explosion problem on 40$\times $40 mesh using $Q_1$-$\mathaccentV {hat}05EQ_1$ elements without hourglass filtering}}{94}{figure.5.8}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Velocity magnitude pseudocolor plot (\textit {left}). Velocity magnitude scatter plot compared to exact solution (\textit {right}).}}}{94}{figure.5.8}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Density pseudocolor plot (\textit {left}). Density scatter plot compared to exact solution (\textit {right}).}}}{94}{figure.5.8}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Noh explosion problem on 20$\times $20 mesh using $Q_2$-$\mathaccentV {hat}05EQ_1$ elements without hourglass filtering}}{96}{figure.5.9}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Velocity magnitude pseudocolor plot (\textit {left}). Velocity magnitude scatter plot compared to exact solution (\textit {right}).}}}{96}{figure.5.9}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Density pseudocolor plot (\textit {left}). Density scatter plot compared to exact solution (\textit {right}).}}}{96}{figure.5.9}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Noh explosion problem on 40$\times $40 mesh using $Q_2$-$\mathaccentV {hat}05EQ_1$ elements without hourglass filtering}}{97}{figure.5.10}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Velocity magnitude pseudocolor plot (\textit {left}). Velocity magnitude scatter plot compared to exact solution (\textit {right}).}}}{97}{figure.5.10}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Density pseudocolor plot (\textit {left}). Density scatter plot compared to exact solution (\textit {right}).}}}{97}{figure.5.10}
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Noh explosion problem on 20$\times $20 mesh using $Q_2$-$\mathaccentV {hat}05EQ_2$ elements without hourglass filtering}}{99}{figure.5.11}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Velocity magnitude pseudocolor plot (\textit {left}). Velocity magnitude scatter plot compared to exact solution (\textit {right}).}}}{99}{figure.5.11}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Density pseudocolor plot (\textit {left}). Density scatter plot compared to exact solution (\textit {right}).}}}{99}{figure.5.11}
+\contentsline {figure}{\numberline {5.12}{\ignorespaces Noh explosion problem on 40$\times $40 mesh using $Q_2$-$\mathaccentV {hat}05EQ_2$ elements without hourglass filtering}}{100}{figure.5.12}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Velocity magnitude pseudocolor plot (\textit {left}). Velocity magnitude scatter plot compared to exact solution (\textit {right}).}}}{100}{figure.5.12}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Density pseudocolor plot (\textit {left}). Density scatter plot compared to exact solution (\textit {right}).}}}{100}{figure.5.12}
+\contentsline {figure}{\numberline {5.13}{\ignorespaces Initial perturbed Saltzman piston mesh}}{101}{figure.5.13}
+\contentsline {figure}{\numberline {5.14}{\ignorespaces Saltzman piston problem on 50$\times $10 mesh using $Q_1$-$Q_0$ elements without hourglass filtering at t=0.925}}{103}{figure.5.14}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Pseudocolor plot of $x$-velocity (\textit {left}). Scatter plot of $x$-velocity (\textit {right}).}}}{103}{figure.5.14}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Density pseudocolor plot (\textit {left}). Density scatter plot (\textit {right}).}}}{103}{figure.5.14}
+\contentsline {figure}{\numberline {5.15}{\ignorespaces Saltzman piston problem on 50$\times $10 mesh using $Q_1$-$Q_0$ elements with hourglass filtering at t=0.925}}{104}{figure.5.15}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Pseudocolor plot of $x$-velocity (\textit {left}). Scatter plot of $x$-velocity (\textit {right}).}}}{104}{figure.5.15}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Density pseudocolor plot (\textit {left}). Density scatter plot (\textit {right}).}}}{104}{figure.5.15}
+\contentsline {figure}{\numberline {5.16}{\ignorespaces Saltzman piston problem on 50$\times $10 mesh using $Q_1$-$\mathaccentV {hat}05EQ_1$ elements without hourglass filtering at t=0.925}}{106}{figure.5.16}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Pseudocolor plot of $x$-velocity (\textit {left}). Scatter plot of $x$-velocity (\textit {right}).}}}{106}{figure.5.16}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Density pseudocolor plot (\textit {left}). Density scatter plot (\textit {right}).}}}{106}{figure.5.16}
+\contentsline {figure}{\numberline {5.17}{\ignorespaces Saltzman piston problem on 50$\times $10 mesh using $Q_2$-$\mathaccentV {hat}05EQ_1$ elements with hourglass filtering at t=0.925}}{108}{figure.5.17}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Pseudocolor plot of $x$-velocity (\textit {left}). Scatter plot of $x$-velocity (\textit {right}).}}}{108}{figure.5.17}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Density pseudocolor plot (\textit {left}). Density scatter plot (\textit {right}).}}}{108}{figure.5.17}
+\contentsline {figure}{\numberline {5.18}{\ignorespaces Saltzman piston problem on 50$\times $10 mesh using $Q_2$-$\mathaccentV {hat}05EQ_2$ elements without hourglass filtering at t=0.925}}{110}{figure.5.18}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Pseudocolor plot of $x$-velocity (\textit {left}). Scatter plot of $x$-velocity (\textit {right}).}}}{110}{figure.5.18}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Density pseudocolor plot (\textit {left}). Density scatter plot (\textit {right}).}}}{110}{figure.5.18}
+\contentsline {figure}{\numberline {5.19}{\ignorespaces Saltzman piston problem on 50$\times $10 mesh using $Q_2$-$\mathaccentV {hat}05EQ_2$ elements with hourglass filtering at t=0.925}}{111}{figure.5.19}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Pseudocolor plot of $x$-velocity (\textit {left}). Scatter plot of $x$-velocity (\textit {right}).}}}{111}{figure.5.19}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Density pseudocolor plot (\textit {left}). Density scatter plot (\textit {right}).}}}{111}{figure.5.19}
+\contentsline {figure}{\numberline {5.20}{\ignorespaces Problem setup for Sedov blast wave problem}}{112}{figure.5.20}
+\contentsline {figure}{\numberline {5.21}{\ignorespaces Exact solution to the Sedov problem applied to an initially Cartesian grid}}{113}{figure.5.21}
+\contentsline {figure}{\numberline {5.22}{\ignorespaces Sedov explosion problem on 10$\times $10 mesh using $Q_1$-$Q_0$ elements with hourglass filtering}}{116}{figure.5.22}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Velocity magnitude pseudocolor plot (\textit {left}). Velocity magnitude scatter plot compared to exact solution (\textit {right}).}}}{116}{figure.5.22}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Density pseudocolor plot (\textit {left}). Density scatter plot compared to exact solution (\textit {right}).}}}{116}{figure.5.22}
+\contentsline {figure}{\numberline {5.23}{\ignorespaces Sedov explosion problem on 20$\times $20 mesh using $Q_1$-$Q_0$ elements with hourglass filtering}}{117}{figure.5.23}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Velocity magnitude pseudocolor plot (\textit {left}). Velocity magnitude scatter plot compared to exact solution (\textit {right}).}}}{117}{figure.5.23}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Density pseudocolor plot (\textit {left}). Density scatter plot compared to exact solution (\textit {right}).}}}{117}{figure.5.23}
+\contentsline {figure}{\numberline {5.24}{\ignorespaces Sedov explosion problem on 10$\times $10 mesh using $Q_1$-$\mathaccentV {hat}05EQ_1$ elements without hourglass filtering}}{119}{figure.5.24}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Velocity magnitude pseudocolor plot (\textit {left}). Velocity magnitude scatter plot compared to exact solution (\textit {right}).}}}{119}{figure.5.24}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Density pseudocolor plot (\textit {left}). Density scatter plot compared to exact solution (\textit {right}).}}}{119}{figure.5.24}
+\contentsline {figure}{\numberline {5.25}{\ignorespaces Sedov explosion problem on 20$\times $20 mesh using $Q_1$-$\mathaccentV {hat}05EQ_1$ elements without hourglass filtering}}{120}{figure.5.25}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Velocity magnitude pseudocolor plot (\textit {left}). Velocity magnitude scatter plot compared to exact solution (\textit {right}).}}}{120}{figure.5.25}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Density pseudocolor plot (\textit {left}). Density scatter plot compared to exact solution (\textit {right}).}}}{120}{figure.5.25}
+\contentsline {figure}{\numberline {5.26}{\ignorespaces Sedov explosion problem on 10$\times $10 mesh using $Q_2$-$\mathaccentV {hat}05EQ_1$ elements without hourglass filtering}}{122}{figure.5.26}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Velocity magnitude pseudocolor plot (\textit {left}). Velocity magnitude scatter plot compared to exact solution (\textit {right}).}}}{122}{figure.5.26}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Density pseudocolor plot (\textit {left}). Density scatter plot compared to exact solution (\textit {right}).}}}{122}{figure.5.26}
+\contentsline {figure}{\numberline {5.27}{\ignorespaces Sedov explosion problem on 10$\times $10 mesh using $Q_2$-$\mathaccentV {hat}05EQ_1$ elements with hourglass filtering}}{123}{figure.5.27}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Velocity magnitude pseudocolor plot (\textit {left}). Velocity magnitude scatter plot compared to exact solution (\textit {right}).}}}{123}{figure.5.27}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Density pseudocolor plot (\textit {left}). Density scatter plot compared to exact solution (\textit {right}).}}}{123}{figure.5.27}
+\contentsline {figure}{\numberline {5.28}{\ignorespaces Sedov explosion problem on 20$\times $20 mesh using $Q_2$-$\mathaccentV {hat}05EQ_1$ elements with hourglass filtering}}{124}{figure.5.28}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Velocity magnitude pseudocolor plot (\textit {left}). Velocity magnitude scatter plot compared to exact solution (\textit {right}).}}}{124}{figure.5.28}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Density pseudocolor plot (\textit {left}). Density scatter plot compared to exact solution (\textit {right}).}}}{124}{figure.5.28}
+\contentsline {figure}{\numberline {5.29}{\ignorespaces Sedov explosion problem on 5$\times $5 mesh using $Q_2$-$\mathaccentV {hat}05EQ_1$ elements with hourglass filtering}}{125}{figure.5.29}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Velocity magnitude pseudocolor plot (\textit {left}). Velocity magnitude scatter plot compared to exact solution (\textit {right}).}}}{125}{figure.5.29}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Density pseudocolor plot (\textit {left}). Density scatter plot compared to exact solution (\textit {right}).}}}{125}{figure.5.29}
+\contentsline {figure}{\numberline {5.30}{\ignorespaces Comparison of $Q_1$-$Q_0$ (\textit {left}) and $Q_2$-$\mathaccentV {hat}05EQ_1$ (\textit {right}) on a full 21$\times $21 mesh.}}{126}{figure.5.30}
+\contentsline {figure}{\numberline {5.31}{\ignorespaces Sedov explosion problem on 10$\times $10 mesh using $Q_2$-$\mathaccentV {hat}05EQ_2$ elements without hourglass filtering}}{128}{figure.5.31}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Velocity magnitude pseudocolor plot (\textit {left}). Velocity magnitude scatter plot compared to exact solution (\textit {right}).}}}{128}{figure.5.31}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Density pseudocolor plot (\textit {left}). Density scatter plot compared to exact solution (\textit {right}).}}}{128}{figure.5.31}
+\contentsline {figure}{\numberline {5.32}{\ignorespaces Sedov explosion problem on 20$\times $20 mesh using $Q_2$-$\mathaccentV {hat}05EQ_2$ elements without hourglass filtering}}{129}{figure.5.32}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Velocity magnitude pseudocolor plot (\textit {left}). Velocity magnitude scatter plot compared to exact solution (\textit {right}).}}}{129}{figure.5.32}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Density pseudocolor plot (\textit {left}). Density scatter plot compared to exact solution (\textit {right}).}}}{129}{figure.5.32}
+\contentsline {figure}{\numberline {5.33}{\ignorespaces Sedov explosion problem on 20$\times $20 mesh using $Q_2$-$\mathaccentV {hat}05EQ_2$ elements with hourglass filtering}}{130}{figure.5.33}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Velocity magnitude pseudocolor plot (\textit {left}). Velocity magnitude scatter plot compared to exact solution (\textit {right}).}}}{130}{figure.5.33}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Density pseudocolor plot (\textit {left}). Density scatter plot compared to exact solution (\textit {right}).}}}{130}{figure.5.33}
+\addvspace {10\p@ }

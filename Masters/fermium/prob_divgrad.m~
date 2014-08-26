@@ -1,0 +1,271 @@
+% Noh Problem
+% Author: Truman Ellis
+% Email: ellis35@llnl.gov
+
+clear all; close all; clc;
+format short g
+format compact
+scrsz = get(0,'ScreenSize');
+% h0=sfigure(1,'Position',[1 scrsz(4)/8 scrsz(3) scrsz(4)*7/9]);
+comparevar='OLDvelocity';
+zoneref=[4 8 16];
+SetSaveLocation
+% elemchoice=[1 3 4 6 7 9 15];
+% quadorder=[2 2 2 3 3 3 4];
+elemchoice={@Q1Basis @Q2Basis;@Q0Basis @Q1dBasis};
+quadorder=[5 5];
+err=zeros(length(zoneref),length(elemchoice));
+slope=zeros(1,length(elemchoice));
+for ec=1:size(elemchoice,2)
+    for zr=1:length(zoneref)
+        clear('-regexp', '[^err err2 slope zoneref elemchoice ec zr quadorder randarray comparevar]');
+
+        % Set Kinematic and Thermodynamic Basis
+        VBasis=elemchoice{1,ec};
+        PBasis=elemchoice{2,ec};
+        HighOrderEnergy=false;
+        StrongMass=false;
+
+        FullMassMatrixSolve=true;
+        MassUpdate=false;
+        % Set Quadrature Order
+        QuadOrder=quadorder(ec);
+
+        % Use this to turn artificial viscosity on/off
+        Qfrac=1;
+
+        % Use this to turn anti-hourglass forces on/off (Only works with Q1Q0)
+        hgfrac=0;
+
+        % Define the number of zones
+        NZx=zoneref(1);
+        NZy=NZx;
+        RefineLevel=zr;
+
+        % Define the mesh size
+        xmin=0;
+        xmax=1;
+
+        ymin=xmin;
+        ymax=xmax;
+
+        tstart=0;
+        %Define a random "jittering" factor -- this determines the magnitude of
+        %mesh distortion
+        jitter=0.4;
+        % Define Mesh rotations
+        RotateMesh=0;
+%         RotateMesh=-pi/4;
+        vref=5; pref=5;
+
+        % Specify the maximum number of time steps to use
+        maxcycle=1;
+
+        % These numbers are the coefficients for the artificial viscosity
+        qquad=1;
+        qlin=1;
+
+        %% Mesh Assembly
+        MeshAssembly
+
+        %% Variable Preallocation
+        Preallocate
+
+        %% Initialize Properties
+        % Set the EOS gamma law constant for an ideal gas
+        gamma=5/3;
+
+        rhoInit=1;
+        eInit=0;
+        pInit=0;
+
+        OLDenergy(:)=eInit;
+        OLDdensity(:)=rhoInit;
+        QuadDensity(:)=rhoInit;
+        pressure(:)=pInit;
+        QuadPressure(:)=pInit;
+%         OLDvelocity(1,:)=sin(pi/2*allnodes(1,:));
+%         OLDvelocity(2,:)=sin(pi/2*allnodes(2,:));
+%         OLDvelocity(1,:)=cos(pi*(allnodes(1,:)+allnodes(2,:)));
+%         OLDvelocity(2,:)=cos(pi*(allnodes(1,:)-allnodes(2,:)));
+        mm=1;
+        nn=3;
+        OLDvelocity(1,:)=cos(mm*pi*allnodes(1,:)).*cos(nn*pi*allnodes(2,:));
+        OLDvelocity(2,:)=cos(nn*pi*allnodes(1,:)).*cos(mm*pi*allnodes(2,:));
+        
+        SM=zeros(ndofpD,ndofpD);
+%         FNE=zeros(ndofpD,2);
+        for N=1:NZ
+            stiffmat=zeros(ndofpZ,ndofpZ);
+%             gradVgradW=elem_divgradexact(allnodes(:,Quadmap(:,N)),QP,QuadWgts2d,QuadPts2d,...
+%                 VBasis,QuadGradVBasis,QuadInvJacobian(:,:,:,N),QuadDetJacobian(:,N),ndofpZ,mm,nn);
+            for n=1:QP
+                invJGradV=QuadInvJacobian(:,:,n,N)*QuadGradVBasis(:,:,n)';
+                stiffmat=stiffmat+QuadWgts2d(n)*invJGradV'*invJGradV*QuadDetJacobian(n,N);
+            end
+            SM(Quadmap(:,N),Quadmap(:,N))=SM(Quadmap(:,N),Quadmap(:,N))+stiffmat;
+%             FNE(Quadmap(:,N),:)=FNE(Quadmap(:,N),:)-gradVgradW';
+        end
+        SMX=SM;
+        SMY=SM;
+%         % Impose Boundary Conditions
+%         % Impose zero boundary at bottom wall
+%         for i=1:sum(nbnodes(1))
+%             index=bdof(i);
+%             SM(index,:)=0;
+%             SM(:,index)=0;
+%             SM(index,index)=1;
+%             FNE(index,2)=-1;
+%             FNE(index,1)=sin(pi/2*allnodes(1,index));
+%         end
+%         % Impose zero boundary at right wall
+%         for i=1+nbnodes(1):sum(nbnodes(1:2))
+%             index=bdof(i);
+%             SM(index,:)=0;
+%             SM(:,index)=0;
+%             SM(index,index)=1;
+%             FNE(index,1)=1;
+%             FNE(index,2)=sin(pi/2*allnodes(2,index));
+%         end
+%         % Impose zero boundary at top wall
+%         for i=1+sum(nbnodes(1:2)):sum(nbnodes(1:3))
+%             index=bdof(i);
+%             SM(index,:)=0;
+%             SM(:,index)=0;
+%             SM(index,index)=1;
+%             FNE(index,2)=1;
+%             FNE(index,1)=sin(pi/2*allnodes(1,index));
+%         end
+%         % Impose zero boundary at left wall
+%         for i=1+sum(nbnodes(1:3)):sum(nbnodes)
+%             index=bdof(i);
+%             SM(index,:)=0;
+%             SM(:,index)=0;
+%             SM(index,index)=1;
+%             FNE(index,1)=-1;
+%             FNE(index,2)=sin(pi/2*allnodes(2,index));
+%         end
+% %         OLDvelocity=[(SMX\FNE(:,1))'; (SMY\FNE(:,2))'];
+%         OLDvelocity=(SM\FNE)';
+
+        for N=1:NZ
+            if ~StrongMass
+                for n=1:QP
+                    localMP(:,:,N)=localMP(:,:,N)+QuadWgts2d(n)*refMP(:,:,n)*QuadDetJacobian(n,N);
+                end
+                cornerMass(:,N)=localMP(:,:,N)*OLDdensity(:,N);
+                massZ(N)=sum(cornerMass(:,N),1);
+            else
+                for n=1:npdof
+                    detJ=det(Jacobian(allnodes(:,Quadmap(:,N)),pdofpts(:,n)));
+                    OLDdensity(n,N)=OLDdensity(n,N)*detJ;
+                    pressure(n,N)=pressure(n,N)*detJ;
+                end
+                NEWdensity=OLDdensity;
+                QuadDensity(:,N)=(OLDdensity(:,N)'*QuadPBasis)';
+                QuadPressure(:,N)=(pressure(:,N)'*QuadPBasis)';
+                for n=1:QP
+                    localMP(:,:,N)=localMP(:,:,N)+QuadWgts2d(n)*refMP(:,:,n);
+                end
+                cornerMass(:,N)=localMP(:,:,N)*OLDdensity(:,N);
+                massZ(N)=sum(cornerMass(:,N),1);
+            end
+        end
+
+        % Assemble Nodal Masses if Mass is not updated every cycle
+        InitMassMatrix
+        MMX=MMQuad;
+        MMY=MMQuad;
+
+        % Assemble Mass Matrix and Force Vector
+        forceN=zeros(2,ndofpD);
+%         forceNE=zeros(2,ndofpD);
+        for i=1:NZ
+            cornerForce(:,:,i)=elem_divgrad(QP,QuadWgts2d,...
+                OLDvelocity(:,Quadmap(:,i)),QuadGradVBasis,QuadInvJacobian(:,:,:,i),QuadDetJacobian(:,i),ndofpZ);
+%             cornerForceE(:,:,i)=elem_divgradexact(allnodes(:,Quadmap(:,i)),OLDvelocity(:,Quadmap(:,i)),QP,QuadWgts2d,QuadPts2d,...
+%                 VBasis,QuadGradVBasis,QuadInvJacobian(:,:,:,i),QuadDetJacobian(:,i),ndofpZ,mm,nn);
+            forceN(:,Quadmap(:,i))=forceN(:,Quadmap(:,i))+cornerForce(:,:,i);
+%             forceNE(:,Quadmap(:,i))=forceNE(:,Quadmap(:,i))+cornerForceE(:,:,i);
+        end
+
+        if FullMassMatrixSolve
+            % Solve Linear System
+            acceleration=[(MMX\forceN(1,:)')'; (MMY\forceN(2,:)')'];
+%             accelerationE=[(MMX\forceNE(1,:)')'; (MMY\forceNE(2,:)')'];
+        elseif MassUpdate
+            % Solve for acceleration
+            acceleration(1,:)=forceN(1,:)./massN;
+            acceleration(2,:)=forceN(2,:)./massN;
+%             accelerationE(1,:)=forceNE(1,:)./massN;
+%             accelerationE(2,:)=forceNE(2,:)./massN;
+        else
+            % Solve for acceleration
+            acceleration(1,:)=forceN(1,:)./massN;
+            acceleration(2,:)=forceN(2,:)./massN;
+%             accelerationE(1,:)=forceNE(1,:)./massN;
+%             accelerationE(2,:)=forceNE(2,:)./massN;
+        end
+        
+        
+		switch comparevar
+			case 'OLDvelocity'
+				scalefactor=.1;
+				plotvar=OLDvelocity;
+				exactFn=@(x,y) [cos(mm*pi*x).*cos(nn*pi*y);
+								cos(nn*pi*x).*cos(mm*pi*y)];
+			case 'accelerationE'
+				for N=1:NZ
+					for i=1:ndofpZ
+						gV(:,Quadmap(i,N))=reshape(inv(Jacobian(allnodes(:,Quadmap(:,N)),dofpts(:,i)))*GradVBasis(dofpts(1,i),dofpts(2,i))'*OLDvelocity(:,Quadmap(:,N))',4,1);
+					end
+				end
+				gradV=gV([1 4],:);
+				plotvar=gradV;
+			case 'acceleration'
+				scalefactor=.1/max(abs(acceleration(:)));
+				plotvar=acceleration;
+				exactFn=@(x,y) -pi^2*[mm^2*cos(mm*pi*x).*cos(nn*pi*y)+nn^2*cos(mm*pi*x).*cos(nn*pi*y);
+									  nn^2*cos(nn*pi*x).*cos(mm*pi*y)+mm^2*cos(nn*pi*x).*cos(mm*pi*y)];
+		end
+
+        exactA=scalefactor*exactFn(allnodes(1,:),allnodes(2,:));
+
+		%% =========== PLOT RESULTS ===========
+% 		h=sfigure(1);
+% 		quiver(allnodes(1,:),allnodes(2,:),scalefactor*plotvar(1,:),scalefactor*plotvar(2,:),0,'LineWidth',2)
+% 		hold on
+% 		quiver(allnodes(1,:),allnodes(2,:),exactA(1,:),exactA(2,:),0,'k')
+% 		PlotFEMMesh(allnodes,Quadmap,5,VBasis,'k');
+
+		err(zr,ec)=L2Norm(allnodes,Quadmap,VBasis,plotvar,Quadmap,VBasis,...
+			5,Jacobian,exactFn);
+%         h=sfigure(2);
+%         err(zr,ec)=PlotL2Norm(allnodes,Quadmap,VBasis,plotvar,Quadmap,VBasis,...
+%             5,Jacobian,exactFn);
+% 		        az=0;
+%         el=90;
+%         view(az,el);
+%         axis tight
+%         colorbar
+%         drawnow
+
+
+%         err(zr,ec)=sqrt((acceleration(1,:)-accelerationE(1,:))*MMX*(acceleration(1,:)-accelerationE(1,:))'+...
+%             (acceleration(2,:)-accelerationE(2,:))*MMY*(acceleration(2,:)-accelerationE(2,:))');
+%         err2(zr,ec)=PlotL2Norm_compare(allnodes,Quadmap,VBasis,acceleration,accelerationE,Quadmap,VBasis,...
+%             5,Jacobian);
+    end
+    sl=polyfit(log(1./(2*zoneref)),log(err(:,ec)'),1);
+    slope(ec)=sl(1);
+%     sl2=polyfit(log(1./zoneref),log(err2(:,ec)'),1);
+%     slope2(ec)=sl2(1);
+end
+figure('Position',[1 1 600 450])
+loglog(1./(2*zoneref),err,'LineWidth',2)
+% legend(num2str(elemchoice'),'Location','SouthEast')
+axis tight
+axis square
+ylabel('L_2 Norm of Error','FontSize',16)
+xlabel('h','FontSize',16)
+legend('Q_1-Q_0: slope = 2.0','Q_2-Q_{1d}: slope = 3.0','Location','SouthEast')

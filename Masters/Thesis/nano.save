@@ -1,0 +1,928 @@
+\begin{thebibliography}{% -----------------------------------------------------------------------
+	\begin{thebibliography}{10}
+	
+	\bibitem{AircraftCFD} % Note: To be used with LATEX and BIBTEX % ----------------------------------------------------------------------- %------------------------ 
+Common Journal Definitions ----------------------
+	R.~Agarwal.
+	\newblock Computational fluid dynamics of whole-body aircraft.
+	\newblock {\em Annual Review of Fluid Mechanics}, 31:125--169, 1999.
+	
+	\bibitem{Barlow07}
+	A.~Barlow.
+	\newblock A compatible finite element multi-material {ALE} hydrodynamics
+	  algorithm.
+	\newblock {\em Internat. J. Numer. Methods Fluids}, 56:953--964, 2007.
+	
+	\bibitem{BergerAftosmis05}
+	M.~Berger and M.~Aftosmis.
+	\newblock Analysis of slope limiters on irregular grids.
+	\newblock Technical Report 2005-0490, American Institute of Aeronautics and
+	  Astronautics.
+	
+	\bibitem{Burton1994}
+	D.~E. Burton.
+	\newblock Consistent finite-volume discretization of hydrodynamic conservation
+	  laws for unstructured grids.
+	\newblock In {\em Eighth Nuclear Explosives Code Developers' Conference}, 1994.
+	
+	\bibitem{CampbellShashkov01}
+	J.~C. Campbell and M.~J. Shashkov.
+	\newblock A tensor artificial viscosity using a mimetic finite difference
+	  algorithm.
+	\newblock {\em J. Comput. Phys.}, 172:739--765, 2001.
+	
+	\bibitem{CaramanaBurtonShashkov98}
+	E.~J. Caramana, D.~E. Burton, M.~J. Shashkov, and P.~P. Whalen.
+	\newblock The construction of compatible hydrodynamics algorithms utilizing
+	  conservation of total energy.
+	\newblock {\em J. Comput. Phys.}, 146:227--262, 1998.
+	
+	\bibitem{CaramanaShashkov98}
+	E.~J. Caramana and M.~J. Shashkov.
+	\newblock Elimination of artificial grid distortion and hourglass-type motions
+	  by means of {L}agrangian subzonal masses and pressures.
+	\newblock {\em J. Comput. Phys.}, 142(2):521--561, 1998.
+	
+	\bibitem{CookCabot2004}
+	A.~W. Cook and W.~H. Cabot.
+	\newblock A high-wavenumber viscosity for high-resolution numerical methods.
+	\newblock {\em Journal of Computational Physics}, 195:594 -- 601, 2004.
+	
+	\bibitem{CookCabot2005}
+	A.~W. Cook and W.~H. Cabot.
+	\newblock Hyperviscosity for shock-turbulence interactions.
+	\newblock {\em Journal of Computational Physics}, 203:379 -- 385, 2005.
+	
+	\bibitem{CourantFriedrichsLewy28}
+	R.~Courant, K.~O. Friedrichs, and H.~Lewy.
+	\newblock Uber die partiellen differenzengleichungen der mathematisches physik.
+	\newblock {\em Math. Ann.}, 100:32--74, 1928.
+	
+	\bibitem{DuctCFD}
+	M.~Dalenbring and J.~Smith.
+	\newblock Simulation of s-duct dynamics using fluid-structure coupled cfd.
+	\newblock In {\em 24th Applied Aerodynamics Conference}, 2006.
+	
+	\bibitem{SugarCFD} @STRING{ANM = "Annals of Numerical Mathematics"} @STRING{APPNUMERMATH = "Appl. Numer. Math."} @STRING{ARMA = "Arch. Rat. Mech. Anal."} 
+@STRING{CALCOLO = "Calcolo"} @STRING{COMPMECH = "Comp. Mech."} @STRING{COMPTESRENDUSI = "C. R. Acad. Sci. Paris, S\'erie I"} @STRING{CMA = "Comput. Math. Appl."} 
+@STRING{CMAME = "Comput. Methods Appl. Mech. Engrg."} @STRING{EASTWEST = "East West J. Num. Math."} @STRING{FEAD = "Finite Elements in Analysis and Design"} @STRING{CNME = 
+"Commun. Numer. Meth. Engng."} @STRING{IJAE = "Internat. J. Appl. Electrom."} @STRING{IJNME = "Internat. J. Numer. Methods Engrg."} @STRING{IMAJNA = "IMA J. Num. Anal."} 
+@STRING{JCAM = "J. Comput. Appl. Math."} @STRING{JCP = "J. Comput. Phys."} @STRING{JMP = "J. Math. Phys."} @STRING{JEWA = "J. Electromagn. Waves and Appl."} @STRING{JLWT = 
+"J. Lightwave Tech."} @STRING{MATHCOMP = "Math. Comp."} @STRING{M2AS = "Math. Models Appl. Sci."} @STRING{M3AS = "Math. Models Methods Appl. Sci."} @STRING{NUMMA = "Numer. 
+Math."} @STRING{NUMMETHPDE = "Num. Meth. Part. Diff. Eqs."} @STRING{RAIRO = "RAIRO Mod\'el. Math. Anal. Num\'er. "} @STRING{SIAM = "Society for Industrial and Applied 
+Mathematics."} @STRING{SIAMSCISTATCOMP = "SIAM J. Sci. Stat. Comput."} @STRING{SINUM = "SIAM J. Num. Anal."} @STRING{SIMATH = "SIAM J. Math. Anal."} @STRING{SISC = "SIAM J. 
+Sci. Comp."} @STRING{NUMMA = "Numer. Math."} @STRING{AP = "Academic Press"} @STRING{CUP = "Cambridge University Press"} @STRING{OUP = "Oxford University Press"} 
+@STRING{SPRINGER = "Springer Verlag"} @STRING{IEEE_TAP = "IEEE Trans. Ant. Prop."} @STRING{IEEE_APM = "IEEE Ant. Prop. Magazine"} @STRING{IEEE_TEC = "IEEE Trans. 
+Electromagnetic Compatibility"} @STRING{IEEE_TM = "IEEE Trans. Mag."} @STRING{IEEE_TMT = "IEEE Trans. Microwave Theory Tech."} @STRING{IEEE_TOE = "IEEE Trans. Edu."} 
+@STRING{IEEE_TPAS = "IEEE Trans. Power Apparatus Syst."} @STRING{IEEE_PROC = "IEEE Proceedings."} @STRING{OTL = "Opt. Tech. Lett."} @STRING{WILEY = "Wiley"} @STRING{JEMWA = 
+"J. Electromagnteic Waves Appl."} @STRING{JCAM = "J. Comput. Appl. Math."} @STRING{PRB = "Phys. Rev. B"} @STRING{PRL = "Phys. Rev. Let."} % 
+-------------------------------------------------------------------------
+	T.~Dixon, A.~Mann, P.~Hobson, S.~Plaza, F.~andPennisiI, and R.~Steindl.
+	\newblock Application of cfd in the sugar industry.
+	\newblock In {\em Third International Conference on CFD in the Minerals and
+	  Process Industries}, 2003.
+	
+	\bibitem{FluidStructureCFD}
+	J.~Donea, S.~Giuliani, and J.~Halleux.
+	\newblock An arbitrary lagrangian-eulerian finite element method for transient
+	  dynamic fluid-structure interactions.
+	\newblock {\em Computer Methods in Applied Mechanics and Engineering},
+	  33(1-3):689 -- 723, 1982.
+	
+	\bibitem{DonaeALE}
+	J.~Donea, A.~Huerta, J.-P. Ponthot, and A.~Rodriguez-Ferran.
+	\newblock Arbitrary lagrangian–eulerian methods.
+	\newblock In {\em Encyclopedia of Computational Mechanics}. John Wiley \& Sons,
+	  Ltd., 2004.
+	
+	\bibitem{Douglas1985}
+	J.~Douglas and F.~Milner.
+	\newblock Interior and superconvergence estimates for mixed methods for second
+	  order elliptic equations.
+	\newblock {\em RAIRO Modél. Math. Anal. Numér.}, 19:297–328, 1985.
+	
+	\bibitem{Gibbs1898}
+	J.~W. Gibbs.
+	\newblock Fourier series.
+	\newblock {\em Nature}, 59(200), 1898.
+	
+	\bibitem{AstroCFD}
+	N.~Gnedin.
+	\newblock Softened lagrangian hydrodynamics for cosmology.
+	\newblock {\em Astrophysical Journal Supplement Series}, 97(2):231--257, 1995.
+	
+	\bibitem{Gryra1992} @techreport{ALEenergetics, author = "A. Nichols and R. Couch and J. Matlby and R. McCallen and
+               I. Otero and R. Sharp", title = "Coupled thermal/chemcial/mechanical modeling of energetic
+               materials in {ALE3D}", institution = "Lawrence Livermore National Laboratory",
+	V.~Gyrya and K.~Lipnikov.
+	\newblock Vorticity errors in multidimensional lagrangian codes.
+	\newblock {\em J. Comp. Phys.}, 99:115–134, 1992.
+	
+	\bibitem{FreeSurfaceCFD}
+	C.~W. Hirt, J.~L. Cook, and T.~D. Butler.
+	\newblock A lagrangian method for calculating the dynamics of an incompressible
+	  fluid with free surface.
+	\newblock {\em Von Karman Inst. for Fluid Dyn. Numerical Methods in Fluid
+	  Dyn.}, 15:18--34, 1972.
+	
+	\bibitem{Hughes1987}
+	T.~Hughes.
+	\newblock {\em The Finite Element Method: Linear Static and Dynamic Finite
+	  Element Analysis}.
+	\newblock Dover Publications, 1987.
+	
+	\bibitem{ElectronicsCFD}
+	R.~Kandasamy and S.~Subramanyam.
+	\newblock Application of computational fluid dynamics simulation tools for
+	  thermal characterization of electronic packages.
+	\newblock {\em International Journal for Numerical Methods in Heat \& Fluid
+	  Flow}, 15(1):61--72, 2005.
+	
+	\bibitem{Lipnikov2010}
+	K.Lipnikov and M.Shashkov.
+	\newblock A mimetic tensor artiﬁcial viscosity for lagrangian hydrocodes on
+	  arbitrary polygonal meshes.
+	\newblock Technical Report LA-UR-10-00006, Los Alamos National Laboratory,,
+	  2010.
+	
+	\bibitem{KolevRieben09}
+	T.~V. Kolev and R.~N. Rieben.
+	\newblock A tensor artificial viscosity using a finite element approach.
+	\newblock {\em J. Comput. Phys.}, 228(22):8336--8366, 2009.
+	
+	\bibitem{ExplosionCFD}
+	H.~U. Mair and H.~Huang.
+	\newblock Lagrangian hydrocode modeling of underwater explosive/target
+	  interaction.
+	\newblock In {\em 61s Shock and Vibration Symposium}, 1990.
+	
+	\bibitem{FreeSurfaceCFD2}
+	M.~A. Martínez, E.~Cueto, I.~Alfaro, M.~Doblaré, and F.~Chinesta.
+	\newblock Updated lagrangian free surface flow simulations with natural
+	  neighbour galerkin methods.
+	\newblock {\em International Journal for Numerical Methods in Engineering},
+	  60:2105--2129, 2004.
+	
+	\bibitem{Noh87}
+	W.~F. Noh.
+	\newblock Errors for calculations of strong shocks using an artificial
+	  viscosity and an artificial heat flux.
+	\newblock {\em J. Comput. Phys.}, 72(1):78--120, 1987.
+	
+	\bibitem{Perry2008}
+	R.~Perry.
+	\newblock Investigation of the proposed 2009 fiaformula 1 world championship
+	  aerodynamic regulation changes using computational fluid dynamics.
+	\newblock Master's thesis, California Polytechnic State University, June 2008.
+	
+	\bibitem{Rider2000}
+	W.~J. Rider.
+	\newblock Revisiting wall heating.
+	\newblock {\em Journal of Computational Physics}, 162:395 -- 410, 2000.
+	
+	\bibitem{ShipCFD} year = 1996, number = "UCRL-JC-124706"
+}
+@techreport{ALEmetalforming, author = "R. Couch and R. Sharp and I. Otero and R. Tipton and
+               R. McCallen", title = "Application of {ALE} techniques to metal forming simulations", institution = "Lawrence Livermore National Laboratory", year = 1993, 
+number = "UCRL-JC-114851"
+}
+@techreport{ALEcookoff, author = "M. McClelland and J. Maienschein and A. Nichols and J. Wardell
+               and A. Atwood and P. Curran", title = "{ALE3D} model predictions and materials charcterization for
+               the cookoff response of PBXN-109", institution = "Lawrence Livermore National Laboratory", year = 2002, number = "UCRL-JC-145756"
+}
+@techreport{ALEunderwater, author = "R. Couch and D. Faux", title = "Simulation of underwater benchmark experiments with {ALE3D}", institution = "Lawrence Livermore 
+National Laboratory", year = 1997, number = "UCRL-JC-123819"
+}
+@techreport{ALEhotspot, author = "A. Nichols and C. tarver and E. McGuire", title = "{ALE3D} statistical hot spot model results for LX-17", institution = "Lawrence 
+Livermore National Laboratory", year = 2003, number = "UCRL-JC-152203"
+}
+@techreport{ALEparallel, author = "W. S. Futral and E. Dube and J. R. Neely and T. G. Pierce", title = "Performance of ALE3D on the ASCI machines", institution = "Lawrence 
+Livermore National Laboratory", year = 1999, number = "UCRL-JC-132166"
+}
+@techreport{ALEmultiphase, author = "D. Stevens", title = "Compressible multiphase flows in an {ALE} framework", institution = "Lawrence Livermore National Laboratory", 
+year = 2003, number = "UCRL-JC-201373"
+}
+@techreport{ALEcoupling, author = "C. Aro and E. Dube and W. Futral", title = "Coupled mechanical/heat transfer simulation on {MPP} platforms
+               using a finite element linear solver interface", institution = "Lawrence Livermore National Laboratory", year = 1999, number = "UCRL-JC-131746"
+}
+@book{ArnoldCompatibleSpatialBook06,
+  editor = {D. N. Arnold and P. B. Bochev and
+                  R. B. Lehoucq and R. A. Nicolaides and
+                  M. J. Shashkov},
+  title = {Compatible Spatial Discretizations},
+  publisher = {Springer-Verlag},
+  year = {2006},
+  volume = {142},
+  series = {The IMA Volumes in Mathematics and its Applications}
+}
+@techreport{BergerAftosmis05, author = "M. Berger and M. Aftosmis", title = "Analysis of slope limiters on Irregular Grids", institution = "American Institute of 
+Aeronautics and Astronautics", number = "2005-0490"
+}
+@book{AbrahamMarsdenRatiu96, author = "R. Abraham and J. E. Marsden and T. Ratiu", title = "Manifolds, Tensor Analysis, and Applications", series = "Applied Mathematical 
+Sciences", vol = 75, year = 1996, edition = 'Second edition", publisher = SPRINGER
+}
+@article{AinsworthCoyle01, author = "M. Ainsworth and J. Coyle", title = "Hierarchic $hp$-edge element families for {M}axwell's equations
+           on hybrid quadrilateral/triangular meshes", journal = CMAME, volume = 190, year = 2001, pages = "6709--6733"
+}
+@unpublished{Ainsworth02, author = "M. Ainsworth and J. Coyle", title = "Hierarchic Finite Element Bases on Unstructured Tetrahedral
+             Meshes", month = "May", year = 2002
+}
+@article{AinsworthCoyle03, author = "M. Ainsworth and J. Coyle", title = "Conditioning of hierarchic p-version {N}edelec elements
+           on meshes of curvilinear quadrilaterals and hexahedra", journal = SINUM, volume = 41, number = 2, year = 2003, pages = "731--750"
+}
+@article{Ainsworth04, author = "M. Ainsworth", title = "Dispersive properties of high-order {N}edelec/edge element
+           approximation of the time-harmonic {M}axwell equations", journal = "Philisophical Transactions of the Royal Society of London", volume = 362, number = 1816, year 
+= 2004, pages = "471--491"
+}
+@article{Alleon97, author = "M. All\'eon and M. Benzi and L. Giraud", title = "Sparse approximate inverse preconditioning for dense linear
+           systems arising in computational electromagnetics", journal = "Numerical Algorithms", volume = 16, number = 1, year = 1997 , pages = "1--15"
+}
+@article{Ammari00, author = "H. Ammari and A. Buffa and J. C. Nedelec", title = "A justification of eddy currents model for the {M}axwell equations", journal = "SIAM J. 
+Appl. Math", volume = 60, number = 5, year = 2000, pages = "1805-1823"
+}
+@article{Ambrosiano94, author = "J. J. Amborsiano and S. T. Brandon and R. Lohner and
+           C. R. DeVore", title = "Electromagnetics via the {T}aylor-{G}alerkin finite element
+           method on unstructured grids", journal = JCP, volume = 110, year = 1994, pages = "310--319"
+}
+@article{Anderson73, author = "O. W. Anderson", title = "Laplacian electrostatic field calculations by finite elements
+           with automatic grid generation ", journal = IEEE_TPAS, volume = 92, number = 5, year = 1973, pages = "1485--1492"
+} 
+@article{AndersenVolakis99, author = "L.S. Andersen and J.L. Volakis", title = "Development and application of a novel class of hierarchical
+           tangential vector finite elements for electromagnetics", journal = IEEE_TAP, volume = 47, number = 1, year = 1999, pages = "112--120"
+} 
+@article{AndersenVolakis99-2, author = "L.S. Andersen and J.L. Volakis", title = "Condition numbers for various {FEM} matrices", journal = JEMWA, volume = 13, number = 12, 
+year = 1999, pages = "1663--1679"
+} 
+@article{BabuskaIhlenburg97, author = "I. Babuska and F. Ihlenburg and T. Strouboulis and S. K. Gangaraj", title = "A posteriori error estimation for finite element 
+solution of
+           {H}elmholtz", journal = IJNME, volume = 40, number = 21, year = 1997, pages = "3883--3900"
+}
+@article{BabuskaStrouboulis95, author = "I. Babuska and T. Strouboulis and C.S. Upadhyay and S. K. Gangaraj", title = "A posteriori estimation and adaptive control of the 
+pollution error
+           in the $h$-version of the finite element method for finite element
+           solution of {H}elmholtz", journal = IJNME, volume = 38, number = 24, year = 1995, pages = "4207--4235"
+}
+@article{Baldomir86, author = "D. Baldomir", title = "Differential forms and electromagnetism in 3-dimensional
+           {E}uclidean space {R}3.", journal = IEEE_PROC, volume = 133, number = 3, year = 1986, pages = "139--143"
+}
+@book{Balanis89, author = "C. Balanis", title = "Advanced Engineering Electromagnetics", vol = 75, year = 1989, publisher = "John Wiley and Sons" city = "New York"
+}
+@article{Balsara01, author = "D. S. Balsara", title = "Divergence-free adaptive mesh refinement for magnetohydrodynamics", journal = JCP, volume = 174, number = 2, year = 
+2001, pages = "614--648"
+}
+@article{Balsara04, author = "D. S. Balsara", title = "Second-order accurate schemes for magnetohydrodynamics with
+           divergence-free reconstruction", journal = "The Astrophysical Journal Supplement Series", volume = 151, year = 2004, pages = "149--184"
+}
+@article{BalsaraKim04, author = "D. S. Balsara and J. Kim", title = "A comparison between divergence-cleaning and staggered mesh
+           formulations for numerical magnetohydrodynamics", journal = "The Astrophysical Journal", volume = 602, year = 2004, pages = "1079--1090"
+}
+@article{BalsaraSpicer99, author = "D. S. Balsara and D. S. Spicer", title = "A Staggered Mesh Algorithm Using High Order
+           {G}odunov Fluxes to Ensure Solenoidal Magnetic
+            Fields in Magnetohydrodynamic Simulations", journal = JCP, volume = 149, year = 1999, pages = "270--292"
+}
+@article{BeckHiptmair99, author = "R. Beck and R. Hiptmair", title = "Multilevel solution of the time-harmonic {M}axwell's equations
+           based on edge elements", journal = IJNME, volume = 45, year = 1999, pages = "901--920"
+}
+@article{Benson92, author = "D. J. Benson", title = "Computational Methods in {L}agrangian and {E}ulerian hydrocodes", journal = CMAME, volume = 99, year = 1992, pages = 
+"235--394"
+}
+@techreport{BergerAftosmis05, author = "M. Berger and M. Aftosmis", title = "Analysis of slope limiters on Irregular Grids", institution = "American Institute of 
+Aeronautics and Astronautics", number = "2005-0490"
+}
+@article{5, author = "", title = "Hierarchic $hp$-edge element families for {M}axwell's equations
+           on hybrid quadrilateral/triangular meshes", journal = CMAME, volume = 190, year = 2001, pages = "6709--6733"
+}
+@article{Berenger94, author = "J. Berenger", title = "A perfectly matched layer for the absorption of
+           electromagnetic waves", journal = JCP, volume = 114, number = 2, year = 1994, pages = "185--200"
+}
+@article{Berenger96, author = "J. Berenger", title = "Three-dimensional perfectly matched layer for the absorption of
+           electromagnetic waves", journal = JCP, volume = 127, number = 2, year = 1996, pages = "363--379"
+}
+@article{BochevRobinson03, author = "P. Bochev and J. Hu and A. Robinson and R. Tuminaro", title = "Towards Robust {Z}-Pinch Simulations: {D}iscretization and Fast
+           Solvers for Magnetic Diffusion in Heterogenous Conductors", journal = "Electronic Trans. Num. Analysis", volume = 15, year = 2003, pages = "186--210"
+}
+@article{BochevShaskov05, author = "P. Bochev and M. Shaskov", title = "Constrained interpolation (remap) of divergence-free fields", journal = CMAME, volume = 194, year = 
+2005, pages = "511--530"
+}
+@article{BochevRobinson03, author = "P. Bochev and J. Hu and A. Robinson and R. Tuminaro", title = "Towards Robust {Z}-Pinch Simulations: {D}iscretization and Fast
+           Solvers for Magnetic Diffusion in Heterogenous Conductors", journal = "Electronic Trans. Num. Analysis", volume = 15, year = 2003, pages = "186--210"
+}
+@phdthesis{BochevThesis, author = {P. Bochev}, title = {Least-squares finite element methods for the {S}tokes and
+             {N}avier-{S}tokes equations}, school = {Virginia Polytechnic Institute and State University, Blacksburg,
+	     Virginia}, year = {1994},
+}
+@article{Bonnet97, author = "P. Bonnet and X. Ferrieres and F. Issac", title = "Numerical Modeling of Scattering Problems Using a Time Domain
+           Finite Volume Method", journal = JEWA, volume = 11, year = 1997, pages = "1165--1189"
+}
+@article{Bossavit88, author = "A. Bossavit", title = "Whitney forms: a class of finite elements for three-dimensional
+           computations in electromagnetism", journal = IEEE_PROC, volume = 135, number = 8, year = 1988, pages = "493--500"
+}
+@article{Bossavit89, author = "A. Bossavit and I. Mayergoyz", title = "Edge-Elements for Scattering Problems", journal = IEEE_TM, volume = 25, number = 4, year = 1989, 
+pages = "2816--2821"
+}
+@article{Bossavit90, author = "A. Bossavit", title = "Solving {M}axwell equations in a closed cavity, and the
+           question of spurious modes", journal = IEEE_TM, volume = 26, number = 2, year = 1990, pages = "702--705"
+}
+@article{Bossavit93, author = "L. Pichon and A. Bossavit", title = "A New Variational Formulation, Free of Spurious Modes, for the
+           Problem of Loaded Cavities", journal = IEEE_TM, volume = 29, number = 2, year = 1993, pages = "1595--1600"
+}
+@article{Bossavit96, author = "A. Bossavit", title = "Edge Elements for Magnetostatics", journal = "Int. J. Numer. Model. El.", volume = 9, number = "1--2", year = 1996, 
+pages = "19--34"
+}
+@book{Bossavit98, author = "A. Bossavit", title = "Computational Electromagnetism: Variational Formulation,
+              Complementarity, Edge Elements.", year = 1998, publisher = AP
+}
+@article{BrezziDouglasMarini85, author = "F. Brezzi and J. Douglas and L. D. Marini", title = "Two families of mixed finite elements for second order
+           elliptic problems", journal = NUMMA, volume = 47, year = 1985, pages = "217--235"
+}
+@book{BrezziFortin91, author = "F. Brezzi and M. Fortin", title = "Mixed and Hybrid Finite Element Methods", series = "Springer Series in Computational Mathematics", year = 
+1991, publisher = SPRINGER
+}
+@article{Brutman97, author = "L. Brutman", title = "Lebesgue functions for polynomial interpolation - a survey", journal = ANM, volume = 4, year = 1997
+}
+@book{Burke85, author = "W. Burke", title = "Applied Differential Geometry: Variational Formulation", year = 1985, publisher = CUP
+}
+@techreport{Burton94, author = "D. E. Burton", title = "Multidimensional discretizations of conservation laws for
+               unstructured polyhedral grids", institution = "Lawrence Livermore National Laboratory", number = "UCRL-JC-118306", year = 1994,
+}
+@manual{BurkePoggio81, author = "G. J. Burke and A. J. Poggio", title = "Numerical Electromagnetic Code (NEC) -- Method of Moments", organization = "Lawrence Livermore 
+National Laboratory", address = "Livermore, California", month = "Jan.", year = 1981
+}
+@article{CampbellShashkov01, author = "J. C. Campbell and M. J. Shashkov", title = "A Tensor Artificial Viscosity Using a Mimetic Finite Difference
+           Algorithm" , journal = JCP, volume = 172, pages = "739--765", year = 2001
+}
+@article{Candy89, author = "J. Candy and W. Rozmus", title = "A Symplectic Integration Algorithm for Seperable
+           {H}amiltonian Functions" , journal = JCP, volume = 92, pages = "230--256", year = 1991
+}
+@article{Cangellaris91, author = "A. C. Cangellaris and D. B. Wright", title = "Analysis of the numerical error caused by the stair-stepped
+           approximation of a conducting boundary in {FDTD} simulations of
+           electromagnetic phenomena", journal = IEEE_TAP, volume = 39, number = 10, pages = "1518--1525", year = 1991
+}
+@article{CaramanaShashkov98, author = "E. J. Caramana and M. J. Shashkov", title = "Elimination of Artificial Grid Distortion and Hourglass-Type
+           Motions by Means of {L}agrangian Subzonal Masses and
+           Pressures", journal = JCP, volume = 142, number = 2, pages = "521--561", year = 1998
+}
+@article{CaramanaBurtonShashkov98, author = "E. J. Caramana and D. E. Burton and M. J. Shashkov and
+           P. P. Whalen", title = "The Construction of Compatible Hydrodynamics Algorithms
+           Utilizing Conservation of Total Energy", journal = JCP, volume = 146, pages = "227--262", year = 1998
+}
+@book{Cartan67, author = "H. Cartan", title = "Formes Differentielles", year = 1967, publisher = "Hermann", address = "Paris"
+}
+@techreport{CastilloKoningRiebenStowellWhite02, author = "P. Castillo and J.Koining and R. Rieben and M. Stowell and
+                D. White", title = "Discrete Differential Forms: A Novel Methodology for Robust
+                Computational Electromagnetics", institution = "Lawrence Livermore National Laboratory, Center for Applied
+                Scientific Computing", number = "UCRL-ID-151522", year = 2003, month = "January"
+}
+@article{CastilloKoningRiebenWhite04, author = "P. Castillo and J. Koning and R. Rieben and D. White", title = "A Discrete Differential Forms Framework for Computational
+                Electromagnetics", journal = "Computer Modeling in Engineering \& Sciences", volume = 5, number = 4, pages = "331--346", year = 2004
+}
+@inproceedings{CastilloRiebenWhite03, author = "P. Castillo and R. Rieben and D. White", title = "{FEMSTER}: {A}n Object Oriented Class Library of Discrete
+              Differential Forms", booktitle = "Proceedings of the 2003 IEEE International Antennas and
+              Propagation Symposium", volume = 2, pages = "181--184", month = "June", year = 2003, address = "Columbus, Ohio"
+}
+@article{CastilloRiebenWhite05, author = "P. Castillo and R. Rieben and D. White", title = "{FEMSTER}: An object orienetd class library of
+                higher-order discrete differential forms", journal = "ACM Trans. Math. Soft.", volume = 31, number = 4, pages = "425--457", year = 2005.
+}
+@article{Cendes91, author = "Z. J. Cendes", title = "Vector Finite Elements for Electromagnetic Field Computation", journal = IEEE_TM, volume = 27, number = 5, pages = 
+"3958--3966", year = 1991
+}
+@article{CendesSilvester71, author = "Z. J. Cendes and P. Silvester", title = "Numerical solution of dielectric loaded waveguides:
+           {I} -- {F}inite element analysis ", journal = IEEE_TMT, volume = 18, number = 6, pages = "1124--1131", year = 1971
+}
+@book{Ciarlet78, author = "P. G. Ciarlet", title = "The Finite Element Method for Elliptic Problems", year = 1978, publisher = "North-Holland",
+}
+@book{ChariSalon00, author = "M. V. K. Chari and S. J. Salon", title = "Numerical Methods in Electromagnetism", year = 2000, publisher = "Academic Press"
+}
+@article{Chow00, author = "E. Chow", title = "A priori sparsity patterns for parallel sparse approximate
+           inverse preconditioners", journal = SISC, volume = 21, number = 5, pages = "1804--1822", year = 2000
+}
+@article{Coggeshall91, author = "S. V. Coggeshall", title = "Analytic solutions of hydrodynamics equations", journal = "Phys. Fluids A", volume = 3, number = 5, pages = 
+"757--769", year = 1991
+}
+@article{CourantFriedrichsLewy28, author = "R. Courant and K. O. Friedrichs and H. Lewy", title = "Uber die Partiellen Differenzengleichungen der Mathematisches
+           Physik", journal = "Math. Ann.", volume = 100, pages = "32--74", year = 1928
+}
+@article{Crowley88, author = "C. Crowley and P. Silvester and H. Hurwitz", title = "Covariant projection elements for 3{D} vector
+           field problems", journal = IEEE_TM, volume = 24, number = 1, pages = "397--400", year = 1988
+}
+@Misc{CRW_FEMSTER, author = "P. Castillo and R. Rieben and D. White", title = "{FEMSTER} Documentation", howpublished = "UCRL-WEB-147600", note = 
+"www.llnl.gov/casc/femster"
+}
+@article{Demkowicz02, author = "W. Rachowicz and L. Demkowicz", title = "{A}n hp-{A}daptive {F}inite {E}lement {M}ethod for
+           {E}lectromagnetics", journal = INJNME, volume = 53, number = 1, year = 2002, pages = "147--180"
+}
+@article{DeraemaekerBabuska99, author = "A. Deraemaeker, I. Babuska, P. Boullard", title = "Dispersion error and pollution of the {FEM} solution for the
+           {H}elmholtz equation in one, two, and three dimensions", journal = INJNME, volume = 46, number = 4, year = 1999, pages = "471--499"
+}
+@article{Deschamps81, author = "G. Deschamps", title = "Electromagnetics and differential forms", journal = IEEE_PROC, volume = 69, number = 6, year = 1981, pages = 
+"676--687"
+}
+@inproceedings{Deveze92, author = "T. Deveze and L. Beaulie and W. Tabbara", title = "A fourth order scheme for the {FDTD} algorithm applied to
+              {M}axwell equtions", booktitle = "Proceedings IEEE Antennas and Propagat. Soc. Int. Symp.", address = "Chicago, IL", year = 1992, pages = "346--349"
+}
+@techreport{Edelvik98, author = "F. Edelvik", title = "A Survey of Finite Volume Time Domain Methods for Solving
+                {M}axwell's Equations", institution = "Parallel and Scientific Computing Institute, Royal
+                Institute of Technology and Uppsala University", year = 1998, number = "98:07"
+}
+@article{EvansHawley88, author = "C. R. Evans and J. F. Hawley", title = "Simulation of Magnetohydrodynamic Flows: {A} Constrained
+            Transport Method", year = 1988, journal = "The Astrophysical Journal", volume = 332, pages = "659--677"
+}
+@phdthesis{Fang89, author = "J. Fang", title = "Time Domain Finite Difference Computation for Maxwell's
+            Equations", school = "University of California at Berkeley", address = "Berkeley, California", year = 1989
+}
+@manual{FalgoutHYPRE06,
+  title = {HYPRE User's Manual},
+  OPTkey = {},
+  author = {R. Falgout et. al.},
+  organization = {Lawrence Livermore National Laboratory, Center for Applied
+                  Scientific Computing},
+  OPTaddress = {},
+  edition = {2.0},
+  month = {December},
+  year = {2006},
+  OPTnote = {},
+  OPTannote = {}
+}
+@book{Gallian98, author = "J. A. Gallian", title = "Contemporary Abstract Algebra", year = 1998, edition = "fourth" publisher = "Houghton Mifflin Company",
+}
+@inproceedings{Gajic03, author = "R. Gaji{\'c} and R. Meisels and J. Radovanovi{\'c} and
+              F. Kuchar", title = "3{D} Photonic Band Gap Structure for the {K}a-{U} Microwave
+               Range", booktitle = "Proceedings of the XI Telekomunikacioni Forum Telfor 2003", month = "November", year = 2003, address = "Beograd, Sava Centar"
+}
+@article{Gajic03, year = 2003, journal = volume = 11, number = 1, pages = "43--5"}
+}
+@article{Gambling79, author = "W. A. Gambling and H. Matsumura and C. M. Ragdale", title = "Curvature and Microbending Losses in Single-Mode Fibres", year = 1979, journal = 
+"Optical and Quantum Electronics", volume = 11, number = 1, pages = "43--5"
+}
+@article{Gedney00, author = "S. D. Gedney and J. A. Roden", title = "Numerical Stability of Nonorthogonal {FDTD} Methods", journal = IEEE_TAP, volume = 48, number = 2, year 
+= 2000, pages = "231--239"
+}
+@book{Goff99, author = "D. R. Goff", title = "Fiber Optic Reference Guide", year = 1999, edition = "second" publisher = "Focal Press",
+}
+@article{GragliaGheorma99, author = "R. Graglia and I.-L. Gheorma", title = "Higher order interpolatory vector bases on pyramidal elements", journal = IEEE_TAP, volume = 
+47, number = 5, year = 1999, pages = "775--782"
+}
+@inproceedings{GragliaSaviWilton00, author = "R. Graglia and P. Savi and D. R. Wilton", title = "Higher order modeling for computational electromagnetics", organization = 
+"European Congress on Computational Methods in Applied
+                Sciences and Engineering", address = "Barcelona", publisher = "ECCOMAS", month = "September", year = 2000
+}
+@article{GragliaWiltonPeterson97, author = "R. Graglia and D. Wilton and A. Peterson", title = "Higher order interpolatory vector bases for computational
+           electromagnetics", journal = IEEE_TAP, volume = 45, number = 3, year = 1997, pages = "329--342"
+}
+@article{GragliaWiltonPetersonGheorma98, author = "R. Graglia and P. Wilton and A. Peterson and I.-L. Gheorma", title = "Higher order interpolatory vector bases on prism 
+elements", journal = IEEE_TAP, volume = 46, number = 3, year = 1998, pages = "442--450"
+}
+@book{Greiner98, author = "W. Greiner", title = "Classical Electrodynamics", year = 1998, publisher = "Springer-Verlag", address = "New York"
+}
+@article{Hammond89, author = "P. Hammond", title = "Upper and lower bounds in eddy-current calculations", journal = "IEE Proceedings", volume = 136, number = 4, pages = 
+"207--216", year = 1989
+}
+@article{Hano84, author = "M. Hano", title = "Finite element analysis of dielectric-loaded waveguides", journal = IEEE_TMT, volume = 32, number = 10, pages = "1275--1279", 
+year = 1984
+}
+@article{Hano01, author = "M. Hano and T. Miyamura and M. Hotta", title = "Finite element eddy current analysis by novel mixed-order
+           vector elements", journal = IJAE, volume = 14, number = 1-4, pages = "19--22", year = 2001
+}
+@article{Harrington67, author = "R. F. Harrington", title = "Matrix Methods for Field Problems", journal = "Proc. IEEE", year = 1967, volume = 55, pages = "136--149"
+}
+@article{Hara83, author = "M. Hara and T. Wada and T. Fukasawa and F. Kikuchi", title = "Three-Dimensional Analysis of RF Electromagnetic Field by
+           the Finite Element Method", journal = IEEE_TM, volume = 19, pages = "2417--2420", year = 1983
+}
+@book{Harrington68, author = "R. F. Harrington", title = "Field Computation by Moment Methods", year = 1968, publisher = "MacMillan", address = "New York"
+}
+@article{Harten83, author = "A. Harten", title = "High resolution schemes for hyperbolic conservation laws", journal = JCP, volume = 49, pages = "357--393", year = 1983
+}
+@article{Hadi97, author = "M. F. Hadi and M. Piket-May", title = "A modified {FDTD} (2,4) scheme for modeling electrically
+            large structures with high phase accuracy", journal = IEEE_TAP, volume = 45, number = 2, year = 1997, pages = "254--264"
+}
+@book{HealdMarion95, author = "M. Heald and J. Marion", title = "Classical Electromagnetic Radiation", year = 1995, edition = "Third", publisher = "Saunders College 
+Publishing"
+}
+@article{Hesthaven00, author = "J. Hesthaven and C. Teng", title = "Stable spectral methods on tetrahedral elements", journal = SISC, volume = 21, number = 6, pages = 
+"2352--2380", year = 2000
+}
+@article{Hesthaven02, author = "J. S. Hesthaven and T. Warburton", title = "Nodal high-order methods on unstructured grids - {I}.
+           {T}ime-domain solution of {M}axwell's Equations", journal = JCP, volume = 181, number = 1, pages = "186--221", year = 2002
+}
+@article{Hiptmair98, author = "R. Hiptmair", title = "Multigrid method for {M}axwell's equations", journal = SINUM, volume = 38, number = 1, pages = "204--225", year = 1998
+}
+@article{Hiptmair99, author = "R. Hiptmair", title = "Canonical construction of finite elements", journal = MATHCOMP, volume = 68, number = 228, pages = "1325--1346", year 
+= 1999
+}
+@article{Hiptmair01, author = "R. Hiptmair", title = "Discrete {H}odge operators: {A}n algebraic perspective", journal = JEMWA, volume = 15, number = 3, pages = "343--344", 
+year = 2001
+}
+@article{Hirono97, author = "T. Hirono and W. W. Lui and K. Yokoyama ", title = "Time-Domain Simulation of Electromagnetic Field Using a
+           Symplectic Integrator", journal = "IEEE Microwave and Guided Wave Lett.", volume = 7, number = 9, pages = "279--281", year = 1997
+}
+@article{Hirono98, author = "T. Hirono and W. W. Lui and K. Yokoyama and S. Seki", title = "Stability and Numerical Dispersion of Symplectic
+           Fourth-Order Time-Domain Schemes for Optical Field Simulation", journal = JLWT, volume = 16, number = 10, pages = "1915--1920", year = 1998
+}
+@inproceedings{Holland90, author = "R. Holland", title = "The case against staircasing", booktitle = "Proceedings of the 6th annual Review of Progress in
+              Applied Computational Electromagnetics", pages = "89--95", month = "March", year = 1990
+}
+@article{Holland91, author = "R. Holland and V. Cable and L. Wilson", title = "Finite-volume time-domain techniques for {EM} scattering", journal = IEEE_TEC, volume = 33, 
+number = 4, pages = "281--294", year = 1991
+}
+@article{Holland93, author = "R. Holland", title = "Pitfalls of staircase meshing", journal = IEEE_TEC, volume = 35, number = 4, pages = "434--439", year = 1993
+}
+@article{Hyman97a, author = "J. M. Hyman and M. J. Shashkov", title = "Adjoint operators for the natural discretizations of the
+           divergence, gradient and curl on logically rectangular
+           grids", journal = APPNUMERMATH, volume = 25, number = 4, pages = "413--442", year = 1997
+}
+@article{Hyman97b, author = "J. M. Hyman and M. J. Shashkov", title = "Natural discretizations for the divergence, gradient, and curl
+           on logically rectangular grids", journal = CMA, volume = 33, number = 4, pages = "81--104", year = 1997
+}
+@article{Hyman99, author = "J. M. Hyman and M. J. Shashkov", title = "Mimetic Discretizations for Maxwell's equations", journal = JCP, volume = 151, number = 2, pages = 
+"881--909", year = 1999
+}
+@article{Hysom01, author = "D. Hysom and A. Pothen", title = "A scalable parallel algorithm for incomplete factor
+           preconditioning", journal = SISC, volume = 22, number = 6, pages = "2194--2215", year = 2001
+}
+@article{Igarashi03, author = "H. Igarashi and T. Honma", title = "Convergence of Preconditioned Conjugate Gradient Method
+           Applied to Driven Microwave Problems", journal = IEEE_TM, volume = 39, number = 3, pages = "1705--1708", year = 2003
+}
+@article{Igarashi02, author = "H. Igarashi and T. Honma", title = "On Convergence of {ICCG} Applied to Finite-Element Equation for
+           Quasi-Static Fields", journal = IEEE_TM, volume = 38, number = 2, pages = "565--568", year = 2002
+}
+@book{Jackson, author = "J. D. Jackson", title = "Classical Electrodynamics", year = 1962 (1st ed), 1975 (2nd ed) publisher = WILEY
+}
+@article{Jameson93, author = "A. Jameson", title = "Computational algorithms for aerodynamic analysis and design", journal = APPNUMERMATH, volume = 13, year = 1993, pages = 
+"383--422"
+}
+@book{Jin93, author = "J. Jin", title = "The Finite Element Method in Electromagnetics", year = 1993, publisher = WILEY
+}
+@article{Jin02, author = "J. Dao and J. Jin", title = "A general approach for the stability analysis of the time
+           domain finite element method for electromagnetic simulations", journal = IEEE_TAP, volume = 50, number = 11, year = 2002, pages = "1624--1632"
+}
+@book{Joannopoulos95, author = "J. D. Joannopoulos and R. D. MEade and J. N. Winn", title = "Photonic Crystals: Molding the Flow of Light", year = 1995, publisher = 
+"Princeton University Press", address = "Princeton, New Jersey"
+}
+@article{Joannopoulos96, author = "A. Mekis and J. Chen and S. Fan and P. Villeneuve and
+           J. Joannopoulos", title = "High transmission through sharp bends in photonic crystal
+           waveguides", journal = PRL, volume = 77, number = 18, year = 1996, pages = "3787--3790"
+}
+@article{Joannopoulos02, author = "S. Fan and J. Joannopoulos", title = "Analysis of guided resonances in photonic crystal slabs", journal = PRB, volume = 65, number = 23, 
+year = 2002
+}
+@article{KarypisKumar98, author = "G. Karypis and V. Kumar", title = "A parallel algorithm for multilevel graph partitioning and
+            sparse matrix ordering", journal = "J. Parallel Distr. Comp.", volume = 48, number = 1, pages = "71--95", year = 1998
+}
+@article{KettunenForsmanBossavit98, author = "L. Kettunen and K. Forsman and A. Bossavit", title = "Discrete spaces for {D}iv and {C}url-{F}ree fields", journal = IEEE_TM, 
+volume = 34, number = 5, pages = "2551--2554", year = 1998
+}
+@book{Knoepfel, author = "H. E. Knoepfel", title = "Magnetic Fields", year = 2000, publisher = WILEY
+}
+@article{Konrad76, author = "A. Konrad", title = "Vector variational formulation of electromagnetic fields in
+           anisotropic media", journal = IEEE_TMT, volume = 24, pages = "553--559", year = 1976
+}
+@article{Kotiuga89, author = "P. R. Kotiuga", title = "Helicity Functionals and Metric Invariance in Three Dimensions", journal = IEEE_TM, volume = 25, number = 4, pages = 
+"2813--2815", year = 1989
+}
+@book{Krawczyk93, author = "Andrzej Krawczyk and John A. Tegopoulos", title = "Numerical Modelling of Eddy Currents", year = 1993, publisher = "Oxford University / 
+Clarendon Press"
+}
+@article{KuzminTurek04, author = "D. Kuzmin and S. Turek", title = "High-resolution {FEM-TVD} schemes based on a fully
+            multidimensional flux limiter", journal = JCP, volume = 198, number = 1, pages = "131--158", year = 2004
+}
+@book{LandauLifshitz8, author = "L. D. Landau and E. M. Lifshitz", title = "Electrodynaimcs of continuous media", year = 1960, publisher = "Peragom Press"
+}
+@book{LapidusPinder82, author = "L. Lapidus and G. F. Pinder", title = "Numerical Solution of Partial Differential Equations in
+             Science and Engineering", year = 1982, publisher = "John Wiley and Sons"
+}
+@article{LaxNelson75, author = "M. Lax and D. F. Nelson", title = "{M}axwell equations in material form", journal = PRB, volume = 13, number = 4, pages = "1777--1784", year 
+= 1975
+}
+@article{Lee91, author = "J. Lee and D. Sun and Z. Cendes", title = "Tangential Vector Finite Elements for Electromagnetic Field
+            Computation", journal = IEEE_TM, volume = 27, number = 5, pages = "4032--4035", year = 1991
+}
+@article{LeeCendes91, author = "J. Lee and D. Sun and Z. Cendes", title = "Full-wave Analysis of Dielectric Waveguides Using Tangential
+            Vector Finite Elements", journal = IEEE_TMT, volume = 39, number = 8, pages = "1262--1271", year = 1991
+}
+@article{LeeMadsen90, author = "R. L. Lee and N. K. Madsen", title = "A mixed finite element formulation for {M}axwell's equations
+            in the time domain ", journal = JCP, volume = 88, pages = "284--304", year = 1990
+}
+@book{LeVeque90, author = "R. J. Le{V}eque", title = "Numerical Methods for Conservation Laws", year = 1990, publisher = "Birkhauser-Verlag"
+}
+@article{Lidorikis03, author = "E. Lidorikis and M. Povinelli and S. Johnson and J. Joannopoulos", title = "Polarization-independent linear waveguides in 3{D} photonic
+           crystals", journal = PRL, volume = 91, number = 2, year = 2003, note = "Art. No. 023902"
+}
+@article{Lindman75, author = "E. L. Lindman", title = "Free-space boundary conditions for the finite-difference
+            approximation of the time-doamin electromagnetic field
+            equations", journal = JCP, volume = 18, pages = "66--78", year = 1975
+}
+@article{LondrilloDelZanna00, author = "P. Londrillo and L. Del Zanna", title = "High-order upwind schemes for multidimensional
+            magnetohydrodynamics", journal = "The Astrophysical Journal", volume = 530, pages = "508--524", year = 2000
+}
+@techreport{Louberre05, author = {R. Louberre}, title = {On the effect of the different limiters for the tensor
+                  artificial viscosity for the Compatible Lagrangian
+                  Hydrodynamics Scheme}, institution = {Theoretical Division, T-7, Los Alamos National Laboratory}, year = {2005}
+}
+@article{LynchPaulsen90, author = "D. R. Lynch and K. D. Paulsen", title = "Time domain integration of the Maxwell equations on finite
+            elements", journal = IEEE_TAP, volume = 38, pages = "1933--1942", year = 1990
+}
+@article{LynchPaulsen91, author = "D. R. Lynch and K. D. Paulsen", title = "Origin of Vector Parasites in Numerical {M}axwell Solutions", journal = IEEE_TMT, volume = 39, 
+number = 3, pages = "383--394", year = 1991
+}
+@article{LynchPaulsenBoyse93, author = "D. R. Lynch and K. D. Paulsen and W. E. Boyse", title = "Synthesis of Vector Parasites in Numerical {M}axwell Solutions", journal = 
+IEEE_TMT, volume = 41, number = 8, pages = "1439--1448", year = 1993
+}
+@article{MadsenZiolkowski90, author = "N. Madsen and R. Ziolkowski", title = "A 3 dimensional modified finite volume techniqe
+            for {M}axwell's equations", journal = "Electromagnetics", volume = 10, number = 1, pages = "147--161", year = 1990
+}
+@book{Maxwell, author = "J. C. Maxwell", title = "A Treatise on Electricity and Magnetism, Vol. 1", year = 1954, publisher = "Dover Publications"
+}
+@article{Madsen95, author = "N. K. Madsen", title = "Divergence preserving discrete surface integral method for
+            {M}axwell's curl equations using non-orthogonal unstructured
+            grids", journal = JCP, volume = 119, number = 1, pages = "34--45", year = 1995
+}
+@article{Mahadevan94, author = "K. Mahadevan and R. Mittra and P. M. Vaidya", title = "Use of {W}hitney edge and face elements for efficient
+            finite-element time domain solution of {M}axwell equations", journal = JEWA, volume = 8, number = 9-10, pages = "1173--1191", year = 1994
+}
+@article{Marcuse76, author = "D. Marcuse", title = "Curvature loss formula for optical fibers", journal = "J. Opt. Soc. Am.", year = 1976, volume = 66, number = 3, pages = 
+"216--220"
+}
+@article{Melenk02, author = "J. Melenk", title = "On Condition Numbers in hp-FEM with Gauss-Lobatto Shape
+            Functions", journal = JCAM, volume = 139, number = 1, pages = "21--48", year = 2002
+}
+@article{Miniowitz91, author = "R. Miniowitz and J. P. Webb", title = "Covariant-projection quadrilateral elements for the analysis
+            of waveguides with sharp edges", journal = IEEE_TMT, volume = 39, number = 3, pages = "501--505", year = 1991
+}
+@article{Monk91, author = "P. Monk", title = "A mixed method for approximating {M}axwell's equations", journal = SINUM, volume = 28, number = 6 pages = "1610--1634", year = 
+1991
+}
+@article{Monk92, author = "P. Monk", title = "Analysis of finite element method for {M}axwell's equations", journal = SINUM, volume = 29, pages = "714--729", year = 1992
+}
+@article{Monk93, author = "P. Monk", title = "An analysis of {N}\'ed\'elec's method for the spatial
+           discretization of {M}axwell's equations", journal = JCAM, volume = 47, pages = "101--121", year = 1993
+}
+@article{Monk94, author = "P. Monk", title = "On the $p$-extension and $hp$-extension of {N}edelec
+           curl-conforming elements", journal = JCAM, volume = 53, number = 1, pages = "117--137", year = 1994
+}
+@article{MonkParrot94, author = "P. Monk and A. Parrot", title = "A dispersion analysis of finite element methods for {M}axwell's
+           equations ", journal = SISC, volume = 15, number = 4, pages = "916--937", year = 1994
+}
+@article{Mohammadian91, author = "A. H. Mohammadian and V. Shankar and W. F. Hall", title = "Computation of Electromagnetic Scattering and Radiation
+            Using a Time-Domain Finite Volume Discretization Procedure", journal = "Comput. Phys. Comm.", volume = 68, pages = "175--196", year = 1991
+}
+@article{MorelRobertsShashkov98, author = "J. E. Morel and R. M. Roberts and M. J. Shashkov", title = "A Local Support-Operators Diffusion Discretization Scheme", journal = 
+JCP, volume = 144, pages = "17--51", year = 1998
+}
+@article{Mur81, author = "G. Mur", title = "Absorbing boundary conditions for the finite-difference
+            approximation of the time-domain electromagnetic field
+            equations", journal = IEEE_TEC, volume = 23, number = 4, pages = "377--382", year = 1981
+}
+@article{Nedelec80, author = "J. C. N\'ed\'elec", title = "Mixed Finite Elements in {R}3", journal = NUMMA, volume = 35, pages = "315--341", year = 1980
+}
+@article{Nedelec86, author = "J. C. N\'ed\'elec", title = "A New Family of Mixed Finite Elements in {R}3", journal = NUMMA, volume = 50, pages = "57--81", year = 1986
+}
+@article{Ney85, author = "M. M. Ney", title = "Method of moments as applied to electromagnetics problems", journal = IEEE_TMT, volume = 33, number = 10, pages = "972--980", 
+year = 1985
+}
+@article{Noh87, author = "W. F. Noh", title = "Errors for calculations of strong shocks using an artificial
+            viscosity and an artificial heat flux", journal = JCP, volume = 72, number = 1, pages = "78--120", year = 1987
+}
+@book{Okoshi82, author = "T. Okoshi", title = "Optical Fibers", year = 1982, publisher = "Academic Press", address = "New York"
+}
+@article{Ozbay94, author = "E {\"O}zbay and A. Abeyta and G. Tuttle and M. Trinigides
+             and R. Biswas and C.T. Chan and C.M Soukoulis and K.M. Ho", title = "Measurement of a three-dimensional photonic band
+            gap in a crystal structure made of dielectric rods", journal = "Phys. Rev. B", volume = 50, number = 3, pages = "1945--1948", year = 1994
+}
+@article{OzdemirVolakis97, author = "T. {\"O}zdemir and J.L. Volakis", title = "Triangular prism for edge-based vector finite element analysis of
+             conformal antennas", journal = IEEE_TAP, volume = 45, number = 5, pages = "788--797", year = 1997
+}
+@techreport{ParsonsSolberg_A, author = "D. Parsons", title = "Adaptive Implicit Multimechanics Simulations with Diablo", institution = "Lawrence Livermore National 
+Laboratory", number = "UCRL-JC-154055"
+}
+@techreport{ParsonsSolberg_B, author = "D. Parsons and J. Solberg", title = "Parallel Adaptive Multi-Mechanics Simulations using DIABLO", institution = "Lawrence Livermore 
+National Laboratory", number = "UCRL-PROC-208410"
+}
+@article{PaulsenLynch91, author = "K. D. Paulsen and D. R. Lynch", title = "Elimination of Vector Parasites in Finite Element {M}axwell
+            Solutions", journal = IEEE_TMT, volume = 39, number = 3, pages = "395--404", year = 1991
+}
+@article{PaulsenBoyseLynch92, author = "K. D. Paulsen and W. E. Boyse and D. R. Lynch", title = "Continuous Potential {M}axwell Solutions on Nodal-Based
+            Finite Elements", journal = IEEE_TAP, volume = 40, number = 10, pages = "1192--1200", year = 1992
+}
+@article{PeterkinFreseSovinec98, author = "R. E. Peterkin and M.H. Frese and C.R. Sovinec", title = {Transport of magnetic flux in an arbitrary coordinate {ALE}
+            code}, year = 1998, journal = JCP, volume = 140, number = 1, pages = "148--171"
+}
+@article{Petermann76, author = "K. Petermann", title = {Microbending Loss in Monomode Fibres}, year = 1976, journal = "Electronics Letters", volume = 12, number = 4, pages 
+= "107--109"
+}
+@article{Pierce05, author = "T. Pierce and G. Rodrigue", title = "A paralell two-sided contact algorithm in {ALE3D}", year = 2005, journal = "Comp. Meth. Appl. MEch. Eng.", 
+volume = 194, number = 27, pages = "3127--3146"
+}
+@article{Post05, author = "D. Post and L. Votta", title = "Computational science demands a new paradigm", year = 2005, journal = "Physics Today", volume = 58, number = 1, 
+month = "January", pages = "35--41"
+}
+@techreport{Rambo_A, author = "P. Rambo", title = "Vector Potential Remap for 2{D} {MHD}", institution = "Lawrence Livermore National Laboratory", number = "UCRL-JC-132123"
+}
+@article{RaoWiltonGlisson82, author = "S. M. Rao and D. R. Wilton and A. W. Glisson", title = "Electromagnetic scattering by surfaces of arbitrary shape", journal = 
+IEEE_TAP, volume = 30, number = 3, pages = "409--418", year = 1982
+}
+@incollection{RaviartThomas77, author = "P.A. Raviart and J.M. Thomas", title = "A {M}ixed {F}inite {E}lement {M}ethod for $2^{nd}$ {O}rder
+             {E}lliptic {P}roblems", booktitle = "{M}athematical {A}spects of the {F}inite {E}lement {M}ethod", editor = "I. Galligani and E. Mayera", series = "Lect. 
+Notes. on Mathematics", publisher = SPRINGER, volume = 606, pages = "293--315", year = 1977
+}
+@article{Ren00, author = "Z. Ren and N. Ida", title = "High Order Differential Form-Based Elements for the
+            Computation of Electromagnetic Field", journal = IEEE_TM, volume = 36, number = 4, pages = "1472--1478", year = 2001
+}
+@book{Richtmyer76, author = "R. Richtmyer and K. Morton", title = "Difference Methods for Initial Value Problems", year = 1976, publisher = "John Wiley and Sons", address = 
+"New York"
+}
+@inproceedings{Rieben02_A, author = "R. Rieben and D. White and G. Rodrigue", title = "Generalized High Order Interpolatory 1-Form Bases for
+              Computational Electromagnetics", booktitle = "Proceedings of the 2002 IEEE International Antennas and
+              Propagation Symposium", volume = "4", pages = "686--689", month = "June", year = 2002, address = "San Antonio, Texas"
+}
+@article{Rieben03, author = "R. Rieben and D. White and G. Rodrigue", title = "Improved conditioning of finite element matrices using
+                new high order interpolatory bases", journal = IEEE_TAP, volume = 52, number = 10, pages = "2675--2683", year = 2001
+}
+@inproceedings{Rieben03_A, author = "R. Rieben and D. White and G. Rodrigue", title = "Arbitrary Order Hierarchical Vector Bases for Hexahedrons", booktitle = "Proceedings 
+of the 2003 IEEE International Antennas and
+              Propagation Symposium", volume = 2, pages = "972--976", month = "June", year = 2003, address = "Columbus, Ohio"
+}
+@article{Rieben03_B, author = "R. Rieben and D. White and G. Rodrigue", title = "High Order Symplectic Integration Methods for Finite
+                Element Solutions to Time Dependent MAxwell Equations", journal = IEEE_TAP, note = "in press", month = "August", year = 2004
+}
+@inproceedings{Rieben04_A, author = "R. Rieben and D. White and G. Rodrigue", title = "Application of Novel High Order Time Domain Vector Finite
+              Element Method to Photonic Band-Gap Waveguides", booktitle = "Proceedings of the 2004 IEEE International Antennas and
+              Propagation Symposium", %volume = 2, %pages = "972--976", month = "June", year = 2004, address = "Monterrey, California"
+}
+@inproceedings{RiebenARES07, author = "R. Rieben", title = "Lagrange Hydro step in {ARES}", booktitle = "Proceedings of the Advanced Numerical Methods for Lagrangian
+              Hydrodynamics Workshop", month = "November", year = 2007, address = "Lawrence Livermore National Laboratory, Livermore, California"
+}
+@article{RiebenWhiteRodrigue05, author = "R. Rieben and D. White and G. Rodrigue", title = "A High Order Mixed Vector Finite Element Method for Solving
+                the Time Dependent {M}axwell Equations on Unstructured
+                Grids", journal = JCP, volume = 204, pages = "490--519", year = 2005
+}
+@article{RiebenWhite06, author = "R. Rieben and D. White", title = "Verification of High-Order Mixed {FEM} Solution of
+                Transient Magnetic Diffusion Problems", journal = IEEE_TM, volume = 42, number = 1, pages = "25--39", year = 2006
+}
+@article{RiebenWhiteWallinSolberg07, author = "R. N. Rieben and D. A. White and B. K. Wallin
+                and J. M. Solberg", title = "An arbitrary {L}agrangian-{E}ulerian discretization
+                of {MHD} on 3{D} unstructured grids", journal = JCP, volume = 226, pages = "534--570", year = 2007
+}
+@article{Rinaldi02, author = "C. Rinaldi and H. Brenner", title = "Body versus surface forces in continuum mechanics: {I}s
+                the {M}axwell stress tensor
+                a physically objective {C}auchy stress?", journal = "Phys. Rev. E", volume = "65", number = "036615", year = 2002
+}
+@Misc{RobinsonPersonalCommunication,
+  key = {Personal Communication},
+  author = {A. Robinson},
+  title = {Personal Communication},
+  OPThowpublished = {},
+  OPTmonth = {},
+  year = {2005},
+  OPTnote = {},
+  OPTannote = {}
+}
+@article{RodrigueWhite01, author = "G. Rodrigue and D. White", title = "A Vector Finite Element Time-Domain Method for Solving
+            Maxwell's Equations on Unstructured Hexahedral Grids", journal = SISC, volume = 23, number = 3, pages = "683--706", year = 2001
+}
+@article{RodrigueWhiteKoning00, author = "G. Rodrigue and D. White and J. Koning", title = "Scalable Preconditioned Conjugate Gradient Inversion of Vector
+            Finite Element Mass Matrices", journal = JCAM, volume = 123, pages = "307--321", year = 2000
+}
+@article{Ruth83, author = "D. Ruth", title = "A Canonical Integration Technique", journal = "IEEE Trans. Nuc. Sci.", volume = NS-30, number = 4, pages = "2669--2671", year 
+= 1983
+}
+@article{Ruth90, author = "E. Forest and D. Ruth", title = "Fourth-order Symplectic Integration", journal = "Physica D", volume = 43, number = 1, pages = "105--117", year = 
+1990
+}
+@book{SSGRD98, author = "M. Salazar-Palma and T. K. Sarkar and L. Garcia-Castillo and
+             T. Roy and A. Djordjevic", title = "Iterative and Self Adaptive Finite-Elements in
+             Electromagnetic Modeling", year = 1998, publisher = "Artech House"
+}
+@article{Sadiku89, author = "M. N. O. Sadiku", title = "A simnple introduction to finite element analysis of
+            electromagnetic problems", journal = IEEE_TOE, volume = 32, number = 2 pages = "85--93", year = 1989
+}
+@book{Sadiku92, author = "M. N. O. Sadiku", title = "Numerical Techniques in Electromagnetics", year = 1992, publisher = "CRC Press"
+}
+@article{Saitoh01, author = "I. Saitoh and Y. Suzuki and N. Takahashi", title = "The Symplectic Finite Difference Time Domain Method", journal = IEEE_TM, volume = 37, 
+number = 5, pages = "3251--3254", year = 2001
+}
+@article{Saitoh02, author = "I. Saitoh and N. Takahashi", title = "Stability of Symplectic Finite-Difference Time-Domain Methods", journal = IEEE_TM, volume = 38, number = 
+2, pages = "665--668", year = 2002
+}
+@book{SanzSerna94, author = "J. M. Sanz-Serna and M. P. Calvo", title = "Numerical Hamiltonian Problems", year = 1994, publisher = "Chapman and Hall"
+}
+@article{SavagePeterson96, author = "J. S. Savage and A F. Peterson", title = "Higher-Order Vector Finite Elements for Tetrahedral Cells", journal = IEEE_TMT, volume = 44, 
+number = 6 pages = "874--879", year = 1996
+}
+@book{Sedov59, author = "L. I. Sedov", title = "Similarity and Dimensional Methods in Mechanics", edition = "Tenth", year = 1993, publisher = "CRC Press"
+}
+@article{Shearer68, author = "J. W. Sehearer, et. al.", title = "Explosive driven magnetic field compression generators", journal = "J. Appl. Physics", volume = 39, number 
+= 4, pages = "2102--2116", year = 1968
+}
+@article{Schoberl00, author = "S. Schinnerl and M. Schoberl and M. Kaltenbacher", title = "Nested Multigrid Methods for the Fast Numerical
+            Computation of 3{D} Fields", journal = IEEE_TM, volume = 36, number = 4, pages = "1557--1560", year = 2000
+}
+@article{Shankar90, author = "V. Shankar and A. Mohammadian and W. Hall", title = "A time-domain finite volume treatment for the {M}axwell
+            Equations", journal = "Electromagnetics", volume = 10, number = 1, pages = "127--145", year = 1990
+}
+@article{Silvester69, author = "P. Silvester", title = "Finite Element Solution of Homogeneous Waveguide Problems", journal = "Alta Frequenza", volume = 38 year = 1969, 
+pages = "313--317"
+}
+@book{Silvester83, author = "P. P. Silvester and R. L. Ferrari", title = "Finite Elements for Electrical Engineers", year = 1983, publisher = "Cambridge University Press, 
+Cambridge"
+}
+@book{Smith97, author = "G. S. Smith", title = "An Introduction to Classical Electromagnetic Radiation", year = 1997, publisher = "Cambridge University Press, Cambridge"
+}
+@article{Sozuer94, author = "H. S. S{\"o}z{\"u}er and J.P. Dowling", title = "Photonic Band Calculations for Woodpile Structures", journal = "J. Mod. Opt.", volume = 41, 
+number = 2, year = 1994, pages = "231--239"
+}
+@book{Smythe68, author = "W. R. Smythe", title = "Static and Dynamic Electricity", year = 1968, publisher = "McGraww-Hill"
+}
+@book{Spiegel59, author = "M. R. Spiegel", title = "Vector Analysis and an Introduction to Tensor
+             Analysis", year = 1959, publisher = "McGraww-Hill"
+}
+@book{Stewart96, author = "A. M. Stewart and A. R. Humphries", title = "Dynamical Systems and Numerical Analysis", publisher = "Cambridge University Press", year = 1996
+}   
+@article{StoneHawleyEvansNorman92, author = "J. M. Stone and J. F. Hawley and C. R. Evans and M. L. Norman", title = "A test suite for magnetohydrodynamic simulations", 
+journal = "Astrophysical Journal", volume = 388, number = 2, year = 1992, pages = "415--437"
+}
+@article{StoneNorman92, author = "J. M. Stone and M. L. Norman", title = "{ZEUS 2D} - {A} Radiation magnetohydrodynamics code for
+              astrophysical flows in 2 space dimensions: {II}. {T}he
+              magnetohydrodynamic algorithms and tests", journal = "Astrophysical Journal Supplement Series", volume = 80, number = 2, year = 1992, pages = "791--818"
+}
+@book{Stratton, author = "J. A. Stratton", title = "Electromagnetic Theory", publisher = "MvGraw-Hill", year = 1941 (1st ed)
+}   
+@book{Stroustrup91, author = "B. Stroustrup", title = "C++ Programming Language", publisher = "Addison-Wesley, Reading, MA", year = 1991
+}    
+@book{StoerBulirsch80, author = "J. Stoer and R. Bulirsch", title = "Introduction to Numerical Analysis", edition = "Second", publisher = "Springer", year = 1980
+}    
+@article{SunMangesYuanCendes95, author = "D. Sun and J. Manges and X. Yuan and Z. Cendes", title = "Spurious Modes in Finite Element Methods", journal = IEEE_APM, volume = 
+37, number = 5, pages = "12--24", year = 1995
+}
+@article{Sun01, author = "D. Sun and J. Lee and Z. Cendes", title = "Construction of nearly orthogonal {N}edelec bases for
+            rapid convergence with multilevel preconditioned
+            solvers", journal = SISC, volume = 23, number = 4, pages = "1053-1076", year = 2001
+}
+@article{Taflove75, author = "A. Taflove and M. E. Brodwin", title = "Numerical solution of steady-state electromagnetic scattering
+            problems using the time-dependent {M}axwell's equations ", journal = IEEE_TMT, volume = 23, pages = "623--630", year = 1975
+}
+@article{Taflove88, author = "A. Taflove", title = "Review of the formulation and applications of the
+            finite-difference time-domain method for numerical modeling of
+            electromagnetic wave interaction with arbitrary structures", journal = "Wave Motion", volume = 10, pages = "547--582", year = 1988
+}
+@book{Taflove98, author = "A. Taflove ed.", title = "Advances in Computational Electrodynamics: The Finite-Difference
+             Time-Domain Method ", year = 1998, publisher = "Artech House"
+}
+@article{Teixeira99, author = "F. L. Teixeira and W. C. Chew", title = "Lattice electromagnetic theory from a topological viewpoint", journal = JMP, volume = 40, number = 
+1, pages = "169--187", year = 1999
+}
+@article{Thoma98, author = "P. Thoma", title = "Numerical Stability of Finite Difference Time Domain Methods", journal = IEEE_TM, volume = 34, number = 5, pages = 
+"2740--2743", year = 1998
+}
+@techreport{Tipton_A, author = "R. Tipton", title = "A 2{D} Lagrange {MHD} Code", institution = "Lawrence Livermore National Laboratory", number = "UCRL-JC-94277"
+}
+@techreport{Tipton_B, author = "R. Tipton", title = "Modeling flux compression generators with a 2{D}
+                {ALE} code", institution = "Lawrence Livermore National Laboratory", number = "UCRL-JC-99900"
+}
+@techreport{Tipton90, author = "R. Tipton", title = "{CALE} {L}agrange Step", institution = "Lawrence Livermore National Laboratory", note = "Unpublished", year = {1990}, 
+month = {October},
+}
+@techreport{Tipton99, author = "R. Tipton", title = "Hourglass Modes and a New Monotonic Hourglass Filter", institution = "Lawrence Livermore National Laboratory", note = 
+"Unpublished", year = {1999}, month = {December}
+}
+@Misc{TiptonPersonalCommunication,
+  key = {Personal Communication},
+  author = {R. Tipton},
+  OPTtitle = {},
+  OPThowpublished = {},
+  OPTmonth = {},
+  year = {2005},
+  OPTnote = {},
+  OPTannote = {}
+}
+@article{Toth00, author = "G. Toth", title = "The $\nabla \cdot {B} = 0$ Constraint in Shock-Capturing
+            Magnetohydrodynamics Codes", journal = JCP, volume = 161, number = 2, pages = "605--652", year = 2000
+}
+@article{VanLeer79, author = "B. VanLeer", title = "Towards the ultimate conservative difference scheme", journal = JCP, volume = 32, number = 1, pages = "101--136", year = 
+1979
+}
+@article{VonNeumannRichtmyer50, author = "J. VonNeumann and R. D. Richtmyer", title = "A Method for the numerical calculation of hydrodynamic
+            shocks", journal = "J. Appl. Phys.", volume = 21, pages = "232--237", year = 1950
+}
+@techreport{Wallin_A, author = "B. Wallin et. al.", title = "Large Multiphysics Simulations in {ALE}3{D}", institution = "Lawrence Livermore National Laboratory", number = 
+"UCRL-JC-14047"
+}
+@techreport{Wallin_B, author = "B. Wallin", title = "Implicit Hydrodynamics for Cookoff Problems", institution = "Lawrence Livermore National Laboratory", number = 
+"UCRL-JC-151981"
+}
+@techreport{Wallin_C, author = "B. Wallin et. al.", title = "Practical Solutions to Advection Difficulties in a
+                Multi-Material Multi-Physics Code", institution = "Lawrence Livermore National Laboratory", number = "UCRL-JC-149137"
+}
+@article{WangIda93, author = "J. S. Wang and N. Ida", title = "Curvilinear and Higher Order 'Edge' Finite Elements in
+            Electromagnetic Field Computation", journal = IEEE_TM, volume = 29, number = 2, pages = "1491--1494", year = 1993
+}
+@book{Wangsness79, author = "R. K. Wangsness", title = "Electromagnetic Fields", year = "1979", publisher = "John Wiley and Sons", edition = "Second"
+}
+@article{Warnick97, author = "K. Warnick and R. Selfridge and D. Arnold", title = "Teaching Electromagnetic Field Theory Using Differential Forms", journal = IEEE_TOE, 
+volume = 40, number = 1, pages = "53-68", year = 1997
+}
+@article{WarrenScott94, author = "S. Warren and W. Scott", title = "An Investigation of Numerical Dispersion in the Vector
+            Finite Element Method Using Quadrilateral Elements", journal = IEEE_TAP, volume = 42, number = 11, pages = "1502--1508", year = 1994
+}
+@article{WarrenScott95, author = "S. Warren and W. Scott", title = "Numerical Dispersion in the Finite Element Method Using
+            Triangular Edge Elements", journal = OTL, volume = 9, number = 6, pages = "315--319", year = 1995
+}

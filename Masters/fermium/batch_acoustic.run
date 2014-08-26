@@ -1,0 +1,20 @@
+#!/usr/local/bin/tcsh -f
+#MSUB -S /usr/local/bin/tcsh
+#MSUB -l nodes=1
+#MSUB -l walltime=6:00:00
+#MSUB -A clbdivp
+#MSUB -l feature=$1
+#MSUB -V
+
+set path = ($path /usr/local/bin)
+setenv LDR_CNTRL LARGE_PAGE_DATA=Y
+umask 027
+
+date
+
+cd /g/g17/ellis35/lhydro_matlab
+
+matlab7.4 -nodesktop -nosplash -nojvm -r run_prob" '$2'"
+#matlab7.4 -nodesktop -nosplash -nojvm -r run_prob" 'prob_acoustic'"
+
+date

@@ -1,0 +1,253 @@
+% Acous Wave Problem
+% Author: Truman Ellis
+% Email: ellis35@llnl.gov
+
+clear variables; close all; clc;
+format short g
+format compact
+scrsz = get(0,'ScreenSize');
+% h0=sfigure(1,'Position',[1 scrsz(4)/8 scrsz(3) scrsz(4)*7/9]);
+SetSaveLocation
+comparevar='acceleration';
+zoneref=[4 8 16];
+% elemchoice=[1 7 10];
+% quadorder=[5 5 3];
+elemchoice={@Q1Basis @Q2Basis;@Q0Basis @Q2dBasis};
+quadorder=[5 5 5];
+err=zeros(length(zoneref),length(elemchoice));
+slope=zeros(1,length(elemchoice));
+for ec=1:size(elemchoice,2)
+    for zr=1:length(zoneref)
+        clear('-regexp', '[^err slope zoneref elemchoice ec zr quadorder randarray comparevar]');
+
+        % Set Kinematic and Thermodynamic Basis
+        VBasis=elemchoice{1,ec};
+        PBasis=elemchoice{2,ec};
+        HighOrderEnergy=false;
+        StrongMass=false;
+
+        FullMassMatrixSolve=true;
+        MassUpdate=false;
+        % Set Quadrature Order
+        QuadOrder=quadorder(ec);
+
+        % Use this to turn artificial viscosity on/off
+        Qfrac=0;
+
+        % Use this to turn anti-hourglass forces on/off (Only works with Q1 elements)
+        hgfrac=0;
+
+        % Define the number of zones
+        NZx=zoneref(1);
+        NZy=NZx;
+        RefineLevel=zr;
+
+        % Define the mesh size
+        xmin=-1;
+        xmax=1;
+
+        ymin=-1;
+        ymax=xmax;
+
+        % Define the start and stop time
+        tstart = 0;
+        tstop = 1;
+
+        %Define a random "jittering" factor -- this determines the magnitude of
+        %mesh distortion
+        jitter=0.4;
+        % Define Mesh rotations
+        RotateMesh=0;
+
+        % Define axis and value for lineout before transformation
+        vref=5; pref=5;
+
+        % Specify the maximum number of time steps to use
+        maxcycle=1;
+
+        % These numbers are the coefficients for the artificial viscosity
+        qquad=2;
+        qlin=0.25;
+
+        %% Mesh Assembly
+        MeshAssembly
+
+        %% Variable Preallocation
+        Preallocate
+
+        %% Initialize Properties
+        % Set the EOS gamma law constant for an ideal gas
+        gamma=5/3;
+
+        rhoInit=1;
+        pInit=0;
+        eInit=pInit/((gamma-1)*rhoInit);
+
+        OLDenergy(:)=eInit;
+        OLDdensity(:)=rhoInit;
+        QuadDensity(:)=rhoInit;
+        switch func2str(PBasis)
+            case 'Q0Basis'
+                coords=[.5; .5];
+            case 'P0rBasis'
+                coords=[.5 .5;.5 .5];
+            case 'P1Basis'
+                coords=[0 1 0;0 0 1];
+            case 'P1qBasis'
+                coords=[.5 .5+1/3*cos(7*pi/6) .5+1/3*cos(11*pi/6);
+                    .5+1/3 .5+1/3*sin(7*pi/6) .5+1/3*sin(11*pi/6)];
+            case 'Q1dBasis'
+                coords=GaussLegendreWeights2d(2)';
+            case 'Q1Basis'
+                coords=[0 1 1 0;0 0 1 1];
+            case 'Q2dBasis'
+                coords=GaussLegendreWeights2d(3)';
+            case {'Q3dBasis' 'Q0r4Basis'}
+                coords=GaussLegendreWeights2d(4)';
+        end
+        unrotX=invRotMat*allnodes;
+        for N=1:NZ
+            if strcmp(func2str(PBasis),'P0rBasis')
+                if mod(N,2)
+                    coords=[2/3 1/3;1/3 2/3];
+                else
+                    coords=[1/3 2/3;1/3 2/3];
+                end
+            end
+            for i=1:npdof
+                xglob(i)=LocalToGlobal(unrotX(1,Quadmap(:,N)),coords(:,i),VBasis);
+                yglob(i)=LocalToGlobal(unrotX(2,Quadmap(:,N)),coords(:,i),VBasis);
+            end
+            pressure(:,N)=cos(pi/2*xglob).*cos(pi/2*yglob);
+            for n=1:QP
+                if strcmp(func2str(PBasis),'P0rBasis')
+                    QuadPressure(n,N)=LocalToGlobal(pressure(:,N)',QuadPts2d(n,:),PBasis,N);
+                else
+                    QuadPressure(n,N)=LocalToGlobal(pressure(:,N)',QuadPts2d(n,:),PBasis);
+                end
+            end
+        end
+
+        for N=1:NZ
+            if ~StrongMass
+                for n=1:QP
+                    localMP(:,:,N)=localMP(:,:,N)+QuadWgts2d(n)*refMP(:,:,n)*QuadDetJacobian(n,N);
+                end
+                cornerMass(:,N)=localMP(:,:,N)*OLDdensity(:,N);
+                massZ(N)=sum(cornerMass(:,N),1);
+            else
+                for n=1:npdof
+                    detJ=det(Jacobian(allnodes(:,Quadmap(:,N)),pdofpts(:,n)));
+                    OLDdensity(n,N)=OLDdensity(n,N)*detJ;
+                    pressure(n,N)=pressure(n,N)*detJ;
+                end
+                NEWdensity=OLDdensity;
+                QuadDensity(:,N)=(OLDdensity(:,N)'*QuadPBasis)';
+                QuadPressure(:,N)=(pressure(:,N)'*QuadPBasis)';
+                for n=1:QP
+                    localMP(:,:,N)=localMP(:,:,N)+QuadWgts2d(n)*refMP(:,:,n);
+                end
+                cornerMass(:,N)=localMP(:,:,N)*OLDdensity(:,N);
+                massZ(N)=sum(cornerMass(:,N),1);
+            end
+        end
+
+        % Assemble Nodal Masses if Mass is not updated every cycle
+        InitMassMatrix
+
+        %% === Time Stepping Loop ===
+        for cycle=cycle:maxcycle
+            if stop==true
+                break;
+            end
+            dt=0;
+
+            %% === Acceleration Phase ===
+
+            % Assemble Mass Matrix and Force Vector
+            UpdateMassAndForce
+
+            if FullMassMatrixSolve
+                % Solve Linear System
+                acceleration=[(MMX\forceN(1,:)')'; (MMY\forceN(2,:)')'];
+
+            elseif MassUpdate
+
+                % Solve for acceleration
+                acceleration(1,:)=forceN(1,:)./massN;
+                acceleration(2,:)=forceN(2,:)./massN;
+            else
+                % Solve for acceleration
+                acceleration(1,:)=forceN(1,:)./massN;
+                acceleration(2,:)=forceN(2,:)./massN;
+			end
+			
+            %% =========== PLOT RESULTS ===========
+			switch comparevar
+				case 'pressure'
+					scalefactor=1/5;
+					plotvar=pressure(:)';
+					exactFn=@(x,y) cos(pi/2*x).*cos(pi/2*y);
+					err(zr,ec)=L2Norm1(allnodes,Quadmap,VBasis,plotvar,PressureMap',PBasis,...
+						5,Jacobian,exactFn);
+% 					h=sfigure(1);
+% 					err(zr,ec)=PlotL2Norm1(allnodes,Quadmap,VBasis,plotvar,PressureMap',PBasis,...
+% 						5,Jacobian,exactFn);
+% 					axis equal
+% 					az=0;
+% 					el=90;
+% 					view(az,el);
+% 					axis tight
+% 					colorbar
+% 					drawnow
+				case 'acceleration'
+					scalefactor=.2;
+					plotvar=acceleration;
+					exactFn=@(x,y) RotMat*[pi/2*sin(pi/2*x)*cos(pi/2*y);pi/2*cos(pi/2*x)*sin(pi/2*y)];
+					exactA=scalefactor*pi/2*RotMat*[sin(pi/2*unrotX(1,:)).*cos(pi/2*unrotX(2,:));
+						cos(pi/2*unrotX(1,:)).*sin(pi/2*unrotX(2,:))];
+					err(zr,ec)=L2Norm(allnodes,Quadmap,VBasis,acceleration,Quadmap,VBasis,...
+						5,Jacobian,exactFn);
+% 					h=sfigure(1);
+% 					err(zr,ec)=PlotL2Norm(allnodes,Quadmap,VBasis,plotvar,Quadmap,VBasis,...
+% 						5,Jacobian,exactFn);
+% 					axis equal
+% % 					az=0;
+% % 					el=90;
+% % 					view(az,el);
+% % 					axis tight
+% % 					colorbar
+% % 					drawnow
+			end
+
+
+            
+%             exactA=exactFn(allnodes(1,:),allnodes(2,:));
+            
+
+%             h=sfigure(1);
+%             quiver(allnodes(1,:),allnodes(2,:),scalefactor*plotvar(1,:),scalefactor*plotvar(2,:),0,'LineWidth',2)
+%             axis equal
+%             hold on
+%             quiver(allnodes(1,:),allnodes(2,:),exactA(1,:),exactA(2,:),0,'k')
+%             PlotFEMMesh(allnodes,Quadmap,2,VBasis,'k');
+%             hold off
+%             view(0,90)
+%             drawnow
+            
+
+        end
+    end
+    sl=polyfit(log(1./(2*zoneref)),log(err(:,ec)'),1);
+    slope(ec)=sl(1);
+end
+figure('Position',[1 1 600 450])
+loglog(1./(2*zoneref),err,'LineWidth',2)
+% legend(num2str(elemchoice'),'Location','SouthEast')
+axis tight
+axis square
+ylabel('L_2 Norm of Error','FontSize',16)
+xlabel('h','FontSize',16)
+legend('Q_1-Q_{0}: slope = 1.44','Q_2-Q_{2d}: slope = 2.90','Location','SouthEast')
+% xlabel('h','FontWeight','demi','FontSize',20)
+% ylabel('L_2 Norm of Error','FontWeight','demi','FontSize',20)

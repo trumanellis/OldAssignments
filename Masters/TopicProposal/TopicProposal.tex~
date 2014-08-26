@@ -1,0 +1,38 @@
+\documentclass[a4paper,10pt]{article}
+
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\textwidth}{6.5in}
+
+%opening
+\title{High Order Finite Elements for Lagrangian Fluid Dynamics}
+\author{Truman E. Ellis}
+
+\begin{document}
+
+\maketitle
+
+Modern multi-physics codes solve the Euler equations using the Arbitrary Lagrangian-Eulerian (ALE) technique. At the heart of every ALE formulations is the Lagrange step, where the equations are solved in a moving material frame, such that the mesh moves with the material. Traditional staggered-grid hydro codes have been used successfully in many applications, but their predictive capability can be limited by several outstanding issues.
+\begin{itemize}
+ \item \textit{Symmetry preservation on distorted and unstructured grids} 
+ (symmetry breaks if the mesh is not aligned with the shock wave propagation)
+ \item \textit{Exact total energy conservation}
+ (total energy is not conserved algebraically, i.e. up to machine precision)
+ \item \textit{Discretization of artificial viscosity term in multiple dimensions}
+ (discretization in multiple-dimensions on distorted grids remains an open
+question)
+ \item \textit{Treatment of hourglass mode instabilities}
+ (high-frequency “checkerboard modes” in the pressure and “hourglass modes” in the velocity
+remain an issue and current “filtering” approaches do not address the fundamental cause)
+\end{itemize}
+
+We think we can fix these long-standing issues with SGH by introducing some modern finite element methods. The finite element method is a well-established method with a strong mathematical foundation that provides a rich space to explore for solutions to these problems. For example, it is well known that bilinearly interpolated velocities paired with discontinuous constant pressure, density, and energy (traditional SGH) are an unstable pair. We hope to find a higher order method that is inherently hourglass-free. My research aims to explore some of this high-order finite element space for some improvements to traditional staggered-grid hydro.
+
+There are some immediately foreseeable benefits to using high order finite elements. The most notable improvement is the natural implementation of curved zones using the higher order Jacobian matrix transformation. Other improvements include the ease of implementation of a monotonic slope limiter to turn off artificial viscosity in areas of linear flow fields. With higher-order thermodynamic variables, we can easily calculate pressure and density gradients within one cell. Higher order finite elements should also allow us to achieve sharper shock capturing, since one cell can now contain a density jump that could before, only be achieved over the space of 2 cells. We should also be able to see higher accuracy with fewer cells and less computational time since higher order methods converge faster than their low-order counterparts.
+
+There do exist several challenges in the implementation of high-order methods for shock fluid dynamics. Most notable among these is Gibbs phenomenon. Numerical methods tend to oscillate arounds discontinuities such as shocks. High-order methods have even more of a propensity for said shock ringing. This could probably be addressed with an appropriate artificial viscosity coefficient. Next, these higher order methods may not be hourglass-free as we hope. In this case, we will need to derive a new higher-order hourglass filter. Thirdly, the derivation of a stable time step is less straight-forward than the CFL condition for low order methods. Finally, higher order methods may be more susceptible to zero or negative Jacobian situations which could cause a solution to crash.
+
+Despite the possible difficulties listed here, we believe that the potential benefits of using high-order finite elements for Lagrangian fluid dynamics far outweigh these potential setbacks. 
+\end{document}
